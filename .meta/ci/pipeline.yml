@@ -7,7 +7,7 @@ resources:
   type: git
   source:
     branch: master
-    uri: https://git.gregtech.overminddl1.com/GregTech-6/GT6.git
+    uri: https://git.gregtech6.overminddl1.com/GregTech-6/GT6.git
     paths:
     - "*.gradle"
     - ".meta/*"
@@ -17,7 +17,7 @@ resources:
   type: git
   source:
     branch: master
-    uri: https://git.gregtech.overminddl1.com/GregTech-6/GT6.git
+    uri: https://git.gregtech6.overminddl1.com/GregTech-6/GT6.git
     paths:
     - "*.gradle"
     - "CHANGELOG.md"
@@ -29,7 +29,7 @@ resources:
   type: git
   source:
     branch: master
-    uri: https://git.gregtech.overminddl1.com/GregTech-6/GT6.git
+    uri: https://git.gregtech6.overminddl1.com/GregTech-6/GT6.git
     tag_filter: 'v[0-9]*'
 
 - name: .gradle
@@ -120,7 +120,7 @@ resources:
 - name: gt6-screenshot
   type: http-api
   source:
-    uri: https://gregtech.overminddl1.com/gallery/LATEST.image.url
+    uri: https://gregtech6.overminddl1.com/gallery/LATEST.image.url
 
 
 resource_types:

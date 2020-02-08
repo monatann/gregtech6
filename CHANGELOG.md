@@ -17,10 +17,13 @@ Nothing (I tend to only add finished Stuff to the Changelog).
 Nothing (I tend to only add finished Stuff to the Changelog).
 
 
-6.12.00: (Not released yet, will be next Monday or Tuesday because Bear, Explosions for Reactors are gonna be enabled too.)
-[NOTE] I will definitely still add the WIP things before I leave most of Minecraft behind, don't worry. ^^
+6.12.00:
+[NOTE] Bugfix Releases will still happen ofcourse. ;)
 [FIXED] A long going Bug in the Steam Engines that made it impossible to run them at their upper Limit. I would still not recommend running them that fast but I cant tell you what not to do.
 [CHANGED] Large Fermenter Auto-Emits Items and Fluids at different places now. Fluids stay at the same Position, Items are one block above.
+[CHANGED] Reactors can explode now.
+[CHANGED] Welder has 9 Input slots now. Because someone wanted to add GalaxySpace Recipes to it via MineTweaker.
+[ADDED] NEI Recipes for GT6 Machines are more sorted now thanks to a Code submission by codewarrior.
 [ADDED] Singleblock Diesel Engines for easier usage of Rotational Units. They run at 16, 32, 64, 128, 256 and 512 RU/t depending on Tier.
 [ADDED] A Crossing for Crucibles so that more Molds can be around one Crucible without having to use limited Universal Extenders.
 [ADDED] Squeezer Multiblock, even though it was not on the List. It was easy to just copy most of the Multiblock Shredder to do this, also it was kinda needed for the Multiblock Fermenter.
@@ -44,7 +47,7 @@ Nothing (I tend to only add finished Stuff to the Changelog).
 [ADDED] A few new Ore Processing Recipes to make getting Lithium-6 possible and Nuclear Ore Refinement more possible.
 [ADDED] Fluid Display Items can now rightclick fill Blocks with their Fluid directly.
 [ADDED]
-Fusion Reactor. 
+Fusion Reactor.
 An Octagon fitting in a 19x19 Square. If you dont know what an Octagon is, the Sesame Street has you covered https://www.youtube.com/watch?v=_7jpz_55EdM
 The Center has a Computer shaped Cube in it.
 Its GUI has Instructions as to how to build it in simple 3 Pictures. The Tooltip states how much of each thing you need.
@@ -913,7 +916,7 @@ And I need certain things to be fixed before I can work properly again, otherwis
 
 
 6.09.00:
-[NOTE] GregTech-6 is now OpenSource (LGPLv3) and on git.gregtech.overminddl1.com. Don't worry, I will still be working on GT6 myself, this is just an upgrade. ;D
+[NOTE] GregTech-6 is now OpenSource (LGPLv3) and on git.gregtech6.overminddl1.com. Don't worry, I will still be working on GT6 myself, this is just an upgrade. ;D
 [NOTE] Some GT6 Addons like QwerTech or GT Weapons Works will need to be recompiled in order to work with this Version.
 [BROKEN] IC2 Sounds are currently not available due to going OpenSource, and IC2 obviously not being OpenSource. (I had to copy their Sound Files to make shit work, because they clearly didn't care to make things proper)
 [BROKEN AND FIXED LATER] WAILA is somehow no longer able to display the Name of my Blocks. I wonder if it is because the WAILA API is inside the new Dev Environment, because I never did WAILA Compatibility at all.
@@ -923,7 +926,7 @@ And I need certain things to be fixed before I can work properly again, otherwis
 [ADDED] My own selfmade Wrench and Screwdriver Sounds.
 
 
-//=== Version Number Jump because of going OpenSource at git.gregtech.overminddl1.com and some resulting refactoring - Don't worry, I will still be working on GT6 myself. ;D ===//
+//=== Version Number Jump because of going OpenSource at git.gregtech6.overminddl1.com and some resulting refactoring - Don't worry, I will still be working on GT6 myself. ;D ===//
 
 
 6.08.04:
@@ -963,7 +966,7 @@ Small Ores now generate in it. Note that none of the Sulfur containing Small Ore
 Small Rocks now generate properly, as opposed to having the Default Overworld ones. The probability of finding a Meteorite is larger up there.
 Ambrosium Torches can now be placed with GT Pickaxes, Shovels etc.
 Added Miniature Aether Portal, 128m Error Margin and 1:1 Distance. Requires a GT6 Bottle of Holy Water to be activated.
-[FIXED] Config File Error with /config/gregtech/gregtech.cfg
+[FIXED] Config File Error with /config/gregtech/gregtech6.cfg
 [ADDED] Crucible Sets for Umberstone, Livingrock, Holystone and Betweenstone.
 
 
@@ -1710,7 +1713,7 @@ Several Low Tier Metals count as Simple for the Extruder now, meaning they have 
 
 
 6.05.44:
-[NOTE] Users of the Custom Veins etc in my Worldgen Config have to manually set the amount of Custom Veins, as it no longer defaults to 8, in order to prevent Debug Error Messages from appearing in the Log (due to NULL Material in Config). And yes the Debug Errors about Worldgen Ores are for Users, not for me, and they are in the GregTech.log
+[NOTE] Users of the Custom Veins etc in my Worldgen Config have to manually set the amount of Custom Veins, as it no longer defaults to 8, in order to prevent Debug Error Messages from appearing in the Log (due to NULL Material in Config). And yes the Debug Errors about Worldgen Ores are for Users, not for me, and they are in the gregtech6.log
 [FIXED] A HUGE Maths Error in the Extruder Recipe Code. It used about 10 times more Energy in some cases than it should have used (all the Metal related Recipes basically). Now it will just use 25% more Energy than a Crucible would.
 [FIXED] A Stupid Error in the Extruder Recipe Code that made Wax, Plastic and Rubber Stuff cost exactly the same no matter how many Items the Recipe Outputs.
 [FIXED] Fluid Filters resetting again.
@@ -3506,7 +3509,7 @@ You can attach them to any of the 6 Sides. See it like some kind of "Upgrade Slo
 
 
 6.01.00:
-[API] Restructured the API in a way that probably crashes a lot of compat things of other Mods, that is why the secondary version number finally got bumped. The gregapi.tileentitiy package got a bit too full, so I made subpackages and also renamed some TEs to sort things out properly. I did keep a deprecated Version of ITileEntityEnergy at its old place however, because that one is already too widely used.
+[API] Restructured the API in a way that probably crashes a lot of compat things of other Mods, that is why the secondary version number finally got bumped. The gregapi6.tileentitiy package got a bit too full, so I made subpackages and also renamed some TEs to sort things out properly. I did keep a deprecated Version of ITileEntityEnergy at its old place however, because that one is already too widely used.
 [FIXED] Pipes and Wires not displaying Color upon being painted. (Paint does NOT influence connection behaviour due to the new wrenching/wirecutting based connection system)
 [ADDED] Tooltips to things that can damage you when touching them. Lack of said Tooltip automatically indicates that the thing is safe to touch. And yes there are Fluid Pipes that ARE Safe to touch (as of this Version).
 [ADDED]
@@ -3649,7 +3652,7 @@ If you place a Chest or something to the left of it, it will automatically suck 
 
 
 6.00.56:
-[API] Changed a lot of the Recipe System. The Recipe Lists can be found in the RecipeMap Class. The old RecipeAdder is now deprecated. If you fill in any wrong Parameters, the GregTech.log File will contain small StackTraces of where you inserted those.
+[API] Changed a lot of the Recipe System. The Recipe Lists can be found in the RecipeMap Class. The old RecipeAdder is now deprecated. If you fill in any wrong Parameters, the gregtech6.log File will contain small StackTraces of where you inserted those.
 [API] Improved NEI Recipe Handler to now support up to 12 Fluid Inputs and 12 Fluid Outputs per default, instead of just one of each. Also increased the Max of Item Inputs and Outputs from 9 to 12. It will should work well as long as Item-IN + Fluid-IN <= 12 and Item-OUT + Fluid-OUT <= 12.
 [API] Improved Basic Machines to now accept Liquids when the Recipe Handlers specify their existence.
 [CHANGED] Recipe Handlers of GT now automatically generate Config Files instead of me having to do that stuff manually. It is inside the Folder called "Recipes". The Recipes themselves are represented by a List of all their Input Items and Fluids.
@@ -4348,4 +4351,4 @@ Railcraft Names for Items being outdated causing some Recipes to be removed.
 1.7.10 but savegame incompatible with GT5 and it will stay savegame incompatible forever, because of huge changes making it impossible
 
 
-Well you made it all the way down here. Here have a reward, this is the Link to the Secret Testing Version https://gregtech.mechaenetia.com/secretdownloads/ but be warned, it can break a lot of shit. Note to Wiki Editors: Please don't redistribute this Link or any hint of this Link existing here, it might be dangerous for stupid people and I don't want them to hurt themselves.
+Well you made it all the way down here. Here have a reward, this is the Link to the Secret Testing Version https://gregtech6.mechaenetia.com/secretdownloads/ but be warned, it can break a lot of shit. Note to Wiki Editors: Please don't redistribute this Link or any hint of this Link existing here, it might be dangerous for stupid people and I don't want them to hurt themselves.
