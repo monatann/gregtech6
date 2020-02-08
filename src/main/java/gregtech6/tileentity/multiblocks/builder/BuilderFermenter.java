@@ -30,24 +30,37 @@ import net.minecraft.item.ItemStack;
  */
 
 //to-do
-public class BuilderElectrolyzer {
+public class BuilderFermenter {
 	public static int sizeX = 5;
 	public static int sizeY = 3;
 	public static int sizeZ = 5;
 	public static int offset = 2;
 	private static ArrayList<ItemStack> itemList = new ArrayList<ItemStack>();
 	public static int[] blockId = {
-		18105,
-		18103
+		18103,
+		18107,
+		17108
 	};
 	public static int[] structure = {
-			blockId[0], blockId[0], blockId[0],
-			blockId[0], blockId[0], blockId[0],
-			blockId[0], blockId[0], blockId[0],
+			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
+			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
+			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
+			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
+			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
+			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
 			
-			blockId[0], blockId[0], blockId[0],
-			blockId[0], blockId[0], blockId[0],
-			blockId[0], blockId[1], blockId[0]
+			
+			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
+			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
+			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
+			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
+			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
+			
+			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
+			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
+			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
+			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
+			blockId[0], blockId[0], blockId[2], blockId[0], blockId[0],
 	};
 	
 	public static ArrayList<ItemStack> getItemList() {

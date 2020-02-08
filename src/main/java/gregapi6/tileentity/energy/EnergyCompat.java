@@ -105,11 +105,13 @@ public class EnergyCompat {
 			if (tConnected instanceof ic2.api.energy.tile.IEnergySource && ((ic2.api.energy.tile.IEnergySource)tConnected).emitsEnergyTo    (aThis, FORGE_DIR[aSide])) return T;
 		}
 
+		/*
 		if (GT5U_ENERGY && aThis != null) {
 			TileEntity tConnected = (aTarget instanceof gregtech.api.interfaces.tileentity.IEnergyConductor || ic2.api.energy.EnergyNet.instance == null ? aTarget : ic2.api.energy.EnergyNet.instance.getTileEntity(aTarget.getWorldObj(), aTarget.xCoord, aTarget.yCoord, aTarget.zCoord));
 			if (tConnected instanceof gregtech.api.interfaces.tileentity.IEnergyConductor   && ((gregtech.api.interfaces.tileentity.IEnergyConductor  )tConnected).inputEnergyFrom(aSide)) return T;
 			if (tConnected instanceof gregtech.api.interfaces.tileentity.IEnergyConductor   && ((gregtech.api.interfaces.tileentity.IEnergyConductor  )tConnected).outputsEnergyTo(aSide)) return T;
 		}
+		*/
 
 		if (RF_ENERGY && (EMIT_EU_AS_RF || isElectricRFReceiver(aTarget))) {
 			if (aTarget instanceof cofh.api.energy.IEnergyReceiver && (!(aTarget instanceof cofh.api.energy.IEnergyConnection) || ((cofh.api.energy.IEnergyConnection)aTarget).canConnectEnergy(FORGE_DIR[aSide]))) return T;
@@ -187,9 +189,11 @@ public class EnergyCompat {
 			}
 
 			// Since GT5U is still basically an IC2-Addon, I don't want the IC2 Power System to come before this by accident.
+			/*
 			if (aReceiver instanceof gregtech.api.interfaces.tileentity.IEnergyConnected) {
 				return ((gregtech.api.interfaces.tileentity.IEnergyConnected)aReceiver).injectEnergyUnits(aSide, aSize, aAmount);
 			}
+			*/
 
 			// IC2 Power at last, because special cases should always override the very "compatible" IC2 Stuff.
 			if (IC_ENERGY) {

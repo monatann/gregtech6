@@ -1278,7 +1278,7 @@ public class MT {
 	SuperconductorPUV3                = alloymachine  ( 31013, "Superconductor Base PUV3"      , 200, 200, 200, 255).put(MORTAR, MOLTEN, EXTRUDER_SIMPLE).qual(3,  6.5,    96,  2)  .aspects(TC.METALLUM, 2, TC.FABRICO, 1),
 	SuperconductorPUV4                = alloymachine  ( 31014, "Superconductor Base PUV4"      , 200, 200, 200, 255).put(MORTAR, MOLTEN, EXTRUDER_SIMPLE).qual(3,  6.5,    96,  2)  .aspects(TC.METALLUM, 2, TC.FABRICO, 1),
 	SuperconductorPUV5                = alloymachine  ( 31015, "Superconductor Base PUV5"      , 200, 200, 200, 255).put(MORTAR, MOLTEN, EXTRUDER_SIMPLE).qual(3,  6.5,    96,  2)  .aspects(TC.METALLUM, 2, TC.FABRICO, 1),
-	Superconductor\u03A9V                = alloymachine  ( 31016, "Superconductor Base \u03A9V"      , 200, 200, 200, 255).put(MORTAR, MOLTEN, EXTRUDER_SIMPLE).qual(3,  6.5,    96,  2)  .aspects(TC.METALLUM, 2, TC.FABRICO, 1),
+	SuperconductorOmega                = alloymachine  ( 31016, "Superconductor Base Omega"      , 200, 200, 200, 255).put(MORTAR, MOLTEN, EXTRUDER_SIMPLE).qual(3,  6.5,    96,  2)  .aspects(TC.METALLUM, 2, TC.FABRICO, 1),
 	SuperconductorMAX                = alloymachine  ( 31017, "Superconductor Base MAX"      , 200, 200, 200, 255).put(MORTAR, MOLTEN, EXTRUDER_SIMPLE).qual(3,  6.5,    96,  2)  .aspects(TC.METALLUM, 2, TC.FABRICO, 1)
 	;
 
@@ -2484,7 +2484,7 @@ public class MT {
 		public static final OreDictMaterial
 		Dye_Materials[]             = {Black, Red, Green, Brown, Blue, Purple, Cyan, LightGray, Gray, Pink, Lime, Yellow, LightBlue, Magenta, Orange, White},
 
-		Wire_T[] = { Pb, Sn, ANY.Cu, Au, Al, Pt, SuperconductorLuV, SuperconductorZPM,SuperconductorUV,SuperconductorPUV1,SuperconductorPUV2,SuperconductorPUV3,SuperconductorPUV4, SuperconductorPUV5,Superconductor\u03A9V,SuperconductorMAX },
+		Wire_T[] = { Pb, Sn, ANY.Cu, Au, Al, Pt, SuperconductorLuV, SuperconductorZPM,SuperconductorUV,SuperconductorPUV1,SuperconductorPUV2,SuperconductorPUV3,SuperconductorPUV4, SuperconductorPUV5,SuperconductorOmega,SuperconductorMAX },
 		Heat_T[]                    = {ANY.Stone    , Invar, SteelGalvanized     , Ti                , HSSG   , RhodiumPlatedPalladium                , Ir                , Os       , HSSS, Neutronium    , Bedrockium        , BlackPlutonium        , Draconium, CrystalMatrix     , CosmicNeutronium        , Infinity             },
 		Electric_T[]                = {TinAlloy     , SteelGalvanized   , Al        , StainlessSteel    , Ti                , TungstenSteel        , RhodiumPlatedPalladium                , Ir                , Os       , Neutronium    , Bedrockium        , BlackPlutonium        , Draconium, CrystalMatrix     , CosmicNeutronium        , Infinity        },
 
