@@ -30,37 +30,29 @@ import net.minecraft.item.ItemStack;
  */
 
 //to-do
-public class BuilderFermenter {
+public class BuilderImplosionCompressor {
 	public static int sizeX = 5;
 	public static int sizeY = 3;
 	public static int sizeZ = 5;
 	public static int offset = 2;
 	private static ArrayList<ItemStack> itemList = new ArrayList<ItemStack>();
 	public static int[] blockId = {
-		18035,
-		18113,
-		18101
+		18036,
+		17100
 	};
 	public static int[] structure = {
-			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
-			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
-			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
-			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
-			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
-			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
+			blockId[0], blockId[0], blockId[0],
+			blockId[0], blockId[0], blockId[0],
+			blockId[0], blockId[0], blockId[0],
 			
 			
-			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
-			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
-			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
-			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
-			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
+			blockId[0], blockId[0], blockId[0],
+			blockId[0], blockId[0], blockId[0],
+			blockId[0], blockId[0], blockId[0],
 			
-			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
-			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
-			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
-			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
-			blockId[0], blockId[0], blockId[2], blockId[0], blockId[0],
+			blockId[0], blockId[0], blockId[0],
+			blockId[0], blockId[0], blockId[0],
+			blockId[0], blockId[1], blockId[0],
 	};
 	
 	public static ArrayList<ItemStack> getItemList() {
