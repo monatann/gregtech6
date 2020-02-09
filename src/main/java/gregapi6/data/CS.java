@@ -161,6 +161,90 @@ public class CS {
 	public static final float[]
 	HARDNESS    = { 7.0F, 7.0F, 6.0F, 9.0F, 12.0F, 12.0F, 12.0F, 12.0F, 12.0F, 12.0F, 12.0F, 12.0F, 12.0F, 12.0F, 12.0F, 12.0F, 12.0F, 12.0F, 12.0F, 12.0F, 12.0F, 12.0F, 12.0F, 12.0F, 12.0F, 12.0F, 12.0F, 12.0F, 12.0F, 12.0F, 12.0F, 12.0F, 12.0F};
 
+	/** The HARDNESS/RESISTANCE Tiers for Crucible. */
+	public static final float[]
+	HARDNESS_C    = {
+		5.0F,//stone
+		15.0F,//basalt
+		15.0F,//granite black
+		15.0F,//granite red
+		5.0F,//nether brick
+		5.0F,//ceramic
+		5.0F,//umber
+		5.0F,//livingrock
+		5.0F,//holystone
+		5.0F,//between
+		5.0F,//Quartz
+		10.0F,//graphene
+		7.0F,//bronze
+		4.0F,//invar
+		6.0F,//hsla
+		6.0F,//stainless
+		6.0F,//darkiron
+		6.0F,//meteoriciron
+		6.0F,//meteoric steel
+		6.0F,//knight
+		6.0F,//fierysteel
+		6.0F,//octine
+		6.0F,//thaum
+		6.0F,//ti
+		9.0F,//cr
+		9.0F,//mo
+		9.0F,//nb
+		9.0F,//ta
+		9.0F,//os
+		9.0F,//ir
+		9.0F,//ni-ti
+		9.0F,//v
+		10.0F,//w
+		9.0F,//ta4hfc5
+		10.0F,//void
+		100.0F,//bedrock-ahla
+		100.0F//ad
+	};
+	
+	/** The Acid Tiers for Crucible. */
+	public static final boolean[]
+	ACID_C    = {
+		F,//stone
+		F,//basalt
+		F,//granite black
+		F,//granite red
+		F,//nether brick
+		F,//ceramic
+		F,//umber
+		F,//livingrock
+		F,//holystone
+		F,//between
+		F,//Quartz
+		F,//graphene
+		F,//bronze
+		F,//invar
+		F,//hsla
+		T,//stainless
+		F,//darkiron
+		F,//meteoriciron
+		F,//meteoric steel
+		F,//knight
+		F,//fierysteel
+		F,//octine
+		T,//thaum
+		F,//ti
+		T,//cr
+		F,//mo
+		F,//nb
+		F,//ta
+		F,//os
+		T,//ir
+		F,//ni-ti
+		F,//v
+		T,//w
+		F,//ta4hfc5
+		T,//void
+		F,//bedrock-ahla
+		T//ad
+	};
+	
 	/** The Machine Basic Power Tiers. */
 	public static final long[]
 	P       = {

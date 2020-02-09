@@ -2488,6 +2488,8 @@ public class MT {
 		Heat_T[]                    = {ANY.Stone    , Invar, SteelGalvanized     , Ti                , HSSG   , RhodiumPlatedPalladium                , Ir                , Os       , HSSS, Neutronium    , Bedrockium        , BlackPlutonium        , Draconium, CrystalMatrix     , CosmicNeutronium        , Infinity             },
 		Electric_T[]                = {TinAlloy     , SteelGalvanized   , Al        , StainlessSteel    , Ti                , TungstenSteel        , RhodiumPlatedPalladium                , Ir                , Os       , Neutronium    , Bedrockium        , BlackPlutonium        , Draconium, CrystalMatrix     , CosmicNeutronium        , Infinity        },
 
+		Crucible_T[] = {Stone, Basalt, GraniteBlack, GraniteRed, NetherBrick, Ceramic, Umber, Livingrock, Holystone, Betweenstone, ANY.Quartz, Graphene, Bronze, Invar, HSLA, StainlessSteel, DarkIron, MeteoricIron, MeteoricSteel, Knightmetal, FierySteel, Octine, Thaumium, Ti, Cr, Mo, Nb, Ta, Os, Ir, NiobiumTitanium, V, W, Ta4HfC5, VoidMetal, Bedrock_HSLA_Alloy, Ad },
+
 		//do not use
 		Kinetic_T[]                 = {ANY.Wood     , Bronze            , SteelGalvanized , Ti                , HSSG   , RhodiumPlatedPalladium                , Ir                , Os       , HSSS, Neutronium    , Bedrockium        , BlackPlutonium        , Draconium, CrystalMatrix     , CosmicNeutronium        , Infinity                },
 		Flux_T[]                    = {Sn           , Pb                , SteelGalvanized     , Ti                , HSSG   , RhodiumPlatedPalladium                , Ir                , Os       , HSSS, Neutronium    , Bedrockium        , BlackPlutonium        , Draconium, CrystalMatrix     , CosmicNeutronium        , Infinity  };

@@ -30,6 +30,7 @@ import gregapi6.cover.CoverRegistry;
 import gregapi6.cover.covers.CoverAsphalt;
 import gregapi6.cover.covers.CoverTextureSimple;
 import gregapi6.data.ANY;
+import gregapi6.data.CS;
 import gregapi6.data.CS.BlocksGT;
 import gregapi6.data.CS.GarbageGT;
 import gregapi6.data.CS.ItemsGT;
@@ -473,7 +474,25 @@ public class Loader_MultiTileEntities implements Runnable {
 
 	private static void crucible(MultiTileEntityRegistry aRegistry, MultiTileEntityBlock aMetal, MultiTileEntityBlock aMetalChips, MultiTileEntityBlock aMetalWires, MultiTileEntityBlock aMachine, MultiTileEntityBlock aWooden, MultiTileEntityBlock aBush, MultiTileEntityBlock aStone, MultiTileEntityBlock aWool, MultiTileEntityBlock aTNT, MultiTileEntityBlock aHive, MultiTileEntityBlock aUtilMetal, MultiTileEntityBlock aUtilStone, MultiTileEntityBlock aUtilWood, MultiTileEntityBlock aUtilWool, OreDictMaterial aMat, Class<? extends TileEntity> aClass) {
 		// Crucibles
-		aClass = MultiTileEntitySmeltery.class;
+		for(int i=0; i<MT.DATA.Crucible_T.length;i++) {
+			aClass = MultiTileEntitySmeltery.class;
+			aMat = MT.DATA.Crucible_T[i];
+			aRegistry.add("Smelting Crucible (" + aMat.getLocal() + ")"         , "Smelting Crucibles"                  ,  1000 + i,  1022, aClass, aMat.mToolQuality, 16, aStone           , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,   HARDNESS_C[i], NBT_RESISTANCE,   HARDNESS_C[i], NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_RECIPEMAP, RM.CrucibleAlloying , NBT_ENERGY_ACCEPTED, TD.Energy.HU, NBT_ACIDPROOF, CS.ACID_C[i]), "PhP", "PwP", "PPP", 'P', OP.plate.dat(aMat));
+			
+			aClass = MultiTileEntityFaucet.class;
+			aRegistry.add("Crucible Faucet (" + aMat.getLocal() + ")"           , "Crucibles Faucets"                   ,  1700 + i,  1722, aClass, aMat.mToolQuality, 16, aUtilStone       , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,   HARDNESS_C[i], NBT_RESISTANCE,   HARDNESS_C[i], NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_ACIDPROOF, CS.ACID_C[i]), "h y", "P P", " P ", 'P', OP.plate.dat(aMat));
+
+			aClass = MultiTileEntityMold.class;
+			aRegistry.add("Mold (" + aMat.getLocal() + ")"                      , "Molds"                               ,  1050 + i,  1072, aClass, aMat.mToolQuality, 16, aUtilStone       , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,   HARDNESS_C[i], NBT_RESISTANCE,   HARDNESS_C[i], NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_ACIDPROOF, CS.ACID_C[i]), "h y", "P P", "PPP", 'P', OP.plate.dat(aMat));
+
+			aClass = MultiTileEntityBasin.class;
+			aRegistry.add("Basin (" + aMat.getLocal() + ")"                     , "Molds"                               ,  1750 + i,  1072, aClass, aMat.mToolQuality, 16, aStone           , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,   HARDNESS_C[i], NBT_RESISTANCE,   HARDNESS_C[i], NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_ACIDPROOF, CS.ACID_C[i]), "PhP", "PyP", " P ", 'P', OP.plate.dat(aMat));
+
+			aClass = MultiTileEntityCrossing.class;
+			aRegistry.add("Crucible Crossing (" + aMat.getLocal() + ")"         , "Molds"                               ,  1850 + i,  1072, aClass, aMat.mToolQuality, 16, aStone           , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,   HARDNESS_C[i], NBT_RESISTANCE,   HARDNESS_C[i], NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_ACIDPROOF, F), "hPy", "PPP", " P ", 'P', OP.plate.dat(aMat));
+		}
+		
+		/*
 		aMat = MT.Stone;                aRegistry.add("Smelting Crucible (" + aMat.getLocal() + ")"         , "Smelting Crucibles"                  ,  1000,  1022, aClass, aMat.mToolQuality, 16, aStone           , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,   5.0F, NBT_RESISTANCE,   5.0F, NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_RECIPEMAP, RM.CrucibleAlloying , NBT_ENERGY_ACCEPTED, TD.Energy.HU, NBT_ACIDPROOF, F), "BhB", "ByB", "BBB", 'B', Blocks.stone);
 		aMat = MT.Basalt;               aRegistry.add("Smelting Crucible (" + aMat.getLocal() + ")"         , "Smelting Crucibles"                  ,  1001,  1022, aClass, aMat.mToolQuality, 16, aStone           , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,  15.0F, NBT_RESISTANCE,  15.0F, NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_RECIPEMAP, RM.CrucibleAlloying , NBT_ENERGY_ACCEPTED, TD.Energy.HU, NBT_ACIDPROOF, F), "BhB", "ByB", "BBB", 'B', OP.stone.dat(aMat));
 		aMat = MT.GraniteBlack;         aRegistry.add("Smelting Crucible (" + aMat.getLocal() + ")"         , "Smelting Crucibles"                  ,  1002,  1022, aClass, aMat.mToolQuality, 16, aStone           , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,  15.0F, NBT_RESISTANCE,  15.0F, NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_RECIPEMAP, RM.CrucibleAlloying , NBT_ENERGY_ACCEPTED, TD.Energy.HU, NBT_ACIDPROOF, F), "BhB", "ByB", "BBB", 'B', OP.stone.dat(aMat));
@@ -515,13 +534,23 @@ public class Loader_MultiTileEntities implements Runnable {
 
 		aMat = MT.Bedrock_HSLA_Alloy;   aRegistry.add("Smelting Crucible (" + aMat.getLocal() + ")"         , "Smelting Crucibles"                  ,  1048,  1022, aClass, aMat.mToolQuality, 16, aMetal           , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS, 100.0F, NBT_RESISTANCE, 100.0F, NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_RECIPEMAP, RM.CrucibleAlloying , NBT_ENERGY_ACCEPTED, TD.Energy.HU, NBT_ACIDPROOF, F), "PhP", "PwP", "PPP", 'P', OP.plate.dat(aMat));
 		aMat = MT.Ad;                   aRegistry.add("Smelting Crucible (" + aMat.getLocal() + ")"         , "Smelting Crucibles"                  ,  1049,  1022, aClass, aMat.mToolQuality, 16, aMetal           , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS, 100.0F, NBT_RESISTANCE, 100.0F, NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_RECIPEMAP, RM.CrucibleAlloying , NBT_ENERGY_ACCEPTED, TD.Energy.HU, NBT_ACIDPROOF, T), "PhP", "PwP", "PPP", 'P', OP.plate.dat(aMat));
-
+		*/
+		
 		RM.CrucibleSmelting.mRecipeMachineList.addAll(RM.CrucibleAlloying.mRecipeMachineList);
 
 
 
 		// Drains
+		/*
 		aClass = MultiTileEntityFaucet.class;
+		for(int i=0; i<MT.DATA.Crucible_T.length;i++) {
+			aMat = MT.DATA.Crucible_T[i];
+			aRegistry.add("Crucible Faucet (" + aMat.getLocal() + ")"           , "Crucibles Faucets"                   ,  1700 + i,  1722, aClass, aMat.mToolQuality, 16, aUtilStone       , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,   HARDNESS_C[i], NBT_RESISTANCE,   HARDNESS_C[i], NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_ACIDPROOF, CS.ACID_C[i]), "h y", "P P", " P ", 'P', OP.plate.dat(aMat));
+		}
+		*/
+
+		
+		/*
 		aMat = MT.Stone;                aRegistry.add("Crucible Faucet (" + aMat.getLocal() + ")"           , "Crucibles Faucets"                   ,  1700,  1722, aClass, aMat.mToolQuality, 16, aUtilStone       , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,   1.0F, NBT_RESISTANCE,   5.0F, NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_ACIDPROOF, F), "h y", "B B", " B ", 'B', Blocks.stone);
 		aMat = MT.Basalt;               aRegistry.add("Crucible Faucet (" + aMat.getLocal() + ")"           , "Crucibles Faucets"                   ,  1701,  1722, aClass, aMat.mToolQuality, 16, aUtilStone       , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,   1.0F, NBT_RESISTANCE,   5.0F, NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_ACIDPROOF, F), "h y", "B B", " B ", 'B', OP.stone.dat(aMat));
 		aMat = MT.GraniteBlack;         aRegistry.add("Crucible Faucet (" + aMat.getLocal() + ")"           , "Crucibles Faucets"                   ,  1702,  1722, aClass, aMat.mToolQuality, 16, aUtilStone       , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,   1.0F, NBT_RESISTANCE,   5.0F, NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_ACIDPROOF, F), "h y", "B B", " B ", 'B', OP.stone.dat(aMat));
@@ -563,10 +592,11 @@ public class Loader_MultiTileEntities implements Runnable {
 
 		aMat = MT.Bedrock_HSLA_Alloy;   aRegistry.add("Crucible Faucet (" + aMat.getLocal() + ")"           , "Crucibles Faucets"                   ,  1748,  1722, aClass, aMat.mToolQuality, 16, aUtilMetal       , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,   1.0F, NBT_RESISTANCE,   6.0F, NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_ACIDPROOF, F), "h y", "P P", " P ", 'P', OP.plate.dat(aMat));
 		aMat = MT.Ad;                   aRegistry.add("Crucible Faucet (" + aMat.getLocal() + ")"           , "Crucibles Faucets"                   ,  1749,  1722, aClass, aMat.mToolQuality, 16, aUtilMetal       , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,   1.0F, NBT_RESISTANCE,   6.0F, NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_ACIDPROOF, T), "h y", "P P", " P ", 'P', OP.plate.dat(aMat));
-
+	*/
 
 
 		// Molds
+		/*
 		aClass = MultiTileEntityMold.class;
 		aMat = MT.Stone;                aRegistry.add("Mold (" + aMat.getLocal() + ")"                      , "Molds"                               ,  1050,  1072, aClass, aMat.mToolQuality, 16, aUtilStone       , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,   1.0F, NBT_RESISTANCE,   5.0F, NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_ACIDPROOF, F), "h y", "B B", "BBB", 'B', Blocks.stone);
 		aMat = MT.Basalt;               aRegistry.add("Mold (" + aMat.getLocal() + ")"                      , "Molds"                               ,  1051,  1072, aClass, aMat.mToolQuality, 16, aUtilStone       , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,   1.0F, NBT_RESISTANCE,   5.0F, NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_ACIDPROOF, F), "h y", "B B", "BBB", 'B', OP.stone.dat(aMat));
@@ -609,10 +639,11 @@ public class Loader_MultiTileEntities implements Runnable {
 
 		aMat = MT.Bedrock_HSLA_Alloy;   aRegistry.add("Mold (" + aMat.getLocal() + ")"                      , "Molds"                               ,  1098,  1072, aClass, aMat.mToolQuality, 16, aUtilMetal       , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,   1.0F, NBT_RESISTANCE,   6.0F, NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_ACIDPROOF, F), "h y", "P P", "PPP", 'P', OP.plate.dat(aMat));
 		aMat = MT.Ad;                   aRegistry.add("Mold (" + aMat.getLocal() + ")"                      , "Molds"                               ,  1099,  1072, aClass, aMat.mToolQuality, 16, aUtilMetal       , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,   1.0F, NBT_RESISTANCE,   6.0F, NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_ACIDPROOF, T), "h y", "P P", "PPP", 'P', OP.plate.dat(aMat));
-
+		 */
 
 
 		// Basins
+		/*
 		aClass = MultiTileEntityBasin.class;
 		aMat = MT.Stone;                aRegistry.add("Basin (" + aMat.getLocal() + ")"                     , "Molds"                               ,  1750,  1072, aClass, aMat.mToolQuality, 16, aStone           , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,   5.0F, NBT_RESISTANCE,   5.0F, NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_ACIDPROOF, F), "BhB", "ByB", " B ", 'B', Blocks.stone);
 		aMat = MT.Basalt;               aRegistry.add("Basin (" + aMat.getLocal() + ")"                     , "Molds"                               ,  1751,  1072, aClass, aMat.mToolQuality, 16, aStone           , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,  15.0F, NBT_RESISTANCE,  15.0F, NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_ACIDPROOF, F), "BhB", "ByB", " B ", 'B', OP.stone.dat(aMat));
@@ -655,10 +686,11 @@ public class Loader_MultiTileEntities implements Runnable {
 
 		aMat = MT.Bedrock_HSLA_Alloy;   aRegistry.add("Basin (" + aMat.getLocal() + ")"                     , "Molds"                               ,  1798,  1072, aClass, aMat.mToolQuality, 16, aMetal           , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS, 100.0F, NBT_RESISTANCE, 100.0F, NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_ACIDPROOF, F), "PhP", "PyP", " P ", 'P', OP.plate.dat(aMat));
 		aMat = MT.Ad;                   aRegistry.add("Basin (" + aMat.getLocal() + ")"                     , "Molds"                               ,  1799,  1072, aClass, aMat.mToolQuality, 16, aMetal           , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS, 100.0F, NBT_RESISTANCE, 100.0F, NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_ACIDPROOF, T), "PhP", "PyP", " P ", 'P', OP.plate.dat(aMat));
-
+*/
 
 
 		// Crossings
+		/*
 		aClass = MultiTileEntityCrossing.class;
 		aMat = MT.Stone;                aRegistry.add("Crucible Crossing (" + aMat.getLocal() + ")"         , "Molds"                               ,  1850,  1072, aClass, aMat.mToolQuality, 16, aStone           , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,   5.0F, NBT_RESISTANCE,   5.0F, NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_ACIDPROOF, F), "hBy", "BBB", " B ", 'B', Blocks.stone);
 		aMat = MT.Basalt;               aRegistry.add("Crucible Crossing (" + aMat.getLocal() + ")"         , "Molds"                               ,  1851,  1072, aClass, aMat.mToolQuality, 16, aStone           , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,  15.0F, NBT_RESISTANCE,  15.0F, NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_ACIDPROOF, F), "hBy", "BBB", " B ", 'B', OP.stone.dat(aMat));
@@ -701,6 +733,7 @@ public class Loader_MultiTileEntities implements Runnable {
 
 		aMat = MT.Bedrock_HSLA_Alloy;   aRegistry.add("Crucible Crossing (" + aMat.getLocal() + ")"         , "Molds"                               ,  1898,  1072, aClass, aMat.mToolQuality, 16, aMetal           , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS, 100.0F, NBT_RESISTANCE, 100.0F, NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_ACIDPROOF, F), "hPy", "PPP", " P ", 'P', OP.plate.dat(aMat));
 		aMat = MT.Ad;                   aRegistry.add("Crucible Crossing (" + aMat.getLocal() + ")"         , "Molds"                               ,  1899,  1072, aClass, aMat.mToolQuality, 16, aMetal           , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS, 100.0F, NBT_RESISTANCE, 100.0F, NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_ACIDPROOF, T), "hPy", "PPP", " P ", 'P', OP.plate.dat(aMat));
+	*/
 	}
 
 	private static void unsorted1(MultiTileEntityRegistry aRegistry, MultiTileEntityBlock aMetal, MultiTileEntityBlock aMetalChips, MultiTileEntityBlock aMetalWires, MultiTileEntityBlock aMachine, MultiTileEntityBlock aWooden, MultiTileEntityBlock aBush, MultiTileEntityBlock aStone, MultiTileEntityBlock aWool, MultiTileEntityBlock aTNT, MultiTileEntityBlock aHive, MultiTileEntityBlock aUtilMetal, MultiTileEntityBlock aUtilStone, MultiTileEntityBlock aUtilWood, MultiTileEntityBlock aUtilWool, OreDictMaterial aMat, Class<? extends TileEntity> aClass) {
@@ -1678,17 +1711,17 @@ public class Loader_MultiTileEntities implements Runnable {
 		aMat = MT.Ir;                   aRegistry.add("Large Iridium Coil"                                  , "Multiblock Machines", 18045, 17101, aClass                                   , aMat.mToolQuality, 64, aMachine   , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,   6.0F, NBT_RESISTANCE,   6.0F, NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_TEXTURE, "coil"                    , NBT_DESIGNS, 1), "WWW", "WxW", "WWW", 'W', OP.wireGt04.dat(aMat));
 		aMat = MT.Nq;                   aRegistry.add("Large Naquadah Coil"                                  , "Multiblock Machines", 18046, 17101, aClass                                   , aMat.mToolQuality, 64, aMachine   , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,   6.0F, NBT_RESISTANCE,   6.0F, NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_TEXTURE, "coil"                    , NBT_DESIGNS, 1), "WWW", "WxW", "WWW", 'W', OP.wireGt04.dat(aMat));
 		*/
-		
+
 		/*
-		 * Heat_T[]                    = 
-		 * {ANY.Stone    ,18010 
-		 *  Invar, 
+		 * Heat_T[]                    =
+		 * {ANY.Stone    ,18010
+		 *  Invar,
 		 *  SteelGalvanized     ,
 		 *   Ti                ,
 		 *    HSSG   ,
 		 *     RhodiumPlatedPalladium         18015        ,
 		 *      Ir                ,
-		 *       Os       , 
+		 *       Os       ,
 		 *       HSSS,
 		 *        Neutronium    ,
 		 *         Bedrockium        ,18020
@@ -1698,7 +1731,7 @@ public class Loader_MultiTileEntities implements Runnable {
 		 *             Infinity             },
 		 */
 
-		
+
 		for(int i=0;i<MT.DATA.Heat_T.length;i++) {
 			aMat = MT.DATA.Heat_T[i];
 			aRegistry.add( aMat.getLocal() + " Wall"                                           , "Multiblock Machines", 18010+i, 17101, aClass                                   , aMat.mToolQuality, 64, aMachine   , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,   HARDNESS[i], NBT_RESISTANCE,   HARDNESS[i], NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_TEXTURE, "metalwall"               , NBT_DESIGNS, 7), "wPP", "hPP"       , 'P', OP.plate.dat(aMat)); RM.Welder.addRecipe2(F, 16, 256, OP.plate.mat(aMat, 4), ST.tag(10), aRegistry.getItem());
@@ -1843,6 +1876,12 @@ public class Loader_MultiTileEntities implements Runnable {
 
 		}
 
+		for(int i=0;i<MT.DATA.Crucible_T.length;i++) {
+			aMat = MT.DATA.Crucible_T[i];
+			aRegistry.add("Large " + aMat.getLocal() + " Crucible"                                , "Multiblock Machines", 17800 + i, 17101, MultiTileEntityCrucible.class            , aMat.mToolQuality, 16, aMachine   , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,   HARDNESS_C[i], NBT_RESISTANCE,  HARDNESS_C[i], NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_TEXTURE, "crucible"                , NBT_DESIGN, 1000 + i, NBT_ACIDPROOF, F), "hMy", 'M', aRegistry.getItem(1000 + i));
+		}
+		
+		/*
 		aMat = MT.Steel;                aRegistry.add("Large Steel Crucible"                                , "Multiblock Machines", 17809, 17101, MultiTileEntityCrucible.class            , aMat.mToolQuality, 16, aMachine   , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,   6.0F, NBT_RESISTANCE,   6.0F, NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_TEXTURE, "crucible"                , NBT_DESIGN, 18009, NBT_ACIDPROOF, F), "hMy", 'M', aRegistry.getItem(18009));
 		aMat = MT.StainlessSteel;       aRegistry.add("Large Stainless Steel Crucible"                      , "Multiblock Machines", 17802, 17101, MultiTileEntityCrucible.class            , aMat.mToolQuality, 16, aMachine   , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,   6.0F, NBT_RESISTANCE,   6.0F, NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_TEXTURE, "crucible"                , NBT_DESIGN, 18002, NBT_ACIDPROOF, T), "hMy", 'M', aRegistry.getItem(18002));
 		aMat = MT.Invar;                aRegistry.add("Large Invar Crucible"                                , "Multiblock Machines", 17807, 17101, MultiTileEntityCrucible.class            , aMat.mToolQuality, 16, aMachine   , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,   6.0F, NBT_RESISTANCE,   6.0F, NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_TEXTURE, "crucible"                , NBT_DESIGN, 18007, NBT_ACIDPROOF, F), "hMy", 'M', aRegistry.getItem(18007));
@@ -1851,7 +1890,7 @@ public class Loader_MultiTileEntities implements Runnable {
 		aMat = ANY.W;                   aRegistry.add("Large Tungsten Crucible"                             , "Multiblock Machines", 17804, 17101, MultiTileEntityCrucible.class            , aMat.mToolQuality, 16, aMachine   , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,  10.0F, NBT_RESISTANCE,  10.0F, NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_TEXTURE, "crucible"                , NBT_DESIGN, 18004, NBT_ACIDPROOF, T), "hMy", 'M', aRegistry.getItem(18004));
 		aMat = MT.Ta4HfC5;              aRegistry.add("Large Tantalum Hafnium Carbide Crucible"             , "Multiblock Machines", 17812, 17101, MultiTileEntityCrucible.class            , aMat.mToolQuality, 16, aMachine   , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,  12.5F, NBT_RESISTANCE,  12.5F, NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_TEXTURE, "crucible"                , NBT_DESIGN, 18012, NBT_ACIDPROOF, F), "hMy", 'M', aRegistry.getItem(18012));
 		aMat = MT.Ad;                   aRegistry.add("Large Adamantium Crucible"                           , "Multiblock Machines", 17805, 17101, MultiTileEntityCrucible.class            , aMat.mToolQuality, 16, aMachine   , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS, 100.0F, NBT_RESISTANCE, 100.0F, NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_TEXTURE, "crucible"                , NBT_DESIGN, 18005, NBT_ACIDPROOF, T), "hMy", 'M', aRegistry.getItem(18005));
-
+	*/
 
 		aMat = MT.SteelGalvanized;      aRegistry.add("Logistics Core"                                      , "Logistics"          , 17997, 17997, MultiTileEntityLogisticsCore.class       , aMat.mToolQuality, 16, aMachine   , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,   6.0F, NBT_RESISTANCE,   6.0F, NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_TEXTURE, "logisticscore"           , NBT_ENERGY_ACCEPTED, TD.Energy.EU), "CCC", "PMP", "CCC", 'M', OP.casingMachine.dat(aMat), 'P', IL.Processor_Crystal_Emerald, 'C', OD_CIRCUITS[6]);
 		aMat = ANY.W;                   aRegistry.add("Lightning Rod Electric Output"                       , "Multiblock Machines", 17998, 17101, MultiTileEntityLightningRod.class        , aMat.mToolQuality, 16, aMachine   , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,  10.0F, NBT_RESISTANCE,  10.0F, NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_TEXTURE, "lightningrod"            , NBT_ENERGY_EMITTED, TD.Energy.EU, NBT_CAPACITY, 18000 * VREC[6]), "CWC", "PMP", "CWC", 'M', OP.casingMachine.dat(aMat), 'W', OP.wireGt16.dat(MT.NiobiumTitanium), 'P', IL.Processor_Crystal_Sapphire, 'C', OD_CIRCUITS[6]);
