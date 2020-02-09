@@ -30,16 +30,16 @@ import net.minecraft.item.ItemStack;
  */
 
 //to-do
-public class BuilderCrusher {
+public class BuilderLargeCompressor {
 	public static int sizeX = 5;
 	public static int sizeY = 3;
 	public static int sizeZ = 5;
 	public static int offset = 2;
 	private static ArrayList<ItemStack> itemList = new ArrayList<ItemStack>();
 	public static int[] blockId = {
-		18103,
-		18107,
-		17108
+		18036,
+		18112,
+		18303
 	};
 	public static int[] structure = {
 			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
@@ -47,21 +47,21 @@ public class BuilderCrusher {
 			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
 			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
 			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
-			
-			
+
+
 			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
 			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
 			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
 			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
 			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
-			
+
 			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
 			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
 			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
 			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
 			blockId[0], blockId[0], blockId[2], blockId[0], blockId[0],
 	};
-	
+
 	public static ArrayList<ItemStack> getItemList() {
 		itemList.clear();
 		for(int i=structure.length-1;i>-1;i--) {

@@ -46,23 +46,22 @@ public class BuilderFermenter {
 			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
 			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
 			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
+			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
+
+
+			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
+			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
+			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
 			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
 			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
-			
-			
-			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
-			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
-			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
-			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
-			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
-			
+
 			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
 			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
 			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
 			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
 			blockId[0], blockId[0], blockId[2], blockId[0], blockId[0],
 	};
-	
+
 	public static ArrayList<ItemStack> getItemList() {
 		itemList.clear();
 		for(int i=structure.length-1;i>-1;i--) {

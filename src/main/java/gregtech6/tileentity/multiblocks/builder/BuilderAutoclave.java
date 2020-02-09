@@ -33,20 +33,25 @@ public class BuilderAutoclave {
 	public static int sizeZ = 3;
 	public static int offset = 1;
 	private static ArrayList<ItemStack> itemList = new ArrayList<ItemStack>();
+	public static int[] blockId = {
+			18065,
+			17122,
+			-1
+		};
 	private static int[] structure = {
-			18065, 18065, 18065,
-			18065, 18065, 18065,
-			18065, 18065, 18065,
-			
-			18065, 18065, 18065,
-			18065, -1	, 18065,
-			18065, 18065, 18065,
-			
-			18065, 18065, 18065,
-			18065, 18065, 18065,
-			18065, 17122, 18065,
+			blockId[0], blockId[0], blockId[0],
+			blockId[0], blockId[0], blockId[0],
+			blockId[0], blockId[0], blockId[0],
+
+			blockId[0], blockId[0], blockId[0],
+			blockId[0], blockId[2], blockId[0],
+			blockId[0], blockId[0], blockId[0],
+
+			blockId[0], blockId[0], blockId[0],
+			blockId[0], blockId[0], blockId[0],
+			blockId[0], blockId[1], blockId[0],
 	};
-	
+
 	public static ArrayList<ItemStack> getItemList() {
 		itemList.clear();
 		for(int i=structure.length-1;i>-1;i--) {

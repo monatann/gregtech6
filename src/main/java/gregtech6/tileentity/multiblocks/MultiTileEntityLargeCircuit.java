@@ -43,7 +43,7 @@ public class MultiTileEntityLargeCircuit extends TileEntityBase10MultiBlockMachi
 	public boolean checkStructure2() {
 		int tX = getOffsetXN(mFacing)-1, tY = yCoord, tZ = getOffsetZN(mFacing)-1;
 
-		int[] blockId = {18012, 18113, 18299};
+		int[] blockId = {18042, 18113, 18299};
 		int[] inOutOption = {MultiTileEntityMultiBlockPart.ONLY_ITEM_FLUID_OUT};
 
 		return Multiblock3_4_9_Circuit.checkStructure(mStructureOkay, this, worldObj, tX, tY, tZ, mActive, mFacing, blockId, getMultiTileEntityRegistryID(), inOutOption);

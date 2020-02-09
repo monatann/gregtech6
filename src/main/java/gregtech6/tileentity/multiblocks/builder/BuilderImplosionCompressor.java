@@ -29,7 +29,7 @@ import net.minecraft.item.ItemStack;
  * @author Gregorius Techneticies
  */
 
-//to-do
+
 public class BuilderImplosionCompressor {
 	public static int sizeX = 5;
 	public static int sizeY = 3;
@@ -44,7 +44,6 @@ public class BuilderImplosionCompressor {
 			blockId[0], blockId[0], blockId[0],
 			blockId[0], blockId[0], blockId[0],
 			blockId[0], blockId[0], blockId[0],
-			
 			
 			blockId[0], blockId[0], blockId[0],
 			blockId[0], blockId[0], blockId[0],

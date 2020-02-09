@@ -35,6 +35,7 @@ import gregapi6.util.UT;
 import gregapi6.util.WD;
 import gregtech6.tileentity.multiblocks.builder.BuilderCokeOven;
 import gregtech6.tileentity.multiblocks.builder.BuilderFusionReactor;
+import gregtech6.tileentity.multiblocks.builder.BuilderLargeCircuit;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -135,10 +136,10 @@ public class Behavior_MultiblockBuilder extends AbstractBehaviorDefault {
 		
 		NBTTagCompound nbt = new NBTTagCompound();
 		//nbt.setString("scan", "CokeOven");
-		nbt.setString("scan", "FusionReactor");
+		nbt.setInteger("scan", 18304);
 		aStack.setTagCompound(nbt);
 		if(aStack.getTagCompound().hasKey("scan")) {
-			String recipe = aStack.getTagCompound().getString("scan");
+			int recipe = aStack.getItemDamage();
 			
 			ArrayList<ItemStack> itemList = new ArrayList<ItemStack>();
 			int sizeX = 0;
@@ -147,19 +148,26 @@ public class Behavior_MultiblockBuilder extends AbstractBehaviorDefault {
 			int offset = 0;
 			
 			switch(recipe) {
-			case "CokeOven":
+			case 0:
 				itemList = BuilderCokeOven.getItemList();
 				sizeX = BuilderCokeOven.sizeX;
 				sizeY = BuilderCokeOven.sizeY;
 				sizeZ = BuilderCokeOven.sizeZ;
 				offset = BuilderCokeOven.offset;
 				break;
-			case "FusionReactor":
+			case 2:
 				itemList = BuilderFusionReactor.getItemList();
 				sizeX = BuilderFusionReactor.sizeX;
 				sizeY = BuilderFusionReactor.sizeY;
 				sizeZ = BuilderFusionReactor.sizeZ;
 				offset = BuilderFusionReactor.offset;
+				break;
+			case 18304:
+				itemList = BuilderLargeCircuit.getItemList();
+				sizeX = BuilderLargeCircuit.sizeX;
+				sizeY = BuilderLargeCircuit.sizeY;
+				sizeZ = BuilderLargeCircuit.sizeZ;
+				offset = BuilderLargeCircuit.offset;
 				break;
 			}
 			//if(recipe.equals("CokeOven")) {
