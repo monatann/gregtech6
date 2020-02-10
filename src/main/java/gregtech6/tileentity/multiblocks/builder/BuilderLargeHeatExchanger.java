@@ -29,33 +29,28 @@ import net.minecraft.item.ItemStack;
  * @author Gregorius Techneticies
  */
 
-public class BuilderCrucible {
+public class BuilderLargeHeatExchanger {
 	public static int sizeX = 3;
 	public static int sizeY = 3;
 	public static int sizeZ = 3;
 	public static int offset = 1;
 	private static ArrayList<ItemStack> itemList = new ArrayList<ItemStack>();
-	static int[] blockId = {-1};
-
-	static int mainId;
-	static int wallId;
-	private static int[] structure = {
-		wallId, wallId, wallId,
-		wallId, blockId[0], wallId,
-		wallId, wallId, wallId,
-		
-		wallId, wallId, wallId,
-		wallId, blockId[0], wallId,
-		wallId, wallId, wallId,
-		
-		wallId, wallId, wallId,
-		wallId, mainId, wallId,
-		wallId, wallId, wallId
+	public static int[] blockId = {
+		18101,
+		18067,
+		17197
 	};
-
-	public static ArrayList<ItemStack> getItemList(int itemId) {
-		mainId = itemId;
-		wallId = itemId + 30;
+	public static int[] structure = {
+			blockId[1], blockId[1], blockId[1],
+			blockId[1], blockId[2], blockId[1],
+			blockId[1], blockId[1], blockId[1],
+			
+			blockId[0], blockId[0], blockId[0],
+			blockId[0], blockId[1], blockId[0],
+			blockId[0], blockId[0], blockId[0]
+	};
+	
+	public static ArrayList<ItemStack> getItemList() {
 		itemList.clear();
 		for(int i=structure.length-1;i>-1;i--) {
 			if(structure[i] != -1) {

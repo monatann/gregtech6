@@ -1882,6 +1882,7 @@ public class Loader_MultiTileEntities implements Runnable {
 		for(int i=0;i<MT.DATA.Crucible_T.length;i++) {
 			aMat = MT.DATA.Crucible_T[i];
 			aRegistry.add("Large " + aMat.getLocal() + " Crucible"                                , "Multiblock Machines", 17800 + i, 17101, MultiTileEntityCrucible.class            , aMat.mToolQuality, 16, aMachine   , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,   HARDNESS_C[i], NBT_RESISTANCE,  HARDNESS_C[i], NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_TEXTURE, "crucible"                , NBT_DESIGN, 1000 + i, NBT_ACIDPROOF, F), "hMy", 'M', aRegistry.getItem(1000 + i));
+			aRegistry.add( "Large " + aMat.getLocal() + " Crucible Wall"                                     , "Multiblock Machines", 17830 + i, 17101, aClass                                   , aMat.mToolQuality, 64, aMachine   , UT.NBT.make(NBT_MATERIAL, aMat, NBT_HARDNESS,  HARDNESS[i], NBT_RESISTANCE,  HARDNESS[i], NBT_COLOR, UT.Code.getRGBInt(aMat.fRGBaSolid), NBT_TEXTURE, "metalwalldense"          , NBT_DESIGNS, 7)); OM.data(aRegistry.getItem(), aMat, U*36); RM.Welder.addRecipe2(F, 64, 512, OP.plateDense.mat(aMat, 4), ST.tag(1), aRegistry.getItem());
 		}
 		
 		/*

@@ -19,7 +19,6 @@
 
 package gregtech6.tileentity.multiblocks.builder;
 
-
 import java.util.ArrayList;
 
 import gregtech6.items.behaviors.Behavior_MultiblockBuilder;
@@ -28,34 +27,37 @@ import net.minecraft.item.ItemStack;
 /**
  * @author Gregorius Techneticies
  */
-
-public class BuilderCrucible {
+public class BuilderLargeTurbine {
 	public static int sizeX = 3;
-	public static int sizeY = 3;
+	public static int sizeY = 4;
 	public static int sizeZ = 3;
 	public static int offset = 1;
 	private static ArrayList<ItemStack> itemList = new ArrayList<ItemStack>();
-	static int[] blockId = {-1};
+	static int[] blockId = {18095};
 
 	static int mainId;
 	static int wallId;
 	private static int[] structure = {
 		wallId, wallId, wallId,
-		wallId, blockId[0], wallId,
 		wallId, wallId, wallId,
+		wallId, wallId, wallId,
+
+		blockId[0], blockId[0], blockId[0],
+		blockId[0], blockId[0], blockId[0],
+		blockId[0], blockId[0], blockId[0],
+		
+		blockId[0], blockId[0], blockId[0],
+		blockId[0], blockId[0], blockId[0],
+		blockId[0], blockId[0], blockId[0],
 		
 		wallId, wallId, wallId,
-		wallId, blockId[0], wallId,
 		wallId, wallId, wallId,
-		
-		wallId, wallId, wallId,
-		wallId, mainId, wallId,
-		wallId, wallId, wallId
+		wallId, mainId, wallId
 	};
 
 	public static ArrayList<ItemStack> getItemList(int itemId) {
 		mainId = itemId;
-		wallId = itemId + 30;
+		wallId = itemId + 90;
 		itemList.clear();
 		for(int i=structure.length-1;i>-1;i--) {
 			if(structure[i] != -1) {

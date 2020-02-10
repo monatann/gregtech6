@@ -110,7 +110,7 @@ public class Behavior_MultiblockBuilder extends AbstractBehaviorDefault {
 		7 = North West
 		*/
 		//World world = aWorld;
-		
+
 		int yaw = (int) aPlayer.rotationYaw;
 		if (yaw<0) {
 			yaw+=360;
@@ -118,12 +118,12 @@ public class Behavior_MultiblockBuilder extends AbstractBehaviorDefault {
 		yaw+=22;    //centers coordinates you may want to drop this line
 		yaw%=360;  //and this one if you want a strict interpretation of the zones
 		int facing = yaw/45;  //  360degrees divided by 45 == 8 zones
-		
+
 		boolean north = false;
 		boolean east = false;
 		boolean south = false;
 		boolean west = false;
-		
+
 		if(facing == 0 || facing == 7) { //North
 			north = true;
 		}else if(facing == 1 || facing == 2) { //East
@@ -133,20 +133,20 @@ public class Behavior_MultiblockBuilder extends AbstractBehaviorDefault {
 		}else { //West
 			west = true;
 		}
-		
+
 		NBTTagCompound nbt = new NBTTagCompound();
 		//nbt.setString("scan", "CokeOven");
 		nbt.setInteger("scan", 18304);
 		aStack.setTagCompound(nbt);
 		if(aStack.getTagCompound().hasKey("scan")) {
-			int recipe = aStack.getItemDamage();
-			
+			int recipe = aStack.getTagCompound().getInteger("scan");
+
 			ArrayList<ItemStack> itemList = new ArrayList<ItemStack>();
 			int sizeX = 0;
 			int sizeY = 0;
 			int sizeZ = 0;
 			int offset = 0;
-			
+
 			switch(recipe) {
 			case 0:
 				itemList = BuilderCokeOven.getItemList();
@@ -174,12 +174,15 @@ public class Behavior_MultiblockBuilder extends AbstractBehaviorDefault {
 				int x = aX;
 				int y = aY + 1;
 				int z = aZ;
-				
+
 				int factorX = 1;
 				int factorZ = 1;
 				int index = 0;
 				offset = -1 * offset;
 				if(west || east) {
+					int temp = sizeX;
+					sizeX = sizeZ;
+					sizeZ = temp;
 					if(west){
 						factorX = 1;
 						factorZ = -1;
@@ -203,7 +206,7 @@ public class Behavior_MultiblockBuilder extends AbstractBehaviorDefault {
 						factorX = -1;
 						factorZ = -1;
 					}
-					
+
 					for(int yy = 0; yy < sizeY; yy++) {
 						for(int zz = 0; zz < sizeZ; zz++) {
 							for(int xx = 0; xx < sizeX; xx++) {
@@ -215,12 +218,12 @@ public class Behavior_MultiblockBuilder extends AbstractBehaviorDefault {
 				}
 			//}
 		}
-		
+
 		UT.Entities.sendchat(aPlayer, errorPos, F);
 	}
 
 	public static ItemStack[] inventory;
-	
+
 	public static void place(EntityPlayer aPlayer, ItemStack item, World aWorld, int x, int y, int z, byte aSide) {
 		/*
 		if(item == null) {
@@ -228,14 +231,14 @@ public class Behavior_MultiblockBuilder extends AbstractBehaviorDefault {
 		}
 		*/
 		EntityPlayerMP player = (EntityPlayerMP) aPlayer;
-		
+
 		if(inventory == null) {
 			inventory = new ItemStack[((List<Slot>) aPlayer.openContainer.inventorySlots).size()];
 		}
 		for(int i=0;i<((List<Slot>) aPlayer.openContainer.inventorySlots).size();i++) {
 			inventory[i] = ((List<Slot>) aPlayer.openContainer.inventorySlots).get(i).getStack();
 		}
-		
+
 		if(aWorld.isAirBlock(x, y, z)) {
 			try {
 				for(int i=0;i<inventory.length;i++) {
@@ -260,13 +263,16 @@ public class Behavior_MultiblockBuilder extends AbstractBehaviorDefault {
 							}
 						}
 					}
+					if(inventory.length == i + 1) {
+						errorPos.add("You don't have " + item.getDisplayName() + ", need place on (" + x + "," + y + "," + z + ")");
+					}
 				}
 			}catch(Exception e) {}
 		}else {
 			errorPos.add("Can't place the block on (" + x + "," + y + "," + z + "), there is (" + aWorld.getBlock(x, y, z).getLocalizedName() + ")");
 		}
 	}
-	
+
 	public static ItemStack getGT6Tile(String id, int damage) {
 		if(damage != -1) {
 			return MultiTileEntityRegistry.getRegistry(id).getItem(damage);
