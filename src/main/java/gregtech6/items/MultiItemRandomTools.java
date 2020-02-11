@@ -350,7 +350,7 @@ public class MultiItemRandomTools extends MultiItemRandom implements IItemRottab
 		IL.Tool_Scanner.set(                    addItem(tLastID =  9002, "Portable Scanner"         , "", Behavior_Cropnalyzer.INSTANCE, new Behavior_Scanner(2), EnergyStat.makeTool(TD.Energy.EU, V[3]*8000, V[3], 2, ST.make(this, 1, tLastID)), TC.stack(TC.SENSUS,10), TC.stack(TC.INSTRUMENTUM,10)));
 		IL.Tool_Cropnalyzer.set(                addItem(tLastID =  9003, "Portable Cropnalyzer"     , "", Behavior_Cropnalyzer.INSTANCE, EnergyStat.makeTool(TD.Energy.EU, V[2]*8000, V[2], 2, ST.make(this, 1, tLastID)), TC.stack(TC.SENSUS, 5), TC.stack(TC.INSTRUMENTUM, 5), TC.stack(TC.HERBA, 5)));
 		
-		IL.Tool_Multiblock_Builder.set(       addItem(tLastID =  9004, "Multiblock Builder"         , "", new Behavior_MultiblockBuilder(2), EnergyStat.makeTool(TD.Energy.EU, V[3]*8000, V[3], 2, ST.make(this, 1, tLastID)), TC.stack(TC.SENSUS,10), TC.stack(TC.INSTRUMENTUM,10)));
+		IL.Tool_Multiblock_Builder.set(       addItem(tLastID =  9004, "Multiblock Builder"         , "", new Behavior_MultiblockBuilder(2), EnergyStat.makeTool(TD.Energy.EU, V[1]*1000, V[1], 2, ST.make(this, 1, tLastID)), TC.stack(TC.SENSUS,10), TC.stack(TC.INSTRUMENTUM,10)));
 
 		IL.Tool_Worldgen_Debugger.set(          addItem(tLastID =  9999, "Worldgen Debug Wand"      , "", Behavior_Worldgen_Debugger.INSTANCE, ItemsGT.DEBUG_ITEMS, ItemsGT.ILLEGAL_DROPS, GarbageGT.BLACKLIST, TC.stack(TC.TERRA,10), TC.stack(TC.PRAECANTIO,10), TC.stack(TC.INSTRUMENTUM,10)));
 		

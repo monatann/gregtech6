@@ -70,7 +70,7 @@ public class MultiTileEntityLightningRod extends TileEntityBase10MultiBlockBase 
 		boolean tSuccess = T;
 		mSize = 0;
 
-		int[] blockId = {18067, 18096, 18104};
+		int[] blockId = {18037, 18096, 18104};
 
 		for (int i = -1; i < 2; i++) for (int j = -1; j < 2; j++) {
 			if (!ITileEntityMultiBlockController.Util.checkAndSetTargetOffset(this, i, 0, j, blockId[0], getMultiTileEntityRegistryID(), 0, MultiTileEntityMultiBlockPart.NOTHING)) tSuccess = F;

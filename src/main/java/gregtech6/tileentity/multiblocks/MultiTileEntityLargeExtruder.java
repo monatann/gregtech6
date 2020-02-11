@@ -42,7 +42,7 @@ public class MultiTileEntityLargeExtruder extends TileEntityBase10MultiBlockMach
 	@Override
 	public boolean checkStructure2() {
 		int tX = getOffsetXN(mFacing, 2)-2, tY = yCoord, tZ = getOffsetZN(mFacing, 2)-2, tD = (SIDES_AXIS_Z[mFacing]?mRunning?1:0:mRunning?3:2);
-		
+
 		int[] blockId = {18037, 18111};
 		int[] inOutOption = {MultiTileEntityMultiBlockPart.ONLY_ITEM_FLUID_OUT, MultiTileEntityMultiBlockPart.NOTHING, MultiTileEntityMultiBlockPart.ONLY_ENERGY_IN, MultiTileEntityMultiBlockPart.ONLY_ITEM_FLUID_IN};
 
@@ -134,10 +134,10 @@ public class MultiTileEntityLargeExtruder extends TileEntityBase10MultiBlockMach
 	}
 
 	static {
-		LH.add("gt.tooltip.multiblock.extruder.1", "5x5x3 'Basin' of 56 Tungsten Walls");
-		LH.add("gt.tooltip.multiblock.extruder.2", "3x3x2 Filling with Extruder Part");
-		LH.add("gt.tooltip.multiblock.extruder.3", "Main Block centered on Side-Bottom and facing outwards");
-		LH.add("gt.tooltip.multiblock.extruder.4", "Input only at Extruder Part, Output at Bottom Layer");
+		LH.add("gt6.tooltip.multiblock.extruder.1", "5x5x3 'Basin' of 56 Tungsten Walls");
+		LH.add("gt6.tooltip.multiblock.extruder.2", "3x3x2 Filling with Extruder Part");
+		LH.add("gt6.tooltip.multiblock.extruder.3", "Main Block centered on Side-Bottom and facing outwards");
+		LH.add("gt6.tooltip.multiblock.extruder.4", "Input only at Extruder Part, Output at Bottom Layer");
 	}
 
 	@Override

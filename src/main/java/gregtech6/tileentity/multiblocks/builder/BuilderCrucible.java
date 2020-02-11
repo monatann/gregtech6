@@ -43,11 +43,11 @@ public class BuilderCrucible {
 		wallId, wallId, wallId,
 		wallId, blockId[0], wallId,
 		wallId, wallId, wallId,
-		
+
 		wallId, wallId, wallId,
 		wallId, blockId[0], wallId,
 		wallId, wallId, wallId,
-		
+
 		wallId, wallId, wallId,
 		wallId, mainId, wallId,
 		wallId, wallId, wallId
@@ -55,7 +55,7 @@ public class BuilderCrucible {
 
 	public static ArrayList<ItemStack> getItemList(int itemId) {
 		mainId = itemId;
-		wallId = itemId + 30;
+		wallId = itemId + 50;
 		itemList.clear();
 		for(int i=structure.length-1;i>-1;i--) {
 			if(structure[i] != -1) {

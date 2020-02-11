@@ -25,24 +25,51 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gregapi6.block.multitileentity.MultiTileEntityRegistry;
-import gregapi6.code.ArrayListNoNulls;
 import gregapi6.data.CS.SFX;
 import gregapi6.data.LH;
+import gregapi6.data.MT;
 import gregapi6.data.TD;
 import gregapi6.item.multiitem.MultiItem;
 import gregapi6.item.multiitem.behaviors.IBehavior.AbstractBehaviorDefault;
 import gregapi6.util.UT;
-import gregapi6.util.WD;
+import gregtech6.tileentity.multiblocks.builder.BuilderAutoclave;
+import gregtech6.tileentity.multiblocks.builder.BuilderBath;
+import gregtech6.tileentity.multiblocks.builder.BuilderBedrockDrill;
+import gregtech6.tileentity.multiblocks.builder.BuilderBoiler;
+import gregtech6.tileentity.multiblocks.builder.BuilderCentrifuge;
+import gregtech6.tileentity.multiblocks.builder.BuilderCoagulator;
 import gregtech6.tileentity.multiblocks.builder.BuilderCokeOven;
+import gregtech6.tileentity.multiblocks.builder.BuilderCrackingTower;
+import gregtech6.tileentity.multiblocks.builder.BuilderCrucible;
+import gregtech6.tileentity.multiblocks.builder.BuilderCrusher;
+import gregtech6.tileentity.multiblocks.builder.BuilderCryoDistillationTower;
+import gregtech6.tileentity.multiblocks.builder.BuilderCrystallisationRoom;
+import gregtech6.tileentity.multiblocks.builder.BuilderDistillationTower;
+import gregtech6.tileentity.multiblocks.builder.BuilderElectricCokeOven;
+import gregtech6.tileentity.multiblocks.builder.BuilderElectrolyzer;
+import gregtech6.tileentity.multiblocks.builder.BuilderExtruder;
+import gregtech6.tileentity.multiblocks.builder.BuilderFermenter;
 import gregtech6.tileentity.multiblocks.builder.BuilderFusionReactor;
+import gregtech6.tileentity.multiblocks.builder.BuilderImplosionCompressor;
 import gregtech6.tileentity.multiblocks.builder.BuilderLargeCircuit;
+import gregtech6.tileentity.multiblocks.builder.BuilderLargeCompressor;
+import gregtech6.tileentity.multiblocks.builder.BuilderLargeDynamo;
+import gregtech6.tileentity.multiblocks.builder.BuilderLargeHeatExchanger;
+import gregtech6.tileentity.multiblocks.builder.BuilderLargeSluice;
+import gregtech6.tileentity.multiblocks.builder.BuilderLargeTurbine;
+import gregtech6.tileentity.multiblocks.builder.BuilderLightningRod;
+import gregtech6.tileentity.multiblocks.builder.BuilderLogistics;
+import gregtech6.tileentity.multiblocks.builder.BuilderMatterFabricator;
+import gregtech6.tileentity.multiblocks.builder.BuilderMixer;
+import gregtech6.tileentity.multiblocks.builder.BuilderOven;
+import gregtech6.tileentity.multiblocks.builder.BuilderShredder;
+import gregtech6.tileentity.multiblocks.builder.BuilderSqueezer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 public class Behavior_MultiblockBuilder extends AbstractBehaviorDefault {
@@ -55,9 +82,7 @@ public class Behavior_MultiblockBuilder extends AbstractBehaviorDefault {
 	@Override
 	public boolean onItemUseFirst(MultiItem aItem, ItemStack aStack, EntityPlayer aPlayer, World aWorld, int aX, int aY, int aZ, byte aSide, float hitX, float hitY, float hitZ) {
 		if (aPlayer instanceof EntityPlayerMP) {
-			ArrayList<String> tList = new ArrayListNoNulls<>();
-			if (aItem.useEnergy(TD.Energy.EU, aStack, WD.scan(tList, aPlayer, aWorld, mScanLevel, aX, aY, aZ, aSide, hitX, hitY, hitZ), aPlayer, aPlayer.inventory, aWorld, aX, aY, aZ, T)) {
-				//UT.Entities.sendchat(aPlayer, tList, F);
+			if (aItem.useEnergy(TD.Energy.EU, aStack, 1000, aPlayer, aPlayer.inventory, aWorld, aX, aY, aZ, T)) {
 				setMultiblock(aItem, aStack, aPlayer, aWorld, aX, aY, aZ, aSide, hitX, hitY, hitZ);
 			}
 			return T;
@@ -85,7 +110,7 @@ public class Behavior_MultiblockBuilder extends AbstractBehaviorDefault {
 	}
 
 	static {
-		LH.add("gt6.behaviour.multiblockbuilder", "Place blocks on the world.");
+		LH.add("gt6.behaviour.multiblockbuilder", "Place blocks on the world");
 	}
 
 	@Override
@@ -134,10 +159,6 @@ public class Behavior_MultiblockBuilder extends AbstractBehaviorDefault {
 			west = true;
 		}
 
-		NBTTagCompound nbt = new NBTTagCompound();
-		//nbt.setString("scan", "CokeOven");
-		nbt.setInteger("scan", 18304);
-		aStack.setTagCompound(nbt);
 		if(aStack.getTagCompound().hasKey("scan")) {
 			int recipe = aStack.getTagCompound().getInteger("scan");
 
@@ -147,30 +168,197 @@ public class Behavior_MultiblockBuilder extends AbstractBehaviorDefault {
 			int sizeZ = 0;
 			int offset = 0;
 
-			switch(recipe) {
-			case 0:
+			if(recipe == 17112) {
+				itemList = BuilderAutoclave.getItemList();
+				sizeX = BuilderAutoclave.sizeX;
+				sizeY = BuilderAutoclave.sizeY;
+				sizeZ = BuilderAutoclave.sizeZ;
+				offset = BuilderAutoclave.offset;
+			}else if(recipe == 17104) {
+				itemList = BuilderBath.getItemList();
+				sizeX = BuilderBath.sizeX;
+				sizeY = BuilderBath.sizeY;
+				sizeZ = BuilderBath.sizeZ;
+				offset = BuilderBath.offset;
+			}else if(recipe == 17999) {
+				itemList = BuilderBedrockDrill.getItemList();
+				sizeX = BuilderBedrockDrill.sizeX;
+				sizeY = BuilderBedrockDrill.sizeY;
+				sizeZ = BuilderBedrockDrill.sizeZ;
+				offset = BuilderBedrockDrill.offset;
+			}else if(recipe >= 17290 && recipe < 17290 + MT.DATA.Heat_T.length) {
+				itemList = BuilderBoiler.getItemList(recipe);
+				sizeX = BuilderBoiler.sizeX;
+				sizeY = BuilderBoiler.sizeY;
+				sizeZ = BuilderBoiler.sizeZ;
+				offset = BuilderBoiler.offset;
+			}else if(recipe == 17100) {
+				itemList = BuilderCentrifuge.getItemList();
+				sizeX = BuilderCentrifuge.sizeX;
+				sizeY = BuilderCentrifuge.sizeY;
+				sizeZ = BuilderCentrifuge.sizeZ;
+				offset = BuilderCentrifuge.offset;
+			}else if(recipe == 17105) {
+				itemList = BuilderCentrifuge.getItemList();
+				sizeX = BuilderCoagulator.sizeX;
+				sizeY = BuilderCoagulator.sizeY;
+				sizeZ = BuilderCoagulator.sizeZ;
+				offset = BuilderCoagulator.offset;
+			}else if(recipe == 17000) {
 				itemList = BuilderCokeOven.getItemList();
 				sizeX = BuilderCokeOven.sizeX;
 				sizeY = BuilderCokeOven.sizeY;
 				sizeZ = BuilderCokeOven.sizeZ;
 				offset = BuilderCokeOven.offset;
-				break;
-			case 2:
+			}else if(recipe == 17099) {
+				itemList = BuilderCrackingTower.getItemList();
+				sizeX = BuilderCrackingTower.sizeX;
+				sizeY = BuilderCrackingTower.sizeY;
+				sizeZ = BuilderCrackingTower.sizeZ;
+				offset = BuilderCrackingTower.offset;
+			}else if(recipe >= 17800 && recipe < 17800 + MT.DATA.Crucible_T.length -1) {
+				itemList = BuilderCrucible.getItemList(recipe);
+				sizeX = BuilderCrucible.sizeX;
+				sizeY = BuilderCrucible.sizeY;
+				sizeZ = BuilderCrucible.sizeZ;
+				offset = BuilderCrucible.offset;
+			}else if(recipe == 17108) {
+				itemList = BuilderCrusher.getItemList();
+				sizeX = BuilderCrusher.sizeX;
+				sizeY = BuilderCrusher.sizeY;
+				sizeZ = BuilderCrusher.sizeZ;
+				offset = BuilderCrusher.offset;
+			}else if(recipe == 17111) {
+				itemList = BuilderCryoDistillationTower.getItemList();
+				sizeX = BuilderCryoDistillationTower.sizeX;
+				sizeY = BuilderCryoDistillationTower.sizeY;
+				sizeZ = BuilderCryoDistillationTower.sizeZ;
+				offset = BuilderCryoDistillationTower.offset;
+			}else if(recipe == 18301) {
+				itemList = BuilderCrystallisationRoom.getItemList();
+				sizeX = BuilderCrystallisationRoom.sizeX;
+				sizeY = BuilderCrystallisationRoom.sizeY;
+				sizeZ = BuilderCrystallisationRoom.sizeZ;
+				offset = BuilderCrystallisationRoom.offset;
+			}else if(recipe == 17101) {
+				itemList = BuilderDistillationTower.getItemList();
+				sizeX = BuilderDistillationTower.sizeX;
+				sizeY = BuilderDistillationTower.sizeY;
+				sizeZ = BuilderDistillationTower.sizeZ;
+				offset = BuilderDistillationTower.offset;
+			}else if(recipe == 17106) {
+				itemList = BuilderElectricCokeOven.getItemList();
+				sizeX = BuilderElectricCokeOven.sizeX;
+				sizeY = BuilderElectricCokeOven.sizeY;
+				sizeZ = BuilderElectricCokeOven.sizeZ;
+				offset = BuilderElectricCokeOven.offset;
+			}else if(recipe == 18103) {
+				itemList = BuilderElectrolyzer.getItemList();
+				sizeX = BuilderElectrolyzer.sizeX;
+				sizeY = BuilderElectrolyzer.sizeY;
+				sizeZ = BuilderElectrolyzer.sizeZ;
+				offset = BuilderElectrolyzer.offset;
+			}else if(recipe == 18302) {
+				itemList = BuilderExtruder.getItemList();
+				sizeX = BuilderExtruder.sizeX;
+				sizeY = BuilderExtruder.sizeY;
+				sizeZ = BuilderExtruder.sizeZ;
+				offset = BuilderExtruder.offset;
+			}else if(recipe == 18101) {
+				itemList = BuilderFermenter .getItemList();
+				sizeX = BuilderFermenter .sizeX;
+				sizeY = BuilderFermenter .sizeY;
+				sizeZ = BuilderFermenter .sizeZ;
+				offset = BuilderFermenter .offset;
+			}else if(recipe == 17198) {
 				itemList = BuilderFusionReactor.getItemList();
 				sizeX = BuilderFusionReactor.sizeX;
 				sizeY = BuilderFusionReactor.sizeY;
 				sizeZ = BuilderFusionReactor.sizeZ;
 				offset = BuilderFusionReactor.offset;
-				break;
-			case 18304:
+			}else if(recipe == 17100) {
+				itemList = BuilderImplosionCompressor.getItemList();
+				sizeX = BuilderImplosionCompressor.sizeX;
+				sizeY = BuilderImplosionCompressor.sizeY;
+				sizeZ = BuilderImplosionCompressor.sizeZ;
+				offset = BuilderImplosionCompressor.offset;
+			}else if(recipe == 18304) {
 				itemList = BuilderLargeCircuit.getItemList();
 				sizeX = BuilderLargeCircuit.sizeX;
 				sizeY = BuilderLargeCircuit.sizeY;
 				sizeZ = BuilderLargeCircuit.sizeZ;
 				offset = BuilderLargeCircuit.offset;
-				break;
+			}else if(recipe == 18303) {
+				itemList = BuilderLargeCompressor.getItemList();
+				sizeX = BuilderLargeCompressor.sizeX;
+				sizeY = BuilderLargeCompressor.sizeY;
+				sizeZ = BuilderLargeCompressor.sizeZ;
+				offset = BuilderLargeCompressor.offset;
+			}else if(recipe >= 17260 && recipe < 17260 + MT.DATA.Heat_T.length -1) {
+				itemList = BuilderLargeDynamo.getItemList(recipe);
+				sizeX = BuilderLargeDynamo.sizeX;
+				sizeY = BuilderLargeDynamo.sizeY;
+				sizeZ = BuilderLargeDynamo.sizeZ;
+				offset = BuilderLargeDynamo.offset;
+			}else if(recipe == 17197) {
+				itemList = BuilderLargeHeatExchanger.getItemList();
+				sizeX = BuilderLargeHeatExchanger.sizeX;
+				sizeY = BuilderLargeHeatExchanger.sizeY;
+				sizeZ = BuilderLargeHeatExchanger.sizeZ;
+				offset = BuilderLargeHeatExchanger.offset;
+			}else if(recipe == 17107) {
+				itemList = BuilderLargeSluice.getItemList();
+				sizeX = BuilderLargeSluice.sizeX;
+				sizeY = BuilderLargeSluice.sizeY;
+				sizeZ = BuilderLargeSluice.sizeZ;
+				offset = BuilderLargeSluice.offset;
+			}else if(recipe >= 17230 && recipe < 17230 + MT.DATA.Heat_T.length -1) {
+				itemList = BuilderLargeTurbine.getItemList(recipe);
+				sizeX = BuilderLargeTurbine.sizeX;
+				sizeY = BuilderLargeTurbine.sizeY;
+				sizeZ = BuilderLargeTurbine.sizeZ;
+				offset = BuilderLargeTurbine.offset;
+			}else if(recipe == 17998) {
+				BuilderLightningRod.getItemList(aPlayer, aWorld, aX, aY, aZ, aSide, north, south, east, west);
+				return;
+			}else if(recipe == 17997) {
+				itemList = BuilderLogistics.getItemList();
+				sizeX = BuilderLogistics.sizeX;
+				sizeY = BuilderLogistics.sizeY;
+				sizeZ = BuilderLogistics.sizeZ;
+				offset = BuilderLogistics.offset;
+			}else if(recipe == 17199) {
+				itemList = BuilderMatterFabricator.getItemList();
+				sizeX = BuilderMatterFabricator.sizeX;
+				sizeY = BuilderMatterFabricator.sizeY;
+				sizeZ = BuilderMatterFabricator.sizeZ;
+				offset = BuilderMatterFabricator.offset;
+			}else if(recipe == 17102) {
+				itemList = BuilderMixer.getItemList();
+				sizeX = BuilderMixer.sizeX;
+				sizeY = BuilderMixer.sizeY;
+				sizeZ = BuilderMixer.sizeZ;
+				offset = BuilderMixer.offset;
+			}else if(recipe == 17106) {
+				itemList = BuilderOven.getItemList();
+				sizeX = BuilderOven.sizeX;
+				sizeY = BuilderOven.sizeY;
+				sizeZ = BuilderOven.sizeZ;
+				offset = BuilderOven.offset;
+			}else if(recipe == 17109) {
+				itemList = BuilderShredder.getItemList();
+				sizeX = BuilderShredder.sizeX;
+				sizeY = BuilderShredder.sizeY;
+				sizeZ = BuilderShredder.sizeZ;
+				offset = BuilderShredder.offset;
+			}else if(recipe == 17114) {
+				itemList = BuilderSqueezer.getItemList();
+				sizeX = BuilderSqueezer.sizeX;
+				sizeY = BuilderSqueezer.sizeY;
+				sizeZ = BuilderSqueezer.sizeZ;
+				offset = BuilderSqueezer.offset;
 			}
-			//if(recipe.equals("CokeOven")) {
+
 				int x = aX;
 				int y = aY + 1;
 				int z = aZ;
@@ -216,7 +404,6 @@ public class Behavior_MultiblockBuilder extends AbstractBehaviorDefault {
 						}
 					}
 				}
-			//}
 		}
 
 		UT.Entities.sendchat(aPlayer, errorPos, F);
@@ -225,11 +412,6 @@ public class Behavior_MultiblockBuilder extends AbstractBehaviorDefault {
 	public static ItemStack[] inventory;
 
 	public static void place(EntityPlayer aPlayer, ItemStack item, World aWorld, int x, int y, int z, byte aSide) {
-		/*
-		if(item == null) {
-			return;
-		}
-		*/
 		EntityPlayerMP player = (EntityPlayerMP) aPlayer;
 
 		if(inventory == null) {

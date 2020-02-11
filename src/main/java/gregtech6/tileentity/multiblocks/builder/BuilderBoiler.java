@@ -27,7 +27,7 @@ import net.minecraft.item.ItemStack;
 /**
  * @author Gregorius Techneticies
  */
-public class BuilderBoilder {
+public class BuilderBoiler {
 	public static int sizeX = 3;
 	public static int sizeY = 4;
 	public static int sizeZ = 3;

@@ -19,6 +19,7 @@
 
 package gregtech6.tileentity.multiblocks.builder;
 
+
 import java.util.ArrayList;
 
 import gregtech6.items.behaviors.Behavior_MultiblockBuilder;
@@ -27,36 +28,39 @@ import net.minecraft.item.ItemStack;
 /**
  * @author Gregorius Techneticies
  */
-public class BuilderLargeTurbine {
-	public static int sizeX = 3;
+
+public class BuilderShredder {
+	public static int sizeX = 5;
 	public static int sizeY = 3;
-	public static int sizeZ = 4;
-	public static int offset = 1;
+	public static int sizeZ = 5;
+	public static int offset = 2;
 	private static ArrayList<ItemStack> itemList = new ArrayList<ItemStack>();
+	public static int[] blockId = {
+		18036,
+		18108,
+		17109
+	};
+	public static int[] structure = {
+			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
+			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
+			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
+			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
+			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
 
-	static int mainId;
-	static int wallId;
-	private static int[] structure = {
-		wallId, wallId, wallId,
-		wallId, wallId, wallId,
-		wallId, wallId, wallId,
-		wallId, wallId, wallId,
+			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
+			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
+			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
+			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
+			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
 
-		wallId, wallId, wallId,
-		wallId, wallId, wallId,
-		wallId, wallId, wallId,
-		wallId, mainId, wallId,
-
-		wallId, wallId, wallId,
-		wallId, wallId, wallId,
-		wallId, wallId, wallId,
-		wallId, wallId, wallId
-
+			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
+			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
+			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
+			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
+			blockId[0], blockId[0], blockId[2], blockId[0], blockId[0],
 	};
 
-	public static ArrayList<ItemStack> getItemList(int itemId) {
-		mainId = itemId;
-		wallId = itemId + 90;
+	public static ArrayList<ItemStack> getItemList() {
 		itemList.clear();
 		for(int i=structure.length-1;i>-1;i--) {
 			if(structure[i] != -1) {

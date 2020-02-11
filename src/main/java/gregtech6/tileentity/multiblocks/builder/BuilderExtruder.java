@@ -29,7 +29,7 @@ import net.minecraft.item.ItemStack;
  * @author Gregorius Techneticies
  */
 
-//to-do
+
 public class BuilderExtruder {
 	public static int sizeX = 5;
 	public static int sizeY = 3;

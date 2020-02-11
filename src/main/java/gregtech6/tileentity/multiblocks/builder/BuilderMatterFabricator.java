@@ -30,24 +30,46 @@ import net.minecraft.item.ItemStack;
  */
 
 
-public class BuilderFermenter {
+public class BuilderMatterFabricator {
 	public static int sizeX = 5;
-	public static int sizeY = 3;
+	public static int sizeY = 6;
 	public static int sizeZ = 5;
 	public static int offset = 2;
 	private static ArrayList<ItemStack> itemList = new ArrayList<ItemStack>();
 	public static int[] blockId = {
-		18035,
-		18113,
-		18101
+		18032,//laed
+		18077,//os coil
+		18299,//vent
+		17199,//main
+		18200,//versa
+		18202,//control
+		18204,//conver
+		-1
 	};
 	public static int[] structure = {
+			blockId[2], blockId[2], blockId[2], blockId[2], blockId[2],
+			blockId[2], blockId[6], blockId[5], blockId[6], blockId[2],
+			blockId[2], blockId[5], blockId[4], blockId[5], blockId[2],
+			blockId[2], blockId[6], blockId[5], blockId[6], blockId[2],
+			blockId[2], blockId[2], blockId[2], blockId[2], blockId[2],
+
+			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
+			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
+			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
+			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
+			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
+
 			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
 			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
 			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
 			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
 			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
 
+			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
+			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
+			blockId[0], blockId[1], blockId[6], blockId[1], blockId[0],
+			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
+			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
 
 			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
 			blockId[0], blockId[1], blockId[1], blockId[1], blockId[0],
@@ -59,7 +81,7 @@ public class BuilderFermenter {
 			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
 			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
 			blockId[0], blockId[0], blockId[0], blockId[0], blockId[0],
-			blockId[0], blockId[0], blockId[2], blockId[0], blockId[0],
+			blockId[0], blockId[0], blockId[3], blockId[0], blockId[0],
 	};
 
 	public static ArrayList<ItemStack> getItemList() {
