@@ -349,8 +349,8 @@ public enum IL implements IItemContainer {
 	//Wire
 	Circuit_Wire_Copper, Circuit_Wire_Gold, Circuit_Wire_Platinum, Circuit_Wire_Magic, Circuit_Wire_Enderium, Circuit_Wire_Signalum,
 
-	//Chip
-	Circuit_Chip_RAM, Circuit_Chip_NAND, Circuit_Chip_NOR,
+	//Wafer
+	Circuit_Wafer_RAM, Circuit_Wafer_NAND, Circuit_Wafer_NOR,
 
 	Circuit_Wafer_ULV1, Circuit_Wafer_ULV2, Circuit_Wafer_ULV3,
 	Circuit_Wafer_LV1, Circuit_Wafer_LV2, Circuit_Wafer_LV3,
@@ -358,7 +358,7 @@ public enum IL implements IItemContainer {
 	Circuit_Wafer_HV1, Circuit_Wafer_HV2, Circuit_Wafer_HV3,
 	Circuit_Wafer_EV1, Circuit_Wafer_EV2, Circuit_Wafer_EV3,
 	Circuit_Wafer_IV1, Circuit_Wafer_IV2, Circuit_Wafer_IV3,
-	Circuit_Wafer_LuV1, Circuit_Wafer_Lu2, Circuit_Wafer_LuV3,
+	Circuit_Wafer_LuV1, Circuit_Wafer_LuV2, Circuit_Wafer_LuV3,
 	Circuit_Wafer_ZPM1, Circuit_Wafer_ZPM2, Circuit_Wafer_ZPM3,
 	Circuit_Wafer_UV1, Circuit_Wafer_UV2, Circuit_Wafer_UV3,
 	Circuit_Wafer_PUV11, Circuit_Wafer_PUV12, Circuit_Wafer_PUV13,
@@ -369,13 +369,16 @@ public enum IL implements IItemContainer {
 	Circuit_Wafer_Omega1, Circuit_Wafer_Omega2, Circuit_Wafer_Omega3,
 	Circuit_Wafer_MAX1, Circuit_Wafer_MAX2, Circuit_Wafer_MAX3,
 
+	//Chip
+	Circuit_Chip_RAM, Circuit_Chip_NAND, Circuit_Chip_NOR,
+
 	Circuit_Chip_ULV1, Circuit_Chip_ULV2, Circuit_Chip_ULV3,
 	Circuit_Chip_LV1, Circuit_Chip_LV2, Circuit_Chip_LV3,
 	Circuit_Chip_MV1, Circuit_Chip_MV2, Circuit_Chip_MV3,
 	Circuit_Chip_HV1, Circuit_Chip_HV2, Circuit_Chip_HV3,
 	Circuit_Chip_EV1, Circuit_Chip_EV2, Circuit_Chip_EV3,
 	Circuit_Chip_IV1, Circuit_Chip_IV2, Circuit_Chip_IV3,
-	Circuit_Chip_LuV1, Circuit_Chip_Lu2, Circuit_Chip_LuV3,
+	Circuit_Chip_LuV1, Circuit_Chip_LuV2, Circuit_Chip_LuV3,
 	Circuit_Chip_ZPM1, Circuit_Chip_ZPM2, Circuit_Chip_ZPM3,
 	Circuit_Chip_UV1, Circuit_Chip_UV2, Circuit_Chip_UV3,
 	Circuit_Chip_PUV11, Circuit_Chip_PUV12, Circuit_Chip_PUV13,
@@ -393,7 +396,7 @@ public enum IL implements IItemContainer {
 	Circuit_Board_HV1, Circuit_Board_HV2, Circuit_Board_HV3,
 	Circuit_Board_EV1, Circuit_Board_EV2, Circuit_Board_EV3,
 	Circuit_Board_IV1, Circuit_Board_IV2, Circuit_Board_IV3,
-	Circuit_Board_LuV1, Circuit_Board_Lu2, Circuit_Board_LuV3,
+	Circuit_Board_LuV1, Circuit_Board_LuV2, Circuit_Board_LuV3,
 	Circuit_Board_ZPM1, Circuit_Board_ZPM2, Circuit_Board_ZPM3,
 	Circuit_Board_UV1, Circuit_Board_UV2, Circuit_Board_UV3,
 	Circuit_Board_PUV11, Circuit_Board_PUV12, Circuit_Board_PUV13,
@@ -411,7 +414,7 @@ public enum IL implements IItemContainer {
 	Circuit_Plate_HV1, Circuit_Plate_HV2, Circuit_Plate_HV3,
 	Circuit_Plate_EV1, Circuit_Plate_EV2, Circuit_Plate_EV3,
 	Circuit_Plate_IV1, Circuit_Plate_IV2, Circuit_Plate_IV3,
-	Circuit_Plate_LuV1, Circuit_Plate_Lu2, Circuit_Plate_LuV3,
+	Circuit_Plate_LuV1, Circuit_Plate_LuV2, Circuit_Plate_LuV3,
 	Circuit_Plate_ZPM1, Circuit_Plate_ZPM2, Circuit_Plate_ZPM3,
 	Circuit_Plate_UV1, Circuit_Plate_UV2, Circuit_Plate_UV3,
 	Circuit_Plate_PUV11, Circuit_Plate_PUV12, Circuit_Plate_PUV13,
@@ -423,7 +426,8 @@ public enum IL implements IItemContainer {
 	Circuit_Plate_MAX1, Circuit_Plate_MAX2, Circuit_Plate_MAX3,
 
 	//Circuit Part
-	Circuit_Resister, Circuit_Diode, Circuit_Transister, Circuit_Capacitor,
+	Circuit_Resister, Circuit_Diode, Circuit_Transister, Circuit_Capacitor, Circuit_SmallCoil,
+	Circuit_SMD_Resister, Circuit_SMD_Diode, Circuit_SMD_Transister, Circuit_SMD_Capacitor,
 
 	Circuit_Part_ULV1, Circuit_Part_ULV2, Circuit_Part_ULV3,
 	Circuit_Part_LV1, Circuit_Part_LV2, Circuit_Part_LV3,
@@ -431,7 +435,7 @@ public enum IL implements IItemContainer {
 	Circuit_Part_HV1, Circuit_Part_HV2, Circuit_Part_HV3,
 	Circuit_Part_EV1, Circuit_Part_EV2, Circuit_Part_EV3,
 	Circuit_Part_IV1, Circuit_Part_IV2, Circuit_Part_IV3,
-	Circuit_Part_LuV1, Circuit_Part_Lu2, Circuit_Part_LuV3,
+	Circuit_Part_LuV1, Circuit_Part_LuV2, Circuit_Part_LuV3,
 	Circuit_Part_ZPM1, Circuit_Part_ZPM2, Circuit_Part_ZPM3,
 	Circuit_Part_UV1, Circuit_Part_UV2, Circuit_Part_UV3,
 	Circuit_Part_PUV11, Circuit_Part_PUV12, Circuit_Part_PUV13,
@@ -449,7 +453,7 @@ public enum IL implements IItemContainer {
 	Circuit_HV1, Circuit_HV2, Circuit_HV3,
 	Circuit_EV1, Circuit_EV2, Circuit_EV3,
 	Circuit_IV1, Circuit_IV2, Circuit_IV3,
-	Circuit_LuV1, Circuit_Lu2, Circuit_LuV3,
+	Circuit_LuV1, Circuit_LuV2, Circuit_LuV3,
 	Circuit_ZPM1, Circuit_ZPM2, Circuit_ZPM3,
 	Circuit_UV1, Circuit_UV2, Circuit_UV3,
 	Circuit_PUV11, Circuit_PUV12, Circuit_PUV13,

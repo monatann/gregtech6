@@ -699,6 +699,349 @@ public class MultiItemTechnological extends MultiItemRandom {
 		RM.Press.addRecipeX(T, 16, 64, ST.array(ST.make(Blocks.end_stone, 5, W)                              , OP.dust     .mat(MT.EnderEye, 2)), IL.Electrode_FR_Ender       .get(4));
 		RM.Press.addRecipeX(T, 16, 64, ST.array(ST.make(Blocks.end_stone, 5, W)                              , OP.gem      .mat(MT.EnderEye, 2)), IL.Electrode_FR_Ender       .get(4));
 
+		//--------------------------------------- Circuit ------------------------------------------------//
+
+		//----- Set -----//
+		//wire
+		IL.Circuit_Wire_Copper.set(             addItem(tLastID = 30001, "Circuit Wiring (Copper)"          , "Needs to be placed on an empty Circuit Plate"    , new OreDictItemData(MT.Cu, U), TC.stack(TC.FABRICO, 1), TC.stack(TC.PERMUTATIO, 1)));
+		IL.Circuit_Wire_Gold.set(               addItem(tLastID = 30002, "Circuit Wiring (Gold)"            , "Needs to be placed on an empty Circuit Plate"    , new OreDictItemData(MT.Au, U), TC.stack(TC.FABRICO, 1), TC.stack(TC.LUCRUM, 1)));
+		IL.Circuit_Wire_Platinum.set(           addItem(tLastID = 30003, "Circuit Wiring (Platinum)"        , "Needs to be placed on an empty Circuit Plate"    , new OreDictItemData(MT.Pt, U), TC.stack(TC.FABRICO, 1), TC.stack(TC.NEBRISUM, 1)));
+		IL.Circuit_Wire_Magic.set(              addItem(tLastID = 30004, "Circuit Wiring (Magic)"           , "Needs to be placed on an empty Circuit Plate"    , TC.stack(TC.FABRICO, 1), TC.stack(TC.PRAECANTIO, 1)));
+		IL.Circuit_Wire_Enderium.set(           addItem(tLastID = 30005, "Circuit Wiring (Enderium)"        , "Needs to be placed on an empty Circuit Plate"    , new OreDictItemData(MT.Enderium, U), TC.stack(TC.FABRICO, 1), TC.stack(TC.ALIENIS, 1)));
+		IL.Circuit_Wire_Signalum.set(           addItem(tLastID = 30006, "Circuit Wiring (Signalum)"        , "Needs to be placed on an empty Circuit Plate"    , new OreDictItemData(MT.Signalum, U), TC.stack(TC.FABRICO, 1), TC.stack(TC.POTENTIA, 1)));
+
+		//Wafer
+		IL.Circuit_Wafer_RAM.set(           addItem(tLastID = 30051, "Random Access Memory Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_NAND.set(           addItem(tLastID = 30052, "NAND Memory Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_NOR.set(           addItem(tLastID = 30053, "NOR Memory Chip (Wafer)"        , "Raw Circuit"));
+
+		IL.Circuit_Wafer_ULV1.set(           addItem(tLastID = 30101, "ULV1 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_ULV2.set(           addItem(tLastID = 30102, "ULV2 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_ULV3.set(           addItem(tLastID = 30103, "ULV3 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_LV1.set(           addItem(tLastID = 30111, "LV1 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_LV2.set(           addItem(tLastID = 30112, "LV2 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_LV3.set(           addItem(tLastID = 30113, "LV3 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_MV1.set(           addItem(tLastID = 30121, "MV1 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_MV2.set(           addItem(tLastID = 30122, "MV2 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_MV3.set(           addItem(tLastID = 30123, "MV3 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_HV1.set(           addItem(tLastID = 30131, "HV1 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_HV2.set(           addItem(tLastID = 30132, "HV2 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_HV3.set(           addItem(tLastID = 30133, "HV3 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_EV1.set(           addItem(tLastID = 30141, "EV1 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_EV2.set(           addItem(tLastID = 30142, "EV2 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_EV3.set(           addItem(tLastID = 30143, "EV3 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_IV1.set(           addItem(tLastID = 30151, "IV1 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_IV2.set(           addItem(tLastID = 30152, "IV2 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_IV3.set(           addItem(tLastID = 30153, "IV3 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_LuV1.set(           addItem(tLastID = 30161, "LuV1 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_LuV2.set(           addItem(tLastID = 30162, "LuV2 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_LuV3.set(           addItem(tLastID = 30163, "LuV3 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_ZPM1.set(           addItem(tLastID = 30171, "ZPM1 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_ZPM2.set(           addItem(tLastID = 30172, "ZPM2 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_ZPM3.set(           addItem(tLastID = 30173, "ZPM3 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_UV1.set(           addItem(tLastID = 30181, "UV1 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_UV2.set(           addItem(tLastID = 30182, "UV2 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_UV3.set(           addItem(tLastID = 30183, "UV3 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_PUV11.set(           addItem(tLastID = 30191, "PUV11 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_PUV12.set(           addItem(tLastID = 30192, "PUV12 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_PUV13.set(           addItem(tLastID = 30193, "PUV13 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_PUV21.set(           addItem(tLastID = 30201, "PUV21 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_PUV22.set(           addItem(tLastID = 30202, "PUV22 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_PUV23.set(           addItem(tLastID = 30203, "PUV23 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_PUV31.set(           addItem(tLastID = 30211, "PUV31 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_PUV32.set(           addItem(tLastID = 30212, "PUV32 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_PUV33.set(           addItem(tLastID = 30213, "PUV33 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_PUV41.set(           addItem(tLastID = 30221, "PUV41 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_PUV42.set(           addItem(tLastID = 30222, "PUV42 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_PUV43.set(           addItem(tLastID = 30223, "PUV43 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_PUV51.set(           addItem(tLastID = 30231, "PUV51 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_PUV52.set(           addItem(tLastID = 30232, "PUV52 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_PUV53.set(           addItem(tLastID = 30233, "PUV53 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_Omega1.set(           addItem(tLastID = 30241, "Omega1 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_Omega2.set(           addItem(tLastID = 30242, "Omega2 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_Omega3.set(           addItem(tLastID = 30243, "Omega3 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_MAX1.set(           addItem(tLastID = 30251, "MAX1 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_MAX2.set(           addItem(tLastID = 30252, "MAX2 Chip (Wafer)"        , "Raw Circuit"));
+		IL.Circuit_Wafer_MAX3.set(           addItem(tLastID = 30253, "MAX3 Chip (Wafer)"        , "Raw Circuit"));
+
+		//Chip
+		IL.Circuit_Wafer_RAM.set(           addItem(tLastID = 30551, "Random Access Memory Chip"        , "Integrated Circuit"));
+		IL.Circuit_Wafer_NAND.set(           addItem(tLastID = 30552, "NAND Memory Chip"        , "Integrated Circuit"));
+		IL.Circuit_Wafer_NOR.set(           addItem(tLastID = 30553, "NOR Memory Chip"        , "Integrated Circuit"));
+
+		IL.Circuit_Chip_ULV1.set(           addItem(tLastID = 30601, "ULV1 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_ULV2.set(           addItem(tLastID = 30602, "ULV2 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_ULV3.set(           addItem(tLastID = 30603, "ULV3 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_LV1.set(           addItem(tLastID = 30611, "LV1 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_LV2.set(           addItem(tLastID = 30612, "LV2 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_LV3.set(           addItem(tLastID = 30613, "LV3 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_MV1.set(           addItem(tLastID = 30621, "MV1 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_MV2.set(           addItem(tLastID = 30622, "MV2 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_MV3.set(           addItem(tLastID = 30623, "MV3 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_HV1.set(           addItem(tLastID = 30631, "HV1 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_HV2.set(           addItem(tLastID = 30632, "HV2 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_HV3.set(           addItem(tLastID = 30633, "HV3 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_EV1.set(           addItem(tLastID = 30641, "EV1 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_EV2.set(           addItem(tLastID = 30642, "EV2 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_EV3.set(           addItem(tLastID = 30643, "EV3 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_IV1.set(           addItem(tLastID = 30651, "IV1 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_IV2.set(           addItem(tLastID = 30652, "IV2 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_IV3.set(           addItem(tLastID = 30653, "IV3 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_LuV1.set(           addItem(tLastID = 30661, "LuV1 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_LuV2.set(           addItem(tLastID = 30662, "LuV2 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_LuV3.set(           addItem(tLastID = 30663, "LuV3 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_ZPM1.set(           addItem(tLastID = 30671, "ZPM1 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_ZPM2.set(           addItem(tLastID = 30672, "ZPM2 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_ZPM3.set(           addItem(tLastID = 30673, "ZPM3 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_UV1.set(           addItem(tLastID = 30681, "UV1 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_UV2.set(           addItem(tLastID = 30682, "UV2 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_UV3.set(           addItem(tLastID = 30683, "UV3 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_PUV11.set(           addItem(tLastID = 30691, "PUV11 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_PUV12.set(           addItem(tLastID = 30692, "PUV12 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_PUV13.set(           addItem(tLastID = 30693, "PUV13 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_PUV21.set(           addItem(tLastID = 30701, "PUV21 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_PUV22.set(           addItem(tLastID = 30702, "PUV22 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_PUV23.set(           addItem(tLastID = 30703, "PUV23 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_PUV31.set(           addItem(tLastID = 30711, "PUV31 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_PUV32.set(           addItem(tLastID = 30712, "PUV32 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_PUV33.set(           addItem(tLastID = 30713, "PUV33 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_PUV41.set(           addItem(tLastID = 30721, "PUV41 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_PUV42.set(           addItem(tLastID = 30722, "PUV42 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_PUV43.set(           addItem(tLastID = 30723, "PUV43 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_PUV51.set(           addItem(tLastID = 30731, "PUV51 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_PUV52.set(           addItem(tLastID = 30732, "PUV52 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_PUV53.set(           addItem(tLastID = 30733, "PUV53 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_Omega1.set(           addItem(tLastID = 30741, "Omega1 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_Omega2.set(           addItem(tLastID = 30742, "Omega2 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_Omega3.set(           addItem(tLastID = 30743, "Omega3 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_MAX1.set(           addItem(tLastID = 30751, "MAX1 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_MAX2.set(           addItem(tLastID = 30752, "MAX2 Chip"        , "Integrated Circuit"));
+		IL.Circuit_Chip_MAX3.set(           addItem(tLastID = 30753, "MAX3 Chip"        , "Integrated Circuit"));
+
+		//Board
+		IL.Circuit_Board_ULV1.set(           addItem(tLastID = 31001, "ULV1 Board"        , "Circuit Board"));
+		IL.Circuit_Board_ULV2.set(           addItem(tLastID = 31202, "ULV2 Board"        , "Circuit Board"));
+		IL.Circuit_Board_ULV3.set(           addItem(tLastID = 31203, "ULV3 Board"        , "Circuit Board"));
+		IL.Circuit_Board_LV1.set(           addItem(tLastID = 31211, "LV1 Board"        , "Circuit Board"));
+		IL.Circuit_Board_LV2.set(           addItem(tLastID = 31212, "LV2 Board"        , "Circuit Board"));
+		IL.Circuit_Board_LV3.set(           addItem(tLastID = 31213, "LV3 Board"        , "Circuit Board"));
+		IL.Circuit_Board_MV1.set(           addItem(tLastID = 31221, "MV1 Board"        , "Circuit Board"));
+		IL.Circuit_Board_MV2.set(           addItem(tLastID = 31222, "MV2 Board"        , "Circuit Board"));
+		IL.Circuit_Board_MV3.set(           addItem(tLastID = 31223, "MV3 Board"        , "Circuit Board"));
+		IL.Circuit_Board_HV1.set(           addItem(tLastID = 31231, "HV1 Board"        , "Circuit Board"));
+		IL.Circuit_Board_HV2.set(           addItem(tLastID = 31232, "HV2 Board"        , "Circuit Board"));
+		IL.Circuit_Board_HV3.set(           addItem(tLastID = 31233, "HV3 Board"        , "Circuit Board"));
+		IL.Circuit_Board_EV1.set(           addItem(tLastID = 31241, "EV1 Board"        , "Circuit Board"));
+		IL.Circuit_Board_EV2.set(           addItem(tLastID = 31242, "EV2 Board"        , "Circuit Board"));
+		IL.Circuit_Board_EV3.set(           addItem(tLastID = 31243, "EV3 Board"        , "Circuit Board"));
+		IL.Circuit_Board_IV1.set(           addItem(tLastID = 31251, "IV1 Board"        , "Circuit Board"));
+		IL.Circuit_Board_IV2.set(           addItem(tLastID = 31252, "IV2 Board"        , "Circuit Board"));
+		IL.Circuit_Board_IV3.set(           addItem(tLastID = 31253, "IV3 Board"        , "Circuit Board"));
+		IL.Circuit_Board_LuV1.set(           addItem(tLastID = 31261, "LuV1 Board"        , "Circuit Board"));
+		IL.Circuit_Board_LuV2.set(           addItem(tLastID = 31262, "LuV2 Board"        , "Circuit Board"));
+		IL.Circuit_Board_LuV3.set(           addItem(tLastID = 31263, "LuV3 Board"        , "Circuit Board"));
+		IL.Circuit_Board_ZPM1.set(           addItem(tLastID = 31271, "ZPM1 Board"        , "Circuit Board"));
+		IL.Circuit_Board_ZPM2.set(           addItem(tLastID = 31272, "ZPM2 Board"        , "Circuit Board"));
+		IL.Circuit_Board_ZPM3.set(           addItem(tLastID = 31273, "ZPM3 Board"        , "Circuit Board"));
+		IL.Circuit_Board_UV1.set(           addItem(tLastID = 31281, "UV1 Board"        , "Circuit Board"));
+		IL.Circuit_Board_UV2.set(           addItem(tLastID = 31282, "UV2 Board"        , "Circuit Board"));
+		IL.Circuit_Board_UV3.set(           addItem(tLastID = 31283, "UV3 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV11.set(           addItem(tLastID = 31291, "PUV11 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV12.set(           addItem(tLastID = 31292, "PUV12 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV13.set(           addItem(tLastID = 31293, "PUV13 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV21.set(           addItem(tLastID = 31301, "PUV21 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV22.set(           addItem(tLastID = 31302, "PUV22 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV23.set(           addItem(tLastID = 31303, "PUV23 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV31.set(           addItem(tLastID = 31311, "PUV31 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV32.set(           addItem(tLastID = 31312, "PUV32 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV33.set(           addItem(tLastID = 31313, "PUV33 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV41.set(           addItem(tLastID = 31321, "PUV41 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV42.set(           addItem(tLastID = 31322, "PUV42 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV43.set(           addItem(tLastID = 31323, "PUV43 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV51.set(           addItem(tLastID = 31331, "PUV51 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV52.set(           addItem(tLastID = 31332, "PUV52 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV53.set(           addItem(tLastID = 31333, "PUV53 Board"        , "Circuit Board"));
+		IL.Circuit_Board_Omega1.set(           addItem(tLastID = 31341, "Omega1 Board"        , "Circuit Board"));
+		IL.Circuit_Board_Omega2.set(           addItem(tLastID = 31342, "Omega2 Board"        , "Circuit Board"));
+		IL.Circuit_Board_Omega3.set(           addItem(tLastID = 33143, "Omega3 Board"        , "Circuit Board"));
+		IL.Circuit_Board_MAX1.set(           addItem(tLastID = 31351, "MAX1 Board"        , "Circuit Board"));
+		IL.Circuit_Board_MAX2.set(           addItem(tLastID = 31352, "MAX2 Board"        , "Circuit Board"));
+		IL.Circuit_Board_MAX3.set(           addItem(tLastID = 31353, "MAX3 Board"        , "Circuit Board"));
+
+		//Plate
+		IL.Circuit_Plate_ULV1.set(           addItem(tLastID = 31401, "ULV1 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_ULV2.set(           addItem(tLastID = 31402, "ULV2 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_ULV3.set(           addItem(tLastID = 31403, "ULV3 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_LV1.set(           addItem(tLastID = 31411, "LV1 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_LV2.set(           addItem(tLastID = 31412, "LV2 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_LV3.set(           addItem(tLastID = 31413, "LV3 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_MV1.set(           addItem(tLastID = 31421, "MV1 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_MV2.set(           addItem(tLastID = 31422, "MV2 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_MV3.set(           addItem(tLastID = 31423, "MV3 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_HV1.set(           addItem(tLastID = 31431, "HV1 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_HV2.set(           addItem(tLastID = 31432, "HV2 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_HV3.set(           addItem(tLastID = 31433, "HV3 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_EV1.set(           addItem(tLastID = 31441, "EV1 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_EV2.set(           addItem(tLastID = 31442, "EV2 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_EV3.set(           addItem(tLastID = 31443, "EV3 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_IV1.set(           addItem(tLastID = 31451, "IV1 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_IV2.set(           addItem(tLastID = 31452, "IV2 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_IV3.set(           addItem(tLastID = 31453, "IV3 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_LuV1.set(           addItem(tLastID = 31461, "LuV1 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_LuV2.set(           addItem(tLastID = 31462, "LuV2 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_LuV3.set(           addItem(tLastID = 31463, "LuV3 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_ZPM1.set(           addItem(tLastID = 31471, "ZPM1 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_ZPM2.set(           addItem(tLastID = 31472, "ZPM2 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_ZPM3.set(           addItem(tLastID = 31473, "ZPM3 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_UV1.set(           addItem(tLastID = 31481, "UV1 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_UV2.set(           addItem(tLastID = 31482, "UV2 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_UV3.set(           addItem(tLastID = 31483, "UV3 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_PUV11.set(           addItem(tLastID = 31491, "PUV11 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_PUV12.set(           addItem(tLastID = 31492, "PUV12 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_PUV13.set(           addItem(tLastID = 31493, "PUV13 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_PUV21.set(           addItem(tLastID = 31501, "PUV21 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_PUV22.set(           addItem(tLastID = 31502, "PUV22 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_PUV23.set(           addItem(tLastID = 31503, "PUV23 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_PUV31.set(           addItem(tLastID = 31511, "PUV31 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_PUV32.set(           addItem(tLastID = 31512, "PUV32 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_PUV33.set(           addItem(tLastID = 31513, "PUV33 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_PUV41.set(           addItem(tLastID = 31521, "PUV41 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_PUV42.set(           addItem(tLastID = 31522, "PUV42 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_PUV43.set(           addItem(tLastID = 31523, "PUV43 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_PUV51.set(           addItem(tLastID = 31531, "PUV51 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_PUV52.set(           addItem(tLastID = 31532, "PUV52 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_PUV53.set(           addItem(tLastID = 31533, "PUV53 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_Omega1.set(           addItem(tLastID = 31541, "Omega1 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_Omega2.set(           addItem(tLastID = 31542, "Omega2 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_Omega3.set(           addItem(tLastID = 31543, "Omega3 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_MAX1.set(           addItem(tLastID = 31551, "MAX1 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_MAX2.set(           addItem(tLastID = 31552, "MAX2 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_MAX3.set(           addItem(tLastID = 31553, "MAX3 Plate"        , "Circuit Plate"));
+
+		//Circuit Part
+		IL.Circuit_Resister.set(           addItem(tLastID = 31601, "Register"        , "Circuit Part"));
+		IL.Circuit_Diode.set(           addItem(tLastID = 31602, "Diode"        , "Circuit Part"));
+		IL.Circuit_Transister.set(           addItem(tLastID = 31603, "Transister"        , "Circuit Part"));
+		IL.Circuit_Capacitor.set(           addItem(tLastID = 31604, "Capacitor"        , "Circuit Part"));
+		IL.Circuit_SmallCoil.set(           addItem(tLastID = 31605, "Small Coil"        , "Circuit Part"));
+
+		IL.Circuit_SMD_Resister.set(           addItem(tLastID = 31611, "SMD Register"        , "Circuit Part"));
+		IL.Circuit_SMD_Diode.set(           addItem(tLastID = 31612, "SMD Diode"        , "Circuit Part"));
+		IL.Circuit_SMD_Transister.set(           addItem(tLastID = 31613, "SMD Transister"        , "Circuit Part"));
+		IL.Circuit_SMD_Capacitor.set(           addItem(tLastID = 31614, "SMD Capacitor"        , "Circuit Part"));
+
+		IL.Circuit_Part_ULV1.set(           addItem(tLastID = 31651, "ULV1 Part"        , "Circuit Part"));
+		IL.Circuit_Part_ULV2.set(           addItem(tLastID = 31652, "ULV2 Part"        , "Circuit Part"));
+		IL.Circuit_Part_ULV3.set(           addItem(tLastID = 31653, "ULV3 Part"        , "Circuit Part"));
+		IL.Circuit_Part_LV1.set(           addItem(tLastID = 31661, "LV1 Part"        , "Circuit Part"));
+		IL.Circuit_Part_LV2.set(           addItem(tLastID = 31662, "LV2 Part"        , "Circuit Part"));
+		IL.Circuit_Part_LV3.set(           addItem(tLastID = 31663, "LV3 Part"        , "Circuit Part"));
+		IL.Circuit_Part_MV1.set(           addItem(tLastID = 31671, "MV1 Part"        , "Circuit Part"));
+		IL.Circuit_Part_MV2.set(           addItem(tLastID = 31672, "MV2 Part"        , "Circuit Part"));
+		IL.Circuit_Part_MV3.set(           addItem(tLastID = 31673, "MV3 Part"        , "Circuit Part"));
+		IL.Circuit_Part_HV1.set(           addItem(tLastID = 31681, "HV1 Part"        , "Circuit Part"));
+		IL.Circuit_Part_HV2.set(           addItem(tLastID = 31682, "HV2 Part"        , "Circuit Part"));
+		IL.Circuit_Part_HV3.set(           addItem(tLastID = 31683, "HV3 Part"        , "Circuit Part"));
+		IL.Circuit_Part_EV1.set(           addItem(tLastID = 31691, "EV1 Part"        , "Circuit Part"));
+		IL.Circuit_Part_EV2.set(           addItem(tLastID = 31692, "EV2 Part"        , "Circuit Part"));
+		IL.Circuit_Part_EV3.set(           addItem(tLastID = 31693, "EV3 Part"        , "Circuit Part"));
+		IL.Circuit_Part_IV1.set(           addItem(tLastID = 31701, "IV1 Part"        , "Circuit Part"));
+		IL.Circuit_Part_IV2.set(           addItem(tLastID = 31702, "IV2 Part"        , "Circuit Part"));
+		IL.Circuit_Part_IV3.set(           addItem(tLastID = 31703, "IV3 Part"        , "Circuit Part"));
+		IL.Circuit_Part_LuV1.set(           addItem(tLastID = 31711, "LuV1 Part"        , "Circuit Part"));
+		IL.Circuit_Part_LuV2.set(           addItem(tLastID = 31712, "LuV2 Part"        , "Circuit Part"));
+		IL.Circuit_Part_LuV3.set(           addItem(tLastID = 31713, "LuV3 Part"        , "Circuit Part"));
+		IL.Circuit_Part_ZPM1.set(           addItem(tLastID = 31721, "ZPM1 Part"        , "Circuit Part"));
+		IL.Circuit_Part_ZPM2.set(           addItem(tLastID = 31722, "ZPM2 Part"        , "Circuit Part"));
+		IL.Circuit_Part_ZPM3.set(           addItem(tLastID = 31723, "ZPM3 Part"        , "Circuit Part"));
+		IL.Circuit_Part_UV1.set(           addItem(tLastID = 31731, "UV1 Part"        , "Circuit Part"));
+		IL.Circuit_Part_UV2.set(           addItem(tLastID = 31732, "UV2 Part"        , "Circuit Part"));
+		IL.Circuit_Part_UV3.set(           addItem(tLastID = 31733, "UV3 Part"        , "Circuit Part"));
+		IL.Circuit_Part_PUV11.set(           addItem(tLastID = 31741, "PUV11 Part"        , "Circuit Part"));
+		IL.Circuit_Part_PUV12.set(           addItem(tLastID = 31742, "PUV12 Part"        , "Circuit Part"));
+		IL.Circuit_Part_PUV13.set(           addItem(tLastID = 31743, "PUV13 Part"        , "Circuit Part"));
+		IL.Circuit_Part_PUV21.set(           addItem(tLastID = 31751, "PUV21 Part"        , "Circuit Part"));
+		IL.Circuit_Part_PUV22.set(           addItem(tLastID = 31752, "PUV22 Part"        , "Circuit Part"));
+		IL.Circuit_Part_PUV23.set(           addItem(tLastID = 31753, "PUV23 Part"        , "Circuit Part"));
+		IL.Circuit_Part_PUV31.set(           addItem(tLastID = 31761, "PUV31 Part"        , "Circuit Part"));
+		IL.Circuit_Part_PUV32.set(           addItem(tLastID = 31762, "PUV32 Part"        , "Circuit Part"));
+		IL.Circuit_Part_PUV33.set(           addItem(tLastID = 31763, "PUV33 Part"        , "Circuit Part"));
+		IL.Circuit_Part_PUV41.set(           addItem(tLastID = 31771, "PUV41 Part"        , "Circuit Part"));
+		IL.Circuit_Part_PUV42.set(           addItem(tLastID = 31772, "PUV42 Part"        , "Circuit Part"));
+		IL.Circuit_Part_PUV43.set(           addItem(tLastID = 31773, "PUV43 Part"        , "Circuit Part"));
+		IL.Circuit_Part_PUV51.set(           addItem(tLastID = 31781, "PUV51 Part"        , "Circuit Part"));
+		IL.Circuit_Part_PUV52.set(           addItem(tLastID = 31782, "PUV52 Part"        , "Circuit Part"));
+		IL.Circuit_Part_PUV53.set(           addItem(tLastID = 31783, "PUV53 Part"        , "Circuit Part"));
+		IL.Circuit_Part_Omega1.set(           addItem(tLastID = 31791, "Omega1 Part"        , "Circuit Part"));
+		IL.Circuit_Part_Omega2.set(           addItem(tLastID = 31792, "Omega2 Part"        , "Circuit Part"));
+		IL.Circuit_Part_Omega3.set(           addItem(tLastID = 31793, "Omega3 Part"        , "Circuit Part"));
+		IL.Circuit_Part_MAX1.set(           addItem(tLastID = 31801, "MAX1 Part"        , "Circuit Part"));
+		IL.Circuit_Part_MAX2.set(           addItem(tLastID = 31802, "MAX2 Part"        , "Circuit Part"));
+		IL.Circuit_Part_MAX3.set(           addItem(tLastID = 31803, "MAX3 Part"        , "Circuit Part"));
+
+		//Circuit
+		IL.Circuit_ULV1.set(           addItem(tLastID = 31851, "ULV1 Circuit"        , "Circuit (ULV)"));
+		IL.Circuit_ULV2.set(           addItem(tLastID = 31852, "ULV2 Circuit"        , "Circuit (ULV)"));
+		IL.Circuit_ULV3.set(           addItem(tLastID = 31853, "ULV3 Circuit"        , "Circuit (ULV)"));
+		IL.Circuit_LV1.set(           addItem(tLastID = 31861, "LV1 Circuit"        , "Circuit (LV)"));
+		IL.Circuit_LV2.set(           addItem(tLastID = 31862, "LV2 Circuit"        , "Circuit (LV)"));
+		IL.Circuit_LV3.set(           addItem(tLastID = 31863, "LV3 Circuit"        , "Circuit (LV)"));
+		IL.Circuit_MV1.set(           addItem(tLastID = 31871, "MV1 Circuit"        , "Circuit (MV)"));
+		IL.Circuit_MV2.set(           addItem(tLastID = 31872, "MV2 Circuit"        , "Circuit (MV)"));
+		IL.Circuit_MV3.set(           addItem(tLastID = 31873, "MV3 Circuit"        , "Circuit (MV)"));
+		IL.Circuit_HV1.set(           addItem(tLastID = 31881, "HV1 Circuit"        , "Circuit (HV)"));
+		IL.Circuit_HV2.set(           addItem(tLastID = 31882, "HV2 Circuit"        , "Circuit (HV)"));
+		IL.Circuit_HV3.set(           addItem(tLastID = 31883, "HV3 Circuit"        , "Circuit (HV)"));
+		IL.Circuit_EV1.set(           addItem(tLastID = 31891, "EV1 Circuit"        , "Circuit (EV)"));
+		IL.Circuit_EV2.set(           addItem(tLastID = 31892, "EV2 Circuit"        , "Circuit (EV)"));
+		IL.Circuit_EV3.set(           addItem(tLastID = 31893, "EV3 Circuit"        , "Circuit (EV)"));
+		IL.Circuit_IV1.set(           addItem(tLastID = 31901, "IV1 Circuit"        , "Circuit (IV)"));
+		IL.Circuit_IV2.set(           addItem(tLastID = 31902, "IV2 Circuit"        , "Circuit (IV)"));
+		IL.Circuit_IV3.set(           addItem(tLastID = 31903, "IV3 Circuit"        , "Circuit (IV)"));
+		IL.Circuit_LuV1.set(           addItem(tLastID = 31911, "LuV1 Circuit"        , "Circuit (LuV)"));
+		IL.Circuit_LuV2.set(           addItem(tLastID = 31912, "LuV2 Circuit"        , "Circuit (LuV)"));
+		IL.Circuit_LuV3.set(           addItem(tLastID = 31913, "LuV3 Circuit"        , "Circuit (LuV)"));
+		IL.Circuit_ZPM1.set(           addItem(tLastID = 31921, "ZPM1 Circuit"        , "Circuit (ZPM)"));
+		IL.Circuit_ZPM2.set(           addItem(tLastID = 31922, "ZPM2 Circuit"        , "Circuit (ZPM)"));
+		IL.Circuit_ZPM3.set(           addItem(tLastID = 31923, "ZPM3 Circuit"        , "Circuit (ZPM)"));
+		IL.Circuit_UV1.set(           addItem(tLastID = 31931, "UV1 Circuit"        , "Circuit (UV)"));
+		IL.Circuit_UV2.set(           addItem(tLastID = 31932, "UV2 Circuit"        , "Circuit (UV)"));
+		IL.Circuit_UV3.set(           addItem(tLastID = 31933, "UV3 Circuit"        , "Circuit (UV)"));
+		IL.Circuit_PUV11.set(           addItem(tLastID = 31941, "PUV11 Circuit"        , "Circuit (PUV1)"));
+		IL.Circuit_PUV12.set(           addItem(tLastID = 31942, "PUV12 Circuit"        , "Circuit (PUV1)"));
+		IL.Circuit_PUV13.set(           addItem(tLastID = 31943, "PUV13 Circuit"        , "Circuit (PUV1)"));
+		IL.Circuit_PUV21.set(           addItem(tLastID = 31951, "PUV21 Circuit"        , "Circuit (PUV2)"));
+		IL.Circuit_PUV22.set(           addItem(tLastID = 31952, "PUV22 Circuit"        , "Circuit (PUV2)"));
+		IL.Circuit_PUV23.set(           addItem(tLastID = 31953, "PUV23 Circuit"        , "Circuit (PUV2)"));
+		IL.Circuit_PUV31.set(           addItem(tLastID = 31961, "PUV31 Circuit"        , "Circuit (PUV3)"));
+		IL.Circuit_PUV32.set(           addItem(tLastID = 31962, "PUV32 Circuit"        , "Circuit (PUV3)"));
+		IL.Circuit_PUV33.set(           addItem(tLastID = 31963, "PUV33 Circuit"        , "Circuit (PUV3)"));
+		IL.Circuit_PUV41.set(           addItem(tLastID = 31971, "PUV41 Circuit"        , "Circuit (PUV4)"));
+		IL.Circuit_PUV42.set(           addItem(tLastID = 31972, "PUV42 Circuit"        , "Circuit (PUV4)"));
+		IL.Circuit_PUV43.set(           addItem(tLastID = 31973, "PUV43 Circuit"        , "Circuit (PUV4)"));
+		IL.Circuit_PUV51.set(           addItem(tLastID = 31981, "PUV51 Circuit"        , "Circuit (PUV5)"));
+		IL.Circuit_PUV52.set(           addItem(tLastID = 31982, "PUV52 Circuit"        , "Circuit (PUV5)"));
+		IL.Circuit_PUV53.set(           addItem(tLastID = 31983, "PUV53 Circuit"        , "Circuit (PUV5)"));
+		IL.Circuit_Omega1.set(           addItem(tLastID = 31991, "Omega1 Circuit"        , "Circuit (Omega)"));
+		IL.Circuit_Omega2.set(           addItem(tLastID = 31992, "Omega2 Circuit"        , "Circuit (Omega)"));
+		IL.Circuit_Omega3.set(           addItem(tLastID = 31993, "Omega3 Circuit"        , "Circuit (Omega)"));
+		IL.Circuit_MAX1.set(           addItem(tLastID = 32001, "MAX1 Circuit"        , "Circuit (MAX)"));
+		IL.Circuit_MAX2.set(           addItem(tLastID = 32002, "MAX2 Circuit"        , "Circuit (MAX)"));
+		IL.Circuit_MAX3.set(           addItem(tLastID = 32003, "MAX3 Circuit"        , "Circuit (MAX)"));
+
+		//Crystal
+		IL.Circuit_Crystal_Diamond         .set(addItem(tLastID = 32051, "Crystal Circuit (Diamond)"        , "Logic Diamond"                                   , TC.stack(TC.COGNITO, 3), TC.stack(TC.LUCRUM, 2), TC.stack(TC.VITREUS, 2), new OreDictItemData(OM.stack(ANY.Diamond, U))));
+		IL.Circuit_Crystal_Ruby            .set(addItem(tLastID = 32052, "Crystal Circuit (Ruby)"           , "Control Ruby"                                    , TC.stack(TC.COGNITO, 3), TC.stack(TC.LUCRUM, 2), TC.stack(TC.VITREUS, 2), new OreDictItemData(OM.stack(MT.Ruby, U))));
+		IL.Circuit_Crystal_Emerald         .set(addItem(tLastID = 32053, "Crystal Circuit (Emerald)"        , "Storage Emerald"                                 , TC.stack(TC.COGNITO, 3), TC.stack(TC.LUCRUM, 2), TC.stack(TC.VITREUS, 2), new OreDictItemData(OM.stack(ANY.Emerald, U))));
+		IL.Circuit_Crystal_Sapphire        .set(addItem(tLastID = 32054, "Crystal Circuit (Sapphire)"       , "Conversion Sapphire"                             , TC.stack(TC.COGNITO, 3), TC.stack(TC.LUCRUM, 2), TC.stack(TC.VITREUS, 2), new OreDictItemData(OM.stack(ANY.Sapphire, U))));
+
+		IL.Processor_Crystal_Empty         .set(addItem(tLastID = 32071, "Crystal Processor Socket"         , "Base for Crystal Circuits"                       , TC.stack(TC.COGNITO, 5), TC.stack(TC.VACUOS, 2)));
+		IL.Processor_Crystal_Diamond       .set(addItem(tLastID = 32072, "Crystal Processor (Diamond)"      , "Logic Processor Circuit"                         , TC.stack(TC.COGNITO, 5), TC.stack(TC.LUCRUM, 2), TC.stack(TC.VITREUS, 2), new OreDictItemData(MT.Pt, U, ANY.Diamond, U)));
+		IL.Processor_Crystal_Ruby          .set(addItem(tLastID = 32073, "Crystal Processor (Ruby)"         , "Control Processor Circuit"                       , TC.stack(TC.COGNITO, 5), TC.stack(TC.LUCRUM, 2), TC.stack(TC.VITREUS, 2), new OreDictItemData(MT.Pt, U, MT.Ruby, U)));
+		IL.Processor_Crystal_Emerald       .set(addItem(tLastID = 32074, "Crystal Processor (Emerald)"      , "Storage Processor Circuit"                       , TC.stack(TC.COGNITO, 5), TC.stack(TC.LUCRUM, 2), TC.stack(TC.VITREUS, 2), new OreDictItemData(MT.Pt, U, ANY.Emerald, U)));
+		IL.Processor_Crystal_Sapphire      .set(addItem(tLastID = 32075, "Crystal Processor (Sapphire)"     , "Conversion Processor Circuit"                    , TC.stack(TC.COGNITO, 5), TC.stack(TC.LUCRUM, 2), TC.stack(TC.VITREUS, 2), new OreDictItemData(MT.Pt, U, ANY.Sapphire, U)));
+
+
 
 		/*
 		IL.Circuit_Plate_Empty.set(             addItem(tLastID = 30000, "Circuit Plate"                    , "Needs Circuit Wiring"                            , new OreDictItemData(ANY.SiO2, U, MT.Plastic, U), TC.stack(TC.FABRICO, 1)));
@@ -951,10 +1294,12 @@ public class MultiItemTechnological extends MultiItemRandom {
 
 	*/
 
-		IL.USB_Stick_1.set(                     addItem(tLastID = 32001, "USB 1.0 Stick"                    , "Stores Data"                                     , OD_USB_STICKS[1], Behavior_DataStorage.INSTANCE, TC.stack(TC.COGNITO, 3), TC.stack(TC.ELECTRUM, 1)));
-		IL.USB_Stick_2.set(                     addItem(tLastID = 32002, "USB 2.0 Stick"                    , "Stores Data"                                     , OD_USB_STICKS[2], Behavior_DataStorage.INSTANCE, TC.stack(TC.COGNITO, 4), TC.stack(TC.ELECTRUM, 2), TC.stack(TC.MOTUS, 1)));
-		IL.USB_Stick_3.set(                     addItem(tLastID = 32003, "USB 3.0 Stick"                    , "Stores Data"                                     , OD_USB_STICKS[3], Behavior_DataStorage.INSTANCE, TC.stack(TC.COGNITO, 5), TC.stack(TC.ELECTRUM, 3), TC.stack(TC.MOTUS, 2)));
-		IL.USB_Stick_4.set(                     addItem(tLastID = 32004, "USB 4.0 Stick"                    , "Stores Data"                                     , OD_USB_STICKS[4], Behavior_DataStorage.INSTANCE, TC.stack(TC.COGNITO, 6), TC.stack(TC.ELECTRUM, 4), TC.stack(TC.MOTUS, 3)));
+		//------------------------------------------------------------------------------//
+
+		IL.USB_Stick_1.set(                     addItem(tLastID = 32101, "USB 1.0 Stick"                    , "Stores Data"                                     , OD_USB_STICKS[1], Behavior_DataStorage.INSTANCE, TC.stack(TC.COGNITO, 3), TC.stack(TC.ELECTRUM, 1)));
+		IL.USB_Stick_2.set(                     addItem(tLastID = 32102, "USB 2.0 Stick"                    , "Stores Data"                                     , OD_USB_STICKS[2], Behavior_DataStorage.INSTANCE, TC.stack(TC.COGNITO, 4), TC.stack(TC.ELECTRUM, 2), TC.stack(TC.MOTUS, 1)));
+		IL.USB_Stick_3.set(                     addItem(tLastID = 32103, "USB 3.0 Stick"                    , "Stores Data"                                     , OD_USB_STICKS[3], Behavior_DataStorage.INSTANCE, TC.stack(TC.COGNITO, 5), TC.stack(TC.ELECTRUM, 3), TC.stack(TC.MOTUS, 2)));
+		IL.USB_Stick_4.set(                     addItem(tLastID = 32104, "USB 4.0 Stick"                    , "Stores Data"                                     , OD_USB_STICKS[4], Behavior_DataStorage.INSTANCE, TC.stack(TC.COGNITO, 6), TC.stack(TC.ELECTRUM, 4), TC.stack(TC.MOTUS, 3)));
 
 		CR.shaped(IL.USB_Stick_1.get(1), CR.DEF_REV, "xWd", "PCP", "TCT", 'C', OD_CIRCUITS[3], 'W', MT.DATA.WIRES_01[3], 'P', OP.plate.dat(MT.Al                ), 'T', OP.screw.dat(MT.Al              ));
 		CR.shaped(IL.USB_Stick_2.get(1), CR.DEF_REV, "xWd", "PCP", "TCT", 'C', OD_CIRCUITS[4], 'W', MT.DATA.WIRES_01[4], 'P', OP.plate.dat(MT.StainlessSteel    ), 'T', OP.screw.dat(MT.StainlessSteel  ));
@@ -962,10 +1307,10 @@ public class MultiItemTechnological extends MultiItemRandom {
 		CR.shaped(IL.USB_Stick_4.get(1), CR.DEF_REV, "xWd", "PCP", "TCT", 'C', OD_CIRCUITS[6], 'W', MT.DATA.WIRES_01[6], 'P', OP.plate.dat(MT.Ti                ), 'T', OP.screw.dat(MT.Ti              ));
 
 
-		IL.USB_Cable_1.set(                     addItem(tLastID = 32011, "USB 1.0 Cable"                    , "Replaces USB Sticks when connected to USB Ports" , OD_USB_CABLES[1], TC.stack(TC.COGNITO, 2), TC.stack(TC.ELECTRUM, 1)));
-		IL.USB_Cable_2.set(                     addItem(tLastID = 32012, "USB 2.0 Cable"                    , "Replaces USB Sticks when connected to USB Ports" , OD_USB_CABLES[2], TC.stack(TC.COGNITO, 3), TC.stack(TC.ELECTRUM, 2), TC.stack(TC.ITER, 1)));
-		IL.USB_Cable_3.set(                     addItem(tLastID = 32013, "USB 3.0 Cable"                    , "Replaces USB Sticks when connected to USB Ports" , OD_USB_CABLES[3], TC.stack(TC.COGNITO, 4), TC.stack(TC.ELECTRUM, 3), TC.stack(TC.ITER, 2)));
-		IL.USB_Cable_4.set(                     addItem(tLastID = 32014, "USB 4.0 Cable"                    , "Replaces USB Sticks when connected to USB Ports" , OD_USB_CABLES[4], TC.stack(TC.COGNITO, 5), TC.stack(TC.ELECTRUM, 4), TC.stack(TC.ITER, 3)));
+		IL.USB_Cable_1.set(                     addItem(tLastID = 32111, "USB 1.0 Cable"                    , "Replaces USB Sticks when connected to USB Ports" , OD_USB_CABLES[1], TC.stack(TC.COGNITO, 2), TC.stack(TC.ELECTRUM, 1)));
+		IL.USB_Cable_2.set(                     addItem(tLastID = 32112, "USB 2.0 Cable"                    , "Replaces USB Sticks when connected to USB Ports" , OD_USB_CABLES[2], TC.stack(TC.COGNITO, 3), TC.stack(TC.ELECTRUM, 2), TC.stack(TC.ITER, 1)));
+		IL.USB_Cable_3.set(                     addItem(tLastID = 32113, "USB 3.0 Cable"                    , "Replaces USB Sticks when connected to USB Ports" , OD_USB_CABLES[3], TC.stack(TC.COGNITO, 4), TC.stack(TC.ELECTRUM, 3), TC.stack(TC.ITER, 2)));
+		IL.USB_Cable_4.set(                     addItem(tLastID = 32114, "USB 4.0 Cable"                    , "Replaces USB Sticks when connected to USB Ports" , OD_USB_CABLES[4], TC.stack(TC.COGNITO, 5), TC.stack(TC.ELECTRUM, 4), TC.stack(TC.ITER, 3)));
 
 		CR.shaped(IL.USB_Cable_1.get(1), CR.DEF_REV, "xWd", "PCP", "TCT", 'C', MT.DATA.CABLES_01[3], 'W', MT.DATA.WIRES_01[3], 'P', OP.plate.dat(MT.Al              ), 'T', OP.screw.dat(MT.Al              ));
 		CR.shaped(IL.USB_Cable_2.get(1), CR.DEF_REV, "xWd", "PCP", "TCT", 'C', MT.DATA.CABLES_01[4], 'W', MT.DATA.WIRES_01[4], 'P', OP.plate.dat(MT.StainlessSteel  ), 'T', OP.screw.dat(MT.StainlessSteel  ));
@@ -973,10 +1318,10 @@ public class MultiItemTechnological extends MultiItemRandom {
 		CR.shaped(IL.USB_Cable_4.get(1), CR.DEF_REV, "xWd", "PCP", "TCT", 'C', MT.DATA.CABLES_01[6], 'W', MT.DATA.WIRES_01[6], 'P', OP.plate.dat(MT.Ti              ), 'T', OP.screw.dat(MT.Ti              ));
 
 
-		IL.USB_HDD_1.set(                       addItem(tLastID = 32021, "USB 1.0 HDD"                      , "Stores up to 16 Files at once"                   , OD_USB_DRIVES[1], Behavior_DataStorage16.INSTANCE, TC.stack(TC.COGNITO, 3), TC.stack(TC.ELECTRUM, 2), TC.stack(TC.MOTUS, 1)));
-		IL.USB_HDD_2.set(                       addItem(tLastID = 32022, "USB 2.0 HDD"                      , "Stores up to 16 Files at once"                   , OD_USB_DRIVES[2], Behavior_DataStorage16.INSTANCE, TC.stack(TC.COGNITO, 4), TC.stack(TC.ELECTRUM, 3), TC.stack(TC.MOTUS, 2)));
-		IL.USB_HDD_3.set(                       addItem(tLastID = 32023, "USB 3.0 HDD"                      , "Stores up to 16 Files at once"                   , OD_USB_DRIVES[3], Behavior_DataStorage16.INSTANCE, TC.stack(TC.COGNITO, 5), TC.stack(TC.ELECTRUM, 4), TC.stack(TC.MOTUS, 3)));
-		IL.USB_HDD_4.set(                       addItem(tLastID = 32024, "USB 4.0 HDD"                      , "Stores up to 16 Files at once"                   , OD_USB_DRIVES[4], Behavior_DataStorage16.INSTANCE, TC.stack(TC.COGNITO, 6), TC.stack(TC.ELECTRUM, 5), TC.stack(TC.MOTUS, 4)));
+		IL.USB_HDD_1.set(                       addItem(tLastID = 32121, "USB 1.0 HDD"                      , "Stores up to 16 Files at once"                   , OD_USB_DRIVES[1], Behavior_DataStorage16.INSTANCE, TC.stack(TC.COGNITO, 3), TC.stack(TC.ELECTRUM, 2), TC.stack(TC.MOTUS, 1)));
+		IL.USB_HDD_2.set(                       addItem(tLastID = 32122, "USB 2.0 HDD"                      , "Stores up to 16 Files at once"                   , OD_USB_DRIVES[2], Behavior_DataStorage16.INSTANCE, TC.stack(TC.COGNITO, 4), TC.stack(TC.ELECTRUM, 3), TC.stack(TC.MOTUS, 2)));
+		IL.USB_HDD_3.set(                       addItem(tLastID = 32123, "USB 3.0 HDD"                      , "Stores up to 16 Files at once"                   , OD_USB_DRIVES[3], Behavior_DataStorage16.INSTANCE, TC.stack(TC.COGNITO, 5), TC.stack(TC.ELECTRUM, 4), TC.stack(TC.MOTUS, 3)));
+		IL.USB_HDD_4.set(                       addItem(tLastID = 32124, "USB 4.0 HDD"                      , "Stores up to 16 Files at once"                   , OD_USB_DRIVES[4], Behavior_DataStorage16.INSTANCE, TC.stack(TC.COGNITO, 6), TC.stack(TC.ELECTRUM, 5), TC.stack(TC.MOTUS, 4)));
 
 		CR.shaped(IL.USB_HDD_1.get(1), CR.DEF_REV, "PLT", "dRW", "TCP", 'C', OD_CIRCUITS[3], 'W', IL.USB_Cable_1, 'L', IL.Comp_Laser_Gas_He, 'R', OD.record, 'P', OP.plate.dat(MT.Al             ), 'T', OP.screw.dat(MT.Al              )); // TODO: Replace record with a CD (made of aluminium foils and plastic plates in a Press)
 		CR.shaped(IL.USB_HDD_2.get(1), CR.DEF_REV, "PLT", "dRW", "TCP", 'C', OD_CIRCUITS[4], 'W', IL.USB_Cable_2, 'L', IL.Comp_Laser_Gas_He, 'R', OD.record, 'P', OP.plate.dat(MT.StainlessSteel ), 'T', OP.screw.dat(MT.StainlessSteel  ));
