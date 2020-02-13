@@ -40,11 +40,10 @@ import gregapi6.util.OM;
 import gregapi6.util.ST;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
 
 public class Compat_Recipes_Reika extends CompatMods {
 	public Compat_Recipes_Reika(ModData aMod, Abstract_Mod aGTMod) {super(aMod, aGTMod);}
-	
+
 	@Override public void onPostLoad(FMLPostInitializationEvent aInitEvent) {
 		if (MD.RoC.mLoaded) {
 			OUT.println("GT_Mod: Doing RotaryCraft Recipes.");
@@ -60,21 +59,23 @@ public class Compat_Recipes_Reika extends CompatMods {
 			RM.Squeezer         .addRecipe1(T, 16,   16, ST.make(MD.RoC, "rotarycraft_item_canola", 1, 2), NF, FL.lube( 90), NI);
 			RM.Juicer           .addRecipe1(T, 16,  144, ST.make(MD.RoC, "rotarycraft_item_canola", 1, 1), NF, FL.lube(270), NI);
 			RM.Juicer           .addRecipe1(T, 16,   16, ST.make(MD.RoC, "rotarycraft_item_canola", 1, 2), NF, FL.lube( 60), NI);
-			
+
 			RM.Compressor       .addRecipe1(T,512, 1024, OM.dust(MT.Bedrock, U*8), ST.make(Blocks.bedrock, 1, 0));
-			
+
+			/*
 			for (FluidStack tRedstone : FL.array(FL.Redstone.make(L), FL.Redstone_TE.make(100))) if (tRedstone != null) {
 			RM.Bath             .addRecipe1(T,  0,   64, IL.Circuit_Board_HSLA_Circuit.get(1), FL.mul(tRedstone, 2, 9, T), NF, ST.make(MD.RoC, "rotarycraft_item_borecraft", 1, 4));
 			RM.Bath             .addRecipe1(T,  0,   64, IL.Circuit_Board_Power_Module.get(1), FL.mul(tRedstone, 2, 9, T), NF, ST.make(MD.RoC, "rotarycraft_item_misccraft", 1, 2));
 			}
-			
+			*/
+
 			RM.Centrifuge       .addRecipe1(T, 16,   64,  8000, IL.RoC_Comb_Slippery        .get(1), NF, FL.lube( 50), IL.RoC_Propolis_Slippery.get(1));
 			RM.Centrifuge       .addRecipe1(T, 16,   64       , IL.RoC_Propolis_Slippery    .get(1), NF, FL.lube(150), ZL_IS);
-			
-			
+
+
 			RM.Freezer          .addRecipe1(T, 16,  256, ST.tag(0), MT.CO2.gas(U*3, T), NF, ST.make(MD.RoC, "rotarycraft_item_powders", 1, 11));
-			
-			
+
+
 			CR.delate(MD.RoC, "rotarycraft_item_powders", 6, 7);
 			RM.Mixer            .addRecipeX(T, 16,   64, ST.array(OM.dust(MT.Redstone, U ), OM.dust(MT.Coal, U ), OM.dust(MT.NaCl,U ), OM.dust(MT.Gunpowder, U )), ST.make(MD.RoC, "rotarycraft_item_powders", 4, 6));
 			RM.Mixer            .addRecipeX(T, 16,   16, ST.array(OM.dust(MT.Redstone, U4), OM.dust(MT.Coal, U4), OM.dust(MT.NaCl,U4), OM.dust(MT.Gunpowder, U4)), ST.make(MD.RoC, "rotarycraft_item_powders", 1, 6));

@@ -22,10 +22,63 @@ package gregtech6.items;
 import static gregapi6.data.CS.*;
 
 import gregapi6.code.ItemStackContainer;
-import gregapi6.cover.covers.*;
-import gregapi6.data.*;
+import gregapi6.cover.covers.CoverControllerAuto;
+import gregapi6.cover.covers.CoverControllerAutoRedstone;
+import gregapi6.cover.covers.CoverControllerAutoTimer;
+import gregapi6.cover.covers.CoverControllerCovers;
+import gregapi6.cover.covers.CoverControllerDisplay;
+import gregapi6.cover.covers.CoverControllerRedstone;
+import gregapi6.cover.covers.CoverConveyor;
+import gregapi6.cover.covers.CoverCrafting;
+import gregapi6.cover.covers.CoverDetectorRunningActively;
+import gregapi6.cover.covers.CoverDetectorRunningPassively;
+import gregapi6.cover.covers.CoverDetectorRunningPossible;
+import gregapi6.cover.covers.CoverDetectorRunningSuccessfully;
+import gregapi6.cover.covers.CoverDisplayEnergy;
+import gregapi6.cover.covers.CoverDrain;
+import gregapi6.cover.covers.CoverFilterFluid;
+import gregapi6.cover.covers.CoverFilterItem;
+import gregapi6.cover.covers.CoverLogisticsDisplayCPUControl;
+import gregapi6.cover.covers.CoverLogisticsDisplayCPUConversion;
+import gregapi6.cover.covers.CoverLogisticsDisplayCPULogic;
+import gregapi6.cover.covers.CoverLogisticsDisplayCPUStorage;
+import gregapi6.cover.covers.CoverLogisticsFluidExport;
+import gregapi6.cover.covers.CoverLogisticsFluidImport;
+import gregapi6.cover.covers.CoverLogisticsFluidStorage;
+import gregapi6.cover.covers.CoverLogisticsGenericDump;
+import gregapi6.cover.covers.CoverLogisticsGenericExport;
+import gregapi6.cover.covers.CoverLogisticsGenericImport;
+import gregapi6.cover.covers.CoverLogisticsGenericStorage;
+import gregapi6.cover.covers.CoverLogisticsItemExport;
+import gregapi6.cover.covers.CoverLogisticsItemImport;
+import gregapi6.cover.covers.CoverLogisticsItemStorage;
+import gregapi6.cover.covers.CoverPressureValve;
+import gregapi6.cover.covers.CoverPump;
+import gregapi6.cover.covers.CoverRedstoneConductorIN;
+import gregapi6.cover.covers.CoverRedstoneConductorOUT;
+import gregapi6.cover.covers.CoverRedstoneEmitter;
+import gregapi6.cover.covers.CoverRetrieverItem;
+import gregapi6.cover.covers.CoverRobotArm;
+import gregapi6.cover.covers.CoverScaleEnergy;
+import gregapi6.cover.covers.CoverScaleProgress;
+import gregapi6.cover.covers.CoverSelectorButtonPanel;
+import gregapi6.cover.covers.CoverSelectorManual;
+import gregapi6.cover.covers.CoverSelectorRedstone;
+import gregapi6.cover.covers.CoverShutter;
+import gregapi6.cover.covers.CoverTextureMulti;
+import gregapi6.cover.covers.CoverVent;
+import gregapi6.data.ANY;
 import gregapi6.data.CS.BooksGT;
 import gregapi6.data.CS.ItemsGT;
+import gregapi6.data.FL;
+import gregapi6.data.IL;
+import gregapi6.data.MD;
+import gregapi6.data.MT;
+import gregapi6.data.OD;
+import gregapi6.data.OP;
+import gregapi6.data.RM;
+import gregapi6.data.TC;
+import gregapi6.data.TD;
 import gregapi6.item.CreativeTab;
 import gregapi6.item.multiitem.MultiItemRandom;
 import gregapi6.item.multiitem.behaviors.Behavior_Turn_Into;
@@ -38,7 +91,6 @@ import gregtech6.items.behaviors.Behavior_DataStorage;
 import gregtech6.items.behaviors.Behavior_DataStorage16;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidContainerRegistry.FluidContainerData;
 
 public class MultiItemTechnological extends MultiItemRandom {
@@ -50,7 +102,7 @@ public class MultiItemTechnological extends MultiItemRandom {
 	@Override
 	public void addItems() {
 		int tLastID = 0;
-		
+
 		for (int i = 0; i < 10; i++) {
 		IL.MOTORS[i].set(          addItem(12000+i, "Compact Electric Motor ("+VN[i]+")"     , "", TC.stack(TC.ELECTRUM, 1+i), TC.stack(TC.MACHINA, 1+i), TC.stack(TC.MOTUS, 1+i)));
 		IL.PUMPS[i].set(           addItem(12020+i, "Compact Electric Pump ("+VN[i]+")"      , "", TC.stack(TC.ELECTRUM, 1+i), TC.stack(TC.MACHINA, 1+i), TC.stack(TC.ITER, 1+i), TC.stack(TC.AQUA, 1+i), new CoverPump(250<<(2*i))));
@@ -61,7 +113,7 @@ public class MultiItemTechnological extends MultiItemRandom {
 		IL.EMITTERS[i].set(        addItem(12120+i, "Compact Signal Emitter ("+VN[i]+")"     , "", TC.stack(TC.ELECTRUM, 1+i), TC.stack(TC.MACHINA, 1+i), TC.stack(TC.LUX, 1+i)));
 		IL.SENSORS[i].set(         addItem(12140+i, "Compact Sensor ("+VN[i]+")"             , "", TC.stack(TC.ELECTRUM, 1+i), TC.stack(TC.MACHINA, 1+i), TC.stack(TC.SENSUS, 1+i)));
 		}
-		
+
 		IL.Cover_Blank.set(                           addItem(tLastID =  1000, "Blank Cover"                           , "*BLANK*"                                         , new CoverTextureMulti(T, "machines/covers/blank/", 6)      , TC.stack(TC.MACHINA, 2)));
 		IL.Cover_Crafting.set(                        addItem(tLastID =  1001, "Crafting Table Cover"                  , "A regular old Workbench as a Cover"              , new CoverCrafting("machines/covers/crafting/", 6)          , TC.stack(TC.MACHINA, 1), TC.stack(TC.FABRICO, 3)));
 		IL.Cover_Machine_Display.set(                 addItem(tLastID =  1002, "Machine Status Display Cover"          , "Shows Machine Status and has ON/OFF Switch"      , new CoverControllerDisplay()                               , TC.stack(TC.MACHINA, 1), TC.stack(TC.SENSUS, 3)));
@@ -94,12 +146,12 @@ public class MultiItemTechnological extends MultiItemRandom {
 		IL.Cover_Redstone_Conductor_IN.set(           addItem(tLastID =  1029, "Redstone Conductor Cover (Accept)"     , "Redstone will transfer to emitting Conductors"   , new CoverRedstoneConductorIN()                             , TC.stack(TC.MACHINA, 2), TC.stack(TC.SENSUS, 1)));
 		IL.Cover_Redstone_Conductor_OUT.set(          addItem(tLastID =  1030, "Redstone Conductor Cover (Emit)"       , "Redstone of accepting Conductors gets emitted"   , new CoverRedstoneConductorOUT()                            , TC.stack(TC.MACHINA, 2), TC.stack(TC.VINCULUM, 1)));
 		IL.Cover_Retriever_Item.set(                  addItem(tLastID =  1031, "Item Retriever Cover"                  , "Pulls Items from the attached Pipe Network"      , new CoverRetrieverItem()                                   , TC.stack(TC.MACHINA, 2), TC.stack(TC.COGNITO, 1), TC.stack(TC.VACUOS, 1), TC.stack(TC.ITER, 1)));
-		
-		
+
+
 		RM.Other.addFakeRecipe(F, ST.array(IL.Cover_Drain.get(1)), ZL_IS, null, ZL_LONG, ZL_FS, FL.array(FL.Water.make(1000), FL.Ocean.make(1000), FL.Dirty_Water.make(1000)), 0, 0, 0);
 		RM.Other.addFakeRecipe(F, ST.array(IL.Cover_Vent .get(1)), ZL_IS, null, ZL_LONG, ZL_FS, FL.array(FL.Air.make(1000), FL.Air_Nether.make(1000), FL.Air_End.make(1000)), 0, 0, 0);
-		
-		
+
+
 		IL.Cover_Logistics_Display_CPU_Logic.set(     addItem(tLastID =  1086, "Logistics Display (CPU Logic)"         , "For use with Logistics Cores and Wiring"         , CoverLogisticsDisplayCPULogic.INSTANCE                     , TC.stack(TC.MACHINA, 2), TC.stack(TC.SENSUS, 2), TC.stack(TC.ITER, 1)));
 		IL.Cover_Logistics_Display_CPU_Control.set(   addItem(tLastID =  1087, "Logistics Display (CPU Control)"       , "For use with Logistics Cores and Wiring"         , CoverLogisticsDisplayCPUControl.INSTANCE                   , TC.stack(TC.MACHINA, 2), TC.stack(TC.SENSUS, 2), TC.stack(TC.ITER, 1)));
 		IL.Cover_Logistics_Display_CPU_Storage.set(   addItem(tLastID =  1088, "Logistics Display (CPU Storage)"       , "For use with Logistics Cores and Wiring"         , CoverLogisticsDisplayCPUStorage.INSTANCE                   , TC.stack(TC.MACHINA, 2), TC.stack(TC.SENSUS, 2), TC.stack(TC.ITER, 1)));
@@ -114,12 +166,12 @@ public class MultiItemTechnological extends MultiItemRandom {
 		IL.Cover_Logistics_Generic_Import.set(        addItem(tLastID =  1097, "Generic Logistics Import Bus"          , "For use with Logistics Cores and Wiring"         , CoverLogisticsGenericImport.INSTANCE                       , TC.stack(TC.MACHINA, 2), TC.stack(TC.COGNITO, 2), TC.stack(TC.PERMUTATIO, 4), TC.stack(TC.ITER, 4)));
 		IL.Cover_Logistics_Generic_Storage.set(       addItem(tLastID =  1098, "Generic Logistics Storage Bus"         , "For use with Logistics Cores and Wiring"         , CoverLogisticsGenericStorage.INSTANCE                      , TC.stack(TC.MACHINA, 2), TC.stack(TC.COGNITO, 2), TC.stack(TC.PERMUTATIO, 4), TC.stack(TC.ITER, 4)));
 		IL.Cover_Logistics_Dump.set(                  addItem(tLastID =  1099, "Logistics Dump Bus (Item)"             , "For use with Logistics Cores and Wiring"         , CoverLogisticsGenericDump.INSTANCE                         , TC.stack(TC.MACHINA, 2), TC.stack(TC.COGNITO, 2), TC.stack(TC.PERMUTATIO, 4), TC.stack(TC.ITER, 4)));
-		
+
 		CR.shapeless(IL.Cover_Logistics_Display_CPU_Logic     .get(1), new Object[] {IL.Cover_Logistics_Display_CPU_Conversion});
 		CR.shapeless(IL.Cover_Logistics_Display_CPU_Control   .get(1), new Object[] {IL.Cover_Logistics_Display_CPU_Logic     });
 		CR.shapeless(IL.Cover_Logistics_Display_CPU_Storage   .get(1), new Object[] {IL.Cover_Logistics_Display_CPU_Control   });
 		CR.shapeless(IL.Cover_Logistics_Display_CPU_Conversion.get(1), new Object[] {IL.Cover_Logistics_Display_CPU_Storage   });
-		
+
 		CR.shapeless(IL.Cover_Logistics_Fluid_Export          .get(1), new Object[] {IL.Cover_Logistics_Dump                  });
 		CR.shapeless(IL.Cover_Logistics_Fluid_Import          .get(1), new Object[] {IL.Cover_Logistics_Fluid_Export          });
 		CR.shapeless(IL.Cover_Logistics_Fluid_Storage         .get(1), new Object[] {IL.Cover_Logistics_Fluid_Import          });
@@ -130,9 +182,9 @@ public class MultiItemTechnological extends MultiItemRandom {
 		CR.shapeless(IL.Cover_Logistics_Generic_Import        .get(1), new Object[] {IL.Cover_Logistics_Generic_Export        });
 		CR.shapeless(IL.Cover_Logistics_Generic_Storage       .get(1), new Object[] {IL.Cover_Logistics_Generic_Import        });
 		CR.shapeless(IL.Cover_Logistics_Dump                  .get(1), new Object[] {IL.Cover_Logistics_Generic_Storage       });
-		
-		
-		
+
+
+
 		CR.shaped(IL.Cover_Blank                    .get(1), CR.DEF_REV, "Sh" , "Pd"        , 'P', OP.plate.dat(MT.Al), 'S', OP.screw.dat(MT.Al));
 		CR.shaped(IL.Cover_Crafting                 .get(1), CR.DEF_REV,  "C" ,  "Q"        , 'Q', IL.Cover_Blank, 'C', OD.craftingWorkBench);
 		CR.shaped(IL.Cover_Machine_Display          .get(1), CR.DEF_REV, "LLB", "CQW"       , 'Q', IL.Cover_Blank, 'C', OD_CIRCUITS[1], 'W', MT.DATA.CABLES_01[1], 'B', ST.make(Blocks.lever, 1, W), 'L', OP.wireGt01.dat(MT.Lumium));
@@ -165,7 +217,7 @@ public class MultiItemTechnological extends MultiItemRandom {
 		CR.shaped(IL.Cover_Redstone_Conductor_IN    .get(1), CR.DEF_REV,  "R" ,  "Q"        , 'Q', IL.Cover_Blank, 'R', OP.wireGt01.dat(MT.RedAlloy));
 		CR.shaped(IL.Cover_Redstone_Conductor_OUT   .get(1), CR.DEF_REV,  "Q" ,  "R"        , 'Q', IL.Cover_Blank, 'R', OP.wireGt01.dat(MT.RedAlloy));
 		CR.shaped(IL.Cover_Retriever_Item           .get(1), CR.DEF_REV, "RPR", "CQC"       , 'Q', IL.Cover_Filter_Item, 'P', IL.PISTONS[1], 'C', OD_CIRCUITS[3], 'R', OP.plateCurved.dat(MT.Electrum));
-		
+
 		CR.shapeless(IL.Cover_Redstone_Conductor_IN .get(1), new Object[] {IL.Cover_Redstone_Conductor_OUT.get(1)});
 		CR.shapeless(IL.Cover_Redstone_Conductor_OUT.get(1), new Object[] {IL.Cover_Redstone_Conductor_IN .get(1)});
 
@@ -648,6 +700,7 @@ public class MultiItemTechnological extends MultiItemRandom {
 		RM.Press.addRecipeX(T, 16, 64, ST.array(ST.make(Blocks.end_stone, 5, W)                              , OP.gem      .mat(MT.EnderEye, 2)), IL.Electrode_FR_Ender       .get(4));
 
 
+		/*
 		IL.Circuit_Plate_Empty.set(             addItem(tLastID = 30000, "Circuit Plate"                    , "Needs Circuit Wiring"                            , new OreDictItemData(ANY.SiO2, U, MT.Plastic, U), TC.stack(TC.FABRICO, 1)));
 
 		for (OreDictMaterial tMat : ANY.SiO2.mToThis) {
@@ -878,13 +931,13 @@ public class MultiItemTechnological extends MultiItemRandom {
 		RM.Press.addRecipe2(T, F, F, F, T, 16, 16, IL.Processor_Crystal_Empty.get(1), IL.Circuit_Crystal_Ruby    .get(1), IL.Processor_Crystal_Ruby    .get(1));
 		RM.Press.addRecipe2(T, F, F, F, T, 16, 16, IL.Processor_Crystal_Empty.get(1), IL.Circuit_Crystal_Emerald .get(1), IL.Processor_Crystal_Emerald .get(1));
 		RM.Press.addRecipe2(T, F, F, F, T, 16, 16, IL.Processor_Crystal_Empty.get(1), IL.Circuit_Crystal_Sapphire.get(1), IL.Processor_Crystal_Sapphire.get(1));
-		
-		
+
+
 		CR.shaped(IL.Cover_Logistics_Display_CPU_Logic     .get(1), CR.DEF_REV, "dL ", " Q ", " C ", 'Q', IL.Cover_Blank, 'C', OD_CIRCUITS[2], 'L', OP.wireGt01.dat(MT.Lumium));
 		CR.shaped(IL.Cover_Logistics_Display_CPU_Control   .get(1), CR.DEF_REV, " Ld", " Q ", " C ", 'Q', IL.Cover_Blank, 'C', OD_CIRCUITS[2], 'L', OP.wireGt01.dat(MT.Lumium));
 		CR.shaped(IL.Cover_Logistics_Display_CPU_Storage   .get(1), CR.DEF_REV, " L ", " Q ", "dC ", 'Q', IL.Cover_Blank, 'C', OD_CIRCUITS[2], 'L', OP.wireGt01.dat(MT.Lumium));
 		CR.shaped(IL.Cover_Logistics_Display_CPU_Conversion.get(1), CR.DEF_REV, " L ", " Q ", " Cd", 'Q', IL.Cover_Blank, 'C', OD_CIRCUITS[2], 'L', OP.wireGt01.dat(MT.Lumium));
-		
+
 		CR.shaped(IL.Cover_Logistics_Fluid_Export          .get(1), CR.DEF_REV, "  w", "WQW", "CPC", 'Q', IL.Cover_Blank, 'P', IL.Processor_Crystal_Emerald, 'C', OD_CIRCUITS[4], 'W', OP.wireFine.dat(MT.Os));
 		CR.shaped(IL.Cover_Logistics_Fluid_Import          .get(1), CR.DEF_REV, " w ", "WQW", "CPC", 'Q', IL.Cover_Blank, 'P', IL.Processor_Crystal_Emerald, 'C', OD_CIRCUITS[4], 'W', OP.wireFine.dat(MT.Os));
 		CR.shaped(IL.Cover_Logistics_Fluid_Storage         .get(1), CR.DEF_REV, "w  ", "WQW", "CPC", 'Q', IL.Cover_Blank, 'P', IL.Processor_Crystal_Emerald, 'C', OD_CIRCUITS[4], 'W', OP.wireFine.dat(MT.Os));
@@ -895,9 +948,9 @@ public class MultiItemTechnological extends MultiItemRandom {
 		CR.shaped(IL.Cover_Logistics_Generic_Import        .get(1), CR.DEF_REV, " d ", "WQW", "CPC", 'Q', IL.Cover_Blank, 'P', IL.Processor_Crystal_Emerald, 'C', OD_CIRCUITS[4], 'W', OP.wireFine.dat(MT.Os));
 		CR.shaped(IL.Cover_Logistics_Generic_Storage       .get(1), CR.DEF_REV, "d  ", "WQW", "CPC", 'Q', IL.Cover_Blank, 'P', IL.Processor_Crystal_Emerald, 'C', OD_CIRCUITS[4], 'W', OP.wireFine.dat(MT.Os));
 		CR.shaped(IL.Cover_Logistics_Dump                  .get(1), CR.DEF_REV, "   ", "WQW", "CPC", 'Q', IL.Cover_Blank, 'P', IL.Processor_Crystal_Emerald, 'C', OD_CIRCUITS[4], 'W', OP.wireFine.dat(MT.Os));
-		
-		
-		
+
+	*/
+
 		IL.USB_Stick_1.set(                     addItem(tLastID = 32001, "USB 1.0 Stick"                    , "Stores Data"                                     , OD_USB_STICKS[1], Behavior_DataStorage.INSTANCE, TC.stack(TC.COGNITO, 3), TC.stack(TC.ELECTRUM, 1)));
 		IL.USB_Stick_2.set(                     addItem(tLastID = 32002, "USB 2.0 Stick"                    , "Stores Data"                                     , OD_USB_STICKS[2], Behavior_DataStorage.INSTANCE, TC.stack(TC.COGNITO, 4), TC.stack(TC.ELECTRUM, 2), TC.stack(TC.MOTUS, 1)));
 		IL.USB_Stick_3.set(                     addItem(tLastID = 32003, "USB 3.0 Stick"                    , "Stores Data"                                     , OD_USB_STICKS[3], Behavior_DataStorage.INSTANCE, TC.stack(TC.COGNITO, 5), TC.stack(TC.ELECTRUM, 3), TC.stack(TC.MOTUS, 2)));

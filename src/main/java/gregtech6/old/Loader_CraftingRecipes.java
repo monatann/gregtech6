@@ -39,7 +39,7 @@ public class Loader_CraftingRecipes implements Runnable {
 	public void run() {
 		/*
 		ItemStack tStack;
-		
+
 		tStack = GT_Utility.getWrittenBook("GregTech Manual I (Edition 5)", "Gregorius Techneticies", new String[] {
 				  "So, this is probably your first time using a Product of GregTech Intergalactical, so you might ask yourself where to begin with? This World is very complex, and you may want to aquire a few basic Resources first."
 				, "You need many Resources to start with, as there are: Wood, Sticky Resin or Slimeballs, Sand, Clay, Silk, Food, Iron, Copper, Tin, Flint, Redstone, Coal (or another good Fuel for the Oven) and a bunch of Cobblestones would also be very useful."
@@ -69,7 +69,7 @@ public class Loader_CraftingRecipes implements Runnable {
 		addLoot(ChestGenHooks.STRONGHOLD_LIBRARY        , GT_Utility.copy(tStack)                           , 1, 1,  20));
 		tStack = null;
 		}
-		
+
 		tStack = GT_Utility.getWrittenBook("GregTech Manual II", "Gregorius Techneticies", new String[] {
 				  "You have your Basic Workshop and want to do amazing things with it? You wan't to build your first Fusion Reactor? Well, this is the wrong Book for that, but we are working on it. Before that we definetly need better ways of making Circuitry."
 				, "The Assembling Machine is perfectly suited for that. It can create Circuitry much cheaper than a normal Steve could do. If you don't have the needed Materials then go mining, and come back when you have crafted the Assembling Machine."
@@ -90,7 +90,7 @@ public class Loader_CraftingRecipes implements Runnable {
 		addLoot(ChestGenHooks.STRONGHOLD_LIBRARY        , GT_Utility.copy(tStack)                           , 1, 1,  15));
 		tStack = null;
 		}
-		
+
 		tStack = GT_Utility.getWrittenBook("GregTech Machine Safety (Edition 2)", "Gregorius Techneticies", new String[] {
 				  "As you probably know, every electric Machine can be quite fragile under certain circumstances. This Manual explains why your Machines could explode or burn down your Workshop, and how to prevent it."
 				, "1. Do not use a Pickaxe or something else, what is not a Wrench, to dismantle an electric Machine. This will cause either an Explosion or a just broken Machine if you are very lucky."
@@ -109,7 +109,7 @@ public class Loader_CraftingRecipes implements Runnable {
 		addLoot(ChestGenHooks.STRONGHOLD_LIBRARY        , GT_Utility.copy(tStack)                           , 1, 1,  20));
 		tStack = null;
 		}
-		
+
 		tStack = GT_Utility.getWrittenBook("Cover up!", "Gregorius Techneticies", new String[] {
 				  "Have you ever wondered how the Cover System works? This Book is about how to Cover your Machines up properly. But what does a Cover do, except fancy looking? And how to install Covers? And what If you want to remove the Cover?"
 				, "Usually every regular Plate like Advanced Alloy, Iron, Lapis or Bronze Plates can be used as Cover. Even Covers of other Companies can be supported as well. To place a Cover, just get one and rightclick the Machine with it."
@@ -124,7 +124,7 @@ public class Loader_CraftingRecipes implements Runnable {
 		addLoot(ChestGenHooks.STRONGHOLD_LIBRARY        , GT_Utility.copy(tStack)                           , 1, 1,  10));
 		tStack = null;
 		}
-		
+
 		tStack = GT_Utility.getWrittenBook("Greg-OS Manual I", "Gregorius Techneticies", new String[] {
 				  "Redstone Circuits are the main Component of a well running Base. The GregTech Redstone Circuit Block is ideal for processing Logic. It can compute everything! From a simple and consistent Timer to the Combo Lock on your Door!"
 				, "It has a very simple interface. You just need to push as few Buttons, and you are good to go. Just don't forget to push the Start-Button right under the Energy Flow Button, after you adjusted your Configuration."
@@ -146,7 +146,7 @@ public class Loader_CraftingRecipes implements Runnable {
 		addLoot(ChestGenHooks.STRONGHOLD_LIBRARY        , GT_Utility.copy(tStack)                           , 1, 1,  20));
 		tStack = null;
 		}
-		
+
 		tStack = GT_Utility.getWrittenBook("Greg-OS Manual II", "Gregorius Techneticies", new String[] {
 				  "List of Logic Circuits"
 				, "Basic Logic, Part I: This contains many simple Logic Gates. The first Six are basic Logic Gates. If you want to block any Inputs from it, then just screw a Redstone blocking Cover on said Side. These Gates take Input from all uncovered Sides."
@@ -168,7 +168,7 @@ public class Loader_CraftingRecipes implements Runnable {
 		addLoot(ChestGenHooks.STRONGHOLD_LIBRARY        , GT_Utility.copy(tStack)                           , 1, 1,  20));
 		tStack = null;
 		}
-		
+
 		tStack = GT_Utility.getWrittenBook("Upgrade Dictionary V4.04p", "Gregorius Techneticies", new String[] {
 				  "This Book lists all Items, which can be used as special Upgrade for GregTech Machines. As Books are distributed via Worldgen, this Book can be outdated on older Maps (see Version Number on the Title)."
 				, "Reactor Vents of any kind can be used to increase the efficiency of all processing Machines. It only works if the Cover is not obstructed by a solid block. All Objects without Collision Box are not obstructing it (Torches, Buttons, Levers etc.)"
@@ -200,7 +200,7 @@ public class Loader_CraftingRecipes implements Runnable {
 		addLoot(ChestGenHooks.STRONGHOLD_LIBRARY        , GT_Utility.copy(tStack)                           , 1, 1,   5));
 		tStack = null;
 		}
-		
+
 		tStack = GT_Utility.getWrittenBook("Crop Dictionary V3.03a", "Mr. Kenny", new String[] {
 				  "This is a List of all Crops I stumbled upon my tests. Some mutations of them had quite dangerous properties, which almost killed me, so be aware and don't use experimental WeedEx, like I did."
 				, "The generic Crops, like Pumpkins, Melons, Wheat, Sugar Canes, Cacti, Carrots, Potatoes, Nether Wart, Roses, Dandelions, Cocoa, Brown Mushooms and Red Mushrooms are not being further described here as they are commonly known."
@@ -242,7 +242,7 @@ public class Loader_CraftingRecipes implements Runnable {
 		addLoot(ChestGenHooks.STRONGHOLD_LIBRARY        , GT_Utility.copy(tStack)                           , 1, 1,  10));
 		tStack = null;
 		}
-		
+
 		tStack = GT_Utility.getWrittenBook("GregTech Energy Systems V3.04b", "Gregorius Techneticies", new String[] {
 				  "This Book explains Core Functionality of GregTech Machines. You might not understand it, but it can help you in some Cases."
 				, "As you know, GregTech Machines can run on 4 diffrent Energy Systems. Energy Units and Universal Electricity are natively compatible without Upgrades and are stored in the Electric Capacity. MJ and Steam need Upgrades and have seperate Capacities."
@@ -259,7 +259,7 @@ public class Loader_CraftingRecipes implements Runnable {
 		addLoot(ChestGenHooks.STRONGHOLD_LIBRARY        , GT_Utility.copy(tStack)                           , 1, 1,  10));
 		tStack = null;
 		}
-		
+
 		tStack = GT_Utility.getWrittenBook("Microwave Oven Manual", "Kitchen Industries", new String[] {
 				  "You just got a Microwave Oven and asked yourself 'why do I even need it?'. It's simple, the Microwave can cook for just 100 EU and at an insane speed. Not even a normal E-furnace can do it that fast and cheap!"
 				, "This is the cheapest and fastest way to cook for you. That is why the Microwave Oven can be found in almost every Kitchen (see www.youwannabuyakitchen.ly)."
@@ -274,7 +274,7 @@ public class Loader_CraftingRecipes implements Runnable {
 		addLoot(ChestGenHooks.STRONGHOLD_LIBRARY        , GT_Utility.copy(tStack)                           , 1, 1,  10));
 		tStack = null;
 		}
-		
+
 		tStack = GT_Utility.getWrittenBook("Turbine Manual", "Gregorius Techneticies", new String[] {
 				  "This Book explains how to set up and run your advanced Gas or Steam Turbine. We are not responsible for any Damage done by this Book itself nor its content."
 				, "First you need to craft the following things for a normal Turbine to Function: The Main Turbine Block, 28 Machine Casings (Gas = Reinforced, Steam = Standard), a Dynamo Hatch, an Input Hatch, an Output Hatch, a Turbine Rotor, "
@@ -303,7 +303,7 @@ public class Loader_CraftingRecipes implements Runnable {
 		addLoot(ChestGenHooks.STRONGHOLD_LIBRARY        , GT_Utility.copy(tStack)                           , 1, 1,  10));
 		tStack = null;
 		}
-		
+
 		tStack = GT_Utility.getWrittenBook("Thermal Boiler Manual", "Gregorius Techneticies", new String[] {
 				  "This Book explains how to set up and run your Thermal Boiler. We are not responsible for any Damage done by this Book itself nor its content."
 				, "First you need to craft the following things for a Thermal Boiler to Function: The Main Boiler Block, 20 Reinforced Machine Casings, two Input Hatches, two Output Hatches, a bunch of different Tools and a Maintenance Hatch."
@@ -329,7 +329,7 @@ public class Loader_CraftingRecipes implements Runnable {
 		addLoot(ChestGenHooks.STRONGHOLD_LIBRARY        , GT_Utility.copy(tStack)                           , 1, 1,  10));
 		tStack = null;
 		}
-		
+
 		tStack = GT_Utility.getWrittenBook("Your Friend the Pipe", "Mario", new String[] {
 				  "It's me Mario, and I will explain you how to use Pipes."
 				, "First we will talk about the various Fluid Pipes. They are simple and easy to understand. You first put a Pump Module onto the Input of the Pipe and set it to import Mode, to let it suck Fluids out of your Tank. Then we lay a Pipe to our Target."
@@ -345,7 +345,7 @@ public class Loader_CraftingRecipes implements Runnable {
 		addLoot(ChestGenHooks.STRONGHOLD_LIBRARY        , GT_Utility.copy(tStack)                           , 1, 1,  10));
 		tStack = null;
 		}
-		
+
 		tStack = GT_Utility.getWrittenBook("Geology Vol. 1", "That Yipee yelling Geologist", new String[] {
 				  "In this Book I explain to you how to find Ores, and where to find Ores under normal circumstances. I don't guarantee you to find anything after you read this Book, but your chances should be higher after that."
 				, "First of all you need the proper equipment. You should have at least one Prospectors Hammer with you to find out if there are Ores close by. Just hammer onto regular Rock and you will see if there are traces of whatever Ore."
@@ -376,7 +376,7 @@ public class Loader_CraftingRecipes implements Runnable {
 		addLoot(ChestGenHooks.STRONGHOLD_LIBRARY        , GT_Utility.copy(tStack)                           , 1, 1,  10));
 		tStack = null;
 		}
-		
+
 		tStack = GT_Utility.getWrittenBook("Printer Manual", "Gregorius Techneticies", new String[] {
 				  "This Manual explains the different Functionalities the GregTech Printing Factory has built in. And there are LOTS of things this Device can do, and none of them is Documented via NEI."
 				, "Slot 1 is the left one (available from the Top Facing when seperated), Slot 2 is the one directly next to it (available from the Side Facings), Slot 3 and 4 are the Outputs, and Slot 5 also known as the Copy Slot is the one in the bottom middle."
@@ -399,23 +399,23 @@ public class Loader_CraftingRecipes implements Runnable {
 		tStack = null;
 		}
 		*/
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
+
+
+
+
+
+
 		CR.shaped(ST.mkic("reactorVent", 1), DEF, "AIA", "I I", "AIA", 'I', ST.make(Blocks.iron_bars, 1, 0), 'A', OP.plate.dat(MT.Al));
 		CR.shapeless(ST.mkic("reactorPlatingExplosive", 1), DEF, new Object[] {ST.mkic("reactorPlating", 1), OP.plate.dat(MT.Pb)});
-		
+
 		CR.shaped(ST.mkic("glassFiberCableItem", 1), DEF, "GGG", "EDE", "GGG", 'G', ST.make(Blocks.glass, 1, W), 'D', OP.dust.dat(MT.Ag), 'E', IL.IC2_Energium_Dust.get(1));
-		
+
 		CR.delate(ST.mkic("lapotronCrystal", 1));
 		CR.shaped(ST.mkic("lapotronCrystal", 1), DEF, "LCL", "LSL", "LCL", 'C', OD_CIRCUITS[3], 'S', ST.mkic("energyCrystal", 1, W), 'L', OP.dust.dat(MT.Lazurite));
 		CR.shaped(ST.mkic("lapotronCrystal", 1), DEF, "LCL", "LSL", "LCL", 'C', OD_CIRCUITS[3], 'S', ST.mkic("energyCrystal", 1, W), 'L', OP.dust.dat(MT.Lapis));
@@ -423,12 +423,12 @@ public class Loader_CraftingRecipes implements Runnable {
 		CR.shaped(ST.makeIC2("luminator", 16), DEFAULT, "RTR", "GHG", "GGG", 'H', OP.cell.dat(MT.He), 'T', OP.ingot.dat(MT.Sn), 'R', OP.ingot.dat(ANY.Fe), 'G', ST.make(Blocks.glass, 1, 0));
 		CR.shaped(ST.makeIC2("luminator", 16), DEFAULT, "RTR", "GHG", "GGG", 'H', OP.cell.dat(MT.Hg), 'T', OP.ingot.dat(MT.Sn), 'R', OP.ingot.dat(ANY.Fe), 'G', ST.make(Blocks.glass, 1, 0));
 		*/
-		
+
 		OUT.println("GT_Mod: Applying harder Recipes for several Blocks.");
 		if (ConfigsGT.RECIPES.get(ConfigCategories.Recipes.harderrecipes, "beryliumreflector", T)) {
 			if (CR.remout(ST.mkic("reactorReflectorThick", 1))) CR.shaped(ST.mkic("reactorReflectorThick", 1), DEF, " N ", "NBN", " N ", 'B', OP.plate.dat(MT.Be), 'N', ST.mkic("reactorReflector", 1));
 		}
-		
+
 		if (OP.gear.mat(MT.Diamond, 1) != null) {
 			ItemStack tStack = CR.get(OP.gear.mat(MT.Fe, 1), ST.make(Items.redstone, 1, 0), OP.gear.mat(MT.Fe, 1), OP.gear.mat(MT.Au, 1), OP.gear.mat(MT.Fe, 1), OP.gear.mat(MT.Au, 1), OP.gear.mat(MT.Diamond, 1), ST.make(Items.diamond_pickaxe, 1, 0), OP.gear.mat(MT.Diamond, 1));
 			if (ConfigsGT.RECIPES.get(ConfigCategories.Recipes.harderrecipes, "quarry", T)) {
@@ -439,17 +439,17 @@ public class Loader_CraftingRecipes implements Runnable {
 				CR.delate(tStack);
 			}
 		}
-		
+
 		OUT.println("GT_Mod: Applying Recipes for Tools");
-		
+
 		if (ConfigsGT.RECIPES.get(ConfigCategories.Recipes.harderrecipes, "nanosaber", T)) {
-			if (CR.remout(ST.mkic("nanoSaber", 1))) CR.shaped(ST.mkic("nanoSaber", 1), DEF, "PI ", "PI ", "CLC", 'L', OP.battery.dat(MT.Master), 'I', ST.mkic("iridiumPlate", 1), 'P', OP.plate.dat(MT.Pt), 'C', OD_CIRCUITS[5]);
+			if (CR.remout(ST.mkic("nanoSaber", 1))) CR.shaped(ST.mkic("nanoSaber", 1), DEF, "PI ", "PI ", "CLC", 'L', OP.battery.dat(MT.IV), 'I', ST.mkic("iridiumPlate", 1), 'P', OP.plate.dat(MT.Pt), 'C', OD_CIRCUITS[5]);
 		}
-		
+
 		if (CR.remout(ST.mkic("diamondDrill"   , 1))) CR.shaped(ST.mkic("diamondDrill"   , 1), DEF, " D ", "DMD", "TAT", 'M', ST.mkic("miningDrill", 1, W), 'D', OP.gem.dat(MT.DiamondIndustrial), 'T', OP.plate.dat(MT.Ti), 'A', OD_CIRCUITS[3]);
-		if (CR.remout(ST.mkic("miningDrill"    , 1))) CR.shaped(ST.mkic("miningDrill"    , 1), DEF, " S ", "SCS", "SBS", 'C', OD_CIRCUITS[1], 'B', OP.battery.dat(MT.Basic), 'S', ConfigsGT.RECIPES.get(ConfigCategories.Recipes.harderrecipes, "electricsteeltools", T)?OP.plate.dat(MT.StainlessSteel):OP.plate.dat(ANY.Fe));
-		if (CR.remout(ST.mkic("chainsaw"       , 1))) CR.shaped(ST.mkic("chainsaw"       , 1), DEF, "BS ", "SCS", " SS", 'C', OD_CIRCUITS[1], 'B', OP.battery.dat(MT.Basic), 'S', ConfigsGT.RECIPES.get(ConfigCategories.Recipes.harderrecipes, "electricsteeltools", T)?OP.plate.dat(MT.StainlessSteel):OP.plate.dat(ANY.Fe));
-		if (CR.remout(ST.mkic("electricHoe"    , 1))) CR.shaped(ST.mkic("electricHoe"    , 1), DEF, "SS ", " C ", " B ", 'C', OD_CIRCUITS[1], 'B', OP.battery.dat(MT.Basic), 'S', ConfigsGT.RECIPES.get(ConfigCategories.Recipes.harderrecipes, "electricsteeltools", T)?OP.plate.dat(MT.StainlessSteel):OP.plate.dat(ANY.Fe));
-		if (CR.remout(ST.mkic("electricTreetap", 1))) CR.shaped(ST.mkic("electricTreetap", 1), DEF, " B ", "SCS", "S  ", 'C', OD_CIRCUITS[1], 'B', OP.battery.dat(MT.Basic), 'S', ConfigsGT.RECIPES.get(ConfigCategories.Recipes.harderrecipes, "electricsteeltools", T)?OP.plate.dat(MT.StainlessSteel):OP.plate.dat(ANY.Fe));
+		if (CR.remout(ST.mkic("miningDrill"    , 1))) CR.shaped(ST.mkic("miningDrill"    , 1), DEF, " S ", "SCS", "SBS", 'C', OD_CIRCUITS[1], 'B', OP.battery.dat(MT.LV), 'S', ConfigsGT.RECIPES.get(ConfigCategories.Recipes.harderrecipes, "electricsteeltools", T)?OP.plate.dat(MT.StainlessSteel):OP.plate.dat(ANY.Fe));
+		if (CR.remout(ST.mkic("chainsaw"       , 1))) CR.shaped(ST.mkic("chainsaw"       , 1), DEF, "BS ", "SCS", " SS", 'C', OD_CIRCUITS[1], 'B', OP.battery.dat(MT.LV), 'S', ConfigsGT.RECIPES.get(ConfigCategories.Recipes.harderrecipes, "electricsteeltools", T)?OP.plate.dat(MT.StainlessSteel):OP.plate.dat(ANY.Fe));
+		if (CR.remout(ST.mkic("electricHoe"    , 1))) CR.shaped(ST.mkic("electricHoe"    , 1), DEF, "SS ", " C ", " B ", 'C', OD_CIRCUITS[1], 'B', OP.battery.dat(MT.LV), 'S', ConfigsGT.RECIPES.get(ConfigCategories.Recipes.harderrecipes, "electricsteeltools", T)?OP.plate.dat(MT.StainlessSteel):OP.plate.dat(ANY.Fe));
+		if (CR.remout(ST.mkic("electricTreetap", 1))) CR.shaped(ST.mkic("electricTreetap", 1), DEF, " B ", "SCS", "S  ", 'C', OD_CIRCUITS[1], 'B', OP.battery.dat(MT.LV), 'S', ConfigsGT.RECIPES.get(ConfigCategories.Recipes.harderrecipes, "electricsteeltools", T)?OP.plate.dat(MT.StainlessSteel):OP.plate.dat(ANY.Fe));
 	}
 }

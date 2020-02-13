@@ -40,7 +40,7 @@ import net.minecraft.item.ItemStack;
 
 public class Compat_Recipes_IndustrialCraft_Scrap extends CompatMods {
 	public Compat_Recipes_IndustrialCraft_Scrap(ModData aMod, Abstract_Mod aGTMod) {super(aMod, aGTMod);}
-	
+
 	@Override public void onPostLoad(FMLPostInitializationEvent aInitEvent) {
 		if (!MD.IC2C.mLoaded && COMPAT_IC2 != null) {
 			COMPAT_IC2.scrapbox(9.50F, ST.make(Items.wooden_hoe, 1, 0));
@@ -76,6 +76,7 @@ public class Compat_Recipes_IndustrialCraft_Scrap extends CompatMods {
 			COMPAT_IC2.scrapbox(0.60F, ST.make(Items.slime_ball, 1, 0));
 			COMPAT_IC2.scrapbox(0.80F, OP.dust.mat(MT.Rubber, 1));
 			COMPAT_IC2.scrapbox(2.70F, ST.mkic("suBattery", 1));
+			/*
 			COMPAT_IC2.scrapbox(3.20F, IL.Circuit_Plate_Empty.get(1));
 			COMPAT_IC2.scrapbox(1.60F, IL.Circuit_Plate_Copper.get(1));
 			COMPAT_IC2.scrapbox(0.40F, IL.Circuit_Plate_Gold.get(1));
@@ -86,6 +87,7 @@ public class Compat_Recipes_IndustrialCraft_Scrap extends CompatMods {
 			COMPAT_IC2.scrapbox(0.40F, IL.Circuit_Part_Elite.get(1));
 			COMPAT_IC2.scrapbox(0.36F, IL.Circuit_Part_Master.get(1));
 			COMPAT_IC2.scrapbox(0.04F, IL.Circuit_Part_Ultimate.get(1));
+			*/
 			COMPAT_IC2.scrapbox(2.00F, ST.mkic("insulatedCopperCableItem", 1));
 			COMPAT_IC2.scrapbox(0.40F, ST.mkic("insulatedGoldCableItem", 1));
 			COMPAT_IC2.scrapbox(0.20F, OP.scrapGt.mat(MT.SiO2               , 1));
@@ -144,19 +146,19 @@ public class Compat_Recipes_IndustrialCraft_Scrap extends CompatMods {
 			COMPAT_IC2.scrapbox(0.05F, OP.scrapGt.mat(MT.Maxixe             , 1));
 			COMPAT_IC2.scrapbox(0.05F, OP.scrapGt.mat(MT.Diamond            , 1));
 		}
-		
+
 		if (ConfigsGT.RECIPES.get(ConfigCategories.Recipes.disabledrecipes, "easymobgrinderrecycling", T)) {
 			// Skeletons
 			COMPAT_IC2.blacklist(ST.make(Items.arrow, 1, 0));
 			COMPAT_IC2.blacklist(ST.make(Items.bone, 1, 0));
 			COMPAT_IC2.blacklist(IL.Dye_Bonemeal.get(1));
-			
+
 			// Zombies
 			COMPAT_IC2.blacklist(ST.make(Items.rotten_flesh, 1, 0));
-			
+
 			// Spiders
 			COMPAT_IC2.blacklist(ST.make(Items.string, 1, 0));
-			
+
 			// Chicken Eggs
 			COMPAT_IC2.blacklist(ST.make(Items.egg, 1, 0));
 		}
