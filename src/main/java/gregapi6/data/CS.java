@@ -1350,6 +1350,7 @@ public class CS {
 	, NBT_INPUT_AU                  = "gt6.input.au"                 // Long containing a specified Energy Variable.
 	, NBT_INPUT_MJ                  = "gt6.input.mj"                 // Long containing a specified Energy Variable.
 	, NBT_INPUT_RF                  = "gt6.input.rf"                 // Long containing a specified Energy Variable.
+	, NBT_INPUT_LX                  = "gt6.input.rx"                 // Long containing a specified Energy Variable.
 
 	, NBT_OUTPUT                    = "gt6.output"                   // Long containing a generic Energy Variable.
 	, NBT_OUTPUT_MIN                = "gt6.output.min"               // Long containing a generic Energy Variable.
@@ -1363,6 +1364,7 @@ public class CS {
 	, NBT_OUTPUT_AU                 = "gt6.output.au"                // Long containing a specified Energy Variable.
 	, NBT_OUTPUT_MJ                 = "gt6.output.mj"                // Long containing a specified Energy Variable.
 	, NBT_OUTPUT_RF                 = "gt6.output.rf"                // Long containing a specified Energy Variable.
+	, NBT_OUTPUT_LX                 = "gt6.output.lx"                // Long containing a specified Energy Variable.
 
 	, NBT_ENERGY                    = "gt6.energy"                   // Long containing a generic Energy Variable.
 	, NBT_ENERGY_EU                 = "gt6.energy.eu"                // Long containing a specified Energy Variable.
@@ -1374,6 +1376,7 @@ public class CS {
 	, NBT_ENERGY_AU                 = "gt6.energy.au"                // Long containing a specified Energy Variable.
 	, NBT_ENERGY_MJ                 = "gt6.energy.mj"                // Long containing a specified Energy Variable.
 	, NBT_ENERGY_RF                 = "gt6.energy.rf"                // Long containing a specified Energy Variable.
+	, NBT_ENERGY_LX                 = "gt6.energy.lx"                // Long containing a specified Energy Variable.
 
 	, NBT_CAPACITY                  = "gt6.capacity"                 // Long containing a generic Energy Variable as Capacity.
 	, NBT_CAPACITY_EU               = "gt6.capacity.eu"              // Long containing a specified Energy Variable as Capacity.
@@ -1385,6 +1388,7 @@ public class CS {
 	, NBT_CAPACITY_AU               = "gt6.capacity.au"              // Long containing a specified Energy Variable as Capacity.
 	, NBT_CAPACITY_MJ               = "gt6.capacity.mj"              // Long containing a specified Energy Variable as Capacity.
 	, NBT_CAPACITY_RF               = "gt6.capacity.rf"              // Long containing a specified Energy Variable as Capacity.
+	, NBT_CAPACITY_LX               = "gt6.capacity.lx"              // Long containing a specified Energy Variable as Capacity.
 	;
 
 	/** List of Visually Full Opaque Blocks. For minor Render optimisations. */

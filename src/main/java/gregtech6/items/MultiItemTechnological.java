@@ -1041,8 +1041,6 @@ public class MultiItemTechnological extends MultiItemRandom {
 		IL.Processor_Crystal_Emerald       .set(addItem(tLastID = 32074, "Crystal Processor (Emerald)"      , "Storage Processor Circuit"                       , TC.stack(TC.COGNITO, 5), TC.stack(TC.LUCRUM, 2), TC.stack(TC.VITREUS, 2), new OreDictItemData(MT.Pt, U, ANY.Emerald, U)));
 		IL.Processor_Crystal_Sapphire      .set(addItem(tLastID = 32075, "Crystal Processor (Sapphire)"     , "Conversion Processor Circuit"                    , TC.stack(TC.COGNITO, 5), TC.stack(TC.LUCRUM, 2), TC.stack(TC.VITREUS, 2), new OreDictItemData(MT.Pt, U, ANY.Sapphire, U)));
 
-
-
 		/*
 		IL.Circuit_Plate_Empty.set(             addItem(tLastID = 30000, "Circuit Plate"                    , "Needs Circuit Wiring"                            , new OreDictItemData(ANY.SiO2, U, MT.Plastic, U), TC.stack(TC.FABRICO, 1)));
 

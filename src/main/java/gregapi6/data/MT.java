@@ -2502,6 +2502,10 @@ public class MT {
 		Dye_Materials[]             = {Black, Red, Green, Brown, Blue, Purple, Cyan, LightGray, Gray, Pink, Lime, Yellow, LightBlue, Magenta, Orange, White},
 
 		Wire_T[] = { Pb, Sn, ANY.Cu, Au, Al, Pt, SuperconductorLuV, SuperconductorZPM,SuperconductorUV,SuperconductorPUV1,SuperconductorPUV2,SuperconductorPUV3,SuperconductorPUV4, SuperconductorPUV5,SuperconductorOmega,SuperconductorMAX },
+
+		OpticalFiber_T[] = { SuperconductorULV, SuperconductorLV, SuperconductorMV, SuperconductorHV, SuperconductorEV, SuperconductorIV, SuperconductorLuV, SuperconductorZPM,SuperconductorUV,SuperconductorPUV1,SuperconductorPUV2,SuperconductorPUV3,SuperconductorPUV4, SuperconductorPUV5,SuperconductorOmega,SuperconductorMAX },
+
+
 		Heat_T[]                    = {ANY.Stone    , Invar, SteelGalvanized     , Ti                , HSSG   , RhodiumPlatedPalladium                , Ir                , Os       , HSSS, Neutronium    , Bedrockium        , BlackPlutonium        , Draconium, CrystalMatrix     , CosmicNeutronium        , Infinity             },
 		Electric_T[]                = {TinAlloy     , SteelGalvanized   , Al        , StainlessSteel    , Ti                , TungstenSteel        , RhodiumPlatedPalladium                , Ir                , Os       , Neutronium    , Bedrockium        , BlackPlutonium        , Draconium, CrystalMatrix     , CosmicNeutronium        , Infinity        },
 
@@ -2584,6 +2588,42 @@ public class MT {
 			OP.cableGt04.dat(Wire_T[13]),
 			OP.cableGt04.dat(Wire_T[14]),
 			OP.cableGt04.dat(Wire_T[15])
+		},
+		FIBERCABLES_01 = {
+			OP.cableLXGt01.dat(OpticalFiber_T[0]),
+			OP.cableLXGt01.dat(OpticalFiber_T[1]),
+			OP.cableLXGt01.dat(OpticalFiber_T[2]),
+			OP.cableLXGt01.dat(OpticalFiber_T[3]),
+			OP.cableLXGt01.dat(OpticalFiber_T[4]),
+			OP.cableLXGt01.dat(OpticalFiber_T[5]),
+			OP.cableLXGt01.dat(OpticalFiber_T[6]),
+			OP.cableLXGt01.dat(OpticalFiber_T[7]),
+			OP.cableLXGt01.dat(OpticalFiber_T[8]),
+			OP.cableLXGt01.dat(OpticalFiber_T[9]),
+			OP.cableLXGt01.dat(OpticalFiber_T[10]),
+			OP.cableLXGt01.dat(OpticalFiber_T[11]),
+			OP.cableLXGt01.dat(OpticalFiber_T[12]),
+			OP.cableLXGt01.dat(OpticalFiber_T[13]),
+			OP.cableLXGt01.dat(OpticalFiber_T[14]),
+			OP.cableLXGt01.dat(OpticalFiber_T[15])
+		},
+		FIBERCABLES_04 = {
+			OP.cableLXGt04.dat(OpticalFiber_T[0]),
+			OP.cableLXGt04.dat(OpticalFiber_T[1]),
+			OP.cableLXGt04.dat(OpticalFiber_T[2]),
+			OP.cableLXGt04.dat(OpticalFiber_T[3]),
+			OP.cableLXGt04.dat(OpticalFiber_T[4]),
+			OP.cableLXGt04.dat(OpticalFiber_T[5]),
+			OP.cableLXGt04.dat(OpticalFiber_T[6]),
+			OP.cableLXGt04.dat(OpticalFiber_T[7]),
+			OP.cableLXGt04.dat(OpticalFiber_T[8]),
+			OP.cableLXGt04.dat(OpticalFiber_T[9]),
+			OP.cableLXGt04.dat(OpticalFiber_T[10]),
+			OP.cableLXGt04.dat(OpticalFiber_T[11]),
+			OP.cableLXGt04.dat(OpticalFiber_T[12]),
+			OP.cableLXGt04.dat(OpticalFiber_T[13]),
+			OP.cableLXGt04.dat(OpticalFiber_T[14]),
+			OP.cableLXGt04.dat(OpticalFiber_T[15])
 		},
 		CIRCUITS = {
 			OP.circuit.dat(ULV),
