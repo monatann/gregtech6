@@ -45,7 +45,7 @@ import net.minecraft.nbt.NBTTagCompound;
 public class MultiTileEntityLightCollectionDevice extends TileEntityBase09FacingSingle implements ITileEntityEnergyElectricityEmitter, ITileEntityRunningActively, ITileEntitySwitchableOnOff {
 	protected boolean mEmitsEnergy = F, mStopped = F, mActive = F, oActive = F, mCheck = T, mSky = F;
 	protected long mEnergy = 0, mOutput = 8;
-	protected TagData mEnergyTypeEmitted = TD.Energy.QU;
+	protected TagData mEnergyTypeEmitted = TD.Energy.LX;
 
 	@Override
 	public void readFromNBT2(NBTTagCompound aNBT) {
@@ -55,7 +55,7 @@ public class MultiTileEntityLightCollectionDevice extends TileEntityBase09Facing
 		if (aNBT.hasKey(NBT_STOPPED)) mStopped = aNBT.getBoolean(NBT_STOPPED);
 		if (aNBT.hasKey(NBT_ACTIVE)) mActive = aNBT.getBoolean(NBT_ACTIVE);
 		if (aNBT.hasKey(NBT_OUTPUT)) mOutput = aNBT.getLong(NBT_OUTPUT);
-		if (aNBT.hasKey(NBT_ENERGY_EMITTED)) mEnergyTypeEmitted = TagData.createTagData(aNBT.getString(NBT_ENERGY_EMITTED));
+		//if (aNBT.hasKey(NBT_ENERGY_EMITTED)) mEnergyTypeEmitted = TagData.createTagData(aNBT.getString(NBT_ENERGY_EMITTED));
 	}
 
 	@Override
@@ -159,7 +159,6 @@ public class MultiTileEntityLightCollectionDevice extends TileEntityBase09Facing
 				mEmitsEnergy = (ITileEntityEnergy.Util.emitEnergyToNetwork(mEnergyTypeEmitted, mEnergy, 1, this) > 0);
 			}
 		}
-
 		if (mEmitsEnergy) mEnergy = 0;
 	}
 

@@ -78,7 +78,7 @@ public class MultiTileEntityOpticalFiber extends TileEntityBase10ConnectorRender
 	@Override
 	public void readFromNBT2(NBTTagCompound aNBT) {
 		super.readFromNBT2(aNBT);
-		if (aNBT.hasKey(NBT_PIPELOSS)) mLoss = Math.max(1, aNBT.getLong(NBT_PIPELOSS));
+		if (aNBT.hasKey(NBT_PIPELOSS)) mLoss = Math.max(0, aNBT.getLong(NBT_PIPELOSS));
 		if (aNBT.hasKey(NBT_PIPESIZE)) mVoltage = Math.max(1, aNBT.getLong(NBT_PIPESIZE));
 		if (aNBT.hasKey(NBT_PIPEBANDWIDTH)) mAmperage = Math.max(1, aNBT.getLong(NBT_PIPEBANDWIDTH));
 		if (aNBT.hasKey(NBT_PIPERENDER)) mRenderType = aNBT.getByte(NBT_PIPERENDER);
@@ -138,10 +138,13 @@ public class MultiTileEntityOpticalFiber extends TileEntityBase10ConnectorRender
 			if (aAlreadyPassed.add(tDelegator.mTileEntity)) {
 				if (tDelegator.mTileEntity instanceof MultiTileEntityOpticalFiber) {
 					if (((MultiTileEntityOpticalFiber)tDelegator.mTileEntity).isEnergyAcceptingFrom(TD.Energy.LX, tDelegator.mSideOfTileEntity, F)) {
-						rUsedAmperes += ((MultiTileEntityOpticalFiber)tDelegator.mTileEntity).transferElectricity(tDelegator.mSideOfTileEntity, aVoltage, aAmperage-rUsedAmperes, aChannel, aAlreadyPassed);
+						//rUsedAmperes += ((MultiTileEntityOpticalFiber)tDelegator.mTileEntity).transferElectricity(tDelegator.mSideOfTileEntity, aVoltage, aAmperage-rUsedAmperes, aChannel, aAlreadyPassed);
+						rUsedAmperes += ((MultiTileEntityOpticalFiber)tDelegator.mTileEntity).transferElectricity(tDelegator.mSideOfTileEntity, aVoltage, aAmperage, aChannel, aAlreadyPassed);
+
 					}
 				} else {
-					rUsedAmperes += ITileEntityEnergy.Util.insertEnergyInto(TD.Energy.LX, aVoltage, aAmperage-rUsedAmperes, this, tDelegator);
+					//rUsedAmperes += ITileEntityEnergy.Util.insertEnergyInto(TD.Energy.LX, aVoltage, aAmperage-rUsedAmperes, this, tDelegator);
+					rUsedAmperes += ITileEntityEnergy.Util.insertEnergyInto(TD.Energy.LX, aVoltage, aAmperage, this, tDelegator);
 				}
 			}
 		}
@@ -172,7 +175,7 @@ public class MultiTileEntityOpticalFiber extends TileEntityBase10ConnectorRender
 
 	@Override public boolean isEnergyEmittingTo   (TagData aEnergyType, byte aSide, boolean aTheoretical) {return isEnergyType(aEnergyType, aSide, T) && canEmitEnergyTo    (aSide);}
 	@Override public boolean isEnergyAcceptingFrom(TagData aEnergyType, byte aSide, boolean aTheoretical) {return isEnergyType(aEnergyType, aSide, F) && canAcceptEnergyFrom(aSide);}
-	@Override public synchronized long doEnergyExtraction(TagData aEnergyType, byte aSide, long aSize, long aAmount, boolean aDoExtract) {return 0;}
+	@Override public synchronized long doEnergyExtraction(TagData aEnergyType, byte aSide, long aSize, long aAmount, boolean aDoExtract) {return aSize != 0 && isEnergyEmittingTo(aEnergyType, aSide, F) ?  aDoExtract ? transferElectricity(aSide, aSize, aAmount, -1, new HashSetNoNulls<TileEntity>(F, this)) : aAmount : 0;}
 	@Override public synchronized long doEnergyInjection (TagData aEnergyType, byte aSide, long aSize, long aAmount, boolean aDoInject ) {return aSize != 0 && isEnergyAcceptingFrom(aEnergyType, aSide, F) ?  aDoInject ? transferElectricity(aSide, aSize, aAmount, -1, new HashSetNoNulls<TileEntity>(F, this)) : aAmount : 0;}
 	@Override public long getEnergySizeOutputRecommended(TagData aEnergyType, byte aSide) {return mVoltage;}
 	@Override public long getEnergySizeOutputMin(TagData aEnergyType, byte aSide) {return 0;}
