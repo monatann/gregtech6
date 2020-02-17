@@ -20,6 +20,7 @@
 package gregtech6.items;
 
 import static gregapi6.data.CS.*;
+import static gregapi6.data.OP.*;
 
 import gregapi6.code.ItemStackContainer;
 import gregapi6.cover.covers.CoverControllerAuto;
@@ -91,6 +92,7 @@ import gregtech6.items.behaviors.Behavior_DataStorage;
 import gregtech6.items.behaviors.Behavior_DataStorage16;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidContainerRegistry.FluidContainerData;
 
 public class MultiItemTechnological extends MultiItemRandom {
@@ -700,22 +702,78 @@ public class MultiItemTechnological extends MultiItemRandom {
 		RM.Press.addRecipeX(T, 16, 64, ST.array(ST.make(Blocks.end_stone, 5, W)                              , OP.gem      .mat(MT.EnderEye, 2)), IL.Electrode_FR_Ender       .get(4));
 
 		//--------------------------------------- Circuit ------------------------------------------------//
+		ItemStack circuit = IL.Circuit_Selector.get(0);
 
-		//----- Set -----//
 		//wire
-		IL.Circuit_Wire_Copper.set(             addItem(tLastID = 30001, "Circuit Wiring (Copper)"          , "Needs to be placed on an empty Circuit Plate"    , new OreDictItemData(MT.Cu, U), TC.stack(TC.FABRICO, 1), TC.stack(TC.PERMUTATIO, 1)));
-		IL.Circuit_Wire_Gold.set(               addItem(tLastID = 30002, "Circuit Wiring (Gold)"            , "Needs to be placed on an empty Circuit Plate"    , new OreDictItemData(MT.Au, U), TC.stack(TC.FABRICO, 1), TC.stack(TC.LUCRUM, 1)));
+		IL.Circuit_Wire_ULV.set(             addItem(tLastID = 30001, "Circuit Wiring (ULV)"          , "Needs to be placed on an empty Circuit Plate"    , new OreDictItemData(MT.DATA.Wire_T[0], U), TC.stack(TC.FABRICO, 1), TC.stack(TC.PERMUTATIO, 1)));
+		IL.Circuit_Wire_LV.set(               addItem(tLastID = 30002, "Circuit Wiring (LV)"            , "Needs to be placed on an empty Circuit Plate"    , new OreDictItemData(MT.DATA.Wire_T[1], U), TC.stack(TC.FABRICO, 1), TC.stack(TC.LUCRUM, 1)));
+		IL.Circuit_Wire_MV.set(             addItem(tLastID = 30003, "Circuit Wiring (MV)"          , "Needs to be placed on an empty Circuit Plate"    , new OreDictItemData(MT.DATA.Wire_T[2], U), TC.stack(TC.FABRICO, 1), TC.stack(TC.PERMUTATIO, 1)));
+		IL.Circuit_Wire_HV.set(               addItem(tLastID = 30004, "Circuit Wiring (HV)"            , "Needs to be placed on an empty Circuit Plate"    , new OreDictItemData(MT.DATA.Wire_T[3], U), TC.stack(TC.FABRICO, 1), TC.stack(TC.LUCRUM, 1)));
+		IL.Circuit_Wire_EV.set(               addItem(tLastID = 30005, "Circuit Wiring (EV)"            , "Needs to be placed on an empty Circuit Plate"    , new OreDictItemData(MT.DATA.Wire_T[4], U), TC.stack(TC.FABRICO, 1), TC.stack(TC.LUCRUM, 1)));
+		IL.Circuit_Wire_IV.set(               addItem(tLastID = 30006, "Circuit Wiring (IV)"            , "Needs to be placed on an empty Circuit Plate"    , new OreDictItemData(MT.DATA.Wire_T[5], U), TC.stack(TC.FABRICO, 1), TC.stack(TC.LUCRUM, 1)));
+		IL.Circuit_Wire_LuV.set(               addItem(tLastID = 30007, "Circuit Wiring (LuV)"            , "Needs to be placed on an empty Circuit Plate"    , new OreDictItemData(MT.DATA.Wire_T[6], U), TC.stack(TC.FABRICO, 1), TC.stack(TC.LUCRUM, 1)));
+		IL.Circuit_Wire_ZPM.set(               addItem(tLastID = 30008, "Circuit Wiring (ZPM)"            , "Needs to be placed on an empty Circuit Plate"    , new OreDictItemData(MT.DATA.Wire_T[7], U), TC.stack(TC.FABRICO, 1), TC.stack(TC.LUCRUM, 1)));
+		IL.Circuit_Wire_UV.set(               addItem(tLastID = 30009, "Circuit Wiring (UV)"            , "Needs to be placed on an empty Circuit Plate"    , new OreDictItemData(MT.DATA.Wire_T[8], U), TC.stack(TC.FABRICO, 1), TC.stack(TC.LUCRUM, 1)));
+		IL.Circuit_Wire_PUV1.set(               addItem(tLastID = 30010, "Circuit Wiring (PUV1)"            , "Needs to be placed on an empty Circuit Plate"    , new OreDictItemData(MT.DATA.Wire_T[9], U), TC.stack(TC.FABRICO, 1), TC.stack(TC.LUCRUM, 1)));
+		IL.Circuit_Wire_PUV2.set(               addItem(tLastID = 30011, "Circuit Wiring (PUV2)"            , "Needs to be placed on an empty Circuit Plate"    , new OreDictItemData(MT.DATA.Wire_T[10], U), TC.stack(TC.FABRICO, 1), TC.stack(TC.LUCRUM, 1)));
+		IL.Circuit_Wire_PUV3.set(               addItem(tLastID = 30012, "Circuit Wiring (PUV3)"            , "Needs to be placed on an empty Circuit Plate"    , new OreDictItemData(MT.DATA.Wire_T[11], U), TC.stack(TC.FABRICO, 1), TC.stack(TC.LUCRUM, 1)));
+		IL.Circuit_Wire_PUV4.set(               addItem(tLastID = 30013, "Circuit Wiring (PUV4)"            , "Needs to be placed on an empty Circuit Plate"    , new OreDictItemData(MT.DATA.Wire_T[12], U), TC.stack(TC.FABRICO, 1), TC.stack(TC.LUCRUM, 1)));
+		IL.Circuit_Wire_PUV5.set(               addItem(tLastID = 30014, "Circuit Wiring (PUV5)"            , "Needs to be placed on an empty Circuit Plate"    , new OreDictItemData(MT.DATA.Wire_T[13], U), TC.stack(TC.FABRICO, 1), TC.stack(TC.LUCRUM, 1)));
+		IL.Circuit_Wire_Omega.set(               addItem(tLastID = 30015, "Circuit Wiring (Omega)"            , "Needs to be placed on an empty Circuit Plate"    , new OreDictItemData(MT.DATA.Wire_T[14], U), TC.stack(TC.FABRICO, 1), TC.stack(TC.LUCRUM, 1)));
+		IL.Circuit_Wire_MAX.set(               addItem(tLastID = 30016, "Circuit Wiring (MAX)"            , "Needs to be placed on an empty Circuit Plate"    , new OreDictItemData(MT.DATA.Wire_T[15], U), TC.stack(TC.FABRICO, 1), TC.stack(TC.LUCRUM, 1)));
+
+		/*
 		IL.Circuit_Wire_Platinum.set(           addItem(tLastID = 30003, "Circuit Wiring (Platinum)"        , "Needs to be placed on an empty Circuit Plate"    , new OreDictItemData(MT.Pt, U), TC.stack(TC.FABRICO, 1), TC.stack(TC.NEBRISUM, 1)));
 		IL.Circuit_Wire_Magic.set(              addItem(tLastID = 30004, "Circuit Wiring (Magic)"           , "Needs to be placed on an empty Circuit Plate"    , TC.stack(TC.FABRICO, 1), TC.stack(TC.PRAECANTIO, 1)));
 		IL.Circuit_Wire_Enderium.set(           addItem(tLastID = 30005, "Circuit Wiring (Enderium)"        , "Needs to be placed on an empty Circuit Plate"    , new OreDictItemData(MT.Enderium, U), TC.stack(TC.FABRICO, 1), TC.stack(TC.ALIENIS, 1)));
 		IL.Circuit_Wire_Signalum.set(           addItem(tLastID = 30006, "Circuit Wiring (Signalum)"        , "Needs to be placed on an empty Circuit Plate"    , new OreDictItemData(MT.Signalum, U), TC.stack(TC.FABRICO, 1), TC.stack(TC.POTENTIA, 1)));
+ 		*/
+
+		//Boule
+		IL.Circuit_Boul.set(           addItem(tLastID = 30051, "Circuit Boule"        , "Raw Circuit"));
+		circuit.setItemDamage(1);
+		RM.CrystallisationCrucible.addRecipeX(T, V[3],  DT[6], ST.array(OM.ingot(MT.Si             , 64*U), OM.dust(MT.Glowstone, 64*U), circuit), FL.array( MT.Si            .liquid(16*U, T)), NF, IL.Circuit_Boul.get(1));
+		circuit.setItemDamage(2);
+		RM.CrystallisationCrucible.addRecipeX(T, V[4],  DT[5], ST.array(OM.ingot(MT.Si             , 32*U), OM.dust(MT.Glowstone, 32*U), circuit), FL.array( MT.Si            .liquid(8*U, T)), NF, IL.Circuit_Boul.get(1));
+		circuit.setItemDamage(3);
+		RM.CrystallisationCrucible.addRecipeX(T, V[5],  DT[4], ST.array(OM.ingot(MT.Si             , 16*U), OM.dust(MT.Glowstone, 16*U), circuit), FL.array( MT.Si            .liquid(4*U, T)), NF, IL.Circuit_Boul.get(1));
 
 		//Wafer
-		IL.Circuit_Wafer_RAM.set(           addItem(tLastID = 30051, "Random Access Memory Chip (Wafer)"        , "Raw Circuit"));
-		IL.Circuit_Wafer_NAND.set(           addItem(tLastID = 30052, "NAND Memory Chip (Wafer)"        , "Raw Circuit"));
-		IL.Circuit_Wafer_NOR.set(           addItem(tLastID = 30053, "NOR Memory Chip (Wafer)"        , "Raw Circuit"));
+		//FL.DistW.make(1000), FL.Lubricant.make(1000)
+		IL.Circuit_Wafer_Base.set(           addItem(tLastID = 30052, "Circuit Wafer Base"        , "Raw Circuit"));
+		circuit.setItemDamage(1);
+		RM.Cutter.addRecipeX(T, V[3], DT[4], ST.array(IL.Circuit_Boul.get(1), circuit), FL.array( FL.DistW.make(3000), FL.Lubricant.make(3000)), NF, IL.Circuit_Wafer_Base.get(1));
+		circuit.setItemDamage(2);
+		RM.Cutter.addRecipeX(T, V[4], DT[3], ST.array(IL.Circuit_Boul.get(1), circuit), FL.array( FL.DistW.make(2000), FL.Lubricant.make(2000)), NF, IL.Circuit_Wafer_Base.get(2));
+		circuit.setItemDamage(3);
+		RM.Cutter.addRecipeX(T, V[5], DT[2], ST.array(IL.Circuit_Boul.get(1), circuit), FL.array( FL.DistW.make(1000), FL.Lubricant.make(1000)), NF, IL.Circuit_Wafer_Base.get(4));
+
+		IL.Circuit_Wafer_RAM.set(           addItem(tLastID = 30053, "Random Access Memory Chip (Wafer)"        , "Raw Circuit"));
+		circuit.setItemDamage(1);
+		RM.LaserEngraver    .addRecipeX(T, V[3],   DT[4], ST.array(IL.Circuit_Wafer_Base.get(4), circuit, lens.mat(MT.Ruby, 0)), IL.Circuit_Wafer_RAM.get(1));
+		circuit.setItemDamage(2);
+		RM.LaserEngraver    .addRecipeX(T, V[4],   DT[3], ST.array(IL.Circuit_Wafer_Base.get(2), circuit, lens.mat(MT.Ruby, 0)), IL.Circuit_Wafer_RAM.get(2));
+		circuit.setItemDamage(3);
+		RM.LaserEngraver    .addRecipeX(T, V[5],   DT[2], ST.array(IL.Circuit_Wafer_Base.get(1), circuit, lens.mat(MT.Ruby, 0)), IL.Circuit_Wafer_RAM.get(4));
+
+		IL.Circuit_Wafer_NAND.set(           addItem(tLastID = 30054, "NAND Memory Chip (Wafer)"        , "Raw Circuit"));
+		circuit.setItemDamage(1);
+		RM.LaserEngraver    .addRecipeX(T, V[3],   DT[4], ST.array(IL.Circuit_Wafer_Base.get(4), circuit, lens.mat(MT.Sapphire, 0)), IL.Circuit_Wafer_NAND.get(1));
+		circuit.setItemDamage(2);
+		RM.LaserEngraver    .addRecipeX(T, V[4],   DT[3], ST.array(IL.Circuit_Wafer_Base.get(2), circuit, lens.mat(MT.Sapphire, 0)), IL.Circuit_Wafer_NAND.get(2));
+		circuit.setItemDamage(3);
+		RM.LaserEngraver    .addRecipeX(T, V[5],   DT[2], ST.array(IL.Circuit_Wafer_Base.get(1), circuit, lens.mat(MT.Sapphire, 0)), IL.Circuit_Wafer_NAND.get(4));
+
+		IL.Circuit_Wafer_NOR.set(           addItem(tLastID = 30055, "NOR Memory Chip (Wafer)"        , "Raw Circuit"));
+		circuit.setItemDamage(1);
+		RM.LaserEngraver    .addRecipeX(T, V[3],   DT[4], ST.array(IL.Circuit_Wafer_Base.get(4), circuit, lens.mat(MT.Emerald, 0)), IL.Circuit_Wafer_NOR.get(1));
+		circuit.setItemDamage(2);
+		RM.LaserEngraver    .addRecipeX(T, V[4],   DT[3], ST.array(IL.Circuit_Wafer_Base.get(2), circuit, lens.mat(MT.Emerald, 0)), IL.Circuit_Wafer_NOR.get(2));
+		circuit.setItemDamage(3);
+		RM.LaserEngraver    .addRecipeX(T, V[5],   DT[2], ST.array(IL.Circuit_Wafer_Base.get(1), circuit, lens.mat(MT.Emerald, 0)), IL.Circuit_Wafer_NOR.get(4));
 
 		IL.Circuit_Wafer_ULV1.set(           addItem(tLastID = 30101, "ULV1 Chip (Wafer)"        , "Raw Circuit"));
+
 		IL.Circuit_Wafer_ULV2.set(           addItem(tLastID = 30102, "ULV2 Chip (Wafer)"        , "Raw Circuit"));
 		IL.Circuit_Wafer_ULV3.set(           addItem(tLastID = 30103, "ULV3 Chip (Wafer)"        , "Raw Circuit"));
 		IL.Circuit_Wafer_LV1.set(           addItem(tLastID = 30111, "LV1 Chip (Wafer)"        , "Raw Circuit"));

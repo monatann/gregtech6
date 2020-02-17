@@ -347,9 +347,14 @@ public enum IL implements IItemContainer {
 	*/
 
 	//Wire
-	Circuit_Wire_Copper, Circuit_Wire_Gold, Circuit_Wire_Platinum, Circuit_Wire_Magic, Circuit_Wire_Enderium, Circuit_Wire_Signalum,
+	Circuit_Wire_ULV, Circuit_Wire_LV, Circuit_Wire_MV, Circuit_Wire_HV, Circuit_Wire_EV, Circuit_Wire_IV, Circuit_Wire_LuV, Circuit_Wire_ZPM, Circuit_Wire_UV, Circuit_Wire_PUV1, Circuit_Wire_PUV2, Circuit_Wire_PUV3, Circuit_Wire_PUV4, Circuit_Wire_PUV5, Circuit_Wire_Omega, Circuit_Wire_MAX,
 
+	//Boule
+	Circuit_Boul,
+	
 	//Wafer
+	Circuit_Wafer_Base,
+	
 	Circuit_Wafer_RAM, Circuit_Wafer_NAND, Circuit_Wafer_NOR,
 
 	Circuit_Wafer_ULV1, Circuit_Wafer_ULV2, Circuit_Wafer_ULV3,

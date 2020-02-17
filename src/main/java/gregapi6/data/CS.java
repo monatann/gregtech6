@@ -321,7 +321,20 @@ public class CS {
 			536870912,//PUV5
 			2147483648L,//ΩV
 			8589934592L//MAX
+	},
+	DT       = {
+			20,//0, 1s
+			100,//1, 5s
+			200,//2, 10s
+			600,//3, 30s
+			1200,//4, 1m
+			3600,//5, 3m
+			6000,//6, 5m
+			12000,//7, 10m
+			36000,//8, 30m
+			72000//9, 1h
 	};
+
 
 	/** The short Names for the Voltages */
 	public static final String[] VN = {"ULV", "LV", "MV", "HV", "EV", "IV", "LuV", "ZPM", "UV", "PUV1", "PUV2", "PUV3", "PUV4", "PUV5", "Omega", "MAX"};
