@@ -202,7 +202,7 @@ public class CS {
 		100.0F,//bedrock-ahla
 		100.0F//ad
 	};
-	
+
 	/** The Acid Tiers for Crucible. */
 	public static final boolean[]
 	ACID_C    = {
@@ -244,7 +244,7 @@ public class CS {
 		F,//bedrock-ahla
 		T//ad
 	};
-	
+
 	/** The Machine Basic Power Tiers. */
 	public static final long[]
 	P       = {
@@ -321,19 +321,55 @@ public class CS {
 			536870912,//PUV5
 			2147483648L,//ΩV
 			8589934592L//MAX
-	},
-	DT       = {
-			20,//0, 1s
-			100,//1, 5s
-			200,//2, 10s
-			600,//3, 30s
-			1200,//4, 1m
-			3600,//5, 3m
-			6000,//6, 5m
-			12000,//7, 10m
-			36000,//8, 30m
-			72000//9, 1h
 	};
+
+	/**
+	 * The Time Tiers. <br>
+	 * 0, 1s<br>
+	 * 1, 5s<br>
+	 * 2, 10s<br>
+	 * 3, 15s<br>
+	 * 4, 20s<br>
+	 * 5, 25s<br>
+	 * 6, 30s<br>
+	 * 7, 35s<br>
+	 * 8, 40s<br>
+	 * 9, 45s<br>
+	 * 10, 50s<br>
+	 * 11, 55s<br>
+	 * 12, 1m<br>
+	 * 13, 2m<br>
+	 * 14, 3m<br>
+	 * 15, 4m<br>
+	 * 16, 5m<br>
+	 * 17, 10m<br>
+	 * 18, 30m<br>
+	 * 19, 1h
+	 *  **/
+	public static final long[]
+	DT       = {
+					20,//0, 1s
+					100,//1, 5s
+					200,//2, 10s
+					300,//3, 15s
+					400,//4, 20s
+					500,//5, 25s
+					600,//6, 30s
+					700,//7, 35s
+					800,//8, 40s
+					900,//9, 45s
+					1000,//10, 50s
+					1100,//11, 55s
+					1200,//12, 1m
+					2400,//13, 2m
+					3600,//14, 3m
+					4800,//15, 4m
+					6000,//16, 5m
+					12000,//17, 10m
+					36000,//18, 30m
+					72000//19, 1h
+			};
+
 
 
 	/** The short Names for the Voltages */

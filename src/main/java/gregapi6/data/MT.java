@@ -1297,6 +1297,9 @@ public class MT {
 	SuperconductorPUV5                = alloymachine  ( 31015, "Superconductor Base PUV5"      , 200, 200, 200, 255).put(MORTAR, MOLTEN, EXTRUDER_SIMPLE).qual(3,  6.5,    96,  2)  .aspects(TC.METALLUM, 2, TC.FABRICO, 1),
 	SuperconductorOmega                = alloymachine  ( 31016, "Superconductor Base Omega"      , 200, 200, 200, 255).put(MORTAR, MOLTEN, EXTRUDER_SIMPLE).qual(3,  6.5,    96,  2)  .aspects(TC.METALLUM, 2, TC.FABRICO, 1),
 	SuperconductorMAX                = alloymachine  ( 31017, "Superconductor Base MAX"      , 200, 200, 200, 255).put(MORTAR, MOLTEN, EXTRUDER_SIMPLE).qual(3,  6.5,    96,  2)  .aspects(TC.METALLUM, 2, TC.FABRICO, 1)
+	
+	, Polyethylene = alloymachine  ( 31030, "Polyethylene"      , 200, 200, 200, 255).put(MORTAR, MOLTEN, EXTRUDER_SIMPLE).qual(3,  6.5,    96,  2)  .aspects(TC.METALLUM, 2, TC.FABRICO, 1)
+
 	;
 
 	static {
