@@ -687,13 +687,13 @@ public class NEI_RecipeMap extends TemplateRecipeHandler {
 		if (UT.Code.stringValid(mRecipeMap.mNEISpecialValuePre) || UT.Code.stringValid(mRecipeMap.mNEISpecialValuePost))
 		drawText(10,123, mRecipeMap.mNEISpecialValuePre + (((CachedDefaultRecipe)arecipes.get(aRecipeIndex)).mRecipe.mSpecialValue * mRecipeMap.mNEISpecialValueMultiplier) + mRecipeMap.mNEISpecialValuePost, 0xFF000000);
 	}
-	
+
 	public String voltageTier(long cost) {
 		for(int i=0;i<V.length;i++) {
 			if(V[i] >= cost) {
 				return VN[i];
 			}
 		}
-		return VN[V.length];
+		return "Uncraftable";
 	}
 }
