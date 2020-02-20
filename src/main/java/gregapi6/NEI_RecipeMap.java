@@ -663,7 +663,7 @@ public class NEI_RecipeMap extends TemplateRecipeHandler {
 				drawText    (10, 73, "Costs: "  + (tDuration*tGUt) + " GU"        , 0xFF000000);
 				if (mRecipeMap.mShowVoltageAmperageInNEI) {
 					drawText(10, 83, "Usage: "  + tGUt + " GU/t"                  , 0xFF000000);
-					drawText(10, 93, "Tier: "   + tGUt / mRecipeMap.mPower + " GU", 0xFF000000);
+					drawText(10, 93, "Tier: "   + tGUt / mRecipeMap.mPower + " GU (" + voltageTier(tGUt / mRecipeMap.mPower) + ")", 0xFF000000);
 					drawText(10,103, "Power: "  + mRecipeMap.mPower               , 0xFF000000);
 				} else {
 					if (tGUt != 1)
@@ -674,7 +674,7 @@ public class NEI_RecipeMap extends TemplateRecipeHandler {
 				drawText    (10, 73, "Gain: "   + (tDuration*tGUt) + " GU"        , 0xFF000000);
 				if (mRecipeMap.mShowVoltageAmperageInNEI) {
 					drawText(10, 83, "Output: " + tGUt + " GU/t"                  , 0xFF000000);
-					drawText(10, 93, "Tier: "   + tGUt / mRecipeMap.mPower + " GU", 0xFF000000);
+					drawText(10, 93, "Tier: "   + tGUt / mRecipeMap.mPower + " GU (" + voltageTier(tGUt / mRecipeMap.mPower) + ")", 0xFF000000);
 					drawText(10,103, "Power: "  + mRecipeMap.mPower               , 0xFF000000);
 				} else {
 					if (tGUt != 1)
@@ -686,5 +686,14 @@ public class NEI_RecipeMap extends TemplateRecipeHandler {
 		drawText(10,113, "Time: " + (tDuration < 1200 ? tDuration + " ticks" : tDuration < 36000 ? (tDuration/20) + " secs" : (tDuration/1200) + " mins"), 0xFF000000);
 		if (UT.Code.stringValid(mRecipeMap.mNEISpecialValuePre) || UT.Code.stringValid(mRecipeMap.mNEISpecialValuePost))
 		drawText(10,123, mRecipeMap.mNEISpecialValuePre + (((CachedDefaultRecipe)arecipes.get(aRecipeIndex)).mRecipe.mSpecialValue * mRecipeMap.mNEISpecialValueMultiplier) + mRecipeMap.mNEISpecialValuePost, 0xFF000000);
+	}
+	
+	public String voltageTier(long cost) {
+		for(int i=0;i<V.length;i++) {
+			if(V[i] >= cost) {
+				return VN[i];
+			}
+		}
+		return VN[V.length];
 	}
 }
