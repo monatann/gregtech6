@@ -732,47 +732,48 @@ public class MultiItemTechnological extends MultiItemRandom {
 		//Boule
 		IL.Circuit_Boul.set(           addItem(tLastID = 30051, "Circuit Boule"        , "Raw Circuit"));
 		circuit.setItemDamage(1);
-		RM.CrystallisationCrucible.addRecipeX(T, V[3],  DT[6], ST.array(OM.ingot(MT.Si             , 64*U), OM.dust(MT.Glowstone, 64*U), circuit), FL.array( MT.Si            .liquid(16*U, T)), NF, IL.Circuit_Boul.get(1));
+		RM.CrystallisationCrucible.addRecipeX(T, VR[3],  DT[6], ST.array(OM.ingot(MT.Si             , 64*U), OM.dust(MT.Glowstone, 64*U), circuit), FL.array( MT.Si            .liquid(16*U, T)), NF, IL.Circuit_Boul.get(1));
 		circuit.setItemDamage(2);
-		RM.CrystallisationCrucible.addRecipeX(T, V[4],  DT[5], ST.array(OM.ingot(MT.Si             , 32*U), OM.dust(MT.Glowstone, 32*U), circuit), FL.array( MT.Si            .liquid(8*U, T)), NF, IL.Circuit_Boul.get(1));
+		RM.CrystallisationCrucible.addRecipeX(T, VR[4],  DT[5], ST.array(OM.ingot(MT.Si             , 32*U), OM.dust(MT.Glowstone, 32*U), circuit), FL.array( MT.Si            .liquid(8*U, T)), NF, IL.Circuit_Boul.get(1));
 		circuit.setItemDamage(3);
-		RM.CrystallisationCrucible.addRecipeX(T, V[5],  DT[4], ST.array(OM.ingot(MT.Si             , 16*U), OM.dust(MT.Glowstone, 16*U), circuit), FL.array( MT.Si            .liquid(4*U, T)), NF, IL.Circuit_Boul.get(1));
+		RM.CrystallisationCrucible.addRecipeX(T, VR[5],  DT[4], ST.array(OM.ingot(MT.Si             , 16*U), OM.dust(MT.Glowstone, 16*U), circuit), FL.array( MT.Si            .liquid(4*U, T)), NF, IL.Circuit_Boul.get(1));
 
 		//Wafer
 		//FL.DistW.make(1000), FL.Lubricant.make(1000)
 		IL.Circuit_Wafer_Base.set(           addItem(tLastID = 30052, "Circuit Wafer Base"        , "Raw Circuit"));
 		circuit.setItemDamage(1);
-		RM.Cutter.addRecipeX(T, V[3], DT[4], ST.array(IL.Circuit_Boul.get(1), circuit), FL.array( FL.DistW.make(3000), FL.Lubricant.make(3000)), NF, IL.Circuit_Wafer_Base.get(1));
+		RM.Cutter.addRecipeX(T, VR[3], DT[4], ST.array(IL.Circuit_Boul.get(1), circuit), FL.array( FL.DistW.make(3000), FL.Lubricant.make(3000)), NF, IL.Circuit_Wafer_Base.get(1));
 		circuit.setItemDamage(2);
-		RM.Cutter.addRecipeX(T, V[4], DT[4], ST.array(IL.Circuit_Boul.get(1), circuit), FL.array( FL.DistW.make(2000), FL.Lubricant.make(2000)), NF, IL.Circuit_Wafer_Base.get(2));
+		RM.Cutter.addRecipeX(T, VR[4], DT[4], ST.array(IL.Circuit_Boul.get(1), circuit), FL.array( FL.DistW.make(2000), FL.Lubricant.make(2000)), NF, IL.Circuit_Wafer_Base.get(2));
 		circuit.setItemDamage(3);
-		RM.Cutter.addRecipeX(T, V[5], DT[4], ST.array(IL.Circuit_Boul.get(1), circuit), FL.array( FL.DistW.make(1000), FL.Lubricant.make(1000)), NF, IL.Circuit_Wafer_Base.get(3));
+		RM.Cutter.addRecipeX(T, VR[5], DT[4], ST.array(IL.Circuit_Boul.get(1), circuit), FL.array( FL.DistW.make(1000), FL.Lubricant.make(1000)), NF, IL.Circuit_Wafer_Base.get(3));
 
 		IL.Circuit_Wafer_RAM.set(           addItem(tLastID = 30053, "Random Access Memory Chip (Wafer)"        , "Raw Circuit"));
 		circuit.setItemDamage(1);
-		RM.LaserEngraver    .addRecipeX(T, V[3],   DT[4], ST.array(IL.Circuit_Wafer_Base.get(4), circuit, lens.mat(MT.Ruby, 0)), IL.Circuit_Wafer_RAM.get(1));
+		RM.LaserEngraver    .addRecipeX(T, VR[3],   DT[4], ST.array(IL.Circuit_Wafer_Base.get(4), circuit, lens.mat(MT.Ruby, 0)), IL.Circuit_Wafer_RAM.get(1));
 		circuit.setItemDamage(2);
-		RM.LaserEngraver    .addRecipeX(T, V[4],   DT[3], ST.array(IL.Circuit_Wafer_Base.get(2), circuit, lens.mat(MT.Ruby, 0)), IL.Circuit_Wafer_RAM.get(2));
+		RM.LaserEngraver    .addRecipeX(T, VR[4],   DT[3], ST.array(IL.Circuit_Wafer_Base.get(2), circuit, lens.mat(MT.Ruby, 0)), IL.Circuit_Wafer_RAM.get(2));
 		circuit.setItemDamage(3);
-		RM.LaserEngraver    .addRecipeX(T, V[5],   DT[2], ST.array(IL.Circuit_Wafer_Base.get(1), circuit, lens.mat(MT.Ruby, 0)), IL.Circuit_Wafer_RAM.get(4));
+		RM.LaserEngraver    .addRecipeX(T, VR[5],   DT[2], ST.array(IL.Circuit_Wafer_Base.get(1), circuit, lens.mat(MT.Ruby, 0)), IL.Circuit_Wafer_RAM.get(4));
 
 		IL.Circuit_Wafer_NAND.set(           addItem(tLastID = 30054, "NAND Memory Chip (Wafer)"        , "Raw Circuit"));
 		circuit.setItemDamage(1);
-		RM.LaserEngraver    .addRecipeX(T, V[3],   DT[4], ST.array(IL.Circuit_Wafer_Base.get(4), circuit, lens.mat(MT.Sapphire, 0)), IL.Circuit_Wafer_NAND.get(1));
+		RM.LaserEngraver    .addRecipeX(T, VR[3],   DT[4], ST.array(IL.Circuit_Wafer_Base.get(4), circuit, lens.mat(MT.Sapphire, 0)), IL.Circuit_Wafer_NAND.get(1));
 		circuit.setItemDamage(2);
-		RM.LaserEngraver    .addRecipeX(T, V[4],   DT[3], ST.array(IL.Circuit_Wafer_Base.get(2), circuit, lens.mat(MT.Sapphire, 0)), IL.Circuit_Wafer_NAND.get(2));
+		RM.LaserEngraver    .addRecipeX(T, VR[4],   DT[3], ST.array(IL.Circuit_Wafer_Base.get(2), circuit, lens.mat(MT.Sapphire, 0)), IL.Circuit_Wafer_NAND.get(2));
 		circuit.setItemDamage(3);
-		RM.LaserEngraver    .addRecipeX(T, V[5],   DT[2], ST.array(IL.Circuit_Wafer_Base.get(1), circuit, lens.mat(MT.Sapphire, 0)), IL.Circuit_Wafer_NAND.get(4));
+		RM.LaserEngraver    .addRecipeX(T, VR[5],   DT[2], ST.array(IL.Circuit_Wafer_Base.get(1), circuit, lens.mat(MT.Sapphire, 0)), IL.Circuit_Wafer_NAND.get(4));
 
 		IL.Circuit_Wafer_NOR.set(           addItem(tLastID = 30055, "NOR Memory Chip (Wafer)"        , "Raw Circuit"));
 		circuit.setItemDamage(1);
-		RM.LaserEngraver    .addRecipeX(T, V[3],   DT[4], ST.array(IL.Circuit_Wafer_Base.get(4), circuit, lens.mat(MT.Emerald, 0)), IL.Circuit_Wafer_NOR.get(1));
+		RM.LaserEngraver    .addRecipeX(T, VR[3],   DT[4], ST.array(IL.Circuit_Wafer_Base.get(4), circuit, lens.mat(MT.Emerald, 0)), IL.Circuit_Wafer_NOR.get(1));
 		circuit.setItemDamage(2);
-		RM.LaserEngraver    .addRecipeX(T, V[4],   DT[3], ST.array(IL.Circuit_Wafer_Base.get(2), circuit, lens.mat(MT.Emerald, 0)), IL.Circuit_Wafer_NOR.get(2));
+		RM.LaserEngraver    .addRecipeX(T, VR[4],   DT[3], ST.array(IL.Circuit_Wafer_Base.get(2), circuit, lens.mat(MT.Emerald, 0)), IL.Circuit_Wafer_NOR.get(2));
 		circuit.setItemDamage(3);
-		RM.LaserEngraver    .addRecipeX(T, V[5],   DT[2], ST.array(IL.Circuit_Wafer_Base.get(1), circuit, lens.mat(MT.Emerald, 0)), IL.Circuit_Wafer_NOR.get(4));
+		RM.LaserEngraver    .addRecipeX(T, VR[5],   DT[2], ST.array(IL.Circuit_Wafer_Base.get(1), circuit, lens.mat(MT.Emerald, 0)), IL.Circuit_Wafer_NOR.get(4));
 
 		IL.Circuit_Wafer_ULV1.set(           addItem(tLastID = 30101, "ULV1 Chip (Wafer)"        , "Raw Circuit"));
+		
 		IL.Circuit_Wafer_ULV2.set(           addItem(tLastID = 30102, "ULV2 Chip (Wafer)"        , "Raw Circuit"));
 		IL.Circuit_Wafer_ULV3.set(           addItem(tLastID = 30103, "ULV3 Chip (Wafer)"        , "Raw Circuit"));
 		IL.Circuit_Wafer_ULV4.set(           addItem(tLastID = 30104, "ULV4 Chip (Wafer)"        , "Raw Circuit"));
@@ -840,7 +841,7 @@ public class MultiItemTechnological extends MultiItemRandom {
 		IL.Circuit_Chip_RAM.set(           addItem(tLastID = 30551, "Random Access Memory Chip"        , "Integrated Circuit"));
 		IL.Circuit_Chip_NAND.set(           addItem(tLastID = 30552, "NAND Memory Chip"        , "Integrated Circuit"));
 		IL.Circuit_Chip_NOR.set(           addItem(tLastID = 30553, "NOR Memory Chip"        , "Integrated Circuit"));
-		
+
 		IL.Circuit_Chip_ULV1.set(           addItem(tLastID = 30601, "ULV1 Chip"        , "Integrated Circuit"));
 		IL.Circuit_Chip_ULV2.set(           addItem(tLastID = 30602, "ULV2 Chip"        , "Integrated Circuit"));
 		IL.Circuit_Chip_ULV3.set(           addItem(tLastID = 30603, "ULV3 Chip"        , "Integrated Circuit"));
@@ -905,71 +906,337 @@ public class MultiItemTechnological extends MultiItemRandom {
 		IL.Circuit_Chip_MAX3.set(           addItem(tLastID = 30753, "MAX3 Chip"        , "Integrated Circuit"));
 		IL.Circuit_Chip_MAX4.set(           addItem(tLastID = 30754, "MAX4 Chip"        , "Integrated Circuit"));
 
-		//Board
-		IL.Circuit_Board_ULV1.set(           addItem(tLastID = 31201, "ULV1 Board"        , "Circuit Board"));
-		IL.Circuit_Board_ULV2.set(           addItem(tLastID = 31202, "ULV2 Board"        , "Circuit Board"));
-		IL.Circuit_Board_ULV3.set(           addItem(tLastID = 31203, "ULV3 Board"        , "Circuit Board"));
-		IL.Circuit_Board_ULV4.set(           addItem(tLastID = 31204, "ULV4 Board"        , "Circuit Board"));
-		IL.Circuit_Board_LV1.set(           addItem(tLastID = 31211, "LV1 Board"        , "Circuit Board"));
-		IL.Circuit_Board_LV2.set(           addItem(tLastID = 31212, "LV2 Board"        , "Circuit Board"));
-		IL.Circuit_Board_LV3.set(           addItem(tLastID = 31213, "LV3 Board"        , "Circuit Board"));
-		IL.Circuit_Board_LV4.set(           addItem(tLastID = 31214, "LV4 Board"        , "Circuit Board"));
-		IL.Circuit_Board_MV1.set(           addItem(tLastID = 31221, "MV1 Board"        , "Circuit Board"));
-		IL.Circuit_Board_MV2.set(           addItem(tLastID = 31222, "MV2 Board"        , "Circuit Board"));
-		IL.Circuit_Board_MV3.set(           addItem(tLastID = 31223, "MV3 Board"        , "Circuit Board"));
-		IL.Circuit_Board_MV4.set(           addItem(tLastID = 31224, "MV4 Board"        , "Circuit Board"));
-		IL.Circuit_Board_HV1.set(           addItem(tLastID = 31231, "HV1 Board"        , "Circuit Board"));
-		IL.Circuit_Board_HV2.set(           addItem(tLastID = 31232, "HV2 Board"        , "Circuit Board"));
-		IL.Circuit_Board_HV3.set(           addItem(tLastID = 31233, "HV3 Board"        , "Circuit Board"));
-		IL.Circuit_Board_HV4.set(           addItem(tLastID = 31234, "HV4 Board"        , "Circuit Board"));
-		IL.Circuit_Board_EV1.set(           addItem(tLastID = 31241, "EV1 Board"        , "Circuit Board"));
-		IL.Circuit_Board_EV2.set(           addItem(tLastID = 31242, "EV2 Board"        , "Circuit Board"));
-		IL.Circuit_Board_EV3.set(           addItem(tLastID = 31243, "EV3 Board"        , "Circuit Board"));
-		IL.Circuit_Board_EV4.set(           addItem(tLastID = 31244, "EV4 Board"        , "Circuit Board"));
-		IL.Circuit_Board_IV1.set(           addItem(tLastID = 31251, "IV1 Board"        , "Circuit Board"));
-		IL.Circuit_Board_IV2.set(           addItem(tLastID = 31252, "IV2 Board"        , "Circuit Board"));
-		IL.Circuit_Board_IV3.set(           addItem(tLastID = 31253, "IV3 Board"        , "Circuit Board"));
-		IL.Circuit_Board_IV4.set(           addItem(tLastID = 31254, "IV4 Board"        , "Circuit Board"));
-		IL.Circuit_Board_LuV1.set(           addItem(tLastID = 31261, "LuV1 Board"        , "Circuit Board"));
-		IL.Circuit_Board_LuV2.set(           addItem(tLastID = 31262, "LuV2 Board"        , "Circuit Board"));
-		IL.Circuit_Board_LuV3.set(           addItem(tLastID = 31263, "LuV3 Board"        , "Circuit Board"));
-		IL.Circuit_Board_LuV4.set(           addItem(tLastID = 31264, "LuV4 Board"        , "Circuit Board"));
-		IL.Circuit_Board_ZPM1.set(           addItem(tLastID = 31271, "ZPM1 Board"        , "Circuit Board"));
-		IL.Circuit_Board_ZPM2.set(           addItem(tLastID = 31272, "ZPM2 Board"        , "Circuit Board"));
-		IL.Circuit_Board_ZPM3.set(           addItem(tLastID = 31273, "ZPM3 Board"        , "Circuit Board"));
-		IL.Circuit_Board_ZPM4.set(           addItem(tLastID = 31274, "ZPM4 Board"        , "Circuit Board"));
-		IL.Circuit_Board_UV1.set(           addItem(tLastID = 31281, "UV1 Board"        , "Circuit Board"));
-		IL.Circuit_Board_UV2.set(           addItem(tLastID = 31282, "UV2 Board"        , "Circuit Board"));
-		IL.Circuit_Board_UV3.set(           addItem(tLastID = 31283, "UV3 Board"        , "Circuit Board"));
-		IL.Circuit_Board_UV4.set(           addItem(tLastID = 31284, "UV4 Board"        , "Circuit Board"));
-		IL.Circuit_Board_PUV11.set(           addItem(tLastID = 31291, "PUV11 Board"        , "Circuit Board"));
-		IL.Circuit_Board_PUV12.set(           addItem(tLastID = 31292, "PUV12 Board"        , "Circuit Board"));
-		IL.Circuit_Board_PUV13.set(           addItem(tLastID = 31293, "PUV13 Board"        , "Circuit Board"));
-		IL.Circuit_Board_PUV14.set(           addItem(tLastID = 31294, "PUV14 Board"        , "Circuit Board"));
-		IL.Circuit_Board_PUV21.set(           addItem(tLastID = 31301, "PUV21 Board"        , "Circuit Board"));
-		IL.Circuit_Board_PUV22.set(           addItem(tLastID = 31302, "PUV22 Board"        , "Circuit Board"));
-		IL.Circuit_Board_PUV23.set(           addItem(tLastID = 31303, "PUV23 Board"        , "Circuit Board"));
-		IL.Circuit_Board_PUV24.set(           addItem(tLastID = 31304, "PUV24 Board"        , "Circuit Board"));
-		IL.Circuit_Board_PUV31.set(           addItem(tLastID = 31311, "PUV31 Board"        , "Circuit Board"));
-		IL.Circuit_Board_PUV32.set(           addItem(tLastID = 31312, "PUV32 Board"        , "Circuit Board"));
-		IL.Circuit_Board_PUV33.set(           addItem(tLastID = 31313, "PUV33 Board"        , "Circuit Board"));
-		IL.Circuit_Board_PUV34.set(           addItem(tLastID = 31314, "PUV34 Board"        , "Circuit Board"));
-		IL.Circuit_Board_PUV41.set(           addItem(tLastID = 31321, "PUV41 Board"        , "Circuit Board"));
-		IL.Circuit_Board_PUV42.set(           addItem(tLastID = 31322, "PUV42 Board"        , "Circuit Board"));
-		IL.Circuit_Board_PUV43.set(           addItem(tLastID = 31323, "PUV43 Board"        , "Circuit Board"));
-		IL.Circuit_Board_PUV44.set(           addItem(tLastID = 31324, "PUV44 Board"        , "Circuit Board"));
-		IL.Circuit_Board_PUV51.set(           addItem(tLastID = 31331, "PUV51 Board"        , "Circuit Board"));
-		IL.Circuit_Board_PUV52.set(           addItem(tLastID = 31332, "PUV52 Board"        , "Circuit Board"));
-		IL.Circuit_Board_PUV53.set(           addItem(tLastID = 31333, "PUV53 Board"        , "Circuit Board"));
-		IL.Circuit_Board_PUV54.set(           addItem(tLastID = 31334, "PUV54 Board"        , "Circuit Board"));
-		IL.Circuit_Board_Omega1.set(           addItem(tLastID = 31341, "Omega1 Board"        , "Circuit Board"));
-		IL.Circuit_Board_Omega2.set(           addItem(tLastID = 31342, "Omega2 Board"        , "Circuit Board"));
-		IL.Circuit_Board_Omega3.set(           addItem(tLastID = 33143, "Omega3 Board"        , "Circuit Board"));
-		IL.Circuit_Board_Omega4.set(           addItem(tLastID = 33144, "Omega4 Board"        , "Circuit Board"));
-		IL.Circuit_Board_MAX1.set(           addItem(tLastID = 31351, "MAX1 Board"        , "Circuit Board"));
-		IL.Circuit_Board_MAX2.set(           addItem(tLastID = 31352, "MAX2 Board"        , "Circuit Board"));
-		IL.Circuit_Board_MAX3.set(           addItem(tLastID = 31353, "MAX3 Board"        , "Circuit Board"));
-		IL.Circuit_Board_MAX4.set(           addItem(tLastID = 31354, "MAX4 Board"        , "Circuit Board"));
+		//Circuit Part others
+		IL.Circuit_Resistor.set(           addItem(tLastID = 31601, "Resister"        , "Circuit Part"));
+		IL.Circuit_Diode.set(           addItem(tLastID = 31602, "Diode"        , "Circuit Part"));
+		IL.Circuit_Transistor.set(           addItem(tLastID = 31603, "Transistor"        , "Circuit Part"));
+		IL.Circuit_Capacitor.set(           addItem(tLastID = 31604, "Capacitor"        , "Circuit Part"));
+		IL.Circuit_SmallCoil.set(           addItem(tLastID = 31605, "Small Coil"        , "Circuit Part"));
+
+		IL.Circuit_SMD_Resistor.set(           addItem(tLastID = 31611, "SMD Register"        , "Circuit Part"));
+		IL.Circuit_SMD_Diode.set(           addItem(tLastID = 31612, "SMD Diode"        , "Circuit Part"));
+		IL.Circuit_SMD_Transistor.set(           addItem(tLastID = 31613, "SMD Transister"        , "Circuit Part"));
+		IL.Circuit_SMD_Capacitor.set(           addItem(tLastID = 31614, "SMD Capacitor"        , "Circuit Part"));
+
+		//Circuit Part
+		//ULV-1
+		IL.Circuit_Part_ULV1.set(           addItem(tLastID = 31651, "ULV1 Part"        , "Circuit Part"));
+		RM.Press.addRecipeX(T, F, F, F, T, VR[0], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[0], 8) , OP.dust    .mat(MT.Redstone, 1), OP.plateGem.mat(MT.Si           , 1)), IL.Circuit_Part_ULV1        .get(1));
+
+		//LV-3
+		IL.Circuit_Part_ULV2.set(           addItem(tLastID = 31652, "ULV2 Part"        , "Circuit Part"));
+		circuit.setItemDamage(2);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[1], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[0], 16) , OP.dust    .mat(MT.Redstone, 2), OP.plateGem.mat(MT.Si           , 2), circuit), IL.Circuit_Part_ULV2        .get(1));
+
+		//MV-6
+		IL.Circuit_Part_ULV3.set(           addItem(tLastID = 31653, "ULV3 Part"        , "Circuit Part"));
+		circuit.setItemDamage(3);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[2], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[0], 32) , OP.dust    .mat(MT.Redstone, 4), OP.plateGem.mat(MT.Si           , 4), circuit), IL.Circuit_Part_ULV3        .get(1));
+
+		//HV-10
+		IL.Circuit_Part_ULV4.set(           addItem(tLastID = 31654, "ULV4 Part"        , "Circuit Part"));
+		circuit.setItemDamage(4);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[3], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[0], 64) , OP.dust    .mat(MT.Redstone, 8), OP.plateGem.mat(MT.Si           , 8), circuit), IL.Circuit_Part_ULV4        .get(1));
+
+		//ULV-2
+		IL.Circuit_Part_LV1.set(           addItem(tLastID = 31661, "LV1 Part"        , "Circuit Part"));
+		circuit.setItemDamage(1);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[0], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[1], 8) , OP.dust    .mat(MT.Redstone, 2), OP.plateGem.mat(MT.Si           , 2), circuit), IL.Circuit_Part_LV1        .get(1));
+		
+		//LV-4
+		IL.Circuit_Part_LV2.set(           addItem(tLastID = 31662, "LV2 Part"        , "Circuit Part"));
+		circuit.setItemDamage(2);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[1], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[1], 16) , OP.dust    .mat(MT.Redstone, 4), OP.plateGem.mat(MT.Si           , 4), circuit), IL.Circuit_Part_LV2        .get(1));
+
+		//MV-7
+		IL.Circuit_Part_LV3.set(           addItem(tLastID = 31663, "LV3 Part"        , "Circuit Part"));
+		circuit.setItemDamage(3);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[2], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[1], 32) , OP.dust    .mat(MT.Redstone, 8), OP.plateGem.mat(MT.Si           , 8), circuit), IL.Circuit_Part_LV3        .get(1));
+
+		//HV-11
+		IL.Circuit_Part_LV4.set(           addItem(tLastID = 31664, "LV4 Part"        , "Circuit Part"));
+		circuit.setItemDamage(4);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[3], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[1], 64) , OP.dust    .mat(MT.Redstone, 16), OP.plateGem.mat(MT.Si           , 16), circuit), IL.Circuit_Part_LV4        .get(1));
+
+		//LV-5
+		IL.Circuit_Part_MV1.set(           addItem(tLastID = 31671, "MV1 Part"        , "Circuit Part"));
+		circuit.setItemDamage(1);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[1], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[2], 8) , OP.dust    .mat(MT.Redstone, 4), OP.plateGem.mat(MT.Si           , 4), circuit), IL.Circuit_Part_MV1        .get(1));
+
+		//MV-8
+		IL.Circuit_Part_MV2.set(           addItem(tLastID = 31672, "MV2 Part"        , "Circuit Part"));
+		circuit.setItemDamage(2);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[2], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[2], 16) , OP.dust    .mat(MT.Redstone, 8), OP.plateGem.mat(MT.Si           , 8), circuit), IL.Circuit_Part_MV2        .get(1));
+		
+		//HV-12
+		IL.Circuit_Part_MV3.set(           addItem(tLastID = 31673, "MV3 Part"        , "Circuit Part"));
+		circuit.setItemDamage(3);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[3], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[2], 32) , OP.dust    .mat(MT.Redstone, 16), OP.plateGem.mat(MT.Si           , 16), circuit), IL.Circuit_Part_MV3        .get(1));
+		
+		//EV-15
+		IL.Circuit_Part_MV4.set(           addItem(tLastID = 31674, "MV4 Part"        , "Circuit Part"));
+		circuit.setItemDamage(4);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[4], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[2], 64) , OP.dust    .mat(MT.Redstone, 32), OP.plateGem.mat(MT.Si           , 32), circuit), IL.Circuit_Part_MV4        .get(1));
+		
+		//MV-9
+		IL.Circuit_Part_HV1.set(           addItem(tLastID = 31681, "HV1 Part"        , "Circuit Part"));
+		circuit.setItemDamage(1);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[2], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[3], 8) , OP.dust    .mat(MT.Glowstone, 8), OP.plateGem.mat(MT.Si           , 8), circuit), IL.Circuit_Part_HV1        .get(1));
+
+		//HV-13
+		IL.Circuit_Part_HV2.set(           addItem(tLastID = 31682, "HV2 Part"        , "Circuit Part"));
+		circuit.setItemDamage(2);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[3], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[3], 16) , OP.dust    .mat(MT.Glowstone, 16), OP.plateGem.mat(MT.Si           , 16), circuit), IL.Circuit_Part_HV2        .get(1));
+
+		//EV-16
+		IL.Circuit_Part_HV3.set(           addItem(tLastID = 31683, "HV3 Part"        , "Circuit Part"));
+		circuit.setItemDamage(3);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[4], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[3], 32) , OP.dust    .mat(MT.Glowstone, 32), OP.plateGem.mat(MT.Si           , 32), circuit), IL.Circuit_Part_HV3        .get(1));
+		
+		//IV-19
+		IL.Circuit_Part_HV4.set(           addItem(tLastID = 31684, "HV4 Part"        , "Circuit Part"));
+		circuit.setItemDamage(4);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[4], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[3], 64) , OP.dust    .mat(MT.Glowstone, 64), OP.plateGem.mat(MT.Si           , 64), circuit), IL.Circuit_Part_HV4        .get(1));
+		
+		//HV-14
+		IL.Circuit_Part_EV1.set(           addItem(tLastID = 31691, "EV1 Part"        , "Circuit Part"));
+		circuit.setItemDamage(1);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[3], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[4], 8) , OP.dust    .mat(MT.Ti, 1), OP.plateGem.mat(MT.RedstoneAlloy           , 1), circuit), IL.Circuit_Part_EV1        .get(1));
+
+		//EV-17
+		IL.Circuit_Part_EV2.set(           addItem(tLastID = 31692, "EV2 Part"        , "Circuit Part"));
+		circuit.setItemDamage(2);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[4], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[4], 16) , OP.dust    .mat(MT.Ti, 2), OP.plateGem.mat(MT.RedstoneAlloy           , 2), circuit), IL.Circuit_Part_EV2        .get(1));
+
+		//IV-20
+		IL.Circuit_Part_EV3.set(           addItem(tLastID = 31693, "EV3 Part"        , "Circuit Part"));
+		circuit.setItemDamage(3);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[5], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[4], 32) , OP.dust    .mat(MT.Ti, 4), OP.plateGem.mat(MT.RedstoneAlloy           , 4), circuit), IL.Circuit_Part_EV3        .get(1));
+
+		//LuV-23
+		IL.Circuit_Part_EV4.set(           addItem(tLastID = 31694, "EV4 Part"        , "Circuit Part"));
+		circuit.setItemDamage(4);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[6], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[4], 64) , OP.dust    .mat(MT.Ti, 8), OP.plateGem.mat(MT.RedstoneAlloy           , 8), circuit), IL.Circuit_Part_EV4        .get(1));
+
+		//EV-18
+		IL.Circuit_Part_IV1.set(           addItem(tLastID = 31701, "IV1 Part"        , "Circuit Part"));
+		circuit.setItemDamage(1);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[4], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[5], 8) , OP.dust    .mat(MT.Ti, 2), OP.plateGem.mat(MT.RedstoneAlloy           , 2), circuit), IL.Circuit_Part_IV1        .get(1));
+
+		//IV-21
+		IL.Circuit_Part_IV2.set(           addItem(tLastID = 31702, "IV2 Part"        , "Circuit Part"));
+		circuit.setItemDamage(2);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[5], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[5], 16) , OP.dust    .mat(MT.Ti, 4), OP.plateGem.mat(MT.RedstoneAlloy           , 4), circuit), IL.Circuit_Part_IV2        .get(1));
+		
+		//LuV-24
+		IL.Circuit_Part_IV3.set(           addItem(tLastID = 31703, "IV3 Part"        , "Circuit Part"));
+		circuit.setItemDamage(3);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[6], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[5], 32) , OP.dust    .mat(MT.Ti, 8), OP.plateGem.mat(MT.RedstoneAlloy           , 8), circuit), IL.Circuit_Part_IV3        .get(1));
+		
+		//ZPM-27
+		IL.Circuit_Part_IV4.set(           addItem(tLastID = 31704, "IV4 Part"        , "Circuit Part"));
+		circuit.setItemDamage(4);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[7], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[5], 64) , OP.dust    .mat(MT.Ti, 16), OP.plateGem.mat(MT.RedstoneAlloy           , 16), circuit), IL.Circuit_Part_IV4        .get(1));
+		
+		//IV-22
+		IL.Circuit_Part_LuV1.set(           addItem(tLastID = 31711, "LuV1 Part"        , "Circuit Part"));
+		circuit.setItemDamage(1);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[5], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[6], 8) , OP.dust    .mat(MT.Ti, 4), OP.plateGem.mat(MT.RedstoneAlloy           , 4), circuit), IL.Circuit_Part_LuV1        .get(1));
+
+		//LuV-25
+		IL.Circuit_Part_LuV2.set(           addItem(tLastID = 31712, "LuV2 Part"        , "Circuit Part"));
+		circuit.setItemDamage(2);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[6], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[6], 16) , OP.dust    .mat(MT.Ti, 8), OP.plateGem.mat(MT.RedstoneAlloy           , 8), circuit), IL.Circuit_Part_LuV2        .get(1));
+
+		//ZPM-28
+		IL.Circuit_Part_LuV3.set(           addItem(tLastID = 31713, "LuV3 Part"        , "Circuit Part"));
+		circuit.setItemDamage(3);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[7], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[6], 32) , OP.dust    .mat(MT.Ti, 16), OP.plateGem.mat(MT.RedstoneAlloy           , 16), circuit), IL.Circuit_Part_LuV3        .get(1));
+
+		//UV-31
+		IL.Circuit_Part_LuV4.set(           addItem(tLastID = 31714, "LuV4 Part"        , "Circuit Part"));
+		circuit.setItemDamage(4);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[8], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[6], 64) , OP.dust    .mat(MT.Ti, 32), OP.plateGem.mat(MT.RedstoneAlloy           , 32), circuit), IL.Circuit_Part_LuV4        .get(1));
+
+		//LuV-26
+		IL.Circuit_Part_ZPM1.set(           addItem(tLastID = 31721, "ZPM1 Part"        , "Circuit Part"));
+		circuit.setItemDamage(1);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[6], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[7], 8) , OP.dust    .mat(MT.Ti, 8), OP.plateGem.mat(MT.RedstoneAlloy           , 8), circuit), IL.Circuit_Part_ZPM1        .get(1));
+
+		//ZPM-29
+		IL.Circuit_Part_ZPM2.set(           addItem(tLastID = 31722, "ZPM2 Part"        , "Circuit Part"));
+		circuit.setItemDamage(2);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[7], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[7], 16) , OP.dust    .mat(MT.Ti, 16), OP.plateGem.mat(MT.RedstoneAlloy           , 16), circuit), IL.Circuit_Part_ZPM2        .get(1));
+
+		//UV-32
+		IL.Circuit_Part_ZPM3.set(           addItem(tLastID = 31723, "ZPM3 Part"        , "Circuit Part"));
+		circuit.setItemDamage(3);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[8], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[7], 32) , OP.dust    .mat(MT.Ti, 32), OP.plateGem.mat(MT.RedstoneAlloy           , 32), circuit), IL.Circuit_Part_ZPM3        .get(1));
+
+		//PUV1-35
+		IL.Circuit_Part_ZPM4.set(           addItem(tLastID = 31724, "ZPM4 Part"        , "Circuit Part"));
+		circuit.setItemDamage(4);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[9], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[7], 64) , OP.dust    .mat(MT.Ti, 64), OP.plateGem.mat(MT.RedstoneAlloy           , 64), circuit), IL.Circuit_Part_ZPM4        .get(1));
+
+		//ZPM-30
+		IL.Circuit_Part_UV1.set(           addItem(tLastID = 31731, "UV1 Part"        , "Circuit Part"));
+		circuit.setItemDamage(1);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[7], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[8], 8) , OP.dust    .mat(MT.Pt, 1), OP.plateGem.mat(MT.Ruby           , 1), circuit), IL.Circuit_Part_UV1        .get(1));
+
+		//UV-33
+		IL.Circuit_Part_UV2.set(           addItem(tLastID = 31732, "UV2 Part"        , "Circuit Part"));
+		circuit.setItemDamage(2);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[8], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[8], 16) , OP.dust    .mat(MT.Pt, 2), OP.plateGem.mat(MT.Ruby           , 2), circuit), IL.Circuit_Part_UV2        .get(1));
+
+		//PUV1-36
+		IL.Circuit_Part_UV3.set(           addItem(tLastID = 31733, "UV3 Part"        , "Circuit Part"));
+		circuit.setItemDamage(3);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[9], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[8], 32) , OP.dust    .mat(MT.Pt, 4), OP.plateGem.mat(MT.Ruby           , 4), circuit), IL.Circuit_Part_UV3        .get(1));
+
+		//PUV2-39
+		IL.Circuit_Part_UV4.set(           addItem(tLastID = 31734, "UV4 Part"        , "Circuit Part"));
+		circuit.setItemDamage(4);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[10], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[8], 64) , OP.dust    .mat(MT.Pt, 8), OP.plateGem.mat(MT.Ruby           , 8), circuit), IL.Circuit_Part_UV4        .get(1));
+
+		//UV-34
+		IL.Circuit_Part_PUV11.set(           addItem(tLastID = 31741, "PUV11 Part"        , "Circuit Part"));
+		circuit.setItemDamage(1);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[8], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[9], 8) , OP.dust    .mat(MT.Pt, 2), OP.plateGem.mat(MT.Ruby           , 2), circuit), IL.Circuit_Part_PUV11        .get(1));
+
+		//PUV1-37
+		IL.Circuit_Part_PUV12.set(           addItem(tLastID = 31742, "PUV12 Part"        , "Circuit Part"));
+		circuit.setItemDamage(2);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[9], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[9], 16) , OP.dust    .mat(MT.Pt, 4), OP.plateGem.mat(MT.Ruby           , 4), circuit), IL.Circuit_Part_PUV12        .get(1));
+
+		//PUV2-40
+		IL.Circuit_Part_PUV13.set(           addItem(tLastID = 31743, "PUV13 Part"        , "Circuit Part"));
+		circuit.setItemDamage(3);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[10], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[9], 32) , OP.dust    .mat(MT.Pt, 8), OP.plateGem.mat(MT.Ruby           , 8), circuit), IL.Circuit_Part_PUV13        .get(1));
+
+		//PUV3-43
+		IL.Circuit_Part_PUV14.set(           addItem(tLastID = 31744, "PUV14 Part"        , "Circuit Part"));
+		circuit.setItemDamage(4);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[11], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[9], 64) , OP.dust    .mat(MT.Pt, 16), OP.plateGem.mat(MT.Ruby           , 16), circuit), IL.Circuit_Part_PUV14        .get(1));
+
+		//PUV1-38
+		IL.Circuit_Part_PUV21.set(           addItem(tLastID = 31751, "PUV21 Part"        , "Circuit Part"));
+		circuit.setItemDamage(1);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[9], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[10], 8) , OP.dust    .mat(MT.Pt, 4), OP.plateGem.mat(MT.Ruby           , 4), circuit), IL.Circuit_Part_PUV21        .get(1));
+
+		//PUV2-41
+		IL.Circuit_Part_PUV22.set(           addItem(tLastID = 31752, "PUV22 Part"        , "Circuit Part"));
+		circuit.setItemDamage(2);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[10], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[10], 16) , OP.dust    .mat(MT.Pt, 8), OP.plateGem.mat(MT.Ruby           , 8), circuit), IL.Circuit_Part_PUV22        .get(1));
+
+		//PUV3-44
+		IL.Circuit_Part_PUV23.set(           addItem(tLastID = 31753, "PUV23 Part"        , "Circuit Part"));
+		circuit.setItemDamage(3);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[11], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[10], 32) , OP.dust    .mat(MT.Pt, 16), OP.plateGem.mat(MT.Ruby           , 16), circuit), IL.Circuit_Part_PUV23        .get(1));
+
+		//PUV4-47
+		IL.Circuit_Part_PUV24.set(           addItem(tLastID = 31754, "PUV24 Part"        , "Circuit Part"));
+		circuit.setItemDamage(4);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[12], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[10], 64) , OP.dust    .mat(MT.Pt, 32), OP.plateGem.mat(MT.Ruby           , 32), circuit), IL.Circuit_Part_PUV24        .get(1));
+
+		//PUV2-42
+		IL.Circuit_Part_PUV31.set(           addItem(tLastID = 31761, "PUV31 Part"        , "Circuit Part"));
+		circuit.setItemDamage(1);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[10], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[11], 8) , OP.dust    .mat(MT.Pt, 8), OP.plateGem.mat(MT.Ruby           , 8), circuit), IL.Circuit_Part_PUV31        .get(1));
+
+		//PUV3-45
+		IL.Circuit_Part_PUV32.set(           addItem(tLastID = 31762, "PUV32 Part"        , "Circuit Part"));
+		circuit.setItemDamage(2);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[11], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[11], 16) , OP.dust    .mat(MT.Pt, 16), OP.plateGem.mat(MT.Ruby           , 16), circuit), IL.Circuit_Part_PUV32        .get(1));
+
+		//PUV4-48
+		IL.Circuit_Part_PUV33.set(           addItem(tLastID = 31763, "PUV33 Part"        , "Circuit Part"));
+		circuit.setItemDamage(3);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[12], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[11], 32) , OP.dust    .mat(MT.Pt, 32), OP.plateGem.mat(MT.Ruby           , 32), circuit), IL.Circuit_Part_PUV33        .get(1));
+
+		//PUV5-51
+		IL.Circuit_Part_PUV34.set(           addItem(tLastID = 31764, "PUV34 Part"        , "Circuit Part"));
+		circuit.setItemDamage(4);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[13], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[11], 64) , OP.dust    .mat(MT.Pt, 64), OP.plateGem.mat(MT.Ruby           , 64), circuit), IL.Circuit_Part_PUV34        .get(1));
+
+		//PUV3-46
+		IL.Circuit_Part_PUV41.set(           addItem(tLastID = 31771, "PUV41 Part"        , "Circuit Part"));
+		circuit.setItemDamage(1);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[11], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[12], 8) , OP.dust    .mat(MT.Neutronium, 1), OP.plateGem.mat(MT.Ge           , 1), circuit), IL.Circuit_Part_PUV41        .get(1));
+
+		//PUV4-49
+		IL.Circuit_Part_PUV42.set(           addItem(tLastID = 31772, "PUV42 Part"        , "Circuit Part"));
+		circuit.setItemDamage(2);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[12], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[12], 16) , OP.dust    .mat(MT.Neutronium, 2), OP.plateGem.mat(MT.Ge           , 2), circuit), IL.Circuit_Part_PUV42        .get(1));
+
+		//PUV5-52
+		IL.Circuit_Part_PUV43.set(           addItem(tLastID = 31773, "PUV43 Part"        , "Circuit Part"));
+		circuit.setItemDamage(3);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[13], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[12], 32) , OP.dust    .mat(MT.Neutronium, 4), OP.plateGem.mat(MT.Ge           , 4), circuit), IL.Circuit_Part_PUV43        .get(1));
+
+		//Omega-55
+		IL.Circuit_Part_PUV44.set(           addItem(tLastID = 31774, "PUV44 Part"        , "Circuit Part"));
+		circuit.setItemDamage(4);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[14], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[12], 64) , OP.dust    .mat(MT.Neutronium, 8), OP.plateGem.mat(MT.Ge           , 8), circuit), IL.Circuit_Part_PUV44        .get(1));
+
+		//PUV4-50
+		IL.Circuit_Part_PUV51.set(           addItem(tLastID = 31781, "PUV51 Part"        , "Circuit Part"));
+		circuit.setItemDamage(1);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[12], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[13], 8) , OP.dust    .mat(MT.Neutronium, 2), OP.plateGem.mat(MT.Ge           , 2), circuit), IL.Circuit_Part_PUV51        .get(1));
+
+		//PUV5-53
+		IL.Circuit_Part_PUV52.set(           addItem(tLastID = 31782, "PUV52 Part"        , "Circuit Part"));
+		circuit.setItemDamage(2);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[13], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[13], 16) , OP.dust    .mat(MT.Neutronium, 4), OP.plateGem.mat(MT.Ge           , 4), circuit), IL.Circuit_Part_PUV52        .get(1));
+
+		//Omega-56
+		IL.Circuit_Part_PUV53.set(           addItem(tLastID = 31783, "PUV53 Part"        , "Circuit Part"));
+		circuit.setItemDamage(3);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[14], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[13], 32) , OP.dust    .mat(MT.Neutronium, 8), OP.plateGem.mat(MT.Ge           , 8), circuit), IL.Circuit_Part_PUV53        .get(1));
+
+		//MAX-59
+		IL.Circuit_Part_PUV54.set(           addItem(tLastID = 31784, "PUV54 Part"        , "Circuit Part"));
+		circuit.setItemDamage(4);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[15], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[13], 64) , OP.dust    .mat(MT.Neutronium, 16), OP.plateGem.mat(MT.Ge           , 16), circuit), IL.Circuit_Part_PUV54        .get(1));
+
+		//PUV5-54
+		IL.Circuit_Part_Omega1.set(           addItem(tLastID = 31791, "Omega1 Part"        , "Circuit Part"));
+		circuit.setItemDamage(1);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[13], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[14], 8) , OP.dust    .mat(MT.Neutronium, 4), OP.plateGem.mat(MT.Ge           , 4), circuit), IL.Circuit_Part_Omega1        .get(1));
+
+		//Omega-57
+		IL.Circuit_Part_Omega2.set(           addItem(tLastID = 31792, "Omega2 Part"        , "Circuit Part"));
+		circuit.setItemDamage(2);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[14], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[14], 16) , OP.dust    .mat(MT.Neutronium, 8), OP.plateGem.mat(MT.Ge           , 8), circuit), IL.Circuit_Part_Omega2        .get(1));
+
+		//MAX-60
+		IL.Circuit_Part_Omega3.set(           addItem(tLastID = 31793, "Omega3 Part"        , "Circuit Part"));
+		circuit.setItemDamage(3);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[15], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[14], 32) , OP.dust    .mat(MT.Neutronium, 16), OP.plateGem.mat(MT.Ge           , 16), circuit), IL.Circuit_Part_Omega3        .get(1));
+
+		//MAX-62
+		IL.Circuit_Part_Omega4.set(           addItem(tLastID = 31794, "Omega4 Part"        , "Circuit Part"));
+		circuit.setItemDamage(4);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[15], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[14], 64) , OP.dust    .mat(MT.Neutronium, 32), OP.plateGem.mat(MT.Ge           , 32), circuit), IL.Circuit_Part_Omega4        .get(1));
+
+		//Omega-58
+		IL.Circuit_Part_MAX1.set(           addItem(tLastID = 31801, "MAX1 Part"        , "Circuit Part"));
+		circuit.setItemDamage(1);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[14], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[15], 8) , OP.dust    .mat(MT.Neutronium, 8), OP.plateGem.mat(MT.Ge           , 8), circuit), IL.Circuit_Part_MAX1        .get(1));
+
+		//MAX-61
+		IL.Circuit_Part_MAX2.set(           addItem(tLastID = 31802, "MAX2 Part"        , "Circuit Part"));
+		circuit.setItemDamage(2);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[15], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[15], 16) , OP.dust    .mat(MT.Neutronium, 16), OP.plateGem.mat(MT.Ge           , 16), circuit), IL.Circuit_Part_MAX2        .get(1));
+
+		//MAX-63
+		IL.Circuit_Part_MAX3.set(           addItem(tLastID = 31803, "MAX3 Part"        , "Circuit Part"));
+		circuit.setItemDamage(3);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[15], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[15], 32) , OP.dust    .mat(MT.Neutronium, 32), OP.plateGem.mat(MT.Ge           , 32), circuit), IL.Circuit_Part_MAX3        .get(1));
+
+		//MAX-64
+		IL.Circuit_Part_MAX4.set(           addItem(tLastID = 31804, "MAX4 Part"        , "Circuit Part"));
+		circuit.setItemDamage(4);
+		RM.Press.addRecipeX(T, F, F, F, T, VR[15], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[15], 64) , OP.dust    .mat(MT.Neutronium, 64), OP.plateGem.mat(MT.Ge           , 64), circuit), IL.Circuit_Part_MAX4        .get(1));
 
 		//Plate
 		IL.Circuit_Plate_ULV1.set(           addItem(tLastID = 31401, "ULV1 Plate"        , "Circuit Plate"));
@@ -1036,302 +1303,329 @@ public class MultiItemTechnological extends MultiItemRandom {
 		IL.Circuit_Plate_MAX2.set(           addItem(tLastID = 31552, "MAX2 Plate"        , "Circuit Plate"));
 		IL.Circuit_Plate_MAX3.set(           addItem(tLastID = 31553, "MAX3 Plate"        , "Circuit Plate"));
 		IL.Circuit_Plate_MAX4.set(           addItem(tLastID = 31554, "MAX4 Plate"        , "Circuit Plate"));
-
-		//Circuit Part others
-		IL.Circuit_Resistor.set(           addItem(tLastID = 31601, "Resister"        , "Circuit Part"));
-		IL.Circuit_Diode.set(           addItem(tLastID = 31602, "Diode"        , "Circuit Part"));
-		IL.Circuit_Transistor.set(           addItem(tLastID = 31603, "Transistor"        , "Circuit Part"));
-		IL.Circuit_Capacitor.set(           addItem(tLastID = 31604, "Capacitor"        , "Circuit Part"));
-		IL.Circuit_SmallCoil.set(           addItem(tLastID = 31605, "Small Coil"        , "Circuit Part"));
-
-		IL.Circuit_SMD_Resistor.set(           addItem(tLastID = 31611, "SMD Register"        , "Circuit Part"));
-		IL.Circuit_SMD_Diode.set(           addItem(tLastID = 31612, "SMD Diode"        , "Circuit Part"));
-		IL.Circuit_SMD_Transistor.set(           addItem(tLastID = 31613, "SMD Transister"        , "Circuit Part"));
-		IL.Circuit_SMD_Capacitor.set(           addItem(tLastID = 31614, "SMD Capacitor"        , "Circuit Part"));
-
-		//Circuit Part
-		IL.Circuit_Part_ULV1.set(           addItem(tLastID = 31651, "ULV1 Part"        , "Circuit Part"));
-		IL.Circuit_Part_ULV2.set(           addItem(tLastID = 31652, "ULV2 Part"        , "Circuit Part"));
-		IL.Circuit_Part_ULV3.set(           addItem(tLastID = 31653, "ULV3 Part"        , "Circuit Part"));
-		IL.Circuit_Part_ULV4.set(           addItem(tLastID = 31654, "ULV4 Part"        , "Circuit Part"));
-		IL.Circuit_Part_LV1.set(           addItem(tLastID = 31661, "LV1 Part"        , "Circuit Part"));
-		IL.Circuit_Part_LV2.set(           addItem(tLastID = 31662, "LV2 Part"        , "Circuit Part"));
-		IL.Circuit_Part_LV3.set(           addItem(tLastID = 31663, "LV3 Part"        , "Circuit Part"));
-		IL.Circuit_Part_LV4.set(           addItem(tLastID = 31664, "LV4 Part"        , "Circuit Part"));
-		IL.Circuit_Part_MV1.set(           addItem(tLastID = 31671, "MV1 Part"        , "Circuit Part"));
-		IL.Circuit_Part_MV2.set(           addItem(tLastID = 31672, "MV2 Part"        , "Circuit Part"));
-		IL.Circuit_Part_MV3.set(           addItem(tLastID = 31673, "MV3 Part"        , "Circuit Part"));
-		IL.Circuit_Part_MV4.set(           addItem(tLastID = 31674, "MV4 Part"        , "Circuit Part"));
-		IL.Circuit_Part_HV1.set(           addItem(tLastID = 31681, "HV1 Part"        , "Circuit Part"));
-		IL.Circuit_Part_HV2.set(           addItem(tLastID = 31682, "HV2 Part"        , "Circuit Part"));
-		IL.Circuit_Part_HV3.set(           addItem(tLastID = 31683, "HV3 Part"        , "Circuit Part"));
-		IL.Circuit_Part_HV4.set(           addItem(tLastID = 31684, "HV4 Part"        , "Circuit Part"));
-		IL.Circuit_Part_EV1.set(           addItem(tLastID = 31691, "EV1 Part"        , "Circuit Part"));
-		IL.Circuit_Part_EV2.set(           addItem(tLastID = 31692, "EV2 Part"        , "Circuit Part"));
-		IL.Circuit_Part_EV3.set(           addItem(tLastID = 31693, "EV3 Part"        , "Circuit Part"));
-		IL.Circuit_Part_EV4.set(           addItem(tLastID = 31694, "EV4 Part"        , "Circuit Part"));
-		IL.Circuit_Part_IV1.set(           addItem(tLastID = 31701, "IV1 Part"        , "Circuit Part"));
-		IL.Circuit_Part_IV2.set(           addItem(tLastID = 31702, "IV2 Part"        , "Circuit Part"));
-		IL.Circuit_Part_IV3.set(           addItem(tLastID = 31703, "IV3 Part"        , "Circuit Part"));
-		IL.Circuit_Part_IV4.set(           addItem(tLastID = 31704, "IV4 Part"        , "Circuit Part"));
-		IL.Circuit_Part_LuV1.set(           addItem(tLastID = 31711, "LuV1 Part"        , "Circuit Part"));
-		IL.Circuit_Part_LuV2.set(           addItem(tLastID = 31712, "LuV2 Part"        , "Circuit Part"));
-		IL.Circuit_Part_LuV3.set(           addItem(tLastID = 31713, "LuV3 Part"        , "Circuit Part"));
-		IL.Circuit_Part_LuV4.set(           addItem(tLastID = 31714, "LuV4 Part"        , "Circuit Part"));
-		IL.Circuit_Part_ZPM1.set(           addItem(tLastID = 31721, "ZPM1 Part"        , "Circuit Part"));
-		IL.Circuit_Part_ZPM2.set(           addItem(tLastID = 31722, "ZPM2 Part"        , "Circuit Part"));
-		IL.Circuit_Part_ZPM3.set(           addItem(tLastID = 31723, "ZPM3 Part"        , "Circuit Part"));
-		IL.Circuit_Part_ZPM4.set(           addItem(tLastID = 31724, "ZPM4 Part"        , "Circuit Part"));
-		IL.Circuit_Part_UV1.set(           addItem(tLastID = 31731, "UV1 Part"        , "Circuit Part"));
-		IL.Circuit_Part_UV2.set(           addItem(tLastID = 31732, "UV2 Part"        , "Circuit Part"));
-		IL.Circuit_Part_UV3.set(           addItem(tLastID = 31733, "UV3 Part"        , "Circuit Part"));
-		IL.Circuit_Part_UV4.set(           addItem(tLastID = 31734, "UV4 Part"        , "Circuit Part"));
-		IL.Circuit_Part_PUV11.set(           addItem(tLastID = 31741, "PUV11 Part"        , "Circuit Part"));
-		IL.Circuit_Part_PUV12.set(           addItem(tLastID = 31742, "PUV12 Part"        , "Circuit Part"));
-		IL.Circuit_Part_PUV13.set(           addItem(tLastID = 31743, "PUV13 Part"        , "Circuit Part"));
-		IL.Circuit_Part_PUV14.set(           addItem(tLastID = 31744, "PUV14 Part"        , "Circuit Part"));
-		IL.Circuit_Part_PUV21.set(           addItem(tLastID = 31751, "PUV21 Part"        , "Circuit Part"));
-		IL.Circuit_Part_PUV22.set(           addItem(tLastID = 31752, "PUV22 Part"        , "Circuit Part"));
-		IL.Circuit_Part_PUV23.set(           addItem(tLastID = 31753, "PUV23 Part"        , "Circuit Part"));
-		IL.Circuit_Part_PUV24.set(           addItem(tLastID = 31754, "PUV24 Part"        , "Circuit Part"));
-		IL.Circuit_Part_PUV31.set(           addItem(tLastID = 31761, "PUV31 Part"        , "Circuit Part"));
-		IL.Circuit_Part_PUV32.set(           addItem(tLastID = 31762, "PUV32 Part"        , "Circuit Part"));
-		IL.Circuit_Part_PUV33.set(           addItem(tLastID = 31763, "PUV33 Part"        , "Circuit Part"));
-		IL.Circuit_Part_PUV34.set(           addItem(tLastID = 31764, "PUV34 Part"        , "Circuit Part"));
-		IL.Circuit_Part_PUV41.set(           addItem(tLastID = 31771, "PUV41 Part"        , "Circuit Part"));
-		IL.Circuit_Part_PUV42.set(           addItem(tLastID = 31772, "PUV42 Part"        , "Circuit Part"));
-		IL.Circuit_Part_PUV43.set(           addItem(tLastID = 31773, "PUV43 Part"        , "Circuit Part"));
-		IL.Circuit_Part_PUV44.set(           addItem(tLastID = 31774, "PUV44 Part"        , "Circuit Part"));
-		IL.Circuit_Part_PUV51.set(           addItem(tLastID = 31781, "PUV51 Part"        , "Circuit Part"));
-		IL.Circuit_Part_PUV52.set(           addItem(tLastID = 31782, "PUV52 Part"        , "Circuit Part"));
-		IL.Circuit_Part_PUV53.set(           addItem(tLastID = 31783, "PUV53 Part"        , "Circuit Part"));
-		IL.Circuit_Part_PUV54.set(           addItem(tLastID = 31784, "PUV54 Part"        , "Circuit Part"));
-		IL.Circuit_Part_Omega1.set(           addItem(tLastID = 31791, "Omega1 Part"        , "Circuit Part"));
-		IL.Circuit_Part_Omega2.set(           addItem(tLastID = 31792, "Omega2 Part"        , "Circuit Part"));
-		IL.Circuit_Part_Omega3.set(           addItem(tLastID = 31793, "Omega3 Part"        , "Circuit Part"));
-		IL.Circuit_Part_Omega4.set(           addItem(tLastID = 31794, "Omega4 Part"        , "Circuit Part"));
-		IL.Circuit_Part_MAX1.set(           addItem(tLastID = 31801, "MAX1 Part"        , "Circuit Part"));
-		IL.Circuit_Part_MAX2.set(           addItem(tLastID = 31802, "MAX2 Part"        , "Circuit Part"));
-		IL.Circuit_Part_MAX3.set(           addItem(tLastID = 31803, "MAX3 Part"        , "Circuit Part"));
-		IL.Circuit_Part_MAX4.set(           addItem(tLastID = 31804, "MAX4 Part"        , "Circuit Part"));
-
+		
+		//Board
+		IL.Circuit_Board_ULV1.set(           addItem(tLastID = 31201, "ULV1 Board"        , "Circuit Board"));
+		IL.Circuit_Board_ULV2.set(           addItem(tLastID = 31202, "ULV2 Board"        , "Circuit Board"));
+		IL.Circuit_Board_ULV3.set(           addItem(tLastID = 31203, "ULV3 Board"        , "Circuit Board"));
+		IL.Circuit_Board_ULV4.set(           addItem(tLastID = 31204, "ULV4 Board"        , "Circuit Board"));
+		IL.Circuit_Board_LV1.set(           addItem(tLastID = 31211, "LV1 Board"        , "Circuit Board"));
+		IL.Circuit_Board_LV2.set(           addItem(tLastID = 31212, "LV2 Board"        , "Circuit Board"));
+		IL.Circuit_Board_LV3.set(           addItem(tLastID = 31213, "LV3 Board"        , "Circuit Board"));
+		IL.Circuit_Board_LV4.set(           addItem(tLastID = 31214, "LV4 Board"        , "Circuit Board"));
+		IL.Circuit_Board_MV1.set(           addItem(tLastID = 31221, "MV1 Board"        , "Circuit Board"));
+		IL.Circuit_Board_MV2.set(           addItem(tLastID = 31222, "MV2 Board"        , "Circuit Board"));
+		IL.Circuit_Board_MV3.set(           addItem(tLastID = 31223, "MV3 Board"        , "Circuit Board"));
+		IL.Circuit_Board_MV4.set(           addItem(tLastID = 31224, "MV4 Board"        , "Circuit Board"));
+		IL.Circuit_Board_HV1.set(           addItem(tLastID = 31231, "HV1 Board"        , "Circuit Board"));
+		IL.Circuit_Board_HV2.set(           addItem(tLastID = 31232, "HV2 Board"        , "Circuit Board"));
+		IL.Circuit_Board_HV3.set(           addItem(tLastID = 31233, "HV3 Board"        , "Circuit Board"));
+		IL.Circuit_Board_HV4.set(           addItem(tLastID = 31234, "HV4 Board"        , "Circuit Board"));
+		IL.Circuit_Board_EV1.set(           addItem(tLastID = 31241, "EV1 Board"        , "Circuit Board"));
+		IL.Circuit_Board_EV2.set(           addItem(tLastID = 31242, "EV2 Board"        , "Circuit Board"));
+		IL.Circuit_Board_EV3.set(           addItem(tLastID = 31243, "EV3 Board"        , "Circuit Board"));
+		IL.Circuit_Board_EV4.set(           addItem(tLastID = 31244, "EV4 Board"        , "Circuit Board"));
+		IL.Circuit_Board_IV1.set(           addItem(tLastID = 31251, "IV1 Board"        , "Circuit Board"));
+		IL.Circuit_Board_IV2.set(           addItem(tLastID = 31252, "IV2 Board"        , "Circuit Board"));
+		IL.Circuit_Board_IV3.set(           addItem(tLastID = 31253, "IV3 Board"        , "Circuit Board"));
+		IL.Circuit_Board_IV4.set(           addItem(tLastID = 31254, "IV4 Board"        , "Circuit Board"));
+		IL.Circuit_Board_LuV1.set(           addItem(tLastID = 31261, "LuV1 Board"        , "Circuit Board"));
+		IL.Circuit_Board_LuV2.set(           addItem(tLastID = 31262, "LuV2 Board"        , "Circuit Board"));
+		IL.Circuit_Board_LuV3.set(           addItem(tLastID = 31263, "LuV3 Board"        , "Circuit Board"));
+		IL.Circuit_Board_LuV4.set(           addItem(tLastID = 31264, "LuV4 Board"        , "Circuit Board"));
+		IL.Circuit_Board_ZPM1.set(           addItem(tLastID = 31271, "ZPM1 Board"        , "Circuit Board"));
+		IL.Circuit_Board_ZPM2.set(           addItem(tLastID = 31272, "ZPM2 Board"        , "Circuit Board"));
+		IL.Circuit_Board_ZPM3.set(           addItem(tLastID = 31273, "ZPM3 Board"        , "Circuit Board"));
+		IL.Circuit_Board_ZPM4.set(           addItem(tLastID = 31274, "ZPM4 Board"        , "Circuit Board"));
+		IL.Circuit_Board_UV1.set(           addItem(tLastID = 31281, "UV1 Board"        , "Circuit Board"));
+		IL.Circuit_Board_UV2.set(           addItem(tLastID = 31282, "UV2 Board"        , "Circuit Board"));
+		IL.Circuit_Board_UV3.set(           addItem(tLastID = 31283, "UV3 Board"        , "Circuit Board"));
+		IL.Circuit_Board_UV4.set(           addItem(tLastID = 31284, "UV4 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV11.set(           addItem(tLastID = 31291, "PUV11 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV12.set(           addItem(tLastID = 31292, "PUV12 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV13.set(           addItem(tLastID = 31293, "PUV13 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV14.set(           addItem(tLastID = 31294, "PUV14 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV21.set(           addItem(tLastID = 31301, "PUV21 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV22.set(           addItem(tLastID = 31302, "PUV22 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV23.set(           addItem(tLastID = 31303, "PUV23 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV24.set(           addItem(tLastID = 31304, "PUV24 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV31.set(           addItem(tLastID = 31311, "PUV31 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV32.set(           addItem(tLastID = 31312, "PUV32 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV33.set(           addItem(tLastID = 31313, "PUV33 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV34.set(           addItem(tLastID = 31314, "PUV34 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV41.set(           addItem(tLastID = 31321, "PUV41 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV42.set(           addItem(tLastID = 31322, "PUV42 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV43.set(           addItem(tLastID = 31323, "PUV43 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV44.set(           addItem(tLastID = 31324, "PUV44 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV51.set(           addItem(tLastID = 31331, "PUV51 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV52.set(           addItem(tLastID = 31332, "PUV52 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV53.set(           addItem(tLastID = 31333, "PUV53 Board"        , "Circuit Board"));
+		IL.Circuit_Board_PUV54.set(           addItem(tLastID = 31334, "PUV54 Board"        , "Circuit Board"));
+		IL.Circuit_Board_Omega1.set(           addItem(tLastID = 31341, "Omega1 Board"        , "Circuit Board"));
+		IL.Circuit_Board_Omega2.set(           addItem(tLastID = 31342, "Omega2 Board"        , "Circuit Board"));
+		IL.Circuit_Board_Omega3.set(           addItem(tLastID = 33143, "Omega3 Board"        , "Circuit Board"));
+		IL.Circuit_Board_Omega4.set(           addItem(tLastID = 33144, "Omega4 Board"        , "Circuit Board"));
+		IL.Circuit_Board_MAX1.set(           addItem(tLastID = 31351, "MAX1 Board"        , "Circuit Board"));
+		IL.Circuit_Board_MAX2.set(           addItem(tLastID = 31352, "MAX2 Board"        , "Circuit Board"));
+		IL.Circuit_Board_MAX3.set(           addItem(tLastID = 31353, "MAX3 Board"        , "Circuit Board"));
+		IL.Circuit_Board_MAX4.set(           addItem(tLastID = 31354, "MAX4 Board"        , "Circuit Board"));
+		
 		//Circuit
 		//ULV-1
-		IL.Circuit_ULV1.set(           addItem(tLastID = 31851, "ULV1 Circuit"        , "Circuit (ULV)"));
+		IL.Circuit_ULV1.set(           addItem(tLastID = 31851, "ULV1 Circuit"        , "Circuit (ULV)"), MT.DATA.CIRCUITS[0], OD_CIRCUITS[0]);
 		CR.shaped(IL.Circuit_ULV1.get(1), CR.DEF, "RDR", "TBT", "CSC", 'R', IL.Circuit_Resistor.get(1), 'D', IL.Circuit_Diode.get(1), 'T', IL.Circuit_Transistor.get(1), 'B', IL.Circuit_Board_ULV1.get(1), 'C', IL.Circuit_Capacitor.get(1), 'S', IL.Circuit_SmallCoil.get(1));
 
 		//LV-3
-		IL.Circuit_ULV2.set(           addItem(tLastID = 31852, "ULV2 Circuit"        , "Circuit (ULV)"));
-		RM.Circuitassembling.addRecipeX(T, F, F, F, T, V[1], DT[4], ST.array(IL.Circuit_Resistor.get(2), IL.Circuit_Diode.get(2), IL.Circuit_Transistor.get(2), IL.Circuit_Capacitor.get(2), IL.Circuit_SmallCoil.get(2), IL.Circuit_Board_ULV2.get(1)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_ULV2.get(1)));
+		IL.Circuit_ULV2.set(           addItem(tLastID = 31852, "ULV2 Circuit"        , "Circuit (ULV)"), MT.DATA.CIRCUITS[0], OD_CIRCUITS[0]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[1], DT[4], ST.array(IL.Circuit_Resistor.get(2), IL.Circuit_Diode.get(2), IL.Circuit_Transistor.get(2), IL.Circuit_Capacitor.get(2), IL.Circuit_SmallCoil.get(2), IL.Circuit_Board_ULV2.get(1)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_ULV2.get(1)));
 
 		//MV-6
-		IL.Circuit_ULV3.set(           addItem(tLastID = 31853, "ULV3 Circuit"        , "Circuit (ULV)"));
-		RM.Circuitassembling.addRecipeX(T, F, F, F, T, V[2], DT[4], ST.array(IL.Circuit_Resistor.get(4), IL.Circuit_Diode.get(4), IL.Circuit_Transistor.get(4), IL.Circuit_Capacitor.get(4), IL.Circuit_SmallCoil.get(4), IL.Circuit_Board_ULV3.get(1)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_ULV3.get(1)));
+		IL.Circuit_ULV3.set(           addItem(tLastID = 31853, "ULV3 Circuit"        , "Circuit (ULV)"), MT.DATA.CIRCUITS[0], OD_CIRCUITS[0]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[2], DT[4], ST.array(IL.Circuit_Resistor.get(4), IL.Circuit_Diode.get(4), IL.Circuit_Transistor.get(4), IL.Circuit_Capacitor.get(4), IL.Circuit_SmallCoil.get(4), IL.Circuit_Board_ULV3.get(1)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_ULV3.get(1)));
 
 		//HV-10
-		IL.Circuit_ULV4.set(           addItem(tLastID = 31854, "ULV4 Circuit"        , "Circuit (ULV)"));
-		RM.Circuitassembling.addRecipeX(T, F, F, F, T, V[3], DT[4], ST.array(IL.Circuit_Resistor.get(8), IL.Circuit_Diode.get(8), IL.Circuit_Transistor.get(8), IL.Circuit_Capacitor.get(8), IL.Circuit_SmallCoil.get(8), IL.Circuit_Board_ULV4.get(1)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_ULV4.get(1)));
+		IL.Circuit_ULV4.set(           addItem(tLastID = 31854, "ULV4 Circuit"        , "Circuit (ULV)"), MT.DATA.CIRCUITS[0], OD_CIRCUITS[0]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[3], DT[4], ST.array(IL.Circuit_Resistor.get(8), IL.Circuit_Diode.get(8), IL.Circuit_Transistor.get(8), IL.Circuit_Capacitor.get(8), IL.Circuit_SmallCoil.get(8), IL.Circuit_Board_ULV4.get(1)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_ULV4.get(1)));
 
 		//ULV-2
-		IL.Circuit_LV1.set(           addItem(tLastID = 31861, "LV1 Circuit"        , "Circuit (LV)"));
-		RM.Circuitassembling.addRecipeX(T, F, F, F, T, V[0], DT[4], ST.array(IL.Circuit_Resistor.get(8), IL.Circuit_Diode.get(8), IL.Circuit_Transistor.get(8), IL.Circuit_Capacitor.get(8), IL.Circuit_SmallCoil.get(8), IL.Circuit_Board_LV1.get(1), IL.Circuit_ULV1.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_LV1.get(1)));
+		IL.Circuit_LV1.set(           addItem(tLastID = 31861, "LV1 Circuit"        , "Circuit (LV)"), MT.DATA.CIRCUITS[1], OD_CIRCUITS[1]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[0], DT[4], ST.array(IL.Circuit_Resistor.get(8), IL.Circuit_Diode.get(8), IL.Circuit_Transistor.get(8), IL.Circuit_Capacitor.get(8), IL.Circuit_SmallCoil.get(8), IL.Circuit_Board_LV1.get(1), IL.Circuit_ULV1.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_LV1.get(1)));
 
 		//LV-4
-		IL.Circuit_LV2.set(           addItem(tLastID = 31862, "LV2 Circuit"        , "Circuit (LV)"));
-		RM.Circuitassembling.addRecipeX(T, F, F, F, T, V[1], DT[4], ST.array(IL.Circuit_Resistor.get(4), IL.Circuit_Diode.get(4), IL.Circuit_Transistor.get(4), IL.Circuit_Capacitor.get(4), IL.Circuit_SmallCoil.get(4), IL.Circuit_Board_LV2.get(1), IL.Circuit_ULV2.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_LV2.get(1)));
+		IL.Circuit_LV2.set(           addItem(tLastID = 31862, "LV2 Circuit"        , "Circuit (LV)"), MT.DATA.CIRCUITS[1], OD_CIRCUITS[1]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[1], DT[4], ST.array(IL.Circuit_Resistor.get(4), IL.Circuit_Diode.get(4), IL.Circuit_Transistor.get(4), IL.Circuit_Capacitor.get(4), IL.Circuit_SmallCoil.get(4), IL.Circuit_Board_LV2.get(1), IL.Circuit_ULV2.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_LV2.get(1)));
 
 		//MV-7
-		IL.Circuit_LV3.set(           addItem(tLastID = 31863, "LV3 Circuit"        , "Circuit (LV)"));
-		RM.Circuitassembling.addRecipeX(T, F, F, F, T, V[2], DT[4], ST.array(IL.Circuit_Resistor.get(8), IL.Circuit_Diode.get(8), IL.Circuit_Transistor.get(8), IL.Circuit_Capacitor.get(8), IL.Circuit_SmallCoil.get(8), IL.Circuit_Board_LV3.get(1), IL.Circuit_ULV3.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_LV3.get(1)));
+		IL.Circuit_LV3.set(           addItem(tLastID = 31863, "LV3 Circuit"        , "Circuit (LV)"), MT.DATA.CIRCUITS[1], OD_CIRCUITS[1]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[2], DT[4], ST.array(IL.Circuit_Resistor.get(8), IL.Circuit_Diode.get(8), IL.Circuit_Transistor.get(8), IL.Circuit_Capacitor.get(8), IL.Circuit_SmallCoil.get(8), IL.Circuit_Board_LV3.get(1), IL.Circuit_ULV3.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_LV3.get(1)));
 
 		//HV-11
-		IL.Circuit_LV4.set(           addItem(tLastID = 31864, "LV4 Circuit"        , "Circuit (LV)"));
-		RM.Circuitassembling.addRecipeX(T, F, F, F, T, V[3], DT[4], ST.array(IL.Circuit_Resistor.get(16), IL.Circuit_Diode.get(16), IL.Circuit_Transistor.get(16), IL.Circuit_Capacitor.get(16), IL.Circuit_SmallCoil.get(16), IL.Circuit_Board_LV4.get(1), IL.Circuit_ULV4.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_LV4.get(1)));
+		IL.Circuit_LV4.set(           addItem(tLastID = 31864, "LV4 Circuit"        , "Circuit (LV)"), MT.DATA.CIRCUITS[1], OD_CIRCUITS[1]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[3], DT[4], ST.array(IL.Circuit_Resistor.get(16), IL.Circuit_Diode.get(16), IL.Circuit_Transistor.get(16), IL.Circuit_Capacitor.get(16), IL.Circuit_SmallCoil.get(16), IL.Circuit_Board_LV4.get(1), IL.Circuit_ULV4.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_LV4.get(1)));
 
 		//LV-5
-		IL.Circuit_MV1.set(           addItem(tLastID = 31871, "MV1 Circuit"        , "Circuit (MV)"));
-		RM.Circuitassembling.addRecipeX(T, F, F, F, T, V[1], DT[4], ST.array(IL.Circuit_Resistor.get(8), IL.Circuit_Diode.get(8), IL.Circuit_Transistor.get(8), IL.Circuit_Capacitor.get(8), IL.Circuit_SmallCoil.get(8), IL.Circuit_Board_MV1.get(1), IL.Circuit_LV2.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_MV1.get(1)));
+		IL.Circuit_MV1.set(           addItem(tLastID = 31871, "MV1 Circuit"        , "Circuit (MV)"), MT.DATA.CIRCUITS[2], OD_CIRCUITS[2]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[1], DT[4], ST.array(IL.Circuit_Resistor.get(8), IL.Circuit_Diode.get(8), IL.Circuit_Transistor.get(8), IL.Circuit_Capacitor.get(8), IL.Circuit_SmallCoil.get(8), IL.Circuit_Board_MV1.get(1), IL.Circuit_LV2.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_MV1.get(1)));
 
 		//MV-8
-		IL.Circuit_MV2.set(           addItem(tLastID = 31872, "MV2 Circuit"        , "Circuit (MV)"));
-		RM.Circuitassembling.addRecipeX(T, F, F, F, T, V[2], DT[4], ST.array(IL.Circuit_Resistor.get(16), IL.Circuit_Diode.get(16), IL.Circuit_Transistor.get(16), IL.Circuit_Capacitor.get(16), IL.Circuit_SmallCoil.get(16), IL.Circuit_Board_MV2.get(1), IL.Circuit_LV3.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_MV2.get(1)));
+		IL.Circuit_MV2.set(           addItem(tLastID = 31872, "MV2 Circuit"        , "Circuit (MV)"), MT.DATA.CIRCUITS[2], OD_CIRCUITS[2]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[2], DT[4], ST.array(IL.Circuit_Resistor.get(16), IL.Circuit_Diode.get(16), IL.Circuit_Transistor.get(16), IL.Circuit_Capacitor.get(16), IL.Circuit_SmallCoil.get(16), IL.Circuit_Board_MV2.get(1), IL.Circuit_LV3.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_MV2.get(1)));
 
 		//HV-12
-		IL.Circuit_MV3.set(           addItem(tLastID = 31873, "MV3 Circuit"        , "Circuit (MV)"));
-		RM.Circuitassembling.addRecipeX(T, F, F, F, T, V[3], DT[4], ST.array(IL.Circuit_Resistor.get(32), IL.Circuit_Diode.get(32), IL.Circuit_Transistor.get(32), IL.Circuit_Capacitor.get(32), IL.Circuit_SmallCoil.get(32), IL.Circuit_Board_MV3.get(1), IL.Circuit_LV4.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_MV3.get(1)));
+		IL.Circuit_MV3.set(           addItem(tLastID = 31873, "MV3 Circuit"        , "Circuit (MV)"), MT.DATA.CIRCUITS[2], OD_CIRCUITS[2]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[3], DT[4], ST.array(IL.Circuit_Resistor.get(32), IL.Circuit_Diode.get(32), IL.Circuit_Transistor.get(32), IL.Circuit_Capacitor.get(32), IL.Circuit_SmallCoil.get(32), IL.Circuit_Board_MV3.get(1), IL.Circuit_LV4.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_MV3.get(1)));
 
 		//EV-15
-		IL.Circuit_MV4.set(           addItem(tLastID = 31874, "MV3 Circuit"        , "Circuit (MV)"));
-		RM.Circuitassembling.addRecipeX(T, F, F, F, T, V[4], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(2), IL.Circuit_SMD_Diode.get(2), IL.Circuit_SMD_Transistor.get(2), IL.Circuit_SMD_Capacitor.get(2), IL.Circuit_Board_MV4.get(1)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_MV4.get(1)));
+		IL.Circuit_MV4.set(           addItem(tLastID = 31874, "MV3 Circuit"        , "Circuit (MV)"), MT.DATA.CIRCUITS[2], OD_CIRCUITS[2]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[4], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(2), IL.Circuit_SMD_Diode.get(2), IL.Circuit_SMD_Transistor.get(2), IL.Circuit_SMD_Capacitor.get(2), IL.Circuit_Board_MV4.get(1)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_MV4.get(1)));
 
 		//MV-9
-		IL.Circuit_HV1.set(           addItem(tLastID = 31881, "HV1 Circuit"        , "Circuit (HV)"));
-		RM.Circuitassembling.addRecipeX(T, F, F, F, T, V[2], DT[4], ST.array(IL.Circuit_Resistor.get(32), IL.Circuit_Diode.get(32), IL.Circuit_Transistor.get(32), IL.Circuit_Capacitor.get(32), IL.Circuit_SmallCoil.get(32), IL.Circuit_Board_HV1.get(1), IL.Circuit_MV2.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_HV1.get(1)));
+		IL.Circuit_HV1.set(           addItem(tLastID = 31881, "HV1 Circuit"        , "Circuit (HV)"), MT.DATA.CIRCUITS[3], OD_CIRCUITS[3]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[2], DT[4], ST.array(IL.Circuit_Resistor.get(32), IL.Circuit_Diode.get(32), IL.Circuit_Transistor.get(32), IL.Circuit_Capacitor.get(32), IL.Circuit_SmallCoil.get(32), IL.Circuit_Board_HV1.get(1), IL.Circuit_MV2.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_HV1.get(1)));
 
 		//HV-13
-		IL.Circuit_HV2.set(           addItem(tLastID = 31882, "HV2 Circuit"        , "Circuit (HV)"));
-		RM.Circuitassembling.addRecipeX(T, F, F, F, T, V[3], DT[4], ST.array(IL.Circuit_Resistor.get(64), IL.Circuit_Diode.get(64), IL.Circuit_Transistor.get(64), IL.Circuit_Capacitor.get(64), IL.Circuit_SmallCoil.get(64), IL.Circuit_Board_HV2.get(1), IL.Circuit_MV3.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_HV2.get(1)));
+		IL.Circuit_HV2.set(           addItem(tLastID = 31882, "HV2 Circuit"        , "Circuit (HV)"), MT.DATA.CIRCUITS[3], OD_CIRCUITS[3]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[3], DT[4], ST.array(IL.Circuit_Resistor.get(64), IL.Circuit_Diode.get(64), IL.Circuit_Transistor.get(64), IL.Circuit_Capacitor.get(64), IL.Circuit_SmallCoil.get(64), IL.Circuit_Board_HV2.get(1), IL.Circuit_MV3.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_HV2.get(1)));
 
 		//EV-16
-		IL.Circuit_HV3.set(           addItem(tLastID = 31883, "HV3 Circuit"        , "Circuit (HV)"));
-		RM.Circuitassembling.addRecipeX(T, F, F, F, T, V[4], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(4), IL.Circuit_SMD_Diode.get(4), IL.Circuit_SMD_Transistor.get(4), IL.Circuit_SMD_Capacitor.get(4), IL.Circuit_Board_HV3.get(1)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_HV3.get(1)));
+		IL.Circuit_HV3.set(           addItem(tLastID = 31883, "HV3 Circuit"        , "Circuit (HV)"), MT.DATA.CIRCUITS[3], OD_CIRCUITS[3]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[4], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(4), IL.Circuit_SMD_Diode.get(4), IL.Circuit_SMD_Transistor.get(4), IL.Circuit_SMD_Capacitor.get(4), IL.Circuit_Board_HV3.get(1)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_HV3.get(1)));
 
 		//IV-19
-		IL.Circuit_HV4.set(           addItem(tLastID = 31884, "HV4 Circuit"        , "Circuit (HV)"));
-		RM.Circuitassembling.addRecipeX(T, F, F, F, T, V[5], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(8), IL.Circuit_SMD_Diode.get(8), IL.Circuit_SMD_Transistor.get(8), IL.Circuit_SMD_Capacitor.get(8), IL.Circuit_Board_HV4.get(1)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_HV4.get(1)));
+		IL.Circuit_HV4.set(           addItem(tLastID = 31884, "HV4 Circuit"        , "Circuit (HV)"), MT.DATA.CIRCUITS[3], OD_CIRCUITS[3]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[5], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(8), IL.Circuit_SMD_Diode.get(8), IL.Circuit_SMD_Transistor.get(8), IL.Circuit_SMD_Capacitor.get(8), IL.Circuit_Board_HV4.get(1)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_HV4.get(1)));
 
 		//HV-14
-		IL.Circuit_EV1.set(           addItem(tLastID = 31891, "EV1 Circuit"        , "Circuit (EV)"));
-		RM.Circuitassembling.addRecipeX(T, F, F, F, T, V[3], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(1), IL.Circuit_SMD_Diode.get(1), IL.Circuit_SMD_Transistor.get(1), IL.Circuit_SMD_Capacitor.get(1), IL.Circuit_Board_EV1.get(1), IL.Circuit_HV2.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_EV1.get(1)));
+		IL.Circuit_EV1.set(           addItem(tLastID = 31891, "EV1 Circuit"        , "Circuit (EV)"), MT.DATA.CIRCUITS[4], OD_CIRCUITS[4]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[3], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(1), IL.Circuit_SMD_Diode.get(1), IL.Circuit_SMD_Transistor.get(1), IL.Circuit_SMD_Capacitor.get(1), IL.Circuit_Board_EV1.get(1), IL.Circuit_HV2.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_EV1.get(1)));
 
 		//EV-17
-		IL.Circuit_EV2.set(           addItem(tLastID = 31892, "EV2 Circuit"        , "Circuit (EV)"));
-		RM.Circuitassembling.addRecipeX(T, F, F, F, T, V[4], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(8), IL.Circuit_SMD_Diode.get(8), IL.Circuit_SMD_Transistor.get(8), IL.Circuit_SMD_Capacitor.get(8), IL.Circuit_Board_EV2.get(1), IL.Circuit_HV3.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_EV2.get(1)));
+		IL.Circuit_EV2.set(           addItem(tLastID = 31892, "EV2 Circuit"        , "Circuit (EV)"), MT.DATA.CIRCUITS[4], OD_CIRCUITS[4]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[4], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(8), IL.Circuit_SMD_Diode.get(8), IL.Circuit_SMD_Transistor.get(8), IL.Circuit_SMD_Capacitor.get(8), IL.Circuit_Board_EV2.get(1), IL.Circuit_HV3.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_EV2.get(1)));
 
 		//IV-20
-		IL.Circuit_EV3.set(           addItem(tLastID = 31893, "EV3 Circuit"        , "Circuit (EV)"));
-		RM.Circuitassembling.addRecipeX(T, F, F, F, T, V[5], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(16), IL.Circuit_SMD_Diode.get(16), IL.Circuit_SMD_Transistor.get(16), IL.Circuit_SMD_Capacitor.get(16), IL.Circuit_Board_EV3.get(1), IL.Circuit_HV4.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_EV3.get(1)));
+		IL.Circuit_EV3.set(           addItem(tLastID = 31893, "EV3 Circuit"        , "Circuit (EV)"), MT.DATA.CIRCUITS[4], OD_CIRCUITS[4]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[5], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(16), IL.Circuit_SMD_Diode.get(16), IL.Circuit_SMD_Transistor.get(16), IL.Circuit_SMD_Capacitor.get(16), IL.Circuit_Board_EV3.get(1), IL.Circuit_HV4.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_EV3.get(1)));
 
 		//LuV-23
-		IL.Circuit_EV4.set(           addItem(tLastID = 31894, "EV4 Circuit"        , "Circuit (EV)"));
-		RM.Circuitassembling.addRecipeX(T, F, F, F, T, V[6], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(32), IL.Circuit_SMD_Diode.get(32), IL.Circuit_SMD_Transistor.get(32), IL.Circuit_SMD_Capacitor.get(32), IL.Circuit_Board_EV4.get(1)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_EV4.get(1)));
+		IL.Circuit_EV4.set(           addItem(tLastID = 31894, "EV4 Circuit"        , "Circuit (EV)"), MT.DATA.CIRCUITS[4], OD_CIRCUITS[4]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[6], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(32), IL.Circuit_SMD_Diode.get(32), IL.Circuit_SMD_Transistor.get(32), IL.Circuit_SMD_Capacitor.get(32), IL.Circuit_Board_EV4.get(1)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_EV4.get(1)));
 
 		//EV-18
-		IL.Circuit_IV1.set(           addItem(tLastID = 31901, "IV1 Circuit"        , "Circuit (IV)"));
-		RM.Circuitassembling.addRecipeX(T, F, F, F, T, V[4], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(16), IL.Circuit_SMD_Diode.get(16), IL.Circuit_SMD_Transistor.get(16), IL.Circuit_SMD_Capacitor.get(16), IL.Circuit_Board_IV1.get(1), IL.Circuit_EV2.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_IV1.get(1)));
+		IL.Circuit_IV1.set(           addItem(tLastID = 31901, "IV1 Circuit"        , "Circuit (IV)"), MT.DATA.CIRCUITS[5], OD_CIRCUITS[5]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[4], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(16), IL.Circuit_SMD_Diode.get(16), IL.Circuit_SMD_Transistor.get(16), IL.Circuit_SMD_Capacitor.get(16), IL.Circuit_Board_IV1.get(1), IL.Circuit_EV2.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_IV1.get(1)));
 
 		//IV-21
-		IL.Circuit_IV2.set(           addItem(tLastID = 31902, "IV2 Circuit"        , "Circuit (IV)"));
-		RM.Circuitassembling.addRecipeX(T, F, F, F, T, V[5], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(32), IL.Circuit_SMD_Diode.get(32), IL.Circuit_SMD_Transistor.get(32), IL.Circuit_SMD_Capacitor.get(32), IL.Circuit_Board_IV2.get(1), IL.Circuit_EV3.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_IV2.get(1)));
+		IL.Circuit_IV2.set(           addItem(tLastID = 31902, "IV2 Circuit"        , "Circuit (IV)"), MT.DATA.CIRCUITS[5], OD_CIRCUITS[5]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[5], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(32), IL.Circuit_SMD_Diode.get(32), IL.Circuit_SMD_Transistor.get(32), IL.Circuit_SMD_Capacitor.get(32), IL.Circuit_Board_IV2.get(1), IL.Circuit_EV3.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_IV2.get(1)));
 
 		//LuV-24
-		IL.Circuit_IV3.set(           addItem(tLastID = 31903, "IV3 Circuit"        , "Circuit (IV)"));
-		RM.Circuitassembling.addRecipeX(T, F, F, F, T, V[6], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_IV3.get(1), IL.Circuit_EV4.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_IV3.get(1)));
+		IL.Circuit_IV3.set(           addItem(tLastID = 31903, "IV3 Circuit"        , "Circuit (IV)"), MT.DATA.CIRCUITS[5], OD_CIRCUITS[5]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[6], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_IV3.get(1), IL.Circuit_EV4.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_IV3.get(1)));
 
 		//ZPM-27
-		IL.Circuit_IV4.set(           addItem(tLastID = 31904, "IV4 Circuit"        , "Circuit (IV)"));
+		IL.Circuit_IV4.set(           addItem(tLastID = 31904, "IV4 Circuit"        , "Circuit (IV)"), MT.DATA.CIRCUITS[5], OD_CIRCUITS[5]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[7], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_IV4.get(1)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_IV4.get(1)));
 
 		//IV-22
-		IL.Circuit_LuV1.set(           addItem(tLastID = 31911, "LuV1 Circuit"        , "Circuit (LuV)"));
-		RM.Circuitassembling.addRecipeX(T, F, F, F, T, V[5], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_LuV1.get(1), IL.Circuit_IV2.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_LuV1.get(1)));
+		IL.Circuit_LuV1.set(           addItem(tLastID = 31911, "LuV1 Circuit"        , "Circuit (LuV)"), MT.DATA.CIRCUITS[6], OD_CIRCUITS[6]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[5], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_LuV1.get(1), IL.Circuit_IV2.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_LuV1.get(1)));
 
 		//LuV-25
-		IL.Circuit_LuV2.set(           addItem(tLastID = 31912, "LuV2 Circuit"        , "Circuit (LuV)"));
-		RM.Circuitassembling.addRecipeX(T, F, F, F, T, V[6], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_LuV2.get(1), IL.Circuit_IV3.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_LuV2.get(1)));
+		IL.Circuit_LuV2.set(           addItem(tLastID = 31912, "LuV2 Circuit"        , "Circuit (LuV)"), MT.DATA.CIRCUITS[6], OD_CIRCUITS[6]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[6], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_LuV2.get(1), IL.Circuit_IV3.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_LuV2.get(1)));
 
 		//ZPM-28
-		IL.Circuit_LuV3.set(           addItem(tLastID = 31913, "LuV3 Circuit"        , "Circuit (LuV)"));
+		IL.Circuit_LuV3.set(           addItem(tLastID = 31913, "LuV3 Circuit"        , "Circuit (LuV)"), MT.DATA.CIRCUITS[6], OD_CIRCUITS[6]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[7], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_LuV3.get(1), IL.Circuit_IV4.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_LuV3.get(1)));
 
 		//UV-31
-		IL.Circuit_LuV4.set(           addItem(tLastID = 31914, "LuV4 Circuit"        , "Circuit (LuV)"));
+		IL.Circuit_LuV4.set(           addItem(tLastID = 31914, "LuV4 Circuit"        , "Circuit (LuV)"), MT.DATA.CIRCUITS[6], OD_CIRCUITS[6]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[8], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_LuV4.get(1)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_LuV4.get(1)));
 
 		//LuV-26
-		IL.Circuit_ZPM1.set(           addItem(tLastID = 31921, "ZPM1 Circuit"        , "Circuit (ZPM)"));
+		IL.Circuit_ZPM1.set(           addItem(tLastID = 31921, "ZPM1 Circuit"        , "Circuit (ZPM)", MT.DATA.CIRCUITS[7], OD_CIRCUITS[7]));
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[6], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_ZPM1.get(1), IL.Circuit_LuV2.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_ZPM1.get(1)));
 
 		//ZPM-29
-		IL.Circuit_ZPM2.set(           addItem(tLastID = 31922, "ZPM2 Circuit"        , "Circuit (ZPM)"));
+		IL.Circuit_ZPM2.set(           addItem(tLastID = 31922, "ZPM2 Circuit"        , "Circuit (ZPM)"), MT.DATA.CIRCUITS[7], OD_CIRCUITS[7]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[7], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_ZPM2.get(1), IL.Circuit_LuV3.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_ZPM2.get(1)));
 
 		//UV-32
-		IL.Circuit_ZPM3.set(           addItem(tLastID = 31923, "ZPM3 Circuit"        , "Circuit (ZPM)"));
+		IL.Circuit_ZPM3.set(           addItem(tLastID = 31923, "ZPM3 Circuit"        , "Circuit (ZPM)"), MT.DATA.CIRCUITS[7], OD_CIRCUITS[7]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[8], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_ZPM3.get(1), IL.Circuit_LuV4.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_ZPM3.get(1)));
 
 		//PUV1-35
-		IL.Circuit_ZPM4.set(           addItem(tLastID = 31924, "ZPM4 Circuit"        , "Circuit (ZPM)"));
+		IL.Circuit_ZPM4.set(           addItem(tLastID = 31924, "ZPM4 Circuit"        , "Circuit (ZPM)"), MT.DATA.CIRCUITS[7], OD_CIRCUITS[7]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[9], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_ZPM4.get(1)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_ZPM4.get(1)));
 
 		//ZPM-30
-		IL.Circuit_UV1.set(           addItem(tLastID = 31931, "UV1 Circuit"        , "Circuit (UV)"));
+		IL.Circuit_UV1.set(           addItem(tLastID = 31931, "UV1 Circuit"        , "Circuit (UV)"), MT.DATA.CIRCUITS[8], OD_CIRCUITS[8]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[7], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_UV1.get(1), IL.Circuit_ZPM2.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_UV1.get(1)));
 
 		//UV-33
-		IL.Circuit_UV2.set(           addItem(tLastID = 31932, "UV2 Circuit"        , "Circuit (UV)"));
+		IL.Circuit_UV2.set(           addItem(tLastID = 31932, "UV2 Circuit"        , "Circuit (UV)"), MT.DATA.CIRCUITS[8], OD_CIRCUITS[8]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[8], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_UV2.get(1), IL.Circuit_ZPM3.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_UV2.get(1)));
 
 		//PUV1-36
-		IL.Circuit_UV3.set(           addItem(tLastID = 31933, "UV3 Circuit"        , "Circuit (UV)"));
+		IL.Circuit_UV3.set(           addItem(tLastID = 31933, "UV3 Circuit"        , "Circuit (UV)"), MT.DATA.CIRCUITS[8], OD_CIRCUITS[8]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[9], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_UV3.get(1), IL.Circuit_ZPM4.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_UV3.get(1)));
 
 		//PUV2-39
-		IL.Circuit_UV4.set(           addItem(tLastID = 31934, "UV4 Circuit"        , "Circuit (UV)"));
+		IL.Circuit_UV4.set(           addItem(tLastID = 31934, "UV4 Circuit"        , "Circuit (UV)"), MT.DATA.CIRCUITS[8], OD_CIRCUITS[8]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[10], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_UV4.get(1)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_UV4.get(1)));
 
 		//UV-34
-		IL.Circuit_PUV11.set(           addItem(tLastID = 31941, "PUV11 Circuit"        , "Circuit (PUV1)"));
+		IL.Circuit_PUV11.set(           addItem(tLastID = 31941, "PUV11 Circuit"        , "Circuit (PUV1)"), MT.DATA.CIRCUITS[9], OD_CIRCUITS[9]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[8], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_PUV11.get(1), IL.Circuit_UV2.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_PUV11.get(1)));
 
 		//PUV1-37
-		IL.Circuit_PUV12.set(           addItem(tLastID = 31942, "PUV12 Circuit"        , "Circuit (PUV1)"));
+		IL.Circuit_PUV12.set(           addItem(tLastID = 31942, "PUV12 Circuit"        , "Circuit (PUV1)"), MT.DATA.CIRCUITS[9], OD_CIRCUITS[9]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[9], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_PUV12.get(1), IL.Circuit_UV3.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_PUV12.get(1)));
 
 		//PUV2-40
-		IL.Circuit_PUV13.set(           addItem(tLastID = 31943, "PUV13 Circuit"        , "Circuit (PUV1)"));
+		IL.Circuit_PUV13.set(           addItem(tLastID = 31943, "PUV13 Circuit"        , "Circuit (PUV1)"), MT.DATA.CIRCUITS[9], OD_CIRCUITS[9]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[10], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_PUV13.get(1), IL.Circuit_UV4.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_PUV13.get(1)));
 
 		//PUV3-43
-		IL.Circuit_PUV14.set(           addItem(tLastID = 31944, "PUV14 Circuit"        , "Circuit (PUV1)"));
+		IL.Circuit_PUV14.set(           addItem(tLastID = 31944, "PUV14 Circuit"        , "Circuit (PUV1)"), MT.DATA.CIRCUITS[9], OD_CIRCUITS[9]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[11], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_PUV14.get(1)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_PUV14.get(1)));
 
 		//PUV1-38
-		IL.Circuit_PUV21.set(           addItem(tLastID = 31951, "PUV21 Circuit"        , "Circuit (PUV2)"));
+		IL.Circuit_PUV21.set(           addItem(tLastID = 31951, "PUV21 Circuit"        , "Circuit (PUV2)"), MT.DATA.CIRCUITS[10], OD_CIRCUITS[10]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[9], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_PUV21.get(1), IL.Circuit_PUV12.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_PUV21.get(1)));
 
 		//PUV2-41
-		IL.Circuit_PUV22.set(           addItem(tLastID = 31952, "PUV22 Circuit"        , "Circuit (PUV2)"));
+		IL.Circuit_PUV22.set(           addItem(tLastID = 31952, "PUV22 Circuit"        , "Circuit (PUV2)"), MT.DATA.CIRCUITS[10], OD_CIRCUITS[10]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[10], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_PUV22.get(1), IL.Circuit_PUV13.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_PUV22.get(1)));
 
 		//PUV3-44
-		IL.Circuit_PUV23.set(           addItem(tLastID = 31953, "PUV23 Circuit"        , "Circuit (PUV2)"));
+		IL.Circuit_PUV23.set(           addItem(tLastID = 31953, "PUV23 Circuit"        , "Circuit (PUV2)"), MT.DATA.CIRCUITS[10], OD_CIRCUITS[10]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[11], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_PUV23.get(1), IL.Circuit_PUV14.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_PUV23.get(1)));
 
 		//PUV4-47
-		IL.Circuit_PUV24.set(           addItem(tLastID = 31954, "PUV24 Circuit"        , "Circuit (PUV2)"));
+		IL.Circuit_PUV24.set(           addItem(tLastID = 31954, "PUV24 Circuit"        , "Circuit (PUV2)"), MT.DATA.CIRCUITS[10], OD_CIRCUITS[10]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[12], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_PUV24.get(1)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_PUV24.get(1)));
 
 		//PUV2-42
-		IL.Circuit_PUV31.set(           addItem(tLastID = 31961, "PUV31 Circuit"        , "Circuit (PUV3)"));
+		IL.Circuit_PUV31.set(           addItem(tLastID = 31961, "PUV31 Circuit"        , "Circuit (PUV3)"), MT.DATA.CIRCUITS[11], OD_CIRCUITS[11]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[10], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_PUV31.get(1), IL.Circuit_PUV22.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_PUV31.get(1)));
 
 		//PUV3-45
-		IL.Circuit_PUV32.set(           addItem(tLastID = 31962, "PUV32 Circuit"        , "Circuit (PUV3)"));
+		IL.Circuit_PUV32.set(           addItem(tLastID = 31962, "PUV32 Circuit"        , "Circuit (PUV3)"), MT.DATA.CIRCUITS[11], OD_CIRCUITS[11]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[11], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_PUV32.get(1), IL.Circuit_PUV23.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_PUV32.get(1)));
 
 		//PUV4-48
-		IL.Circuit_PUV33.set(           addItem(tLastID = 31963, "PUV33 Circuit"        , "Circuit (PUV3)"));
+		IL.Circuit_PUV33.set(           addItem(tLastID = 31963, "PUV33 Circuit"        , "Circuit (PUV3)"), MT.DATA.CIRCUITS[11], OD_CIRCUITS[11]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[12], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_PUV33.get(1), IL.Circuit_PUV24.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_PUV33.get(1)));
 
 		//PUV5-51
-		IL.Circuit_PUV34.set(           addItem(tLastID = 31964, "PUV34 Circuit"        , "Circuit (PUV3)"));
+		IL.Circuit_PUV34.set(           addItem(tLastID = 31964, "PUV34 Circuit"        , "Circuit (PUV3)"), MT.DATA.CIRCUITS[11], OD_CIRCUITS[11]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[13], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_PUV34.get(1)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_PUV34.get(1)));
 
 		//PUV3-46
-		IL.Circuit_PUV41.set(           addItem(tLastID = 31971, "PUV41 Circuit"        , "Circuit (PUV4)"));
+		IL.Circuit_PUV41.set(           addItem(tLastID = 31971, "PUV41 Circuit"        , "Circuit (PUV4)"), MT.DATA.CIRCUITS[12], OD_CIRCUITS[12]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[11], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_PUV41.get(1), IL.Circuit_PUV32.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_PUV41.get(1)));
 
 		//PUV4-49
-		IL.Circuit_PUV42.set(           addItem(tLastID = 31972, "PUV42 Circuit"        , "Circuit (PUV4)"));
+		IL.Circuit_PUV42.set(           addItem(tLastID = 31972, "PUV42 Circuit"        , "Circuit (PUV4)"), MT.DATA.CIRCUITS[12], OD_CIRCUITS[12]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[12], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_PUV42.get(1), IL.Circuit_PUV33.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_PUV42.get(1)));
 
 		//PUV5-52
-		IL.Circuit_PUV43.set(           addItem(tLastID = 31973, "PUV43 Circuit"        , "Circuit (PUV4)"));
+		IL.Circuit_PUV43.set(           addItem(tLastID = 31973, "PUV43 Circuit"        , "Circuit (PUV4)"), MT.DATA.CIRCUITS[12], OD_CIRCUITS[12]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[13], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_PUV43.get(1), IL.Circuit_PUV34.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_PUV43.get(1)));
 
 		//Omega-55
-		IL.Circuit_PUV44.set(           addItem(tLastID = 31974, "PUV44 Circuit"        , "Circuit (PUV4)"));
+		IL.Circuit_PUV44.set(           addItem(tLastID = 31974, "PUV44 Circuit"        , "Circuit (PUV4)"), MT.DATA.CIRCUITS[12], OD_CIRCUITS[12]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[14], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_PUV44.get(1)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_PUV44.get(1)));
 
 		//PUV4-50
-		IL.Circuit_PUV51.set(           addItem(tLastID = 31981, "PUV51 Circuit"        , "Circuit (PUV5)"));
+		IL.Circuit_PUV51.set(           addItem(tLastID = 31981, "PUV51 Circuit"        , "Circuit (PUV5)"), MT.DATA.CIRCUITS[13], OD_CIRCUITS[13]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[12], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_PUV51.get(1), IL.Circuit_PUV42.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_PUV51.get(1)));
 
 		//PUV5-53
-		IL.Circuit_PUV52.set(           addItem(tLastID = 31982, "PUV52 Circuit"        , "Circuit (PUV5)"));
+		IL.Circuit_PUV52.set(           addItem(tLastID = 31982, "PUV52 Circuit"        , "Circuit (PUV5)"), MT.DATA.CIRCUITS[13], OD_CIRCUITS[13]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[13], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_PUV52.get(1), IL.Circuit_PUV43.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_PUV52.get(1)));
 
 		//Omega-56
-		IL.Circuit_PUV53.set(           addItem(tLastID = 31983, "PUV53 Circuit"        , "Circuit (PUV5)"));
+		IL.Circuit_PUV53.set(           addItem(tLastID = 31983, "PUV53 Circuit"        , "Circuit (PUV5)"), MT.DATA.CIRCUITS[13], OD_CIRCUITS[13]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[14], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_PUV53.get(1), IL.Circuit_PUV44.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_PUV53.get(1)));
 
 		//MAX-59
-		IL.Circuit_PUV54.set(           addItem(tLastID = 31984, "PUV54 Circuit"        , "Circuit (PUV5)"));
+		IL.Circuit_PUV54.set(           addItem(tLastID = 31984, "PUV54 Circuit"        , "Circuit (PUV5)"), MT.DATA.CIRCUITS[13], OD_CIRCUITS[13]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[15], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_PUV54.get(1)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_PUV54.get(1)));
 
 		//PUV5-54
-		IL.Circuit_Omega1.set(           addItem(tLastID = 31991, "Omega1 Circuit"        , "Circuit (Omega)"));
+		IL.Circuit_Omega1.set(           addItem(tLastID = 31991, "Omega1 Circuit"        , "Circuit (Omega)"), MT.DATA.CIRCUITS[14], OD_CIRCUITS[14]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[13], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_Omega1.get(1), IL.Circuit_PUV52.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_Omega1.get(1)));
 
 		//Omega-57
-		IL.Circuit_Omega2.set(           addItem(tLastID = 31992, "Omega2 Circuit"        , "Circuit (Omega)"));
+		IL.Circuit_Omega2.set(           addItem(tLastID = 31992, "Omega2 Circuit"        , "Circuit (Omega)"), MT.DATA.CIRCUITS[14], OD_CIRCUITS[14]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[14], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_Omega2.get(1), IL.Circuit_PUV53.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_Omega2.get(1)));
 
 		//MAX-60
-		IL.Circuit_Omega3.set(           addItem(tLastID = 31993, "Omega3 Circuit"        , "Circuit (Omega)"));
+		IL.Circuit_Omega3.set(           addItem(tLastID = 31993, "Omega3 Circuit"        , "Circuit (Omega)"), MT.DATA.CIRCUITS[14], OD_CIRCUITS[14]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[15], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_Omega3.get(1), IL.Circuit_PUV54.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_Omega3.get(1)));
 
 		//MAX-62
-		IL.Circuit_Omega4.set(           addItem(tLastID = 31994, "Omega4 Circuit"        , "Circuit (Omega)"));
+		IL.Circuit_Omega4.set(           addItem(tLastID = 31994, "Omega4 Circuit"        , "Circuit (Omega)"), MT.DATA.CIRCUITS[14], OD_CIRCUITS[14]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[15], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_Omega4.get(1)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_Omega4.get(1)));
 
 		//Omega-58
-		IL.Circuit_MAX1.set(           addItem(tLastID = 32001, "MAX1 Circuit"        , "Circuit (MAX)"));
+		IL.Circuit_MAX1.set(           addItem(tLastID = 32001, "MAX1 Circuit"        , "Circuit (MAX)"), MT.DATA.CIRCUITS[15], OD_CIRCUITS[15]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[14], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_MAX1.get(1), IL.Circuit_Omega2.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_MAX1.get(1)));
 
 		//MAX-61
-		IL.Circuit_MAX2.set(           addItem(tLastID = 32002, "MAX2 Circuit"        , "Circuit (MAX)"));
+		IL.Circuit_MAX2.set(           addItem(tLastID = 32002, "MAX2 Circuit"        , "Circuit (MAX)"), MT.DATA.CIRCUITS[15], OD_CIRCUITS[15]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[15], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_MAX2.get(1), IL.Circuit_Omega3.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_MAX2.get(1)));
 
 		//MAX-63
-		IL.Circuit_MAX3.set(           addItem(tLastID = 32003, "MAX3 Circuit"        , "Circuit (MAX)"));
+		IL.Circuit_MAX3.set(           addItem(tLastID = 32003, "MAX3 Circuit"        , "Circuit (MAX)"), MT.DATA.CIRCUITS[15], OD_CIRCUITS[15]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[15], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_MAX2.get(1), IL.Circuit_Omega4.get(2)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_MAX3.get(1)));
 
 		//MAX-64
-		IL.Circuit_MAX4.set(           addItem(tLastID = 32004, "MAX4 Circuit"        , "Circuit (MAX)"));
+		IL.Circuit_MAX4.set(           addItem(tLastID = 32004, "MAX4 Circuit"        , "Circuit (MAX)"), MT.DATA.CIRCUITS[15], OD_CIRCUITS[15]);
+		RM.Circuitassembling.addRecipeX(T, F, F, F, T, VR[15], DT[4], ST.array(IL.Circuit_SMD_Resistor.get(64), IL.Circuit_SMD_Diode.get(64), IL.Circuit_SMD_Transistor.get(64), IL.Circuit_SMD_Capacitor.get(64), IL.Circuit_Board_MAX3.get(1)), MT.SolderingAlloy.liquid(4*U, T), NF, ST.array(IL.Circuit_MAX4.get(1)));
 
 		//Crystal
 		IL.Circuit_Crystal_Diamond         .set(addItem(tLastID = 32051, "Crystal Circuit (Diamond)"        , "Logic Diamond"                                   , TC.stack(TC.COGNITO, 3), TC.stack(TC.LUCRUM, 2), TC.stack(TC.VITREUS, 2), new OreDictItemData(OM.stack(ANY.Diamond, U))));
@@ -1576,7 +1870,9 @@ public class MultiItemTechnological extends MultiItemRandom {
 		RM.Press.addRecipe2(T, F, F, F, T, 16, 16, IL.Processor_Crystal_Empty.get(1), IL.Circuit_Crystal_Ruby    .get(1), IL.Processor_Crystal_Ruby    .get(1));
 		RM.Press.addRecipe2(T, F, F, F, T, 16, 16, IL.Processor_Crystal_Empty.get(1), IL.Circuit_Crystal_Emerald .get(1), IL.Processor_Crystal_Emerald .get(1));
 		RM.Press.addRecipe2(T, F, F, F, T, 16, 16, IL.Processor_Crystal_Empty.get(1), IL.Circuit_Crystal_Sapphire.get(1), IL.Processor_Crystal_Sapphire.get(1));
+	*/
 
+		//------------------------------------------------------------------------------//
 
 		CR.shaped(IL.Cover_Logistics_Display_CPU_Logic     .get(1), CR.DEF_REV, "dL ", " Q ", " C ", 'Q', IL.Cover_Blank, 'C', OD_CIRCUITS[2], 'L', OP.wireGt01.dat(MT.Lumium));
 		CR.shaped(IL.Cover_Logistics_Display_CPU_Control   .get(1), CR.DEF_REV, " Ld", " Q ", " C ", 'Q', IL.Cover_Blank, 'C', OD_CIRCUITS[2], 'L', OP.wireGt01.dat(MT.Lumium));
@@ -1593,10 +1889,6 @@ public class MultiItemTechnological extends MultiItemRandom {
 		CR.shaped(IL.Cover_Logistics_Generic_Import        .get(1), CR.DEF_REV, " d ", "WQW", "CPC", 'Q', IL.Cover_Blank, 'P', IL.Processor_Crystal_Emerald, 'C', OD_CIRCUITS[4], 'W', OP.wireFine.dat(MT.Os));
 		CR.shaped(IL.Cover_Logistics_Generic_Storage       .get(1), CR.DEF_REV, "d  ", "WQW", "CPC", 'Q', IL.Cover_Blank, 'P', IL.Processor_Crystal_Emerald, 'C', OD_CIRCUITS[4], 'W', OP.wireFine.dat(MT.Os));
 		CR.shaped(IL.Cover_Logistics_Dump                  .get(1), CR.DEF_REV, "   ", "WQW", "CPC", 'Q', IL.Cover_Blank, 'P', IL.Processor_Crystal_Emerald, 'C', OD_CIRCUITS[4], 'W', OP.wireFine.dat(MT.Os));
-
-	*/
-
-		//------------------------------------------------------------------------------//
 
 		IL.USB_Stick_1.set(                     addItem(tLastID = 32101, "USB 1.0 Stick"                    , "Stores Data"                                     , OD_USB_STICKS[1], Behavior_DataStorage.INSTANCE, TC.stack(TC.COGNITO, 3), TC.stack(TC.ELECTRUM, 1)));
 		IL.USB_Stick_2.set(                     addItem(tLastID = 32102, "USB 2.0 Stick"                    , "Stores Data"                                     , OD_USB_STICKS[2], Behavior_DataStorage.INSTANCE, TC.stack(TC.COGNITO, 4), TC.stack(TC.ELECTRUM, 2), TC.stack(TC.MOTUS, 1)));
