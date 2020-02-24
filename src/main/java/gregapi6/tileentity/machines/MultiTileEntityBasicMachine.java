@@ -105,7 +105,7 @@ public class MultiTileEntityBasicMachine extends TileEntityBase09FacingSingle im
 	public byte mFluidInputs  = 127, mFluidOutputs = 127, mFluidAutoInput = SIDE_UNDEFINED, mFluidAutoOutput = SIDE_UNDEFINED;
 	public short mEfficiency = 10000;
 	public int mParallel = 1;
-	public long mEnergy = 0, mInputMin = 16, mInput = 32, mInputMax = 64, mMinEnergy = 0, mOutputEnergy = 0, mChargeRequirement = 0;
+	public long mEnergy = 0, mInputMin = 1, mInput = 8, mInputMax = 16, mMinEnergy = 0, mOutputEnergy = 0, mChargeRequirement = 0;
 	public TagData mEnergyTypeAccepted = TD.Energy.TU, mEnergyTypeEmitted = TD.Energy.QU, mEnergyTypeCharged = TD.Energy.TU;
 	public Recipe mLastRecipe = null, mCurrentRecipe = null;
 	public FluidTankGT[] mTanksInput = ZL_FT, mTanksOutput = ZL_FT;
@@ -133,7 +133,7 @@ public class MultiTileEntityBasicMachine extends TileEntityBase09FacingSingle im
 		if (aNBT.hasKey(NBT_NO_CONSTANT_POWER)) mNoConstantEnergy = aNBT.getBoolean(NBT_NO_CONSTANT_POWER);
 		if (aNBT.hasKey(NBT_SPECIAL_IS_START_ENERGY)) mSpecialIsStartEnergy = aNBT.getBoolean(NBT_SPECIAL_IS_START_ENERGY);
 		if (aNBT.hasKey(NBT_EFFICIENCY)) mEfficiency = (short)UT.Code.bind_(0, 10000, aNBT.getShort(NBT_EFFICIENCY));
-		if (aNBT.hasKey(NBT_INPUT)) {mInput = aNBT.getLong(NBT_INPUT); mInputMin = mInput / 2; mInputMax = mInput * 2;}
+		if (aNBT.hasKey(NBT_INPUT)) {mInput = aNBT.getLong(NBT_INPUT); if(mInput >= 32) {mInputMin = mInput / 2; mInputMax = mInput * 2;}else{mInputMin = 1; mInputMax = mInput * 2;}}
 		if (aNBT.hasKey(NBT_INPUT_MIN)) {mInputMin = aNBT.getLong(NBT_INPUT_MIN);}
 		if (aNBT.hasKey(NBT_INPUT_MAX)) {mInputMax = aNBT.getLong(NBT_INPUT_MAX);}
 		if (aNBT.hasKey(NBT_MINENERGY)) {mMinEnergy = aNBT.getLong(NBT_MINENERGY);}

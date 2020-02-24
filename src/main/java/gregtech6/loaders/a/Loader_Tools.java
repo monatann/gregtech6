@@ -59,9 +59,57 @@ import gregtech6.items.tools.crafting.GT_Tool_BendingCylinder;
 import gregtech6.items.tools.crafting.GT_Tool_BendingCylinderSmall;
 import gregtech6.items.tools.crafting.GT_Tool_File;
 import gregtech6.items.tools.crafting.GT_Tool_RollingPin;
-import gregtech6.items.tools.early.*;
-import gregtech6.items.tools.electric.*;
-import gregtech6.items.tools.machine.*;
+import gregtech6.items.tools.early.GT_Tool_Axe;
+import gregtech6.items.tools.early.GT_Tool_AxeDouble;
+import gregtech6.items.tools.early.GT_Tool_BranchCutter;
+import gregtech6.items.tools.early.GT_Tool_ButcheryKnife;
+import gregtech6.items.tools.early.GT_Tool_Chisel;
+import gregtech6.items.tools.early.GT_Tool_Club;
+import gregtech6.items.tools.early.GT_Tool_HandDrill;
+import gregtech6.items.tools.early.GT_Tool_HardHammer;
+import gregtech6.items.tools.early.GT_Tool_Hoe;
+import gregtech6.items.tools.early.GT_Tool_Knife;
+import gregtech6.items.tools.early.GT_Tool_Pickaxe;
+import gregtech6.items.tools.early.GT_Tool_PickaxeConstruction;
+import gregtech6.items.tools.early.GT_Tool_PickaxeGem;
+import gregtech6.items.tools.early.GT_Tool_Plow;
+import gregtech6.items.tools.early.GT_Tool_Saw;
+import gregtech6.items.tools.early.GT_Tool_Scissors;
+import gregtech6.items.tools.early.GT_Tool_Scoop;
+import gregtech6.items.tools.early.GT_Tool_Sense;
+import gregtech6.items.tools.early.GT_Tool_Shovel;
+import gregtech6.items.tools.early.GT_Tool_Spade;
+import gregtech6.items.tools.early.GT_Tool_Sword;
+import gregtech6.items.tools.early.GT_Tool_UniversalSpade;
+import gregtech6.items.tools.electric.GT_Tool_BuzzSaw_LV;
+import gregtech6.items.tools.electric.GT_Tool_Chainsaw_HV;
+import gregtech6.items.tools.electric.GT_Tool_Chainsaw_LV;
+import gregtech6.items.tools.electric.GT_Tool_Chainsaw_MV;
+import gregtech6.items.tools.electric.GT_Tool_Drill_LV;
+import gregtech6.items.tools.electric.GT_Tool_JackHammer_HV_No_Ores;
+import gregtech6.items.tools.electric.GT_Tool_JackHammer_HV_Normal;
+import gregtech6.items.tools.electric.GT_Tool_MiningDrill_HV;
+import gregtech6.items.tools.electric.GT_Tool_MiningDrill_LV;
+import gregtech6.items.tools.electric.GT_Tool_MiningDrill_MV;
+import gregtech6.items.tools.electric.GT_Tool_Mixer_LV;
+import gregtech6.items.tools.electric.GT_Tool_MonkeyWrench_HV;
+import gregtech6.items.tools.electric.GT_Tool_MonkeyWrench_LV;
+import gregtech6.items.tools.electric.GT_Tool_MonkeyWrench_MV;
+import gregtech6.items.tools.electric.GT_Tool_Screwdriver_LV;
+import gregtech6.items.tools.electric.GT_Tool_Trimmer_LV;
+import gregtech6.items.tools.electric.GT_Tool_Wrench_HV;
+import gregtech6.items.tools.electric.GT_Tool_Wrench_LV;
+import gregtech6.items.tools.electric.GT_Tool_Wrench_MV;
+import gregtech6.items.tools.machine.GT_Tool_Crowbar;
+import gregtech6.items.tools.machine.GT_Tool_FlintAndTinder;
+import gregtech6.items.tools.machine.GT_Tool_MagnifyingGlass;
+import gregtech6.items.tools.machine.GT_Tool_MonkeyWrench;
+import gregtech6.items.tools.machine.GT_Tool_Pincers;
+import gregtech6.items.tools.machine.GT_Tool_Plunger;
+import gregtech6.items.tools.machine.GT_Tool_Screwdriver;
+import gregtech6.items.tools.machine.GT_Tool_SoftHammer;
+import gregtech6.items.tools.machine.GT_Tool_WireCutter;
+import gregtech6.items.tools.machine.GT_Tool_Wrench;
 import gregtech6.items.tools.pocket.GT_Tool_Pocket_Chisel;
 import gregtech6.items.tools.pocket.GT_Tool_Pocket_Cutter;
 import gregtech6.items.tools.pocket.GT_Tool_Pocket_File;
@@ -278,7 +326,7 @@ public class Loader_Tools implements Runnable {
 		CR.shaped(ToolsGT.sMetaTool.getToolWithStats(ToolsGT.SOFTHAMMER         , MT.Rubber         , (OreDictMaterial)tHandle[0]   ), CR.DEF_MIR   , "FF ", "FFS", "FF ", 'S', tHandle[1], 'F', plate.dat(MT.Rubber));
 		CR.shaped(ToolsGT.sMetaTool.getToolWithStats(ToolsGT.SOFTHAMMER         , MT.Plastic        , (OreDictMaterial)tHandle[0]   ), CR.DEF_MIR   , "FF ", "FFS", "FF ", 'S', tHandle[1], 'F', ingot.dat(MT.Plastic));
 		CR.shaped(ToolsGT.sMetaTool.getToolWithStats(ToolsGT.SOFTHAMMER         , MT.Plastic        , (OreDictMaterial)tHandle[0]   ), CR.DEF_MIR   , "FF ", "FFS", "FF ", 'S', tHandle[1], 'F', plate.dat(MT.Plastic));
-		
+		/*
 		for (OreDictMaterial tRock : new OreDictMaterial[] {MT.Netherrack, MT.NetherBrick, MT.Endstone, MT.PetrifiedWood}) {
 		CR.shaped(ToolsGT.sMetaTool.getToolWithStats(ToolsGT.AXE                , tRock             , (OreDictMaterial)tHandle[0]   ), CR.DEF_MIR   , "FF" , "FS"        , 'S', tHandle[1], 'F', rockGt.dat(tRock));
 		CR.shaped(ToolsGT.sMetaTool.getToolWithStats(ToolsGT.HOE                , tRock             , (OreDictMaterial)tHandle[0]   ), CR.DEF_MIR   , "FF" , " S"        , 'S', tHandle[1], 'F', rockGt.dat(tRock));
@@ -295,7 +343,12 @@ public class Loader_Tools implements Runnable {
 		CR.shaped(ToolsGT.sMetaTool.getToolWithStats(ToolsGT.CLUB               , tRock             , (OreDictMaterial)tHandle[0]   ), CR.DEF_MIR   , " FF", "FFF", "SF ", 'S', tHandle[1], 'F', rockGt.dat(tRock));
 		CR.shaped(ToolsGT.sMetaTool.getToolWithStats(ToolsGT.HARDHAMMER         , tRock             , (OreDictMaterial)tHandle[0]   ), CR.DEF_MIR   , "FF ", "FFS", "FF ", 'S', tHandle[1], 'F', rockGt.dat(tRock));
 		}
+		*/
 		}
+		
+		/* GregTech6 Unofficial */
+		//Stone Age
+		CR.shaped(ToolsGT.sMetaTool.getToolWithStats(ToolsGT.WRENCH         , MT.Stone, MT.Stone), CR.DEF_MIR   , "PhP", "PPP", " P ", 'P', plate.dat(MT.Stone));
 		
 		final String tCategory = ConfigCategories.Recipes.gregtechtools + ".";
 		

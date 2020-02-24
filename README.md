@@ -10,9 +10,7 @@ derivative of it are licensed under the
 [Creative Commons Attribution-NonCommercial 4.0 International Public License](src/main/resources/LICENSE.logos).
 
 # Support
-
-You can use the Issue Tracker, or you can just use the Forums. Since you should need a Forum Account to log into this anyways, I would recommend you to go for the Forums if you have an Issue.
-
-# Dev Environment Setup
-
-TODO: OvermindDL1 should replace this with proper instructions. ;)
+This project and original GT6 are completely different.
+This project is made for my modpack, and I don't support other environment.
+If there is a bug or you don't like my changed code, please do it yourself. 
+Don't report issues to GT6 original author(Gregorius Techneticies) because he don't manage this project, this project is "Unofficial".

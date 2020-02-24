@@ -76,7 +76,16 @@ import net.minecraft.entity.monster.EntitySnowman;
 import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.entity.monster.EntityWitch;
 import net.minecraft.entity.monster.EntityZombie;
-import net.minecraft.entity.passive.*;
+import net.minecraft.entity.passive.EntityChicken;
+import net.minecraft.entity.passive.EntityCow;
+import net.minecraft.entity.passive.EntityHorse;
+import net.minecraft.entity.passive.EntityMooshroom;
+import net.minecraft.entity.passive.EntityOcelot;
+import net.minecraft.entity.passive.EntityPig;
+import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.entity.passive.EntitySquid;
+import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
@@ -94,6 +103,8 @@ public class MultiTileEntitySmeltery extends TileEntityBase07Paintable implement
 	private static long MAX_AMOUNT = 16*U, KG_PER_ENERGY = 100;
 	private static double HEAT_RESISTANCE_BONUS = 1.25;
 	
+	private static long temperature = 0;
+	
 	protected boolean mAcidProof = F;
 	protected byte mDisplayedHeight = 0, oDisplayedHeight = 0, mCooldown = 100;
 	protected short mDisplayedFluid = -1, oDisplayedFluid = -1;
@@ -107,6 +118,7 @@ public class MultiTileEntitySmeltery extends TileEntityBase07Paintable implement
 		if (aNBT.hasKey(NBT_ACIDPROOF)) mAcidProof = aNBT.getBoolean(NBT_ACIDPROOF);
 		if (aNBT.hasKey(NBT_TEMPERATURE)) mTemperature = aNBT.getLong(NBT_TEMPERATURE);
 		if (aNBT.hasKey(NBT_TEMPERATURE+".old")) oTemperature = aNBT.getLong(NBT_TEMPERATURE+".old");
+		if (aNBT.hasKey(NBT_MAXTEMPERATURE)) temperature = aNBT.getLong(NBT_MAXTEMPERATURE);
 		mContent = OreDictMaterialStack.loadList(NBT_MATERIALS, aNBT);
 	}
 	
@@ -339,7 +351,8 @@ public class MultiTileEntitySmeltery extends TileEntityBase07Paintable implement
 	
 	@Override
 	public long getTemperatureMax(byte aSide) {
-		return (long)(mMaterial.mMeltingPoint * HEAT_RESISTANCE_BONUS);
+		return temperature;
+		//return (long)(mMaterial.mMeltingPoint * HEAT_RESISTANCE_BONUS);
 	}
 	
 	@Override

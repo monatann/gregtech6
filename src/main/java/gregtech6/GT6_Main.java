@@ -166,7 +166,6 @@ import gregtech6.loaders.c.Loader_Recipes_Crops;
 import gregtech6.loaders.c.Loader_Recipes_Decomp;
 import gregtech6.loaders.c.Loader_Recipes_Extruder;
 import gregtech6.loaders.c.Loader_Recipes_Food;
-import gregtech6.loaders.c.Loader_Recipes_Furnace;
 import gregtech6.loaders.c.Loader_Recipes_Handlers;
 import gregtech6.loaders.c.Loader_Recipes_Ores;
 import gregtech6.loaders.c.Loader_Recipes_Other;
@@ -245,31 +244,31 @@ public class GT6_Main extends Abstract_Mod {
 		}
 		if (tMainConfig.get("general", "SmallerVanillaToolDurability", T).getBoolean(T)) {
 			OUT.println(getModNameForLog() + ": Nerfing Vanilla Tool Durability");
-			Items.wooden_sword   .setMaxDamage(  4);
-			Items.wooden_pickaxe .setMaxDamage(  4);
-			Items.wooden_shovel  .setMaxDamage(  4);
-			Items.wooden_axe     .setMaxDamage(  4);
-			Items.wooden_hoe     .setMaxDamage(  4);
-			Items.stone_sword    .setMaxDamage( 16);
-			Items.stone_pickaxe  .setMaxDamage( 16);
-			Items.stone_shovel   .setMaxDamage( 16);
-			Items.stone_axe      .setMaxDamage( 16);
-			Items.stone_hoe      .setMaxDamage( 16);
-			Items.iron_sword     .setMaxDamage( 80);
-			Items.iron_pickaxe   .setMaxDamage( 80);
-			Items.iron_shovel    .setMaxDamage( 80);
-			Items.iron_axe       .setMaxDamage( 80);
-			Items.iron_hoe       .setMaxDamage( 80);
-			Items.golden_sword   .setMaxDamage(  8);
-			Items.golden_pickaxe .setMaxDamage(  8);
-			Items.golden_shovel  .setMaxDamage(  8);
-			Items.golden_axe     .setMaxDamage(  8);
-			Items.golden_hoe     .setMaxDamage(  8);
-			Items.diamond_sword  .setMaxDamage(240);
-			Items.diamond_pickaxe.setMaxDamage(240);
-			Items.diamond_shovel .setMaxDamage(240);
-			Items.diamond_axe    .setMaxDamage(240);
-			Items.diamond_hoe    .setMaxDamage(240);
+			Items.wooden_sword   .setMaxDamage(  1);
+			Items.wooden_pickaxe .setMaxDamage(  1);
+			Items.wooden_shovel  .setMaxDamage(  1);
+			Items.wooden_axe     .setMaxDamage(  1);
+			Items.wooden_hoe     .setMaxDamage(  1);
+			Items.stone_sword    .setMaxDamage( 1);
+			Items.stone_pickaxe  .setMaxDamage( 1);
+			Items.stone_shovel   .setMaxDamage( 1);
+			Items.stone_axe      .setMaxDamage( 1);
+			Items.stone_hoe      .setMaxDamage( 1);
+			Items.iron_sword     .setMaxDamage( 1);
+			Items.iron_pickaxe   .setMaxDamage( 1);
+			Items.iron_shovel    .setMaxDamage( 1);
+			Items.iron_axe       .setMaxDamage( 1);
+			Items.iron_hoe       .setMaxDamage( 1);
+			Items.golden_sword   .setMaxDamage(  1);
+			Items.golden_pickaxe .setMaxDamage(  1);
+			Items.golden_shovel  .setMaxDamage(  1);
+			Items.golden_axe     .setMaxDamage(  1);
+			Items.golden_hoe     .setMaxDamage(  1);
+			Items.diamond_sword  .setMaxDamage(1);
+			Items.diamond_pickaxe.setMaxDamage(1);
+			Items.diamond_shovel .setMaxDamage(1);
+			Items.diamond_axe    .setMaxDamage(1);
+			Items.diamond_hoe    .setMaxDamage(1);
 		}
 
 
@@ -340,7 +339,7 @@ public class GT6_Main extends Abstract_Mod {
 				new Loader_Fuels(),
 				new Loader_Loot(),
 
-				new Loader_Recipes_Furnace(), // has to be before everything else!
+				//new Loader_Recipes_Furnace(), // has to be before everything else!
 				new Loader_Recipes_Woods(), // has to be before Vanilla!
 				new Loader_Recipes_Vanilla(), // has to be after Woods!
 				new Loader_Recipes_Temporary(),

@@ -164,85 +164,130 @@ public class CS {
 	/** The HARDNESS/RESISTANCE Tiers for Crucible. */
 	public static final float[]
 	HARDNESS_C    = {
+		5.0F,//umber
 		5.0F,//stone
-		15.0F,//basalt
+		7.0F,//bronze
 		15.0F,//granite black
 		15.0F,//granite red
-		5.0F,//nether brick
 		5.0F,//ceramic
-		5.0F,//umber
+		15.0F,//basalt
+		5.0F,//nether brick
 		5.0F,//livingrock
-		5.0F,//holystone
-		5.0F,//between
-		5.0F,//Quartz
-		10.0F,//graphene
-		7.0F,//bronze
 		4.0F,//invar
-		6.0F,//hsla
-		6.0F,//stainless
-		6.0F,//darkiron
-		6.0F,//meteoriciron
-		6.0F,//meteoric steel
-		6.0F,//knight
-		6.0F,//fierysteel
-		6.0F,//octine
-		6.0F,//thaum
 		6.0F,//ti
+		6.0F,//stainless
+		5.0F,//Quartz
+		6.0F,//meteoriciron
+		6.0F,//knight
 		9.0F,//cr
-		9.0F,//mo
+		9.0F,//v
+		6.0F,//meteoric steel
+		6.0F,//thaum
+		9.0F,//ni-ti
+		9.0F,//ir
 		9.0F,//nb
+		9.0F,//mo
+		6.0F,//fierysteel
+		10.0F,//void
 		9.0F,//ta
 		9.0F,//os
-		9.0F,//ir
-		9.0F,//ni-ti
-		9.0F,//v
 		10.0F,//w
 		9.0F,//ta4hfc5
-		10.0F,//void
+		10.0F,//graphene
+		100.0F,//ad
+
 		100.0F,//bedrock-ahla
-		100.0F//ad
+		6.0F,//octine
+		6.0F,//darkiron
+		6.0F,//hsla
+		5.0F,//holystone
+		5.0F,//between
+	};
+
+	/** The Acid Tiers for Crucible. */
+	public static final long[]
+	TEMP_C    = {
+			1233,//umber
+			1375,//stone
+			1696,//bronze
+			1875,//granite black
+			1875,//granite red
+			2000,//ceramic
+			2091,//basalt
+			2250,//nether brick
+			2250,//livingrock
+			2395,//invar
+			2426,//ti
+			2428,//stainless
+			2482,//Quartz
+			2513,//meteoriciron
+			2682,//knight
+			2725,//cr
+			2728,//v
+			2807,//meteoric steel
+			2888,//thaum
+			2931,//ni-ti
+			3398,//ir
+			3437,//nb
+			3620,//mo
+			3667,//fierysteel
+			3750,//void
+			4112,//ta
+			4132,//os
+			4618,//w
+			5328,//ta4hfc5
+			5375,//graphene
+			6531,//ad
+
+			//TO-DO
+			1000,//bedrock-ahla
+			1000,//octine
+			1000,//darkiron
+			1000,//hsla
+			1000,//holystone
+			1000,//between
 	};
 
 	/** The Acid Tiers for Crucible. */
 	public static final boolean[]
 	ACID_C    = {
+		F,//umber
 		F,//stone
-		F,//basalt
+		F,//bronze
 		F,//granite black
 		F,//granite red
-		F,//nether brick
 		F,//ceramic
-		F,//umber
+		F,//basalt
+		F,//netherbrick
 		F,//livingrock
-		F,//holystone
-		F,//between
-		F,//Quartz
-		F,//graphene
-		F,//bronze
 		F,//invar
-		F,//hsla
-		T,//stainless
-		F,//darkiron
-		F,//meteoriciron
-		F,//meteoric steel
-		F,//knight
-		F,//fierysteel
-		F,//octine
-		T,//thaum
 		F,//ti
+		T,//stainlesssteel
+		F,//quartz
+		F,//meteoriciron
+		F,//knightmetal
 		T,//cr
-		F,//mo
+		F,//v
+		F,//meteoricsteel
+		T,//taum
+		F,//ni-ti
+		T,//ir
 		F,//nb
+		F,//mo
+		F,//fierysteel
+		T,//void
 		F,//ta
 		F,//os
-		T,//ir
-		F,//ni-ti
-		F,//v
 		T,//w
 		F,//ta4hfc5
-		T,//void
-		F,//bedrock-ahla
-		T//ad
+		F,//graphene
+		T,//ad
+		F,//bed-hsla
+		F,//octine
+		F,//darkiron
+		F,//hsla
+		F,//holy
+		F//between
 	};
 
 	/** The Machine Basic Power Tiers. */
@@ -299,7 +344,7 @@ public class CS {
 			8589934592L//Infinity
 	};
 
-	/** The Voltage Tiers. 
+	/** The Voltage Tiers.
 	 * 0, ULV<br>
 	 * 1, LV<br>
 	 * 2, MV<br>
@@ -339,6 +384,59 @@ public class CS {
 			2147483648L,//ΩV
 			8589934592L//MAX
 	},
+	VC       = {
+			//ULV
+			8,
+			8,
+			8,
+			8,
+			8,
+			8,
+			8,
+			8,
+			8,
+			//LV
+			32,
+			32,
+			32,
+			32,
+			//MV
+			128,
+			128,
+			128,
+			//HV
+			512,
+			512,
+			512,
+			//EV
+			2048,
+			2048,
+			//IV
+			8192,
+			//LuV
+			32768,
+			32768,
+			32768,
+			//ZPM TODO
+			131072,
+			131072,
+			131072,
+			131072,
+			131072,
+			131072,
+			131072,
+			131072,
+			131072,
+			131072,
+			524288,//UV
+			2097152,//PUV1
+			8388608,//PUV2
+			33554432,//PUV3
+			134217728,//PUV4
+			536870912,//PUV5
+			2147483648L,//ΩV
+			8589934592L//MAX
+			},
 	VR       = {
 				4, //ULV
 				20,//LV
@@ -1382,6 +1480,7 @@ public class CS {
 	, NBT_RECIPEMAP                 = "gt6.recipemap"                // String containing the Recipe Map Name.
 	, NBT_FUELMAP                   = "gt6.fuelmap"                  // String containing the Fuel Map Name.
 	, NBT_TEMPERATURE               = "gt6.temperature"              // Long containing a generic Temperature Variable.
+	, NBT_MAXTEMPERATURE               = "gt6.maxtemperature"       // Long containing a generic Temperature Limit Variable.
 	, NBT_MTE_REG                   = "gt6.mte.reg"                  // Containing the MTE Registry ID
 	, NBT_MTE_ID                    = "gt6.mte.id"                   // Containing the MTE ID
 	, NBT_USB_DIRECTION             = "gt6.usb.dir"                  // Compound

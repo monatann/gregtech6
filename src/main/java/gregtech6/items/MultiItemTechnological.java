@@ -264,6 +264,8 @@ public class MultiItemTechnological extends MultiItemRandom {
 		IL.Shape_Extruder_CCC.set(              addItem(tLastID = 10028, "Extruder Shape (Capsule-Cell-Container)"  , "Extruder Shape for making Capsule-Cell-Containers"   , TC.stack(TC.FABRICO, 2), TC.stack(TC.METALLUM, 2)));
 		IL.Shape_Extruder_Foil.set(             addItem(tLastID = 10029, "Extruder Shape (Foil)"                    , "Extruder Shape for making Foils"                     , TC.stack(TC.FABRICO, 2), TC.stack(TC.METALLUM, 2)));
 		IL.Shape_Extruder_Plate_Tiny.set(       addItem(tLastID = 10030, "Extruder Shape (Tiny Plate)"              , "Extruder Shape for making Tiny Plates"               , TC.stack(TC.FABRICO, 2), TC.stack(TC.METALLUM, 2)));
+		//GT6 Unofficial
+		IL.Shape_Extruder_Crucible.set(       addItem(tLastID = 10031, "Extruder Shape (Crucible)"              , "Extruder Shape for making Crucible"               , TC.stack(TC.FABRICO, 2), TC.stack(TC.METALLUM, 2)));
 
 		CR.shaped(IL.Shape_Extruder_Ingot           .get(1), CR.DEF_REV, "x  ", " P ", "   ", 'P', IL.Shape_Extruder_Empty);
 		CR.shaped(IL.Shape_Extruder_Plate_Tiny      .get(1), CR.DEF_REV, " x ", " P ", "   ", 'P', IL.Shape_Extruder_Empty);
@@ -301,6 +303,9 @@ public class MultiItemTechnological extends MultiItemRandom {
 		CR.shaped(IL.Shape_Extruder_Pipe_Medium     .get(1), CR.DEF_REV, "  x", " P ", "   ", 'P', IL.Shape_Extruder_Plate_Curved);
 		CR.shaped(IL.Shape_Extruder_Pipe_Large      .get(1), CR.DEF_REV, "   ", " Px", "   ", 'P', IL.Shape_Extruder_Plate_Curved);
 		CR.shaped(IL.Shape_Extruder_Pipe_Huge       .get(1), CR.DEF_REV, "   ", " P ", "  x", 'P', IL.Shape_Extruder_Plate_Curved);
+		
+		//GT6 Unofficial
+		CR.shaped(IL.Shape_Extruder_Crucible       .get(1), CR.DEF_REV, "   ", "xP ", "   ", 'P', IL.Shape_Extruder_Empty);
 
 		BooksGT.BOOK_REGISTER.put(new ItemStackContainer(IL.Shape_Extruder_Empty.get(1)), (byte)45);
 		BooksGT.BOOK_REGISTER.put(new ItemStackContainer(IL.Shape_Extruder_Plate.get(1)), (byte)45);
@@ -333,7 +338,7 @@ public class MultiItemTechnological extends MultiItemRandom {
 		BooksGT.BOOK_REGISTER.put(new ItemStackContainer(IL.Shape_Extruder_CCC.get(1)), (byte)45);
 		BooksGT.BOOK_REGISTER.put(new ItemStackContainer(IL.Shape_Extruder_Foil.get(1)), (byte)45);
 		BooksGT.BOOK_REGISTER.put(new ItemStackContainer(IL.Shape_Extruder_Plate_Tiny.get(1)), (byte)45);
-
+		BooksGT.BOOK_REGISTER.put(new ItemStackContainer(IL.Shape_Extruder_Crucible.get(1)), (byte)45);
 
 
 		IL.Shape_SimpleEx_Empty.set(            addItem(tLastID = 10200, "Empty Extruder Shape"             , "Raw Plate to make Extruder Shapes"               , TC.stack(TC.FABRICO, 2), TC.stack(TC.METALLUM, 2)));
@@ -370,7 +375,11 @@ public class MultiItemTechnological extends MultiItemRandom {
 		IL.Shape_SimpleEx_CCC.set(              addItem(tLastID = 10228, "Low Heat Extruder Shape (Capsule-Cell-Container)" , "Extruder Shape for making Capsule-Cell-Containers"   , TC.stack(TC.FABRICO, 1), TC.stack(TC.METALLUM, 2)));
 		IL.Shape_SimpleEx_Foil.set(             addItem(tLastID = 10229, "Low Heat Extruder Shape (Foil)"                   , "Extruder Shape for making Foils"                     , TC.stack(TC.FABRICO, 2), TC.stack(TC.METALLUM, 2)));
 		IL.Shape_SimpleEx_Plate_Tiny.set(       addItem(tLastID = 10230, "Low Heat Extruder Shape (Tiny Plate)"             , "Extruder Shape for making Tiny Plates"               , TC.stack(TC.FABRICO, 2), TC.stack(TC.METALLUM, 2)));
+		IL.Shape_SimpleEx_Crucible.set(       addItem(tLastID = 10231, "Low Heat Extruder Shape (Crucible)"             , "Extruder Shape for making Crucible"               , TC.stack(TC.FABRICO, 2), TC.stack(TC.METALLUM, 2)));
 
+		//GT6 Unofficial
+		CR.shaped(IL.Shape_SimpleEx_Crucible       .get(1), CR.DEF_REV, "   ", "xP ", "   ", 'P', IL.Shape_SimpleEx_Empty);
+		
 		CR.shaped(IL.Shape_SimpleEx_Ingot           .get(1), CR.DEF_REV, "x  ", " P ", "   ", 'P', IL.Shape_SimpleEx_Empty);
 		CR.shaped(IL.Shape_SimpleEx_Plate_Tiny      .get(1), CR.DEF_REV, " x ", " P ", "   ", 'P', IL.Shape_SimpleEx_Empty);
 		CR.shaped(IL.Shape_SimpleEx_Plate_Curved    .get(1), CR.DEF_REV, "  x", " P ", "   ", 'P', IL.Shape_SimpleEx_Empty);
@@ -439,7 +448,19 @@ public class MultiItemTechnological extends MultiItemRandom {
 		BooksGT.BOOK_REGISTER.put(new ItemStackContainer(IL.Shape_SimpleEx_CCC.get(1)), (byte)55);
 		BooksGT.BOOK_REGISTER.put(new ItemStackContainer(IL.Shape_SimpleEx_Foil.get(1)), (byte)55);
 		BooksGT.BOOK_REGISTER.put(new ItemStackContainer(IL.Shape_SimpleEx_Plate_Tiny.get(1)), (byte)55);
+		BooksGT.BOOK_REGISTER.put(new ItemStackContainer(IL.Shape_SimpleEx_Crucible.get(1)), (byte)55);
 
+		//GT6 Unofficial
+		IL.Shape_Stone_Empty.set(            addItem(tLastID = 10300, "Empty Stone Extruder Shape"             , "Raw Plate to make Extruder Shapes"               , TC.stack(TC.FABRICO, 2), TC.stack(TC.METALLUM, 2)));
+		CR.shaped(IL.Shape_Stone_Empty.get(1), CR.DEF_REV, "hf" , "xP", 'P', OP.plateDouble.dat(MT.Stone));
+		IL.Shape_Stone_Crucible.set(       addItem(tLastID = 10301, "Stone Extruder Shape (Crucible)"             , "Extruder Shape for making Crucible"               , TC.stack(TC.FABRICO, 2), TC.stack(TC.METALLUM, 2)));
+		CR.shaped(IL.Shape_Stone_Crucible       .get(1), CR.DEF_REV, "   ", "xP ", "   ", 'P', IL.Shape_Stone_Empty);
+		BooksGT.BOOK_REGISTER.put(new ItemStackContainer(IL.Shape_Stone_Crucible .get(1)), (byte)55);
+		/*
+		IL.Shape_Stone_Ingot.set(       addItem(tLastID = 10302, "Stone Extruder Shape (Ingot)"             , "Extruder Shape for making Ingot"               , TC.stack(TC.FABRICO, 2), TC.stack(TC.METALLUM, 2)));
+		CR.shaped(IL.Shape_Stone_Ingot       .get(1), CR.DEF_REV, "x  ", " P ", "   ", 'P', IL.Shape_Stone_Empty);
+		BooksGT.BOOK_REGISTER.put(new ItemStackContainer(IL.Shape_Stone_Ingot .get(1)), (byte)55);
+		 */
 
 		IL.Shape_Foodmold_Empty.set(            addItem(tLastID = 10800, "Empty Food Grade Mold"            , "", TC.stack(TC.FABRICO, 2), TC.stack(TC.METALLUM, 1)));
 

@@ -107,6 +107,8 @@ public class MultiTileEntityCrucible extends TileEntityBase10MultiBlockBase impl
 	private static long MAX_AMOUNT = 16*3*3*3*U, KG_PER_ENERGY = 100;
 	private static double HEAT_RESISTANCE_BONUS = 1.10;
 
+	private static long temperature = 0;
+
 	protected boolean mAcidProof = F;
 	protected byte mDisplayedHeight = 0, mCooldown = 100;
 	protected short mDisplayedFluid = -1;
@@ -123,6 +125,7 @@ public class MultiTileEntityCrucible extends TileEntityBase10MultiBlockBase impl
 		if (aNBT.hasKey(NBT_ACIDPROOF)) mAcidProof = aNBT.getBoolean(NBT_ACIDPROOF);
 		if (aNBT.hasKey(NBT_TEMPERATURE)) mTemperature = aNBT.getLong(NBT_TEMPERATURE);
 		if (aNBT.hasKey(NBT_TEMPERATURE+".old")) oTemperature = aNBT.getLong(NBT_TEMPERATURE+".old");
+		if (aNBT.hasKey(NBT_MAXTEMPERATURE)) temperature = aNBT.getLong(NBT_MAXTEMPERATURE);
 		mContent = OreDictMaterialStack.loadList(NBT_MATERIALS, aNBT);
 	}
 
@@ -407,7 +410,8 @@ public class MultiTileEntityCrucible extends TileEntityBase10MultiBlockBase impl
 
 	@Override
 	public long getTemperatureMax(byte aSide) {
-		return (long)(mMaterial.mMeltingPoint * HEAT_RESISTANCE_BONUS);
+		return temperature;
+		//return (long)(mMaterial.mMeltingPoint * HEAT_RESISTANCE_BONUS);
 	}
 
 	@Override

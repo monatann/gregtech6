@@ -904,5 +904,11 @@ public class Loader_Recipes_Other implements Runnable {
 			tFluid = tMaterial.gas(U, T);                if (!FL.Error.is(tFluid)) RM.Massfab.addRecipe0(T, 1, (tMaterial.mNeutrons+tMaterial.mProtons)*131072  , tFluid,     tMaterial.mProtons<1?NF:FL.MatterCharged.make(tMaterial.mProtons  ), tMaterial.mNeutrons<1?NF:FL.MatterNeutral.make(tMaterial.mNeutrons  ));
 			tFluid = tMaterial.plasma(U, T);             if (!FL.Error.is(tFluid)) RM.Massfab.addRecipe0(T, 1, (tMaterial.mNeutrons+tMaterial.mProtons)*131072  , tFluid,     tMaterial.mProtons<1?NF:FL.MatterCharged.make(tMaterial.mProtons  ), tMaterial.mNeutrons<1?NF:FL.MatterNeutral.make(tMaterial.mNeutrons  ));
 		}
+		
+		/* GregTech6 Unofficial */
+		//Stone Age
+		CR.shaped(plate.mat(MT.Stone, 1), CR.DEF, "S  ", "S  ", "h  ", 'S', Blocks.cobblestone);
+		//RM.Extruder.addRecipe2(T, V[0], CS.DT[4], 10000, OP.plate.mat(MT.Ceramic, 4), IL.Shape_Stone_Ingot.get(0), new ItemStack(Items.brick, 1));
+
 	}
 }
