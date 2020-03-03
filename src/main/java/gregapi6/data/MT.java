@@ -444,20 +444,6 @@ public class MT {
 
 	Neutronium = element(3721, "Neutronium", "Nt", 1000, 2000, 12000, 15000, 30.0, SET_SHINY, 3, 6, 81920, 6).put(G_INGOT_MACHINE_ORES, UUM, METAL, SMITHABLE, MELTING, MOLTEN, EXTRUDER).aspects(TC.METALLUM, 3, TC.RADIO, 1, TC.NEBRISUM, 1),
 
-	/*
-			Primitive      = tier("Primitive"     ).aspects(TC.MACHINA , 1),
-			Basic          = tier("Basic"         ).aspects(TC.MACHINA , 2),
-			Good           = tier("Good"          ).aspects(TC.MACHINA , 3),
-			Advanced       = tier("Advanced"      ).aspects(TC.MACHINA , 4),
-			Data           = tier("Data"          ).aspects(TC.MACHINA , 4),
-			Elite          = tier("Elite"         ).aspects(TC.MACHINA , 5),
-			Master         = tier("Master"        ).aspects(TC.MACHINA , 6),
-			Ultimate       = tier("Ultimate"      ).aspects(TC.MACHINA , 7),
-			Quantum        = tier("Quantum"       ).aspects(TC.ORDO    , 8),
-			Superconductor = tier("Superconductor").aspects(TC.ELECTRUM, 8),
-			Infinite       = tier("Infinite"      ),
-	*/
-
 	ULV = tier("ULV").aspects(TC.MACHINA , 1),
 	LV = tier("LV").aspects(TC.MACHINA , 2),
 	MV = tier("MV").aspects(TC.MACHINA , 3),
@@ -877,40 +863,6 @@ public class MT {
 	AmberDominican          = valgem        ( 8422, "DominicanAmber"        , SET_RUBY              ,  80,  80, 240, 127).lens(DYE_INDEX_Blue       ).put(MORTAR, CRYSTALLISABLE)                                                                                                                                                                                                                                                   .aspects(TC.VITREUS, 1, TC.VINCULUM                 , 2).qual(3,  4.0,   256,  2),
 	Craponite               = valgem        ( 8322, "Craponite"             , SET_FLINT             , 255, 170, 185, 127).lens(DYE_INDEX_Magenta    ).put(MORTAR, CRYSTALLISABLE)                                                                                                                                                                                                                                                   .aspects(TC.VITREUS, 3, TC.LUCRUM, 3, TC.STRONTIO   , 2).qual(3,  7.0,   256,  2),
 	Jade                    = valgem        ( 8321, "Jade"                  , SET_LAPIS             , 100, 255, 125, 255).lens(DYE_INDEX_Green      ).put(MD.ERE)                                                                                                                                                                                                                                                                   .aspects(TC.VITREUS, 3, TC.LUCRUM                   , 6).qual(3,  8.0,   512,  2),
-
-
-	/*
-	Sunstone                = valgem        (00000, "Sunstone"              , SET_RUBY              , 194, 136, 108, 127),
-	Moonstone               = valgem        (00000, "Moonstone"             , SET_RUBY              , 166, 174, 171, 127),
-	Bloodstone              = valgem        (00000, "Bloodstone"            , SET_RUBY              ,  71,  98,  70, 127),
-	Wonderstone             = valgem        (00000, "Wonderstone"           , SET_RUBY              , 166, 136, 115, 127),
-
-	Jet                     = valgem        (00000, "Jet"                   , SET_RUBY              ,  39,  39,  39, 127),
-	LapisLazuli             = valgem        (00000, "Lapis Lazuli"          , SET_RUBY              ,  44,  52, 101, 127),
-	SnowflakeObsidian       = valgem        (00000, "Snowflake Obsidian"    , SET_RUBY              ,  70,  66,  63, 127),
-	BlackBeryl              = valgem        (00000, "Black Beryl"           , SET_RUBY              ,  57,  57,  57, 127),
-
-	Rhodonite               = valgem        (00000, "Rhodonite"             , SET_RUBY              , 178, 121, 135, 127),
-	Labradorite             = valgem        (00000, "Labradorite"           , SET_RUBY              ,  27, 133, 152, 127),
-	Dumortierite            = valgem        (00000, "Dumortierite"          , SET_RUBY              ,  54,  57, 100, 127),
-	Moissanite              = valgem        (00000, "Moissanite"            , SET_RUBY              , 164, 165, 165, 127),
-	Mookaite                = valgem        (00000, "Mookaite"              , SET_RUBY              , 143,  80,  29, 127),
-	Larimar                 = valgem        (00000, "Larimar"               , SET_RUBY              , 129, 196, 196, 127),
-	Charoite                = valgem        (00000, "Charoite"              , SET_RUBY              , 125,  95, 161, 127),
-	Carnelian               = valgem        (00000, "Carnelian"             , SET_RUBY              , 136,  40,  14, 127),
-	Unakite                 = valgem        (00000, "Unakite"               , SET_RUBY              , 153, 140,  97, 127),
-	Selenite                = valgem        (00000, "Selenite"              , SET_RUBY              , 168, 168, 168, 127),
-	Pietersite              = valgem        (00000, "Pietersite"            , SET_RUBY              , 127,  97, 117, 127),
-	Chrysocolla             = valgem        (00000, "Chrysocolla"           , SET_RUBY              ,  95, 179, 180, 127),
-	Coral                   = valgem        (00000, "Coral"                 , SET_RUBY              , 152,  40,  38, 127),
-	Basanite                = valgem        (00000, "Basanite"              , SET_RUBY              ,  50,  48,  40, 127),
-	Kunzite                 = valgem        (00000, "Kunzite"               , SET_RUBY              , 189, 166, 192, 127),
-	Angelite                = valgem        (00000, "Angelite"              , SET_RUBY              ,  96, 119, 139, 127),
-	Scapolite               = valgem        (00000, "Scapolite"             , SET_RUBY              , 167, 168, 130, 127),
-	Sugilite                = valgem        (00000, "Sugilite"              , SET_RUBY              , 154, 100, 154, 127),
-	Chrysoprase             = valgem        (00000, "Chrysoprase"           , SET_RUBY              ,  68,  93,  49, 127),
-	Ametrine                = valgem        (00000, "Ametrine"              , SET_RUBY              , 182, 141, 149, 127),
-	*/
 
 	Vinteum                 = dcmp          ( 8316, "Vinteum"               , SET_EMERALD           ,  80,  80, 255, 255).put(G_GEM_ORES, MAGICAL, CRYSTAL, MORTAR, BRITTLE, UNBURNABLE)                                                                                .setMcfg( 0, Ma             , 1*U)                                                                                                                          .aspects(TC.VITREUS, 2, TC.PRAECANTIO, 1).qual(3, 10.0, 128,  3),
 	VinteumPurified         = dcmp          ( 8327, "VinteumPurified"       , SET_EMERALD           , 230, 100, 255, 255).put(G_GEM_ORES, MAGICAL, CRYSTAL, MORTAR, BRITTLE, UNBURNABLE)                                                                                .setMcfg( 0, Ma             , 1*U)                                                                                                                          .aspects(TC.VITREUS, 2, TC.PRAECANTIO, 2).qual(3, 12.0, 256,  3).setLocal("Purified Vinteum"),
@@ -2553,7 +2505,7 @@ public class MT {
 				Bronze,//1696K
 				GraniteBlack,//1875K
 				GraniteRed,//1875K
-				Ceramic,//5, 2000K
+				Ceramic,//5, 2100K
 				Basalt,//, 2091K
 				NetherBrick,//2250K
 				Livingrock,//2250K

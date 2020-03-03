@@ -55,16 +55,16 @@ import net.minecraftforge.fluids.IFluidTank;
 public class MultiTileEntityEngineSteam extends TileEntityBase09FacingSingle implements ITileEntityAdjacentOnOff, ITileEntityEnergyFluxHandler, ITileEntityRunningActively, IFluidHandler {
 	/** The Array containing the different Engine State Colours from Blue over Green to Red */
 	public static final int sEngineColors[] = {0x0000ff, 0x0011ee, 0x0022dd, 0x0033cc, 0x0044bb, 0x0055aa, 0x006699, 0x007788, 0x008877, 0x009966, 0x00aa55, 0x00bb44, 0x00cc33, 0x00dd22, 0x00ee11, 0x00ff00, 0x00ff00, 0x11ee00, 0x22dd00, 0x33cc00, 0x44bb00, 0x55aa00, 0x669900, 0x778800, 0x887700, 0x996600, 0xaa5500, 0xbb4400, 0xcc3300, 0xdd2200, 0xee1100, 0xff0000};
-	
+
 	public static final int STEAM_PER_WATER = 200;
-	
+
 	protected boolean mEmitsEnergy = F, mStopped = F, mActive = F, oActive = F;
 	protected byte mState = 0, oState = 0, mPiston = 0;
 	protected short mEfficiency = 10000;
 	protected long mEnergy = 0, mCapacity = 640000, mOutput = 64;
 	protected TagData mEnergyTypeEmitted = TD.Energy.KU;
 	protected FluidTankGT mTank = new FluidTankGT(640);
-	
+
 	@Override
 	public void readFromNBT2(NBTTagCompound aNBT) {
 		super.readFromNBT2(aNBT);
@@ -80,7 +80,7 @@ public class MultiTileEntityEngineSteam extends TileEntityBase09FacingSingle imp
 		if (aNBT.hasKey(NBT_ENERGY_EMITTED)) mEnergyTypeEmitted = TagData.createTagData(aNBT.getString(NBT_ENERGY_EMITTED));
 		mTank.readFromNBT(aNBT, NBT_TANK+"."+0).setCapacity(STEAM_PER_WATER * mOutput * 2);
 	}
-	
+
 	@Override
 	public void writeToNBT2(NBTTagCompound aNBT) {
 		super.writeToNBT2(aNBT);
@@ -93,7 +93,7 @@ public class MultiTileEntityEngineSteam extends TileEntityBase09FacingSingle imp
 		aNBT.setShort(NBT_EFFICIENCY, mEfficiency);
 		mTank.writeToNBT(aNBT, NBT_TANK+"."+0);
 	}
-	
+
 	@Override
 	public void addToolTips(List<String> aList, ItemStack aStack, boolean aF3_H) {
 		aList.add(Chat.CYAN     + LH.get(LH.CONVERTS_FROM_X)        + " " + STEAM_PER_WATER + " L " + FL.name(FL.Steam.make(0), T) + " " + LH.get(LH.CONVERTS_TO_Y) + " " + (STEAM_PER_WATER / STEAM_PER_EU) + " " + mEnergyTypeEmitted.getLocalisedNameShort());
@@ -108,14 +108,14 @@ public class MultiTileEntityEngineSteam extends TileEntityBase09FacingSingle imp
 		aList.add(Chat.DGRAY    + LH.get(LH.TOOL_TO_DETAIL_MAGNIFYINGGLASS));
 		super.addToolTips(aList, aStack, aF3_H);
 	}
-	
+
 	@Override
 	public void onTick2(long aTimer, boolean aIsServerSide) {
 		if (mActive && aTimer%(32-mState)==0) {
 			mPiston+=1; mPiston&=3;
 		//  if (!aIsServerSide && (mPiston&2)==0) UT.Sounds.play(SFX.MC_FIZZ, 5, 0.25F, 0.5F, getCoords());
 		}
-		
+
 		if (aIsServerSide) {
 			// Convert Steam to Energy
 			if (!mStopped) {
@@ -123,7 +123,7 @@ public class MultiTileEntityEngineSteam extends TileEntityBase09FacingSingle imp
 				if (tConversions > 0) {
 					mEnergy += UT.Code.units(tConversions * STEAM_PER_WATER / STEAM_PER_EU, 10000, mEfficiency, F);
 					mTank.remove(tConversions * STEAM_PER_WATER);
-					FluidStack tDistilledWater = FL.DistW.make(tConversions);
+					FluidStack tDistilledWater = FL.Water.make(tConversions);
 					for (byte tDir : FACING_SIDES[mFacing]) {
 						if (tDistilledWater.amount <= 0) break;
 						tDistilledWater.amount -= FL.fill(getAdjacentTileEntity(tDir), tDistilledWater.copy(), T);
@@ -131,24 +131,24 @@ public class MultiTileEntityEngineSteam extends TileEntityBase09FacingSingle imp
 					GarbageGT.trash(tDistilledWater);
 				}
 			}
-			
+
 			// Set State
 			if (SERVER_TIME % 20 == 0) mState = (byte)Math.min(31, UT.Code.scale(mEnergy, mCapacity, 32, F));
-			
+
 			// Set the output depending on how "hot" the state of the Engine is.
 			long tOutput = (mOutput * (mState + 1)) / 16;
-			
+
 			// Checks if this Engine is supposed to be active.
 			mActive = (!mStopped && mEnergy > tOutput && tOutput * 2 > mOutput);
 			mEmitsEnergy = F;
-			
+
 			// Emit Energy
 			if (mActive) {
 				mEmitsEnergy = (ITileEntityEnergy.Util.emitEnergyToNetwork(mEnergyTypeEmitted, mPiston > 1 ? -tOutput : tOutput, 1, this) > 0);
 				mEnergy -= tOutput;
 				if (mTimer % 600 == 5) doDefaultStructuralChecks();
 			}
-			
+
 			// Well the Engine stops if it has too much Steam and just vents everything, unless it freshly entered the State.
 			if (mEnergy >= mCapacity) {
 				mEnergy = mCapacity - 1;
@@ -160,21 +160,21 @@ public class MultiTileEntityEngineSteam extends TileEntityBase09FacingSingle imp
 					mState = 31;
 				}
 			}
-			
+
 			// Release the Energy when inactive.
 			if (mStopped && mEnergy > 0) mEnergy = Math.max(0, mEnergy - Math.max(1, mCapacity / 64));
 		}
 	}
-	
+
 	@Override
 	public long onToolClick2(String aTool, long aRemainingDurability, long aQuality, Entity aPlayer, List<String> aChatReturn, IInventory aPlayerInventory, boolean aSneaking, ItemStack aStack, byte aSide, float aHitX, float aHitY, float aHitZ) {
 		long rReturn = super.onToolClick2(aTool, aRemainingDurability, aQuality, aPlayer, aChatReturn, aPlayerInventory, aSneaking, aStack, aSide, aHitX, aHitY, aHitZ);
 		if (rReturn > 0) return rReturn;
-		
+
 		if (isClientSide()) return 0;
-		
+
 		if (aTool.equals(TOOL_softhammer)) {mStopped = !mStopped; return 10000;}
-		
+
 		if (aTool.equals(TOOL_magnifyingglass)) {
 			if (aChatReturn != null) {
 				if (mStopped) {
@@ -191,43 +191,43 @@ public class MultiTileEntityEngineSteam extends TileEntityBase09FacingSingle imp
 		}
 		return 0;
 	}
-	
+
 	@Override
 	public boolean onTickCheck(long aTimer) {
 		mState = UT.Code.bind5(mState);
 		return mActive != oActive || mState != oState || super.onTickCheck(aTimer);
 	}
-	
+
 	@Override
 	public void onTickResetChecks(long aTimer, boolean aIsServerSide) {
 		super.onTickResetChecks(aTimer, aIsServerSide);
 		oState = mState;
 		oActive = mActive;
 	}
-	
+
 	@Override
 	public void setVisualData(byte aData) {
 		mPiston = (byte)(aData & 3);
 		mActive = ((aData & 4) != 0);
 		mState = (byte)((aData >>> 3) & 31);
 	}
-	
+
 	@Override public byte getVisualData() {return (byte)((mPiston&3) | (mActive?4:0) | (mState << 3));}
-	
+
 	@Override public float getSurfaceSizeAttachable (byte aSide) {return ALONG_AXIS[aSide][mFacing]?0.5F:0.25F;}
 	@Override public boolean isSideSolid2           (byte aSide) {return ALONG_AXIS[aSide][mFacing];}
 	@Override public boolean isSurfaceOpaque2       (byte aSide) {return ALONG_AXIS[aSide][mFacing];}
 	@Override public boolean allowCovers            (byte aSide) {return ALONG_AXIS[aSide][mFacing];}
-	
+
 	@Override public boolean getStateRunningPossible() {return T;}
 	@Override public boolean getStateRunningPassively() {return mActive;}
 	@Override public boolean getStateRunningActively() {return mEmitsEnergy;}
 	@Override public boolean setAdjacentOnOff(boolean aOnOff) {mStopped = !aOnOff; return !mStopped;}
 	@Override public boolean setStateOnOff(boolean aOnOff) {mStopped = !aOnOff; return !mStopped;}
 	@Override public boolean getStateOnOff() {return !mStopped;}
-	
+
 	@Override public boolean canDrop(int aInventorySlot) {return F;}
-	
+
 	@Override public boolean isEnergyType(TagData aEnergyType, byte aSide, boolean aEmitting) {return aEmitting && aEnergyType == mEnergyTypeEmitted;}
 	@Override public boolean isEnergyCapacitorType(TagData aEnergyType, byte aSide) {return aEnergyType == mEnergyTypeEmitted;}
 	@Override public boolean isEnergyEmittingTo(TagData aEnergyType, byte aSide, boolean aTheoretical) {return aSide == mFacing && super.isEnergyEmittingTo(aEnergyType, aSide, aTheoretical);}
@@ -236,16 +236,16 @@ public class MultiTileEntityEngineSteam extends TileEntityBase09FacingSingle imp
 	@Override public long getEnergyCapacity(TagData aEnergyType, byte aSide) {return aEnergyType == mEnergyTypeEmitted ? mCapacity : 0;}
 	@Override public Collection<TagData> getEnergyTypes(byte aSide) {return mEnergyTypeEmitted.AS_LIST;}
 	@Override public Collection<TagData> getEnergyCapacitorTypes(byte aSide) {return mEnergyTypeEmitted.AS_LIST;}
-	
+
 	@Override protected IFluidTank getFluidTankFillable2(byte aSide, FluidStack aFluidToFill) {return !mStopped && aSide == OPPOSITES[mFacing] && FL.Steam.is(aFluidToFill) ? mTank : null;}
 	@Override protected IFluidTank getFluidTankDrainable2(byte aSide, FluidStack aFluidToDrain) {return null;}
 	@Override protected IFluidTank[] getFluidTanks2(byte aSide) {return mTank.AS_ARRAY;}
-	
+
 	@Override
 	public int getRenderPasses2(Block aBlock, boolean[] aShouldSideBeRendered) {
 		return 7;
 	}
-	
+
 	@Override
 	public boolean setBlockBounds2(Block aBlock, int aRenderPass, boolean[] aShouldSideBeRendered) {
 		switch (aRenderPass) {
@@ -259,7 +259,7 @@ public class MultiTileEntityEngineSteam extends TileEntityBase09FacingSingle imp
 		}
 		return F;
 	}
-	
+
 	@Override
 	public ITexture getTexture2(Block aBlock, int aRenderPass, byte aSide, boolean[] aShouldSideBeRendered) {
 		switch (aRenderPass) {
@@ -272,7 +272,7 @@ public class MultiTileEntityEngineSteam extends TileEntityBase09FacingSingle imp
 		}
 		return null;
 	}
-	
+
 	// Icons
 	public static IIconContainer sColoreds[] = new IIconContainer[] {
 		new Textures.BlockIcons.CustomIcon("machines/engines/kinetic_steam/colored/front"),
@@ -293,11 +293,11 @@ public class MultiTileEntityEngineSteam extends TileEntityBase09FacingSingle imp
 		new Textures.BlockIcons.CustomIcon("machines/engines/kinetic_steam/overlay/engine"),
 		new Textures.BlockIcons.CustomIcon("machines/engines/kinetic_steam/overlay/engine_hull")
 	};
-	
+
 	@Override public String getTileEntityName() {return "gt6.multitileentity.engine.kinetic_steam";}
 	/*
 	public static class RenderEngine extends TileEntitySpecialRenderer {
-		
+
 		private static final float[] angleMap = new float[6];
 
 		static {

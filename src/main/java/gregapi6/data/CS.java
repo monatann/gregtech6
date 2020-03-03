@@ -176,7 +176,7 @@ public class CS {
 		4.0F,//invar
 		6.0F,//ti
 		6.0F,//stainless
-		5.0F,//Quartz
+		5.0F,//Steel
 		6.0F,//meteoriciron
 		6.0F,//knight
 		9.0F,//cr
@@ -212,14 +212,14 @@ public class CS {
 			1696,//bronze
 			1875,//granite black
 			1875,//granite red
-			2000,//ceramic
+			2100,//ceramic
 			2091,//basalt
 			2250,//nether brick
 			2250,//livingrock
 			2395,//invar
 			2426,//ti
 			2428,//stainless
-			2482,//Quartz
+			2482,//Steel
 			2513,//meteoriciron
 			2682,//knight
 			2725,//cr
@@ -263,7 +263,7 @@ public class CS {
 		F,//invar
 		F,//ti
 		T,//stainlesssteel
-		F,//quartz
+		T,//Steel
 		F,//meteoriciron
 		F,//knightmetal
 		T,//cr

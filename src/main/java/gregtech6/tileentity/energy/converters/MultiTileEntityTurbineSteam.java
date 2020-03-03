@@ -47,7 +47,7 @@ public class MultiTileEntityTurbineSteam extends TileEntityBase11Motor implement
 	public FluidTankGT mTank = new FluidTankGT(Integer.MAX_VALUE);
 	public long mSteamCounter = 0, mEnergyProducedNextTick = 0;
 	public static final int STEAM_PER_WATER = 200;
-	
+
 	@Override
 	public void readFromNBT2(NBTTagCompound aNBT) {
 		super.readFromNBT2(aNBT);
@@ -56,7 +56,7 @@ public class MultiTileEntityTurbineSteam extends TileEntityBase11Motor implement
 		mTank.readFromNBT(aNBT, NBT_TANK+"."+0);
 		mTank.setCapacity(mConverter.mEnergyIN.mMax*4);
 	}
-	
+
 	@Override
 	public void writeToNBT2(NBTTagCompound aNBT) {
 		super.writeToNBT2(aNBT);
@@ -64,13 +64,13 @@ public class MultiTileEntityTurbineSteam extends TileEntityBase11Motor implement
 		UT.NBT.setNumber(aNBT, NBT_OUTPUT_SU, mEnergyProducedNextTick);
 		mTank.writeToNBT(aNBT, NBT_TANK+"."+0);
 	}
-	
+
 	@Override
 	public void addToolTips(List<String> aList, ItemStack aStack, boolean aF3_H) {
 		super.addToolTips(aList, aStack, aF3_H);
 		aList.add(Chat.ORANGE + LH.get(LH.EMITS_USED_STEAM) + " ("+LH.get(LH.FACE_SIDES)+", 80%)");
 	}
-	
+
 	@Override
 	public void doConversion(long aTimer) {
 		if (mEnergyProducedNextTick > 0) {
@@ -83,7 +83,7 @@ public class MultiTileEntityTurbineSteam extends TileEntityBase11Motor implement
 			mEnergyProducedNextTick += tSteam / STEAM_PER_EU;
 			mTank.setEmpty();
 			if (mSteamCounter >= STEAM_PER_WATER) {
-				FluidStack tDistilledWater = FL.DistW.make(mSteamCounter / STEAM_PER_WATER);
+				FluidStack tDistilledWater = FL.Water.make(mSteamCounter / STEAM_PER_WATER);
 				for (byte tDir : FACING_SIDES[mFacing]) {
 					tDistilledWater.amount -= FL.fill(getAdjacentTank(tDir), tDistilledWater.copy(), T);
 					if (tDistilledWater.amount <= 0) break;
@@ -94,30 +94,30 @@ public class MultiTileEntityTurbineSteam extends TileEntityBase11Motor implement
 		}
 		super.doConversion(aTimer);
 	}
-	
+
 	@Override public float getSurfaceSizeAttachable (byte aSide) {return ALONG_AXIS[aSide][mFacing]?0.5F:0.25F;}
 	@Override public boolean isSideSolid2           (byte aSide) {return T;}
 	@Override public boolean isSurfaceOpaque2       (byte aSide) {return T;}
 	@Override public boolean allowCovers            (byte aSide) {return T;}
-	
+
 	@Override protected IFluidTank getFluidTankFillable2(byte aSide, FluidStack aFluidToFill) {return isInput(aSide) && !mStopped && FL.steam(aFluidToFill) ? mTank : null;}
 	@Override protected IFluidTank getFluidTankDrainable2(byte aSide, FluidStack aFluidToDrain) {return null;}
 	@Override protected IFluidTank[] getFluidTanks2(byte aSide) {return isOutput(aSide) ? null : mTank.AS_ARRAY;}
-	
+
 	@Override public void onWalkOver2(EntityLivingBase aEntity) {if (SIDES_TOP[mFacing] && mActivity.mState>0) {aEntity.rotationYaw=aEntity.rotationYaw+(mCounterClockwise?-5:+5)*(mConverter.mFast?2:1); aEntity.rotationYawHead=aEntity.rotationYawHead+(mCounterClockwise?-5:+5)*(mConverter.mFast?2:1);}}
-	
+
 	@Override
 	public ITexture getTexture2(Block aBlock, int aRenderPass, byte aSide, boolean[] aShouldSideBeRendered) {
 		if (!aShouldSideBeRendered[aSide]) return null;
 		int aIndex = aSide==mFacing?0:aSide==OPPOSITES[mFacing]?1:2;
 		return BlockTextureMulti.get(BlockTextureDefault.get(sColoreds[aIndex], mRGBa), BlockTextureDefault.get((mActivity.mState>0?mCounterClockwise?(mConverter.mFast?sOverlaysActiveLF:sOverlaysActiveLS):(mConverter.mFast?sOverlaysActiveRF:sOverlaysActiveRS):sOverlays)[aIndex]));
 	}
-	
+
 	@Override public boolean isInput (byte aSide) {return aSide == OPPOSITES[mFacing];}
 	@Override public boolean isOutput(byte aSide) {return aSide == mFacing;}
 	@Override public String getLocalisedInputSide () {return LH.get(LH.FACE_BACK);}
 	@Override public String getLocalisedOutputSide() {return LH.get(LH.FACE_FRONT);}
-	
+
 	// Icons
 	public static IIconContainer sColoreds[] = new IIconContainer[] {
 		new Textures.BlockIcons.CustomIcon("machines/turbines/rotation_steam/colored/front"),
@@ -144,6 +144,6 @@ public class MultiTileEntityTurbineSteam extends TileEntityBase11Motor implement
 		new Textures.BlockIcons.CustomIcon("machines/turbines/rotation_steam/overlay_active_rf/back"),
 		new Textures.BlockIcons.CustomIcon("machines/turbines/rotation_steam/overlay_active_rf/side"),
 	};
-	
+
 	@Override public String getTileEntityName() {return "gt6.multitileentity.turbines.rotation_steam";}
 }

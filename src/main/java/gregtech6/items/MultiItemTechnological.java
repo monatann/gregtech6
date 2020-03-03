@@ -303,7 +303,7 @@ public class MultiItemTechnological extends MultiItemRandom {
 		CR.shaped(IL.Shape_Extruder_Pipe_Medium     .get(1), CR.DEF_REV, "  x", " P ", "   ", 'P', IL.Shape_Extruder_Plate_Curved);
 		CR.shaped(IL.Shape_Extruder_Pipe_Large      .get(1), CR.DEF_REV, "   ", " Px", "   ", 'P', IL.Shape_Extruder_Plate_Curved);
 		CR.shaped(IL.Shape_Extruder_Pipe_Huge       .get(1), CR.DEF_REV, "   ", " P ", "  x", 'P', IL.Shape_Extruder_Plate_Curved);
-		
+
 		//GT6 Unofficial
 		CR.shaped(IL.Shape_Extruder_Crucible       .get(1), CR.DEF_REV, "   ", "xP ", "   ", 'P', IL.Shape_Extruder_Empty);
 
@@ -379,7 +379,7 @@ public class MultiItemTechnological extends MultiItemRandom {
 
 		//GT6 Unofficial
 		CR.shaped(IL.Shape_SimpleEx_Crucible       .get(1), CR.DEF_REV, "   ", "xP ", "   ", 'P', IL.Shape_SimpleEx_Empty);
-		
+
 		CR.shaped(IL.Shape_SimpleEx_Ingot           .get(1), CR.DEF_REV, "x  ", " P ", "   ", 'P', IL.Shape_SimpleEx_Empty);
 		CR.shaped(IL.Shape_SimpleEx_Plate_Tiny      .get(1), CR.DEF_REV, " x ", " P ", "   ", 'P', IL.Shape_SimpleEx_Empty);
 		CR.shaped(IL.Shape_SimpleEx_Plate_Curved    .get(1), CR.DEF_REV, "  x", " P ", "   ", 'P', IL.Shape_SimpleEx_Empty);
@@ -794,7 +794,7 @@ public class MultiItemTechnological extends MultiItemRandom {
 		RM.LaserEngraver    .addRecipeX(T, VR[5],   DT[2], ST.array(IL.Circuit_Wafer_Base.get(1), circuit, lens.mat(MT.Emerald, 0)), IL.Circuit_Wafer_NOR.get(4));
 
 		IL.Circuit_Wafer_ULV1.set(           addItem(tLastID = 30101, "ULV1 Chip (Wafer)"        , "Raw Circuit"));
-		
+
 		IL.Circuit_Wafer_ULV2.set(           addItem(tLastID = 30102, "ULV2 Chip (Wafer)"        , "Raw Circuit"));
 		IL.Circuit_Wafer_ULV3.set(           addItem(tLastID = 30103, "ULV3 Chip (Wafer)"        , "Raw Circuit"));
 		IL.Circuit_Wafer_ULV4.set(           addItem(tLastID = 30104, "ULV4 Chip (Wafer)"        , "Raw Circuit"));
@@ -963,7 +963,7 @@ public class MultiItemTechnological extends MultiItemRandom {
 		IL.Circuit_Part_LV1.set(           addItem(tLastID = 31661, "LV1 Part"        , "Circuit Part"));
 		circuit.setItemDamage(1);
 		RM.Press.addRecipeX(T, F, F, F, T, VR[0], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[1], 8) , OP.dust    .mat(MT.Redstone, 2), OP.plateGem.mat(MT.Si           , 2), circuit), IL.Circuit_Part_LV1        .get(1));
-		
+
 		//LV-4
 		IL.Circuit_Part_LV2.set(           addItem(tLastID = 31662, "LV2 Part"        , "Circuit Part"));
 		circuit.setItemDamage(2);
@@ -988,17 +988,17 @@ public class MultiItemTechnological extends MultiItemRandom {
 		IL.Circuit_Part_MV2.set(           addItem(tLastID = 31672, "MV2 Part"        , "Circuit Part"));
 		circuit.setItemDamage(2);
 		RM.Press.addRecipeX(T, F, F, F, T, VR[2], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[2], 16) , OP.dust    .mat(MT.Redstone, 8), OP.plateGem.mat(MT.Si           , 8), circuit), IL.Circuit_Part_MV2        .get(1));
-		
+
 		//HV-12
 		IL.Circuit_Part_MV3.set(           addItem(tLastID = 31673, "MV3 Part"        , "Circuit Part"));
 		circuit.setItemDamage(3);
 		RM.Press.addRecipeX(T, F, F, F, T, VR[3], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[2], 32) , OP.dust    .mat(MT.Redstone, 16), OP.plateGem.mat(MT.Si           , 16), circuit), IL.Circuit_Part_MV3        .get(1));
-		
+
 		//EV-15
 		IL.Circuit_Part_MV4.set(           addItem(tLastID = 31674, "MV4 Part"        , "Circuit Part"));
 		circuit.setItemDamage(4);
 		RM.Press.addRecipeX(T, F, F, F, T, VR[4], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[2], 64) , OP.dust    .mat(MT.Redstone, 32), OP.plateGem.mat(MT.Si           , 32), circuit), IL.Circuit_Part_MV4        .get(1));
-		
+
 		//MV-9
 		IL.Circuit_Part_HV1.set(           addItem(tLastID = 31681, "HV1 Part"        , "Circuit Part"));
 		circuit.setItemDamage(1);
@@ -1013,12 +1013,12 @@ public class MultiItemTechnological extends MultiItemRandom {
 		IL.Circuit_Part_HV3.set(           addItem(tLastID = 31683, "HV3 Part"        , "Circuit Part"));
 		circuit.setItemDamage(3);
 		RM.Press.addRecipeX(T, F, F, F, T, VR[4], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[3], 32) , OP.dust    .mat(MT.Glowstone, 32), OP.plateGem.mat(MT.Si           , 32), circuit), IL.Circuit_Part_HV3        .get(1));
-		
+
 		//IV-19
 		IL.Circuit_Part_HV4.set(           addItem(tLastID = 31684, "HV4 Part"        , "Circuit Part"));
 		circuit.setItemDamage(4);
 		RM.Press.addRecipeX(T, F, F, F, T, VR[4], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[3], 64) , OP.dust    .mat(MT.Glowstone, 64), OP.plateGem.mat(MT.Si           , 64), circuit), IL.Circuit_Part_HV4        .get(1));
-		
+
 		//HV-14
 		IL.Circuit_Part_EV1.set(           addItem(tLastID = 31691, "EV1 Part"        , "Circuit Part"));
 		circuit.setItemDamage(1);
@@ -1048,17 +1048,17 @@ public class MultiItemTechnological extends MultiItemRandom {
 		IL.Circuit_Part_IV2.set(           addItem(tLastID = 31702, "IV2 Part"        , "Circuit Part"));
 		circuit.setItemDamage(2);
 		RM.Press.addRecipeX(T, F, F, F, T, VR[5], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[5], 16) , OP.dust    .mat(MT.Ti, 4), OP.plateGem.mat(MT.RedstoneAlloy           , 4), circuit), IL.Circuit_Part_IV2        .get(1));
-		
+
 		//LuV-24
 		IL.Circuit_Part_IV3.set(           addItem(tLastID = 31703, "IV3 Part"        , "Circuit Part"));
 		circuit.setItemDamage(3);
 		RM.Press.addRecipeX(T, F, F, F, T, VR[6], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[5], 32) , OP.dust    .mat(MT.Ti, 8), OP.plateGem.mat(MT.RedstoneAlloy           , 8), circuit), IL.Circuit_Part_IV3        .get(1));
-		
+
 		//ZPM-27
 		IL.Circuit_Part_IV4.set(           addItem(tLastID = 31704, "IV4 Part"        , "Circuit Part"));
 		circuit.setItemDamage(4);
 		RM.Press.addRecipeX(T, F, F, F, T, VR[7], DT[4], ST.array(OP.wireFine.mat(MT.DATA.Wire_T[5], 64) , OP.dust    .mat(MT.Ti, 16), OP.plateGem.mat(MT.RedstoneAlloy           , 16), circuit), IL.Circuit_Part_IV4        .get(1));
-		
+
 		//IV-22
 		IL.Circuit_Part_LuV1.set(           addItem(tLastID = 31711, "LuV1 Part"        , "Circuit Part"));
 		circuit.setItemDamage(1);
@@ -1263,7 +1263,7 @@ public class MultiItemTechnological extends MultiItemRandom {
 		IL.Circuit_Plate_ULV1.set(           addItem(tLastID = 31401, "ULV1 Plate"        , "Circuit Plate"));
 		IL.Circuit_Plate_ULV2.set(           addItem(tLastID = 31402, "ULV2 Plate"        , "Circuit Plate"));
 		IL.Circuit_Plate_ULV3.set(           addItem(tLastID = 31403, "ULV3 Plate"        , "Circuit Plate"));
-		IL.Circuit_Plate_ULV4.set(           addItem(tLastID = 31404, "ULV3 Plate"        , "Circuit Plate"));
+		IL.Circuit_Plate_ULV4.set(           addItem(tLastID = 31404, "ULV4 Plate"        , "Circuit Plate"));
 		IL.Circuit_Plate_LV1.set(           addItem(tLastID = 31411, "LV1 Plate"        , "Circuit Plate"));
 		IL.Circuit_Plate_LV2.set(           addItem(tLastID = 31412, "LV2 Plate"        , "Circuit Plate"));
 		IL.Circuit_Plate_LV3.set(           addItem(tLastID = 31413, "LV3 Plate"        , "Circuit Plate"));
@@ -1324,7 +1324,7 @@ public class MultiItemTechnological extends MultiItemRandom {
 		IL.Circuit_Plate_MAX2.set(           addItem(tLastID = 31552, "MAX2 Plate"        , "Circuit Plate"));
 		IL.Circuit_Plate_MAX3.set(           addItem(tLastID = 31553, "MAX3 Plate"        , "Circuit Plate"));
 		IL.Circuit_Plate_MAX4.set(           addItem(tLastID = 31554, "MAX4 Plate"        , "Circuit Plate"));
-		
+
 		//Board
 		IL.Circuit_Board_ULV1.set(           addItem(tLastID = 31201, "ULV1 Board"        , "Circuit Board"));
 		IL.Circuit_Board_ULV2.set(           addItem(tLastID = 31202, "ULV2 Board"        , "Circuit Board"));
@@ -1390,7 +1390,7 @@ public class MultiItemTechnological extends MultiItemRandom {
 		IL.Circuit_Board_MAX2.set(           addItem(tLastID = 31352, "MAX2 Board"        , "Circuit Board"));
 		IL.Circuit_Board_MAX3.set(           addItem(tLastID = 31353, "MAX3 Board"        , "Circuit Board"));
 		IL.Circuit_Board_MAX4.set(           addItem(tLastID = 31354, "MAX4 Board"        , "Circuit Board"));
-		
+
 		//Circuit
 		//ULV-1
 		IL.Circuit_ULV1.set(           addItem(tLastID = 31851, "ULV1 Circuit"        , "Circuit (ULV)"), MT.DATA.CIRCUITS[0], OD_CIRCUITS[0]);

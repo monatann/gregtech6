@@ -102,15 +102,16 @@ public class MultiTileEntitySmeltery extends TileEntityBase07Paintable implement
 	private static int GAS_RANGE = 3, FLAME_RANGE = 3;
 	private static long MAX_AMOUNT = 16*U, KG_PER_ENERGY = 100;
 	private static double HEAT_RESISTANCE_BONUS = 1.25;
-	
-	private static long temperature = 0;
-	
+
+	protected long temperature = 0;
+	protected List<Long> temperatureArray = new ArrayListNoNulls<>();
+
 	protected boolean mAcidProof = F;
 	protected byte mDisplayedHeight = 0, oDisplayedHeight = 0, mCooldown = 100;
 	protected short mDisplayedFluid = -1, oDisplayedFluid = -1;
 	protected long mEnergy = 0, mTemperature = DEF_ENV_TEMP, oTemperature = 0;
 	protected List<OreDictMaterialStack> mContent = new ArrayListNoNulls<>();
-	
+
 	@Override
 	public void readFromNBT2(NBTTagCompound aNBT) {
 		super.readFromNBT2(aNBT);
@@ -121,20 +122,21 @@ public class MultiTileEntitySmeltery extends TileEntityBase07Paintable implement
 		if (aNBT.hasKey(NBT_MAXTEMPERATURE)) temperature = aNBT.getLong(NBT_MAXTEMPERATURE);
 		mContent = OreDictMaterialStack.loadList(NBT_MATERIALS, aNBT);
 	}
-	
+
 	@Override
 	public void writeToNBT2(NBTTagCompound aNBT) {
 		super.writeToNBT2(aNBT);
 		UT.NBT.setNumber(aNBT, NBT_ENERGY, mEnergy);
 		UT.NBT.setNumber(aNBT, NBT_TEMPERATURE, mTemperature);
 		UT.NBT.setNumber(aNBT, NBT_TEMPERATURE+".old", oTemperature);
+		UT.NBT.setNumber(aNBT, NBT_MAXTEMPERATURE, temperature);
 		OreDictMaterialStack.saveList(NBT_MATERIALS, aNBT, mContent);
 	}
-	
+
 	static {
 		LH.add("gt6.tooltip.crucible.1", "KU Input will turn into Air for Steelmaking");
 	}
-	
+
 	@Override
 	public void addToolTips(List<String> aList, ItemStack aStack, boolean aF3_H) {
 		aList.add(Chat.CYAN     + LH.get(LH.CONVERTS_FROM_X) + " 1 " + TD.Energy.HU.getLocalisedNameShort() + " " + LH.get(LH.CONVERTS_TO_Y) + " +1 K " + LH.get(LH.CONVERTS_PER_Z) + " "+ KG_PER_ENERGY + "kg (at least "+getEnergySizeInputMin(TD.Energy.HU, SIDE_ANY)+" Units per Tick required!)");
@@ -145,18 +147,18 @@ public class MultiTileEntitySmeltery extends TileEntityBase07Paintable implement
 		aList.add(Chat.DRED     + LH.get(LH.HAZARD_CONTACT));
 		aList.add(Chat.DGRAY    + LH.get(LH.TOOL_TO_REMOVE_SHOVEL));
 	}
-	
+
 	private boolean mHasToAddTimer = T;
-	
+
 	@Override public void onUnregisterPost() {mHasToAddTimer = T;}
-	
+
 	@Override
 	public void onCoordinateChange() {
 		super.onCoordinateChange();
 		GT_API_Proxy.SERVER_TICK_POST.remove(this);
 		onUnregisterPost();
 	}
-	
+
 	@Override
 	public void onTick2(long aTimer, boolean aIsServerSide) {
 		if (aIsServerSide && mHasToAddTimer) {
@@ -164,16 +166,16 @@ public class MultiTileEntitySmeltery extends TileEntityBase07Paintable implement
 			mHasToAddTimer = F;
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public void onServerTickPost(boolean aFirst) {
 		if (!slotHas(0)) slot(0, WD.suck(worldObj, xCoord+PX_P[2], yCoord+PX_P[2], zCoord+PX_P[2], PX_N[4], 1, PX_N[4]));
-		
+
 		ItemStack tStack = slot(0);
-		
+
 		long tTemperature = WD.envTemp(worldObj, xCoord, yCoord, zCoord);
-		
+
 		if (ST.valid(tStack)) {
 			OreDictItemData tData = OM.anydata_(tStack);
 			if (tData == null) {
@@ -185,13 +187,13 @@ public class MultiTileEntitySmeltery extends TileEntityBase07Paintable implement
 				if (addMaterialStacks(tList, tTemperature)) decrStackSize(0, 1);
 			}
 		}
-		
+
 		Set<OreDictMaterial> tAlreadyCheckedAlloys = new HashSetNoNulls<>();
-		
+
 		OreDictMaterial tPreferredAlloy = null;
 		IOreDictConfigurationComponent tPreferredRecipe = null;
 		long tMaxConversions = 0;
-		
+
 		for (OreDictMaterialStack tMaterial : mContent) {
 			if (mTemperature >= tMaterial.mMaterial.mMeltingPoint) {
 				for (OreDictMaterial tAlloy : tMaterial.mMaterial.mAlloyComponentReferences) if (tAlreadyCheckedAlloys.add(tAlloy) && mTemperature >= tAlloy.mMeltingPoint) {
@@ -200,15 +202,15 @@ public class MultiTileEntitySmeltery extends TileEntityBase07Paintable implement
 						for (OreDictMaterialStack tComponent : tAlloyRecipe.getUndividedComponents()) {
 							tNeededStuff.add(OM.stack(tComponent.mMaterial, Math.max(1, tComponent.mAmount / U)));
 						}
-						
+
 						if (!tNeededStuff.isEmpty()) {
 							int tNonMolten = 0;
-							
+
 							boolean tBreak = F;
 							long tConversions = Long.MAX_VALUE;
 							for (OreDictMaterialStack tComponent : tNeededStuff) {
 								if (mTemperature < tComponent.mMaterial.mMeltingPoint) tNonMolten++;
-								
+
 								tBreak = T;
 								for (OreDictMaterialStack tContent : mContent) {
 									if (tContent.mMaterial == tComponent.mMaterial) {
@@ -219,7 +221,7 @@ public class MultiTileEntitySmeltery extends TileEntityBase07Paintable implement
 								}
 								if (tBreak) break;
 							}
-							
+
 							if (!tBreak && tNonMolten <= 1 && tConversions > 0) {
 								if (tPreferredAlloy == null || tPreferredRecipe == null || tConversions * tAlloyRecipe.getCommonDivider() > tMaxConversions * tPreferredRecipe.getCommonDivider()) {
 									tMaxConversions = tConversions;
@@ -232,7 +234,7 @@ public class MultiTileEntitySmeltery extends TileEntityBase07Paintable implement
 				}
 			}
 		}
-		
+
 		if (tPreferredAlloy != null && tPreferredRecipe != null) {
 			for (OreDictMaterialStack tComponent : tPreferredRecipe.getUndividedComponents()) {
 				for (OreDictMaterialStack tContent : mContent) {
@@ -244,10 +246,11 @@ public class MultiTileEntitySmeltery extends TileEntityBase07Paintable implement
 			}
 			OM.stack(tPreferredAlloy, tPreferredRecipe.getCommonDivider() * tMaxConversions).addToList(mContent);
 		}
-		
+
 		List<OreDictMaterialStack> tToBeAdded = new ArrayListNoNulls<>();
 		for (int i = 0; i < mContent.size(); i++) {
 			OreDictMaterialStack tMaterial = mContent.get(i);
+			//temperature = temperatureArray.get(i);
 			if (tMaterial == null || tMaterial.mMaterial == MT.NULL || tMaterial.mMaterial == MT.Air || tMaterial.mAmount <= 0) {
 				GarbageGT.trash(mContent.remove(i--));
 			} else if (tMaterial.mMaterial.mGramPerCubicCentimeter <= WEIGHT_AIR_G_PER_CUBIC_CENTIMETER) {
@@ -281,36 +284,36 @@ public class MultiTileEntitySmeltery extends TileEntityBase07Paintable implement
 				tMaterial.addToList(mContent);
 			}
 		}
-		
+
 		double tWeight = mMaterial.getWeight(U*7);
 		long tTotal = 0;
 		OreDictMaterialStack tLightest = null;
-		
+
 		for (OreDictMaterialStack tMaterial : mContent) {
 			if (tLightest == null || tMaterial.mMaterial.mGramPerCubicCentimeter < tLightest.mMaterial.mGramPerCubicCentimeter) tLightest = tMaterial;
 			tWeight += tMaterial.weight();
 			tTotal += tMaterial.mAmount;
 		}
-		
+
 		oTemperature = mTemperature;
-		
+
 		mDisplayedHeight = (byte)UT.Code.scale(tTotal, MAX_AMOUNT, 255, F);
 		mDisplayedFluid = (tLightest == null || tLightest.mMaterial.mMeltingPoint > mTemperature ? -1 : tLightest.mMaterial.mID);
-		
+
 		long tRequiredEnergy = 1 + (long)(tWeight / KG_PER_ENERGY), tConversions = mEnergy / tRequiredEnergy;
-		
+
 		if (mCooldown > 0) mCooldown--;
-		
+
 		if (tConversions != 0) {
 			mEnergy -= tConversions * tRequiredEnergy;
 			mTemperature += tConversions;
 			mCooldown = 100;
 		}
-		
+
 		if (mCooldown <= 0) {mCooldown = 10; if (mTemperature > tTemperature) mTemperature--; if (mTemperature < tTemperature) mTemperature++;}
-		
+
 		mTemperature = Math.max(mTemperature, Math.min(200, tTemperature));
-		
+
 		if (mTemperature > getTemperatureMax(SIDE_INSIDE)) {
 			UT.Sounds.send(SFX.MC_FIZZ, this);
 			if (mTemperature >=  320) try {for (EntityLivingBase tLiving : (List<EntityLivingBase>)worldObj.getEntitiesWithinAABB(EntityLivingBase.class, box(-GAS_RANGE, -1, -GAS_RANGE, GAS_RANGE+1, GAS_RANGE+1, GAS_RANGE+1))) UT.Entities.applyHeatDamage(tLiving, (mTemperature - 300) / 25.0F);} catch(Throwable e) {e.printStackTrace(ERR);}
@@ -319,7 +322,7 @@ public class MultiTileEntitySmeltery extends TileEntityBase07Paintable implement
 			return;
 		}
 	}
-	
+
 	public boolean addMaterialStacks(List<OreDictMaterialStack> aList, long aTemperature) {
 		if (OM.total(mContent)+OM.total(aList) <= MAX_AMOUNT) {
 			double tWeight1 = OM.weight(mContent)+mMaterial.getWeight(U*7), tWeight2 = OM.weight(aList);
@@ -343,33 +346,33 @@ public class MultiTileEntitySmeltery extends TileEntityBase07Paintable implement
 		}
 		return F;
 	}
-	
+
 	@Override
 	public long getTemperatureValue(byte aSide) {
 		return mTemperature;
 	}
-	
+
 	@Override
 	public long getTemperatureMax(byte aSide) {
 		return temperature;
 		//return (long)(mMaterial.mMeltingPoint * HEAT_RESISTANCE_BONUS);
 	}
-	
+
 	@Override
 	public boolean isMoldInputSide(byte aSide) {
 		return SIDES_TOP[aSide];
 	}
-	
+
 	@Override
 	public long getMoldMaxTemperature() {
 		return getTemperatureMax(SIDE_INSIDE);
 	}
-	
+
 	@Override
 	public long getMoldRequiredMaterialUnits() {
 		return 1;
 	}
-	
+
 	@Override
 	public long fillMold(OreDictMaterialStack aMaterial, long aTemperature, byte aSide) {
 		if (isMoldInputSide(aSide)) {
@@ -378,17 +381,17 @@ public class MultiTileEntitySmeltery extends TileEntityBase07Paintable implement
 		}
 		return 0;
 	}
-	
+
 	@Override public double getWeightValue(byte aSide) {return OM.weight(mContent);}
-	
+
 	@Override
 	public boolean breakBlock() {
 		while (!mContent.isEmpty()) GarbageGT.trash(mContent.remove(0));
 		return super.breakBlock();
 	}
-	
+
 	@Override public boolean attachCoversFirst(byte aSide) {return F;}
-	
+
 	@Override
 	public boolean onBlockActivated3(EntityPlayer aPlayer, byte aSide, float aHitX, float aHitY, float aHitZ) {
 		if (SIDES_TOP[aSide]) {
@@ -396,7 +399,7 @@ public class MultiTileEntitySmeltery extends TileEntityBase07Paintable implement
 				ItemStack aStack = aPlayer.getCurrentEquippedItem();
 				OreDictMaterialStack tLightest = null;
 				for (OreDictMaterialStack tMaterial : mContent) if (tLightest == null || tMaterial.mMaterial.mGramPerCubicCentimeter < tLightest.mMaterial.mGramPerCubicCentimeter) tLightest = tMaterial;
-				
+
 				if (slotHas(0)) {
 					if (aStack == null) {
 						aPlayer.inventory.setInventorySlotContents(aPlayer.inventory.currentItem, slotTake(0));
@@ -474,7 +477,7 @@ public class MultiTileEntitySmeltery extends TileEntityBase07Paintable implement
 		}
 		return F;
 	}
-	
+
 	@Override
 	public boolean fillMoldAtSide(ITileEntityMold aMold, byte aSide, byte aSideOfMold) {
 		for (OreDictMaterialStack tContent : mContent) if (tContent != null && mTemperature >= tContent.mMaterial.mMeltingPoint) {
@@ -486,7 +489,7 @@ public class MultiTileEntitySmeltery extends TileEntityBase07Paintable implement
 		}
 		return F;
 	}
-	
+
 	@Override
 	public long onToolClick2(String aTool, long aRemainingDurability, long aQuality, Entity aPlayer, List<String> aChatReturn, IInventory aPlayerInventory, boolean aSneaking, ItemStack aStack, byte aSide, float aHitX, float aHitY, float aHitZ) {
 		if (isClientSide()) return super.onToolClick2(aTool, aRemainingDurability, aQuality, aPlayer, aChatReturn, aPlayerInventory, aSneaking, aStack, aSide, aHitX, aHitY, aHitZ);
@@ -516,32 +519,32 @@ public class MultiTileEntitySmeltery extends TileEntityBase07Paintable implement
 		}
 		return super.onToolClick2(aTool, aRemainingDurability, aQuality, aPlayer, aChatReturn, aPlayerInventory, aSneaking, aStack, aSide, aHitX, aHitY, aHitZ);
 	}
-	
+
 	@Override
 	public boolean onPlaced(ItemStack aStack, EntityPlayer aPlayer, MultiTileEntityContainer aMTEContainer, World aWorld, int aX, int aY, int aZ, byte aSide, float aHitX, float aHitY, float aHitZ) {
 		mTemperature = WD.envTemp(worldObj, xCoord, yCoord, zCoord);
 		return T;
 	}
-	
+
 	@Override
 	public boolean onTickCheck(long aTimer) {
 		return super.onTickCheck(aTimer) || mDisplayedHeight != oDisplayedHeight || mDisplayedFluid != oDisplayedFluid;
 	}
-	
+
 	@Override
 	public void onTickResetChecks(long aTimer, boolean aIsServerSide) {
 		super.onTickResetChecks(aTimer, aIsServerSide);
 		oDisplayedFluid = mDisplayedFluid;
 		oDisplayedHeight = mDisplayedHeight;
 	}
-	
+
 	@Override
 	public IPacket getClientDataPacket(boolean aSendAll) {
 		if (aSendAll) return getClientDataPacketByteArray(T, mDisplayedHeight, UT.Code.toByteS(mDisplayedFluid, 0), UT.Code.toByteS(mDisplayedFluid, 1), (byte)UT.Code.getR(mRGBa), (byte)UT.Code.getG(mRGBa), (byte)UT.Code.getB(mRGBa));
 		if (mDisplayedFluid != oDisplayedFluid) return getClientDataPacketByteArray(F, mDisplayedHeight, UT.Code.toByteS(mDisplayedFluid, 0), UT.Code.toByteS(mDisplayedFluid, 1));
 		return getClientDataPacketByteArray(F, mDisplayedHeight);
 	}
-	
+
 	@Override
 	public boolean receiveDataByteArray(byte[] aData, INetworkHandler aNetworkHandler) {
 		mDisplayedHeight = aData[0];
@@ -549,7 +552,7 @@ public class MultiTileEntitySmeltery extends TileEntityBase07Paintable implement
 		if (aData.length >= 6) mRGBa = UT.Code.getRGBInt(new short[] {UT.Code.unsignB(aData[3]), UT.Code.unsignB(aData[4]), UT.Code.unsignB(aData[5])});
 		return T;
 	}
-	
+
 	@Override
 	public int getRenderPasses2(Block aBlock, boolean[] aShouldSideBeRendered) {
 		mTexture = BlockTextureDefault.get(mMaterial, OP.blockSolid, UT.Code.getRGBaArray(mRGBa), mMaterial.contains(TD.Properties.GLOWING));
@@ -569,7 +572,7 @@ public class MultiTileEntitySmeltery extends TileEntityBase07Paintable implement
 		}
 		return 6;
 	}
-	
+
 	@Override
 	public boolean setBlockBounds2(Block aBlock, int aRenderPass, boolean[] aShouldSideBeRendered) {
 		switch(aRenderPass) {
@@ -582,9 +585,9 @@ public class MultiTileEntitySmeltery extends TileEntityBase07Paintable implement
 		}
 		return F;
 	}
-	
+
 	private ITexture mTexture, mTextureMolten;
-	
+
 	@Override
 	public ITexture getTexture2(Block aBlock, int aRenderPass, byte aSide, boolean[] aShouldSideBeRendered) {
 		switch(aRenderPass) {
@@ -595,7 +598,7 @@ public class MultiTileEntitySmeltery extends TileEntityBase07Paintable implement
 		}
 		return mTexture;
 	}
-	
+
 	@Override
 	public void onEntityCollidedWithBlock(Entity aEntity) {
 		if (mTemperature > 320 && UT.Entities.applyHeatDamage(aEntity, Math.min(10.0F, mTemperature / 100.0F))) {
@@ -626,10 +629,10 @@ public class MultiTileEntitySmeltery extends TileEntityBase07Paintable implement
 			}
 		}
 	}
-	
+
 	@Override public AxisAlignedBB getCollisionBoundingBoxFromPool() {return box(0.125, 0.125, 0.125, 0.875, 0.875, 0.875);}
 	@Override public boolean addDefaultCollisionBoxToList() {return F;}
-	
+
 	@Override
 	public void addCollisionBoxesToList2(AxisAlignedBB aAABB, List<AxisAlignedBB> aList, Entity aEntity) {
 		box(aAABB, aList, PX_P[14], PX_P[ 1], PX_P[ 1], PX_N[ 1], PX_N[ 1], PX_N[ 1]);
@@ -638,30 +641,30 @@ public class MultiTileEntitySmeltery extends TileEntityBase07Paintable implement
 		box(aAABB, aList, PX_P[ 1], PX_P[ 1], PX_P[ 1], PX_N[ 1], PX_N[ 1], PX_N[14]);
 		box(aAABB, aList, PX_P[ 1], PX_P[ 1], PX_P[ 1], PX_N[ 1], PX_N[14], PX_N[ 1]);
 	}
-	
+
 	@Override
 	public boolean checkObstruction(EntityPlayer aPlayer, byte aSide, float aHitX, float aHitY, float aHitZ) {
 		return SIDES_BOTTOM_HORIZONTAL[aSide] && super.checkObstruction(aPlayer, aSide, aHitX, aHitY, aHitZ);
 	}
-	
+
 	@Override public float getSurfaceSize           (byte aSide) {return 1.0F;}
 	@Override public float getSurfaceSizeAttachable (byte aSide) {return 1.0F;}
 	@Override public float getSurfaceDistance       (byte aSide) {return 0.0F;}
 	@Override public boolean isSurfaceSolid         (byte aSide) {return !SIDES_TOP[aSide];}
 	@Override public boolean isSurfaceOpaque2       (byte aSide) {return !SIDES_TOP[aSide];}
 	@Override public boolean isSideSolid2           (byte aSide) {return !SIDES_TOP[aSide];}
-	
+
 	@Override public boolean canDrop(int aInventorySlot) {return T;}
 	@Override public boolean allowCovers(byte aSide) {return F;}
-	
+
 	@Override public ItemStack[] getDefaultInventory(NBTTagCompound aNBT) {return new ItemStack[1];}
 	@Override public int[] getAccessibleSlotsFromSide2(byte aSide) {return UT.Code.getAscendingArray(1);}
 	@Override public boolean canInsertItem2(int aSlot, ItemStack aStack, byte aSide) {return SIDES_TOP[aSide] && !slotHas(0);}
 	@Override public boolean canExtractItem2(int aSlot, ItemStack aStack, byte aSide) {return F;}
 	@Override public int getInventoryStackLimit() {return 64;}
-	
+
 	public static final List<TagData> ENERGYTYPES = new ArrayListNoNulls<>(F, TD.Energy.KU, TD.Energy.HU, TD.Energy.CU, TD.Energy.VIS_IGNIS);
-	
+
 	@Override public boolean isEnergyType(TagData aEnergyType, byte aSide, boolean aEmitting) {return !aEmitting && ENERGYTYPES.contains(aEnergyType);}
 	@Override public boolean isEnergyCapacitorType(TagData aEnergyType, byte aSide) {return ENERGYTYPES.contains(aEnergyType);}
 	@Override public boolean isEnergyAcceptingFrom(TagData aEnergyType, byte aSide, boolean aTheoretical) {return ENERGYTYPES.contains(aEnergyType);}
@@ -671,6 +674,6 @@ public class MultiTileEntitySmeltery extends TileEntityBase07Paintable implement
 	@Override public long getEnergySizeInputRecommended(TagData aEnergyType, byte aSide) {return 2048;}
 	@Override public long getEnergySizeInputMax(TagData aEnergyType, byte aSide) {return Long.MAX_VALUE;}
 	@Override public Collection<TagData> getEnergyTypes(byte aSide) {return ENERGYTYPES;}
-	
+
 	@Override public String getTileEntityName() {return "gt6.multitileentity.smeltery";}
 }
