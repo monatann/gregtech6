@@ -45,32 +45,32 @@ import net.minecraftforge.common.ChestGenHooks;
  */
 public abstract class MultiTileEntitySafe extends TileEntityBase09FacingSingle implements IMTE_GetPlayerRelativeBlockHardness {
 	public String mDungeonLootName = "";
-	
+
 	@Override
 	public void readFromNBT2(NBTTagCompound aNBT) {
 		super.readFromNBT2(aNBT);
 		if (aNBT.hasKey("gt6.dungeonloot")) mDungeonLootName = aNBT.getString("gt6.dungeonloot");
 	}
-	
+
 	@Override
 	public void writeToNBT2(NBTTagCompound aNBT) {
 		super.writeToNBT2(aNBT);
 		if (UT.Code.stringValid(mDungeonLootName)) aNBT.setString("gt6.dungeonloot", mDungeonLootName);
 	}
-	
+
 	@Override
 	public void addToolTips(List<String> aList, ItemStack aStack, boolean aF3_H) {
 		if (aStack.getTagCompound() != null && aStack.getTagCompound().hasKey("gt6.dungeonloot")) aList.add("Dungeon Loot: "+aStack.getTagCompound().getString("gt6.dungeonloot"));
 		super.addToolTips(aList, aStack, aF3_H);
 	}
-	
+
 	protected void generateDungeonLoot() {
 		if (isServerSide() && UT.Code.stringValid(mDungeonLootName)) {
 			for (int i = 0, j = getSizeInventory(); i < j; i++) if (!slotHas(i)) slot(i, ChestGenHooks.getOneItem(mDungeonLootName, RNGSUS));
 			mDungeonLootName = "";
 		}
 	}
-	
+
 	@Override
 	public boolean onBlockActivated3(EntityPlayer aPlayer, byte aSide, float aHitX, float aHitY, float aHitZ) {
 		if (aSide != mFacing) return F;
@@ -80,13 +80,13 @@ public abstract class MultiTileEntitySafe extends TileEntityBase09FacingSingle i
 		}
 		return T;
 	}
-	
+
 	@Override
 	public boolean breakBlock() {
 		generateDungeonLoot();
 		return super.breakBlock();
 	}
-	
+
 	@Override
 	public boolean getSubItems(MultiTileEntityBlockInternal aBlock, Item aItem, CreativeTabs aTab, List<ItemStack> aList, short aID) {
 		if (showInCreative()) {
@@ -95,24 +95,24 @@ public abstract class MultiTileEntitySafe extends TileEntityBase09FacingSingle i
 		}
 		return F;
 	}
-	
+
 	@Override
 	public boolean onPlaced(ItemStack aStack, EntityPlayer aPlayer, MultiTileEntityContainer aMTEContainer, World aWorld, int aX, int aY, int aZ, byte aSide, float aHitX, float aHitY, float aHitZ) {
 		super.onPlaced(aStack, aPlayer, aMTEContainer, aWorld, aX, aY, aZ, aSide, aHitX, aHitY, aHitZ);
 		aWorld.playSoundEffect(aX+0.5, aY+0.5, aZ+0.5, Blocks.anvil.stepSound.func_150496_b(), (Blocks.anvil.stepSound.getVolume()+1)/2, Blocks.anvil.stepSound.getPitch()*0.8F);
 		return F;
 	}
-	
+
 	@Override public boolean allowCovers(byte aSide) {return aSide != mFacing;}
-	
+
 	// Inventory Stuff
 	@Override public boolean canDrop(int aInventorySlot) {return T;}
 	@Override public int getInventoryStackLimit() {return 64;}
 	@Override public int[] getAccessibleSlotsFromSide2(byte aSide) {return ZL_INTEGER;}
 	@Override public boolean canInsertItem2(int aSlot, ItemStack aStack, byte aSide) {return F;}
 	@Override public boolean canExtractItem2(int aSlot, ItemStack aStack, byte aSide) {return F;}
-	@Override public void onExploded(Explosion aExplosion) {worldObj.setBlockToAir(xCoord, yCoord, zCoord);}
-	
+	@Override public void onExploded(Explosion aExplosion) {setToAir();}
+
 	@Override public Object getGUIClient2(int aGUIID, EntityPlayer aPlayer) {return new ContainerClientDefault(aPlayer.inventory, this, aGUIID);}
 	@Override public Object getGUIServer2(int aGUIID, EntityPlayer aPlayer) {return new ContainerCommonDefault(aPlayer.inventory, this, aGUIID);}
 }

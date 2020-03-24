@@ -482,13 +482,13 @@ public class NEI_RecipeMap extends TemplateRecipeHandler {
 				if (ST.valid(tInput1)) {
 					if (ST.invalid(tInput2)) return -1;
 					OreDictItemData tData1 = OM.anydata_(tInput1), tData2 = OM.anydata_(tInput2);
-					if (tData1 != null && !tData1.mBlackListed) {
-						if (tData2 == null || tData2.mBlackListed) return -1;
+					if (tData1 != null && tData1.hasValidMaterialData()) {
+						if (tData2 == null || !tData2.hasValidMaterialData()) return -1;
 						tCompare = tData1.mMaterial.mMaterial.mNameInternal.compareTo(tData2.mMaterial.mMaterial.mNameInternal);
 						if (tCompare != 0) return tCompare;
 						tCompare = Long.compare(tData1.mMaterial.mAmount, tData2.mMaterial.mAmount);
 						if (tCompare != 0) return tCompare;
-					} else if (tData2 != null && !tData2.mBlackListed) return 1;
+					} else if (tData2 != null && tData2.hasValidMaterialData()) return 1;
 					tCompare = Long.compare(tRecipe1.mDuration, tRecipe2.mDuration);
 					if (tCompare != 0) return tCompare;
 					tCompare = ST.regName(tInput1).compareTo(ST.regName(tInput2));
@@ -662,11 +662,12 @@ public class NEI_RecipeMap extends TemplateRecipeHandler {
 			if (tGUt > 0) {
 				drawText    (10, 73, "Costs: "  + (tDuration*tGUt) + " GU"        , 0xFF000000);
 				if (mRecipeMap.mShowVoltageAmperageInNEI) {
+					if (!mRecipeMap.mCombinePower)
 					drawText(10, 83, "Usage: "  + tGUt + " GU/t"                  , 0xFF000000);
 					drawText(10, 93, "Tier: "   + tGUt / mRecipeMap.mPower + " GU (" + voltageTier(tGUt / mRecipeMap.mPower) + ")", 0xFF000000);
 					drawText(10,103, "Power: "  + mRecipeMap.mPower               , 0xFF000000);
 				} else {
-					if (tGUt != 1)
+					if (tGUt != 1 && !mRecipeMap.mCombinePower)
 					drawText(10, 83, "Usage: "  + tGUt + " GU/t"                  , 0xFF000000);
 				}
 			} else {
@@ -677,7 +678,7 @@ public class NEI_RecipeMap extends TemplateRecipeHandler {
 					drawText(10, 93, "Tier: "   + tGUt / mRecipeMap.mPower + " GU (" + voltageTier(tGUt / mRecipeMap.mPower) + ")", 0xFF000000);
 					drawText(10,103, "Power: "  + mRecipeMap.mPower               , 0xFF000000);
 				} else {
-					if (tGUt != 1)
+					if (tGUt != 1 && !mRecipeMap.mCombinePower)
 					drawText(10, 83, "Output: " + tGUt + " GU/t"                  , 0xFF000000);
 				}
 			}
@@ -690,7 +691,7 @@ public class NEI_RecipeMap extends TemplateRecipeHandler {
 
 	public String voltageTier(long cost) {
 		for(int i=0;i<V.length;i++) {
-			if(V[i] >= cost) {
+			if(V[i]*2 > cost) {
 				return VN[i];
 			}
 		}

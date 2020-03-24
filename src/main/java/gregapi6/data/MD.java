@@ -33,7 +33,7 @@ public class MD {
 	, GT                = new ModData(ModIDs.GT                 , "GregTech6")
 	, GAPI              = new ModData(ModIDs.GAPI               , "Greg6-API")
 	, GAPI_POST         = new ModData(ModIDs.GAPI_POST          , "Greg6-API-Post")
-	, GT5U              = new ModData(ModIDs.GT                 , "GregTech 5 Unofficial")
+	, GT5U              = new ModData(ModIDs.GT5U                 , "GregTech 5 Unofficial")
 
 	, QT                = new ModData(ModIDs.QT                 , "QwerTech")
 
@@ -79,6 +79,7 @@ public class MD {
 	, MO                = new ModData(ModIDs.MO                 , "Matter Overdrive")
 
 	, TFC               = new ModData(ModIDs.TFC                , "TerraFirmaCraft")
+	, TFCP              = new ModData(ModIDs.TFCP               , "TerraFirmaCraft Plus")
 
 	, MET               = new ModData("Metallurgy"              , "Metallurgy")
 
@@ -147,6 +148,7 @@ public class MD {
 	, OC                = new ModData(ModIDs.OC                 , "Open Computers")
 	, CC                = new ModData(ModIDs.CC                 , "ComputerCraft")
 
+	, TreeCap           = new ModData(ModIDs.TreeCap            , "Treecapitator")
 	, HaC               = new ModData(ModIDs.HaC                , "HarvestCraft")
 	, CookBook          = new ModData(ModIDs.CookBook           , "Cooking for Blockheads")
 	, APC               = new ModData(ModIDs.APC                , "AppleCore")

@@ -35,21 +35,21 @@ public class MultiTileEntityReactorRodReflector extends MultiTileEntityReactorRo
 		aList.add(LH.Chat.CYAN + "Reflects Neutrons back to their Source, boosting the Reaction");
 		aList.add(LH.Chat.DGRAY + "Used in Nuclear Reactor Core");
 	}
-	
+
 	@Override
 	public int getReactorRodNeutronEmission(MultiTileEntityReactorCore aReactor, int aSlot, ItemStack aStack) {
 		return 0;
 	}
-	
+
 	@Override
 	public boolean getReactorRodNeutronReaction(MultiTileEntityReactorCore aReactor, int aSlot, ItemStack aStack) {
 		return F;
 	}
-	
+
 	@Override
 	public int getReactorRodNeutronReflection(MultiTileEntityReactorCore aReactor, int aSlot, ItemStack aStack, int aNeutrons) {
 		return aNeutrons;
 	}
-	
+
 	@Override public String getTileEntityName() {return "gt6.multitileentity.generator.reactor.rods.reflector";}
 }

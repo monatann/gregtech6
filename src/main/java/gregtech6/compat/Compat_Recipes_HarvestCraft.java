@@ -53,18 +53,18 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class Compat_Recipes_HarvestCraft extends CompatMods {
 	public Compat_Recipes_HarvestCraft(ModData aMod, Abstract_Mod aGTMod) {super(aMod, aGTMod);}
-	
+
 	@Override public void onPostLoad(FMLPostInitializationEvent aInitEvent) {OUT.println("GT_Mod: Doing HarvestCraft Recipes.");
 		final ItemStack tYogurt = ST.make(MD.HaC, "plainyogurtItem", 1);
-		
+
 		CR.delate(MD.HaC, "mortarandpestleItem", "flourItem", "cornmealItem", "plainyogurtItem", "coconutcreamItem", "heavycreamItem", "mayoItem", "ketchupItem", "vinegarItem", "oliveoilItem", "saladdressingItem", "peanutbutterItem", "nutellaItem", "appleciderItem", "beefjerkyItem", "zombiejerkyItem", "peppermintItem", "doughItem", "marzipanItem", "chocolatemilkshakeItem", "strawberrymilkshakeItem", "bananamilkshakeItem", "gooseberrymilkshakeItem", "saltedsunflowerseedsItem", "cherryjuiceItem", "bananajuiceItem", "strawberryjuiceItem", "persimmonjuiceItem", "lemonaideItem", "applejuiceItem", "grapejuiceItem", "melonjuiceItem", "kiwijuiceItem", "raspberryjuiceItem", "blackberryjuiceItem", "blueberryjuiceItem", "cranberryjuiceItem", "gooseberryjuiceItem", "carrotjuiceItem", "grapefruitjuiceItem", "pearjuiceItem", "apricotjuiceItem", "plumjuiceItem", "peachjuiceItem", "limejuiceItem", "orangejuiceItem", "pomegranatejuiceItem", "mangojuiceItem", "figjuiceItem", "papayajuiceItem", "cactusfruitjuiceItem", "starfruitjuiceItem", "coconutmilkItem", "grapefruitsmoothieItem", "pearsmoothieItem", "apricotsmoothieItem", "plumsmoothieItem", "peachsmoothieItem", "limesmoothieItem", "orangesmoothieItem", "cranberrysmoothieItem", "cherrysmoothieItem", "bananasmoothieItem", "lemonsmoothieItem", "applesmoothieItem", "grapesmoothieItem", "melonsmoothieItem", "kiwismoothieItem", "raspberrysmoothieItem", "blackberrysmoothieItem", "blueberrysmoothieItem", "gooseberrysmoothieItem", "strawberrysmoothieItem", "pomegranatesmoothieItem", "persimmonsmoothieItem", "figsmoothieItem", "starfruitsmoothieItem", "mangosmoothieItem", "papayasmoothieItem", "coconutsmoothieItem", "chocolateyogurtItem", "vanillayogurtItem", "coconutyogurtItem", "papayayogurtItem", "figyogurtItem", "mangoyogurtItem", "starfruityogurtItem", "pomegranateyogurtItem", "grapefruityogurtItem", "persimmonyogurtItem", "pearyogurtItem", "apricotyogurtItem", "plumyogurtItem", "peachyogurtItem", "limeyogurtItem", "orangeyogurtItem", "cranberryyogurtItem", "pineappleyogurtItem", "cherryyogurtItem", "bananayogurtItem", "lemonyogurtItem", "appleyogurtItem", "grapeyogurtItem", "grapeyogurtItem", "melonyogurtItem", "kiwiyogurtItem", "raspberryyogurtItem", "blackberryyogurtItem", "blueberryyogurtItem", "gooseberryyogurtItem", "strawberryyogurtItem", "pumpkinyogurtItem", "icecreamItem", "strawberryicecreamItem", "cherryicecreamItem", "spumoniicecreamItem", "neapolitanicecreamItem", "vanillaicecreamItem", "chocolateicecreamItem", "pistachioicecreamItem", "mochaicecreamItem", "caramelicecreamItem", "mintchocolatechipicemcreamItem", "extremechiliItem", "batterItem", "eggnogItem", "caramelItem", "ricecakeItem", "garammasalaItem", "chocolatestrawberryItem", "chocolatecherryItem", "chocolatebaconItem", "maplecandiedbaconItem", "epicbaconItem", "chocolatedonutItem", "cinnamonsugardonutItem", "powdereddonutItem", "frosteddonutItem", "donutItem", "jellydonutItem");
 		CR.remove(ST.make(MD.HaC, "potItem", 1), ST.make(Items.water_bucket, 1, 0));
-		
+
 		for (int i = 0; i < 16; i++) {
 		CR.delate(MD.HaC, "pamcandleDeco"+(i+1));
 		CR.shaped(ST.make(MD.HaC, "pamcandleDeco"+(i+1), 1, 0), CR.DEF_NCC, "S", "W", "D", 'W', OD.materialPressedwax, 'S', OD.itemString, 'D', DYE_OREDICTS[15-i]);
 		}
-		
+
 		ArrayList<ItemStack> tListFoodRice = OreDictionary.getOres("foodRice"), tListCropRice = OreDictionary.getOres("cropRice");
 		ArrayList<ItemStack> tListFoodOats = OreDictionary.getOres("dustOat"), tListCropOats = OreDictionary.getOres("cropOats");
 		ArrayList<ItemStack> tListFoodBarley = OreDictionary.getOres("dustBarley"), tListCropBarley = OreDictionary.getOres("cropBarley");
@@ -84,15 +84,15 @@ public class Compat_Recipes_HarvestCraft extends CompatMods {
 				}
 			}
 		}
-		
+
 		FoodsGT.put(ST.make(MD.HaC, "fruitsaladItem"    , 1), 0, 0, 0, 20, 0);
 		FoodsGT.put(ST.make(MD.HaC, "citrussaladItem"   , 1), 0, 0, 0, 10, 0);
 		FoodsGT.put(ST.make(MD.HaC, "springsaladItem"   , 1), 0, 0, 0, 10, 0);
-		
+
 		RM.add_smelting(ST.make(MD.HaC, "turkeyrawItem"     , 1), ST.make(MD.HaC, "turkeycookedItem"    , 1));
 		RM.add_smelting(ST.make(MD.HaC, "rabbitrawItem"     , 1), ST.make(MD.HaC, "rabbitcookedItem"    , 1));
 		RM.add_smelting(ST.make(MD.HaC, "venisonrawItem"    , 1), ST.make(MD.HaC, "venisoncookedItem"   , 1));
-		
+
 		for (OreDictMaterial tMat : ANY.Iron.mToThis)
 		RM.Loom     .addRecipe2(T, 64,  128, ST.make(MD.HaC, "hardenedleatherItem", 6), (tMat==MT.Enori?OP.plateGem:OP.plate)   .mat(tMat           , 8), ST.make(Items.iron_horse_armor, 1, 0));
 		RM.Loom     .addRecipe2(T, 64,  128, ST.make(MD.HaC, "hardenedleatherItem", 6), OP.plate                                .mat(MT.Au          , 8), ST.make(Items.golden_horse_armor, 1, 0));
@@ -103,32 +103,32 @@ public class Compat_Recipes_HarvestCraft extends CompatMods {
 		RM.Loom     .addRecipe2(T, 16,  128, ST.tag(5), ST.make(MD.HaC, "hardenedleatherItem", 8), ST.make(MD.HaC, "hardenedleatherchestItem", 1));
 		RM.Loom     .addRecipe2(T, 16,  128, ST.tag(6), ST.make(MD.HaC, "hardenedleatherItem", 7), ST.make(MD.HaC, "hardenedleatherleggingsItem", 1));
 		RM.Loom     .addRecipe2(T, 16,  128, ST.tag(7), ST.make(MD.HaC, "hardenedleatherItem", 4), ST.make(MD.HaC, "hardenedleatherbootsItem", 1));
-		
+
 		RM.Shredder .addRecipe1(T, 16,   16, ST.make(Blocks.double_plant    , 1, 0), ST.make(MD.HaC, "sunflowerseedsItem", 1));
-		
+
 		RM.Press    .addRecipe2(T, 16,   32, OM.dust(MT.Chili, U4), OP.ingot.mat(MT.Chocolate, 1), ST.make(MD.HaC, "chilichocolateItem", 1));
 		RM.Press    .addRecipe2(T, 16,   32, OM.dust(MT.Chili, U3), OP.ingot.mat(MT.Chocolate, 1), ST.make(MD.HaC, "chilichocolateItem", 1));
 		RM.Press    .addRecipe2(T, 16,  128, OM.dust(MT.Chili, U ), OP.ingot.mat(MT.Chocolate, 4), ST.make(MD.HaC, "chilichocolateItem", 4));
-		
+
 		RM.Mixer    .addRecipe2(T, 16,   16, ST.make(Items.string, 1, W), IL.Remains_Fruit      .get(3), ST.make(MD.HaC, "fruitbaitItem", 4));
 		RM.Mixer    .addRecipe2(T, 16,   16, ST.make(Items.string, 1, W), IL.Remains_Veggie     .get(3), ST.make(MD.HaC, "veggiebaitItem", 4));
 		RM.Mixer    .addRecipe2(T, 16,   16, ST.make(Items.string, 1, W), IL.Remains_Nut        .get(3), ST.make(MD.HaC, "grainbaitItem", 4));
 		RM.Mixer    .addRecipe2(T, 16,   16, ST.make(Items.string, 1, W), OM.dust(MT.FishRaw    ,  U*3), ST.make(MD.HaC, "fishtrapbaitItem", 4));
-		
+
 		RM.Mixer    .addRecipe2(T, 16,   16, ST.make(Items.beef         , 1, W), OM.dust(MT.NaCl, U4), ST.make(MD.HaC, "beefjerkyItem"      , 1));
 		RM.Mixer    .addRecipe2(T, 16,   16, ST.make(Items.rotten_flesh , 1, W), OM.dust(MT.NaCl, U4), ST.make(MD.HaC, "zombiejerkyItem"    , 1));
 		RM.Mixer    .addRecipe2(T, 16,   16, ST.make(Items.beef         , 1, W), OM.dust(MT.NaCl, U3), ST.make(MD.HaC, "beefjerkyItem"      , 1));
 		RM.Mixer    .addRecipe2(T, 16,   16, ST.make(Items.rotten_flesh , 1, W), OM.dust(MT.NaCl, U3), ST.make(MD.HaC, "zombiejerkyItem"    , 1));
 		RM.Mixer    .addRecipe2(T, 16,   64, ST.make(Items.beef         , 4, W), OM.dust(MT.NaCl, U ), ST.make(MD.HaC, "beefjerkyItem"      , 4));
 		RM.Mixer    .addRecipe2(T, 16,   64, ST.make(Items.rotten_flesh , 4, W), OM.dust(MT.NaCl, U ), ST.make(MD.HaC, "zombiejerkyItem"    , 4));
-		
+
 		RM.Mixer    .addRecipe1(T,  0,   16, OM.dust(MT.Mint, U9), MT.Sugar.liquid(  U4, T), NF, ST.make(MD.HaC, "peppermintItem", 1));
 		RM.Mixer    .addRecipe1(T,  0,   32, OM.dust(MT.Mint, U4), MT.Sugar.liquid(  U2, T), NF, ST.make(MD.HaC, "peppermintItem", 2));
 		RM.Mixer    .addRecipe1(T,  0,  128, OM.dust(MT.Mint, U ), MT.Sugar.liquid(9*U4, T), NF, ST.make(MD.HaC, "peppermintItem", 9));
-		
+
 		RM.Mixer    .addRecipe1(T, 16,   16, ST.make(MD.HaC, "flourItem", 1), FL.Water.make(1000), NF, IL.Food_Dough.get(1));
 		RM.Mixer    .addRecipe1(T, 16,   16, ST.make(MD.HaC, "flourItem", 1), FL.DistW.make(1000), NF, IL.Food_Dough.get(1));
-		
+
 		RM.Mixer    .addRecipe1(T, 16,   16, OM.dust(MT.Almond, U4) , FL.RoyalJelly.make(10), NF, ST.make(MD.HaC, "marzipanItem", 1));
 		RM.Mixer    .addRecipe1(T, 16,   16, OM.dust(MT.Almond)     , FL.RoyalJelly.make(40), NF, ST.make(MD.HaC, "marzipanItem", 4));
 		RM.Mixer    .addRecipe1(T, 16,   16, OM.dust(MT.Almond, U4) , FL.Honey    .make(100), NF, ST.make(MD.HaC, "marzipanItem", 1));
@@ -137,12 +137,12 @@ public class Compat_Recipes_HarvestCraft extends CompatMods {
 		RM.Mixer    .addRecipe1(T, 16,   16, OM.dust(MT.Almond)     , FL.HoneyGrC .make(400), NF, ST.make(MD.HaC, "marzipanItem", 4));
 		RM.Mixer    .addRecipe1(T, 16,   16, OM.dust(MT.Almond, U4) , FL.HoneyBoP .make(100), NF, ST.make(MD.HaC, "marzipanItem", 1));
 		RM.Mixer    .addRecipe1(T, 16,   16, OM.dust(MT.Almond)     , FL.HoneyBoP .make(400), NF, ST.make(MD.HaC, "marzipanItem", 4));
-		
+
 		RM.Mixer    .addRecipe1(T, 16,   16, ST.make(MD.HaC, "chiliItem", 1), FL.Sauce_Chili.make(100), NF, ST.make(MD.HaC, "extremechiliItem", 1));
 		RM.Mixer    .addRecipe2(T, 16,   16, ST.make(MD.HaC, "chiliItem", 1), OM.dust(MT.Chili), ST.make(MD.HaC, "extremechiliItem", 1));
-		
+
 		RM.Mixer    .addRecipe1(T, 16,   16, ST.make(MD.HaC, "royaljellyItem", 1), FL.Honeydew.make(40), FL.make("potion.ambrosia", 80), ZL_IS);
-		
+
 		if (IL.GrC_Starter_Culture.exists()) {
 		RM.Mixer    .addRecipe1(T, 16,   16, IL.GrC_Starter_Culture.get(1), FL.Milk   .make( 250), NF, tYogurt);
 		RM.Mixer    .addRecipe1(T, 16,   16, IL.GrC_Starter_Culture.get(1), FL.MilkGrC.make( 250), NF, tYogurt);
@@ -155,7 +155,7 @@ public class Compat_Recipes_HarvestCraft extends CompatMods {
 		RM.Mixer    .addRecipe1(F, 16,   16, ST.amount(0, tYogurt), FL.Milk   .make( 250), NF, tYogurt);
 		RM.Mixer    .addRecipe1(F, 16,   16, ST.amount(0, tYogurt), FL.MilkGrC.make( 250), NF, tYogurt);
 		RM.Mixer    .addRecipe1(F, 16,   16, ST.amount(0, tYogurt), FL.MilkSoy.make( 250), NF, tYogurt);
-		
+
 		RM.Mixer    .addRecipe1(T, 16,   16, ST.make(Items.snowball, 1, W)  , FL.make("chocolatemilk"            ,  250) , NF, ST.make(MD.HaC, "chocolatemilkshakeItem", 1));
 		RM.Mixer    .addRecipe1(T, 16,   16, OM.dust(MT.Snow, U4)           , FL.make("chocolatemilk"            ,  250) , NF, ST.make(MD.HaC, "chocolatemilkshakeItem", 1));
 		RM.Mixer    .addRecipe1(T, 16,   64, ST.make(Blocks.snow, 1, W)     , FL.make("chocolatemilk"            , 1000) , NF, ST.make(MD.HaC, "chocolatemilkshakeItem", 4));
@@ -173,9 +173,9 @@ public class Compat_Recipes_HarvestCraft extends CompatMods {
 		RM.Mixer    .addRecipe0(T, 16,   16, FL.array(FL.Milk   .make( 250), FL.Smoothie_Gooseberry.make(200)), ZL_FS, ST.make(MD.HaC, "gooseberrymilkshakeItem", 1));
 		RM.Mixer    .addRecipe0(T, 16,   16, FL.array(FL.MilkGrC.make( 250), FL.Smoothie_Gooseberry.make(200)), ZL_FS, ST.make(MD.HaC, "gooseberrymilkshakeItem", 1));
 		RM.Mixer    .addRecipe0(T, 16,   16, FL.array(FL.MilkSoy.make( 250), FL.Smoothie_Gooseberry.make(200)), ZL_FS, ST.make(MD.HaC, "gooseberrymilkshakeItem", 1));
-		
+
 		RM.Mixer    .addRecipe2(T, 16,   16, OM.dust(MT.NaCl, U4)   , ST.make(MD.HaC, "sunflowerseedsItem", 1), ST.make(MD.HaC, "saltedsunflowerseedsItem", 1));
-		
+
 		RM.Mixer    .addRecipe2(T, 16,   16, tYogurt, OM.dust(MT.Vanilla                 ), ST.make(MD.HaC, "vanillayogurtItem"     , 1));
 		RM.Mixer    .addRecipe2(T, 16,   16, tYogurt, OM.dust(MT.Chocolate               ), ST.make(MD.HaC, "chocolateyogurtItem"   , 1));
 		RM.Mixer    .addRecipe1(T, 16,   16, tYogurt, FL.Juice_Grapefruit   .make(100), NF, ST.make(MD.HaC, "grapefruityogurtItem"  , 1));
@@ -211,7 +211,7 @@ public class Compat_Recipes_HarvestCraft extends CompatMods {
 		RM.Mixer    .addRecipe1(T, 16,   16, tYogurt, FL.Juice_Mango        .make(100), NF, ST.make(MD.HaC, "mangoyogurtItem"       , 1));
 		RM.Mixer    .addRecipe1(T, 16,   16, tYogurt, FL.Juice_Papaya       .make(100), NF, ST.make(MD.HaC, "papayayogurtItem"      , 1));
 		RM.Mixer    .addRecipe1(T, 16,   16, tYogurt, FL.Juice_Coconut      .make(100), NF, ST.make(MD.HaC, "coconutyogurtItem"     , 1));
-		
+
 		new OreDictListenerEvent_Names() {@Override public void addAllListeners() {
 		addListener("cropCoconut", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			RM.add_smelting(aEvent.mStack, ST.make(MD.HaC, "toastedcoconutItem", 1));
@@ -251,8 +251,8 @@ public class Compat_Recipes_HarvestCraft extends CompatMods {
 			RM.Mixer    .addRecipeX(T, 16,   16, ST.array(IL.Food_Onion_Sliced.get( 3), OM.dust(MT.SoylentGreen ), aEvent.mStack), ST.make(MD.HaC, "chiliItem", 1));
 			RM.Mixer    .addRecipeX(T, 16,   16, ST.array(IL.Food_Onion_Sliced.get( 3), OM.dust(MT.Tofu         ), aEvent.mStack), ST.make(MD.HaC, "chiliItem", 1));
 		}});
-		
-		
+
+
 		addListener("foodCaramel", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			RM.Press    .addRecipe2(T, 16,   32, aEvent.mStack, OP.ingot.mat(MT.Chocolate, 1), ST.make(MD.HaC, "chocolatecaramelfudgeItem", 1));
 		}});
@@ -283,7 +283,7 @@ public class Compat_Recipes_HarvestCraft extends CompatMods {
 		addListener("foodFilledhoneycomb", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			RM.Press    .addRecipe2(T, 16,   32, aEvent.mStack, OP.ingot.mat(MT.Chocolate, 1), ST.make(MD.HaC, "honeycombchocolatebarItem", 1));
 		}});
-		
+
 		addListener("listAllgrain", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			if (ST.container(aEvent.mStack, T) == null)
 			RM.Mixer    .addRecipe2(T, 16,   16, ST.make(Items.string, 1, W), ST.amount(3, aEvent.mStack), ST.make(MD.HaC, "grainbaitItem", 4));
@@ -294,7 +294,7 @@ public class Compat_Recipes_HarvestCraft extends CompatMods {
 		}});
 		addListener("listAllfishraw", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			if (ST.container(aEvent.mStack, T) == null && !OM.is_("listAllmeatsubstitute", aEvent.mStack))
-			RM.Mixer    .addRecipe2(T, 16,   16, ST.make(Items.string, 1, W), ST.amount(3, aEvent.mStack), ST.make(MD.HaC, "fishtrapbaitItem", 4));
+			RM.Mixer    .addRecipe2(T, 16,   16, ST.make(Items.string, 1, W), ST.amount(3, aEvent.mStack), ST.make(MD.HaC, "fishtrapbaitItem", 8));
 		}});
 		addListener("listAllfruit", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			if (ST.container(aEvent.mStack, T) == null)
@@ -331,7 +331,7 @@ public class Compat_Recipes_HarvestCraft extends CompatMods {
 			RM.Loom.addRecipe2(T, 16,   16, ST.make(MD.HaC, "hardenedleatherItem", 1), ST.amount(8, aEvent.mStack), ST.make(Items.item_frame, 1, 0));
 		}});
 		}};
-		
+
 		for (OreDictMaterial tMat : ANY.Wax.mToThis) {
 			RM.Laminator.addRecipe2(T, 16,   16, OP.foil.mat(tMat, 1), ST.make(Items.leather, 1, W), ST.make(MD.HaC, "hardenedleatherItem", 1));
 		}

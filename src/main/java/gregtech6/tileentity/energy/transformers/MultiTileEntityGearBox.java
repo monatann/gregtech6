@@ -61,7 +61,7 @@ public class MultiTileEntityGearBox extends TileEntityBase07Paintable implements
 	public long mMaxThroughPut = 64, mCurrentSpeed = 0, mCurrentPower = 0, mTransferredLast = 0;
 	public short mAxleGear = 0, mRotationData = 0, oRotationData = 0;
 	public byte mInputtedSides = 0, mOrder = 0;
-	
+
 	@Override
 	public void readFromNBT2(NBTTagCompound aNBT) {
 		super.readFromNBT2(aNBT);
@@ -71,7 +71,7 @@ public class MultiTileEntityGearBox extends TileEntityBase07Paintable implements
 		if (aNBT.hasKey(NBT_INPUT)) mMaxThroughPut = aNBT.getLong(NBT_INPUT);
 		mGearsWork = checkGears();
 	}
-	
+
 	@Override
 	public void writeToNBT2(NBTTagCompound aNBT) {
 		super.writeToNBT2(aNBT);
@@ -79,20 +79,20 @@ public class MultiTileEntityGearBox extends TileEntityBase07Paintable implements
 		UT.NBT.setBoolean(aNBT, NBT_ACTIVE, mIgnorePower);
 		aNBT.setByte(NBT_CONNECTION, (byte)mAxleGear);
 	}
-	
+
 	@Override
 	public NBTTagCompound writeItemNBT2(NBTTagCompound aNBT) {
 		super.writeItemNBT2(aNBT);
 		aNBT.setByte(NBT_CONNECTION, (byte)mAxleGear);
 		return aNBT;
 	}
-	
+
 	static {
 		LH.add("gt6.tooltip.gearbox.custom.1", "Gears are interlocked wrongly!");
 		LH.add("gt6.tooltip.gearbox.custom.2", "Use Wrench to mount Gears from your Inventory");
 		LH.add("gt6.tooltip.gearbox.custom.3", "Use Monkeywrench to change Axle Direction");
 	}
-	
+
 	@Override
 	public void addToolTips(List<String> aList, ItemStack aStack, boolean aF3_H) {
 		if (!mGearsWork)
@@ -103,7 +103,7 @@ public class MultiTileEntityGearBox extends TileEntityBase07Paintable implements
 		aList.add(Chat.DGRAY + LH.get(LH.TOOL_TO_TOGGLE_SOFT_HAMMER));
 		aList.add(Chat.DGRAY + LH.get(LH.TOOL_TO_DETAIL_MAGNIFYINGGLASS));
 	}
-	
+
 	@Override
 	public long onToolClick2(String aTool, long aRemainingDurability, long aQuality, Entity aPlayer, List<String> aChatReturn, IInventory aPlayerInventory, boolean aSneaking, ItemStack aStack, byte aSide, float aHitX, float aHitY, float aHitZ) {
 		if (isClientSide()) return 0;
@@ -162,7 +162,7 @@ public class MultiTileEntityGearBox extends TileEntityBase07Paintable implements
 		}
 		return 0;
 	}
-	
+
 	@Override
 	public void onTick2(long aTimer, boolean aIsServerSide) {
 		if (aIsServerSide) {
@@ -188,7 +188,7 @@ public class MultiTileEntityGearBox extends TileEntityBase07Paintable implements
 			mUsedGear = F;
 		}
 	}
-	
+
 	public byte getRotations(byte aSide, boolean aNegative) {
 		if (!mGearsWork) return 0;
 		byte rRotationData = (byte)(aNegative ? B[aSide] : 0);
@@ -202,7 +202,7 @@ public class MultiTileEntityGearBox extends TileEntityBase07Paintable implements
 		}
 		return rRotationData;
 	}
-	
+
 	public boolean checkGears() {
 		switch(FACE_CONNECTION_COUNT[mAxleGear & 63]) {
 		case 0:
@@ -238,25 +238,25 @@ public class MultiTileEntityGearBox extends TileEntityBase07Paintable implements
 		// 5 Gears never work, same as 6 Gears
 		return F;
 	}
-	
+
 	@Override public boolean onTickCheck(long aTimer) {return mRotationData != oRotationData || super.onTickCheck(aTimer);}
 	@Override public void onTickResetChecks(long aTimer, boolean aIsServerSide) {super.onTickResetChecks(aTimer, aIsServerSide); oRotationData = mRotationData;}
 	@Override public void setVisualData(byte aData) {mRotationData = aData;}
 	@Override public byte getVisualData() {return (byte)mRotationData;}
-	
+
 	@Override
 	public IPacket getClientDataPacket(boolean aSendAll) {
 		return aSendAll ? getClientDataPacketByteArray(aSendAll, (byte)UT.Code.getR(mRGBa), (byte)UT.Code.getG(mRGBa), (byte)UT.Code.getB(mRGBa), getVisualData(), (byte)mAxleGear) : getClientDataPacketByte(aSendAll, getVisualData());
 	}
-	
+
 	@Override
 	public boolean receiveDataByteArray(byte[] aData, INetworkHandler aNetworkHandler) {
 		mAxleGear = UT.Code.unsignB(aData[4]);
 		return super.receiveDataByteArray(aData, aNetworkHandler);
 	}
-	
+
 	public ITexture mTextureGearA, mTextureAxleGearA, mTextureGearB, mTextureAxleGearB, mTexture, mTextureAxle;
-	
+
 	@Override
 	public int getRenderPasses2(Block aBlock, boolean[] aShouldSideBeRendered) {
 		mTexture          = BlockTextureDefault.get(Textures.BlockIcons.GEARBOX     , mRGBa);
@@ -267,18 +267,19 @@ public class MultiTileEntityGearBox extends TileEntityBase07Paintable implements
 		mTextureAxleGearB = BlockTextureMulti.get(mTextureAxle, BlockTextureDefault.get((mRotationData & B[6]) == 0 ? Textures.BlockIcons.GEAR : Textures.BlockIcons.GEAR_COUNTERCLOCKWISE, mRGBa));
 		return 1;
 	}
-	
+
 	@Override
 	public ITexture getTexture2(Block aBlock, int aRenderPass, byte aSide, boolean[] aShouldSideBeRendered) {
 		return aShouldSideBeRendered[aSide] ? FACE_CONNECTED[aSide][mAxleGear & 63] ? FACE_CONNECTED[aSide][mRotationData & 63] ? AXIS_XYZ[(mAxleGear >>> 6) & 3][aSide]?mTextureAxleGearA:mTextureGearA : AXIS_XYZ[(mAxleGear >>> 6) & 3][aSide]?mTextureAxleGearB:mTextureGearB : AXIS_XYZ[(mAxleGear >>> 6) & 3][aSide]?mTextureAxle:mTexture : null;
 	}
-	
+
 	@Override
 	public long doInject(TagData aEnergyType, byte aSide, long aSpeed, long aPower, boolean aDoInject) {
 		if (!isEnergyType(aEnergyType, aSide, F)) return 0;
 		if (!aDoInject) return mIgnorePower ? 0 : aPower;
-		
+
 		if (Math.abs(aSpeed) > mMaxThroughPut) {
+			if (mTimer < 10) return aPower;
 			UT.Sounds.send(SFX.MC_BREAK, this);
 			byte tCount = FACE_CONNECTION_COUNT[mAxleGear & 63];
 			if (tCount > 0) {
@@ -291,9 +292,9 @@ public class MultiTileEntityGearBox extends TileEntityBase07Paintable implements
 			mGearsWork = checkGears();
 			return aPower;
 		}
-		
+
 		mInputtedSides |= B[aSide];
-		
+
 		if (mUsedGear) {
 			byte tRotationData = getRotations(aSide, aSpeed < 0);
 			if (tRotationData == 0) {
@@ -324,7 +325,7 @@ public class MultiTileEntityGearBox extends TileEntityBase07Paintable implements
 		}
 		return 0;
 	}
-	
+
 	@Override public boolean isEnergyType                   (TagData aEnergyType, byte aSide, boolean aEmitting) {return TD.Energy.RU == aEnergyType;}
 	@Override public boolean isEnergyAcceptingFrom          (TagData aEnergyType, byte aSide, boolean aTheoretical) {return (aTheoretical || !mJammed) && super.isEnergyAcceptingFrom(aEnergyType, aSide, aTheoretical);}
 	@Override public boolean isEnergyEmittingTo             (TagData aEnergyType, byte aSide, boolean aTheoretical) {return                               super.isEnergyEmittingTo   (aEnergyType, aSide, aTheoretical);}
@@ -335,20 +336,20 @@ public class MultiTileEntityGearBox extends TileEntityBase07Paintable implements
 	@Override public long getEnergySizeInputRecommended     (TagData aEnergyType, byte aSide) {return mMaxThroughPut/2;}
 	@Override public long getEnergySizeInputMax             (TagData aEnergyType, byte aSide) {return mMaxThroughPut;}
 	@Override public Collection<TagData> getEnergyTypes(byte aSide) {return TD.Energy.RU.AS_LIST;}
-	
+
 	@Override public boolean isUsingWrenchingOverlay(ItemStack aStack, byte aSide) {return super.isUsingWrenchingOverlay(aStack, aSide) || ToolsGT.contains(TOOL_wrench, aStack) || ToolsGT.contains(TOOL_monkeywrench, aStack);}
 	@Override public boolean isConnectedWrenchingOverlay(ItemStack aStack, byte aSide) {return FACE_CONNECTED[aSide][mAxleGear & 63];}
-	
+
 	@Override public boolean canDrop(int aInventorySlot) {return F;}
-	
+
 	@Override public boolean getStateRunningPossible () {return mGearsWork;}
 	@Override public boolean getStateRunningPassively() {return (mRotationData & B[6]) != 0 || (oRotationData & B[6]) != 0;}
 	@Override public boolean getStateRunningActively () {return (mRotationData & B[6]) != 0 || (oRotationData & B[6]) != 0;}
 	@Override public boolean setStateOnOff(boolean aOnOff) {mJammed = !aOnOff; return !mJammed;}
 	@Override public boolean getStateOnOff() {return !mJammed;}
-	
+
 	@Override public String getTileEntityName() {return "gt6.multitileentity.gearbox.custom";}
-	
+
 	@Override
 	public List<OreDictItemData> getOreDictItemData(List<OreDictItemData> aList) {
 		if (FACE_CONNECTION_COUNT[mAxleGear & 63] > 0) aList.add(new OreDictItemData(mMaterial, OP.gearGt.mAmount * FACE_CONNECTION_COUNT[mAxleGear & 63]));

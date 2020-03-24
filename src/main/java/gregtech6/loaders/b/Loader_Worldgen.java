@@ -37,7 +37,20 @@ import gregapi6.worldgen.WorldgenOresLarge;
 import gregapi6.worldgen.WorldgenOresSmall;
 import gregapi6.worldgen.WorldgenStone;
 import gregapi6.worldgen.dungeon.WorldgenDungeonGT;
-import gregtech6.worldgen.*;
+import gregtech6.worldgen.WorldgenBlackSand;
+import gregtech6.worldgen.WorldgenBushes;
+import gregtech6.worldgen.WorldgenDeepOcean;
+import gregtech6.worldgen.WorldgenFluidSpring;
+import gregtech6.worldgen.WorldgenGlowtus;
+import gregtech6.worldgen.WorldgenHives;
+import gregtech6.worldgen.WorldgenOcean;
+import gregtech6.worldgen.WorldgenPit;
+import gregtech6.worldgen.WorldgenRiver;
+import gregtech6.worldgen.WorldgenRocks;
+import gregtech6.worldgen.WorldgenSticks;
+import gregtech6.worldgen.WorldgenStoneLayers;
+import gregtech6.worldgen.WorldgenSwamp;
+import gregtech6.worldgen.WorldgenTurf;
 import gregtech6.worldgen.aether.WorldgenAetherRocks;
 import gregtech6.worldgen.alfheim.WorldgenAlfheimRocks;
 import gregtech6.worldgen.center.WorldgenBeacon;
@@ -49,7 +62,17 @@ import gregtech6.worldgen.erebus.WorldgenErebusRocks;
 import gregtech6.worldgen.mars.WorldgenMarsRocks;
 import gregtech6.worldgen.moon.WorldgenMoonRocks;
 import gregtech6.worldgen.planets.WorldgenPlanetRocks;
-import gregtech6.worldgen.tree.*;
+import gregtech6.worldgen.tree.WorldgenLogDry;
+import gregtech6.worldgen.tree.WorldgenLogFrozen;
+import gregtech6.worldgen.tree.WorldgenLogMossy;
+import gregtech6.worldgen.tree.WorldgenLogRotten;
+import gregtech6.worldgen.tree.WorldgenTreeBlueMahoe;
+import gregtech6.worldgen.tree.WorldgenTreeCinnamon;
+import gregtech6.worldgen.tree.WorldgenTreeHazel;
+import gregtech6.worldgen.tree.WorldgenTreeMaple;
+import gregtech6.worldgen.tree.WorldgenTreeRainbowood;
+import gregtech6.worldgen.tree.WorldgenTreeRubber;
+import gregtech6.worldgen.tree.WorldgenTreeWillow;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 
@@ -62,11 +85,11 @@ public class Loader_Worldgen implements Runnable {
 		boolean
 		tInfiniteOil = ConfigsGT.WORLDGEN.get(ConfigCategories.general, "GenerateInfiniteOilSources", T),
 		tInfiniteGas = ConfigsGT.WORLDGEN.get(ConfigCategories.general, "GenerateInfiniteGasSources", T);
-		
+
 		new WorldgenStoneLayers("stonelayers", T, GEN_GT, GEN_ENVM); // MUST BE FIRST
-		
-		
-		
+
+
+
 		StoneLayer.LAYERS.add(new StoneLayer(Blocks.stone, 0, Blocks.cobblestone, 0, Blocks.mossy_cobblestone, 0, MT.Stone));
 		StoneLayer.LAYERS.add(new StoneLayer(Blocks.stone, 0, Blocks.cobblestone, 0, Blocks.mossy_cobblestone, 0, MT.Stone));
 		StoneLayer.LAYERS.add(new StoneLayer(Blocks.stone, 0, Blocks.cobblestone, 0, Blocks.mossy_cobblestone, 0, MT.Stone));
@@ -103,8 +126,8 @@ public class Loader_Worldgen implements Runnable {
 		, new StoneLayerOres(MT.TigerEyeBlack           , U64, 32, 64, BIOMES_MESA)
 		, new StoneLayerOres(MT.TigerIron               , U64, 32, 64, BIOMES_SHROOM)
 		));
-		
-		
+
+
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.GraniteBlack));
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.GraniteBlack));
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.GraniteBlack
@@ -119,8 +142,8 @@ public class Loader_Worldgen implements Runnable {
 		, new StoneLayerOres(MT.Bixbite                 , U64, 24, 48, BIOMES_SAVANNA)
 		, new StoneLayerOres(MT.Maxixe                  , U64, 24, 48, BIOMES_TAIGA)
 		));
-		
-		
+
+
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.GraniteRed));
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.GraniteRed));
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.GraniteRed
@@ -128,8 +151,8 @@ public class Loader_Worldgen implements Runnable {
 		, new StoneLayerOres(MT.OREMATS.Uraninite       , U32,  0, 16)
 		, new StoneLayerOres(MT.OREMATS.Tantalite       , U16, 20, 50)
 		));
-		
-		
+
+
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.Komatiite));
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.Komatiite));
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.Komatiite));
@@ -140,8 +163,8 @@ public class Loader_Worldgen implements Runnable {
 		, new StoneLayerOres(MT.Redstone                , U8 ,  0, 30)
 		, new StoneLayerOres(MT.Pyrite                  , U12,  0, 30)
 		));
-		
-		
+
+
 		Block
 		tBlock = ST.block(MD.GaSu, "basalt");
 		if (tBlock != NB)
@@ -169,8 +192,8 @@ public class Loader_Worldgen implements Runnable {
 		, new StoneLayerOres(MT.Grossular               , U32, 16, 48)
 		, new StoneLayerOres(MT.OREMATS.Chromite        , U8 , 32, 64)
 		));
-		
-		
+
+
 		tBlock = ST.block(MD.CHSL, "marble");
 		if (tBlock != NB)
 		StoneLayer.LAYERS.add(new StoneLayer(tBlock, MT.Marble));
@@ -202,8 +225,8 @@ public class Loader_Worldgen implements Runnable {
 		, new StoneLayerOres(MT.OREMATS.Chalcopyrite    , U8 ,  0, 20)
 		, new StoneLayerOres(MT.Pyrite                  , U12,  0, 30)
 		));
-		
-		
+
+
 		tBlock = ST.block(MD.CHSL, "limestone");
 		if (tBlock != NB)
 		StoneLayer.LAYERS.add(new StoneLayer(tBlock, MT.Limestone));
@@ -236,22 +259,22 @@ public class Loader_Worldgen implements Runnable {
 		, new StoneLayerOres(MT.OREMATS.Malachite       , U12, 16, 64)
 		, new StoneLayerOres(MT.Azurite                 , U24, 16, 64)
 		));
-		
-		
+
+
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.SchistGreen));
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.SchistGreen
 		, new StoneLayerOres(MT.Andradite               , U32,  8, 40)
 		, new StoneLayerOres(MT.Almandine               , U32, 16, 48)
 		));
-		
-		
+
+
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.SchistBlue));
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.SchistBlue
 		, new StoneLayerOres(MT.Spessartine             , U32,  8, 40)
 		, new StoneLayerOres(MT.Pyrope                  , U32, 16, 48)
 		));
-		
-		
+
+
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.Kimberlite));
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.Kimberlite));
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.Kimberlite));
@@ -260,8 +283,8 @@ public class Loader_Worldgen implements Runnable {
 		, new StoneLayerOres(MT.Spinel                  , U64, 24, 48, BIOMES_MOUNTAINS)
 		, new StoneLayerOres(MT.BalasRuby               , U64, 24, 48, BIOMES_JUNGLE)
 		));
-		
-		
+
+
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.Quartzite));
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.Quartzite));
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.Quartzite));
@@ -270,8 +293,8 @@ public class Loader_Worldgen implements Runnable {
 		, new StoneLayerOres(MT.CertusQuartz            , U16, 16, 48)
 		, new StoneLayerOres(MT.OREMATS.Barite          , U32,  0, 32)
 		));
-		
-		
+
+
 		tBlock = ST.block(MD.BoP, "rocks");
 		if (tBlock != NB)
 		StoneLayer.LAYERS.add(new StoneLayer(tBlock, 4, MT.Shale));
@@ -289,8 +312,8 @@ public class Loader_Worldgen implements Runnable {
 		, new StoneLayerOres(MT.Phosphorite             , U24, 40, 56)
 		, new StoneLayerOres(MT.Phosphorus              , U24, 44, 52)
 		));
-		
-		
+
+
 		tBlock = ST.block(MD.BoP, "rocks");
 		if (tBlock != NB)
 		StoneLayer.LAYERS.add(new StoneLayer(tBlock, 2, MT.Siltstone));
@@ -315,8 +338,8 @@ public class Loader_Worldgen implements Runnable {
 		, new StoneLayerOres(MT.Amethyst                , U64, 24, 48, BIOMES_TAIGA)
 		, new StoneLayerOres(MT.Alexandrite             , U64, 24, 48, BIOMES_JUNGLE)
 		));
-		
-		
+
+
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.Andesite));
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.Andesite));
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.Andesite));
@@ -327,8 +350,8 @@ public class Loader_Worldgen implements Runnable {
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.Andesite
 		, new StoneLayerOres(MT.Au                      , U32,  0, 20)
 		));
-		
-		
+
+
 		if (MD.EB.mLoaded) {
 		Block tStone = ST.block(MD.EB, "enhancedbiomes.tile.stoneEB"), tCobble = ST.block(MD.EB, "enhancedbiomes.tile.stoneCobbleEB");
 		StoneLayer.LAYERS.add(new StoneLayer(tStone, 0, tCobble, 0, MT.Basalt    ));
@@ -345,8 +368,8 @@ public class Loader_Worldgen implements Runnable {
 		StoneLayer.LAYERS.add(new StoneLayer(tStone,11, tCobble,11, MT.Gabbro    ));
 		StoneLayer.LAYERS.add(new StoneLayer(tStone,12, tCobble,12, MT.Dacite    ));
 		}
-		
-		
+
+
 		if (MD.MIN.mLoaded) {
 		StoneLayer.LAYERS.add(new StoneLayer(ST.block(MD.MIN, "basalt"      ), MT.Basalt    ));
 		StoneLayer.LAYERS.add(new StoneLayer(ST.block(MD.MIN, "granite"     ), MT.Granite   ));
@@ -363,12 +386,12 @@ public class Loader_Worldgen implements Runnable {
 		StoneLayer.LAYERS.add(new StoneLayer(ST.block(MD.MIN, "conglomerate"), MT.Stone     ));
 		StoneLayer.LAYERS.add(new StoneLayer(ST.block(MD.MIN, "pegmatite"   ), MT.Stone     ));
 		StoneLayer.LAYERS.add(new StoneLayer(ST.block(MD.MIN, "chert"       ), MT.Chert     ));
-		
+
 		StoneLayer.LAYERS.add(new StoneLayer(ST.block(MD.MIN, "sulfur_ore"  ), MT.S         ));
 		StoneLayer.LAYERS.add(new StoneLayer(ST.block(MD.MIN, "nitrate_ore" ), MT.KNO3      ));
 		}
-		
-		
+
+
 		if (MD.UB.mLoaded) {
 		Block tStone = ST.block(MD.UB, "igneousStone"), tCobble = ST.block(MD.UB, "igneousCobblestone");
 		StoneLayer.LAYERS.add(new StoneLayer(tStone, 0+8, tCobble, 0, MT.GraniteRed  ));
@@ -398,8 +421,8 @@ public class Loader_Worldgen implements Runnable {
 		StoneLayer.LAYERS.add(new StoneLayer(tStone, 6+8, MT.Greywacke));
 		StoneLayer.LAYERS.add(new StoneLayer(tStone, 7+8, MT.Chert    ));
 		}
-		
-		
+
+
 		StoneLayer.put(BlocksGT.Basalt, BlocksGT.Limestone
 		, new StoneLayerOres(MT.OREMATS.Ilmenite        , U8 ,  0, 32)
 		, new StoneLayerOres(MT.TiO2                    , U12,  0, 32)
@@ -434,29 +457,29 @@ public class Loader_Worldgen implements Runnable {
 		StoneLayer.put(BlocksGT.GraniteBlack, BlocksGT.GraniteRed
 		, new StoneLayerOres(MT.Zircon                  , U24,  0, 32)
 		);
-		
+
 		// TODO Asbestos missing!
-		
-		
-		
-		
+
+
+
+
 		new WorldgenOcean           ("ocean.seawater"    , T, GEN_OVERWORLD, GEN_GT, GEN_PFAA); // IT IS IMPORTANT THAT OCEAN COMES BEFORE RIVER AND SWAMP!!!
 		new WorldgenRiver           ("river.riverwater"  , T, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TWILIGHT); // IT IS IMPORTANT THAT RIVER COMES AFTER OCEAN AND BEFORE SWAMP!!!
 		new WorldgenSwamp           ("swamp.dirtywater"  , T, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TWILIGHT, GEN_EREBUS); // IT IS IMPORTANT THAT SWAMP COMES AFTER RIVER AND OCEAN!!!
-		
+
 		new WorldgenDeepOcean       ("ocean.prismacorals", T, GEN_OVERWORLD, GEN_GT, GEN_PFAA);
-		
+
 		new WorldgenPit             ("pit.clay.vanilla"  , T, Blocks.clay       , 0, 1, 256, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TWILIGHT, GEN_TROPICS, GEN_ALFHEIM);
 		new WorldgenPit             ("pit.clay.brown"    , T, BlocksGT.Diggables, 1, 3, 256, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TWILIGHT, GEN_TROPICS, GEN_ALFHEIM);
-		
+
 		new WorldgenBlackSand       ("river.magnetite"   , T, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TWILIGHT, GEN_TROPICS);
 		new WorldgenTurf            ("swamp.turf"        , T, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TWILIGHT);
-		
+
 		new WorldgenLogDry          ("log.dry"           , T, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TWILIGHT, GEN_EREBUS, GEN_TROPICS, GEN_ALFHEIM);
 		new WorldgenLogRotten       ("log.rotten"        , T, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TWILIGHT, GEN_EREBUS, GEN_TROPICS);
 		new WorldgenLogMossy        ("log.mossy"         , T, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TWILIGHT, GEN_EREBUS, GEN_TROPICS, GEN_ALFHEIM);
 		new WorldgenLogFrozen       ("log.frozen"        , T, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TWILIGHT, GEN_EREBUS);
-		
+
 		new WorldgenTreeRubber      ("tree.rubber"       , T, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TWILIGHT);
 		new WorldgenTreeMaple       ("tree.maple"        , T, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TWILIGHT, GEN_EREBUS);
 		new WorldgenTreeWillow      ("tree.willow"       , T, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TWILIGHT, GEN_EREBUS);
@@ -464,7 +487,7 @@ public class Loader_Worldgen implements Runnable {
 		new WorldgenTreeHazel       ("tree.hazel"        , T, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TWILIGHT, GEN_EREBUS, GEN_ALFHEIM);
 		new WorldgenTreeCinnamon    ("tree.cinnamon"     , T, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TWILIGHT, GEN_EREBUS, GEN_TROPICS);
 		new WorldgenTreeRainbowood  ("tree.rainbowood"   , T, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TWILIGHT, GEN_EREBUS, GEN_ALFHEIM, GEN_AETHER);
-		
+
 		new WorldgenRocks           ("rocks"             , T, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TWILIGHT, GEN_TROPICS, GEN_ATUM);
 		new WorldgenAlfheimRocks    ("alfheim.rocks"     , T, GEN_ALFHEIM);
 		new WorldgenAetherRocks     ("aether.rocks"      , T, GEN_AETHER);
@@ -473,19 +496,19 @@ public class Loader_Worldgen implements Runnable {
 		new WorldgenMarsRocks       ("mars.rocks"        , T, GEN_MARS);
 		new WorldgenPlanetRocks     ("planet.rocks"      , T, GEN_PLANETS);
 		new WorldgenSticks          ("sticks"            , T, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TWILIGHT, GEN_TROPICS, GEN_EREBUS, GEN_ALFHEIM, GEN_BETWEENLANDS, GEN_AETHER, GEN_ENVM);
-		
+
 		new WorldgenGlowtus         ("plant.glowtus"     , T, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TWILIGHT, GEN_TROPICS, GEN_EREBUS);
 		new WorldgenBushes          ("plant.bush"        , T, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TWILIGHT, GEN_TROPICS, GEN_EREBUS, GEN_ALFHEIM);
 		new WorldgenHives           ("bumblehives"       , T, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TWILIGHT, GEN_TROPICS, GEN_EREBUS, GEN_ALFHEIM, GEN_BETWEENLANDS, GEN_AETHER, GEN_ENVM, GEN_ATUM, GEN_NETHER, GEN_END);
-		
+
 		new WorldgenCenterBiomes    ("center.biomes"     , F, GEN_OVERWORLD, GEN_GT, GEN_PFAA);
 		new WorldgenStreets         ("center.streets"    , F, GEN_OVERWORLD, GEN_GT, GEN_PFAA);
 		new WorldgenNexus           ("center.nexus"      , F, GEN_OVERWORLD, GEN_GT, GEN_PFAA);
 		new WorldgenBeacon          ("center.beacon"     , F, GEN_OVERWORLD, GEN_GT, GEN_PFAA);
 		new WorldgenTesting         ("center.testing"    , F, GEN_OVERWORLD, GEN_GT, GEN_PFAA);
-		
+
 		new WorldgenDungeonGT("overworld.structure.dungeon.large", T, 100, 3, 7, 20, 20, 6, T, F, F, T, T, T, T, GEN_OVERWORLD, GEN_GT, GEN_PFAA);
-		
+
 		new WorldgenFluidSpring("overworld.fluid.oil.extraheavy", T, BlocksGT.OilExtraHeavy,  7,  1, 50,200,   0,  16, null, F, tInfiniteOil ? FL.Oil_ExtraHeavy.make( 6000) : NF, 10, GEN_OVERWORLD, GEN_GT, GEN_PFAA);
 		new WorldgenFluidSpring("overworld.fluid.oil.heavy"     , T, BlocksGT.OilHeavy     ,  7,  1, 60,150,   0,  16, null, F, tInfiniteOil ? FL.Oil_Heavy     .make( 6000) : NF, 10, GEN_OVERWORLD, GEN_GT, GEN_PFAA);
 		new WorldgenFluidSpring("overworld.fluid.oil.medium"    , T, BlocksGT.OilMedium    ,  7,  1, 70,100,   0,  16, null, F, tInfiniteOil ? FL.Oil_Medium    .make( 6000) : NF, 10, GEN_OVERWORLD, GEN_GT, GEN_PFAA);
@@ -494,7 +517,7 @@ public class Loader_Worldgen implements Runnable {
 		new WorldgenFluidSpring("overworld.fluid.water"         , T, Blocks.water          ,  0,  1, 50, 50,   0,  16, null, F, FL.Water.make(1), 10, GEN_OVERWORLD, GEN_GT, GEN_PFAA);
 		new WorldgenFluidSpring("overworld.fluid.lava"          , T, Blocks.lava           ,  0,  1, 50, 50,   0,  16, null, F, FL.Lava.make(1000), 10, GEN_OVERWORLD, GEN_GT, GEN_PFAA);
 		new WorldgenFluidSpring("nether.fluid.lava"             , T, Blocks.lava           ,  0,  1, 90, 25,   0,  16, null, F, FL.Lava.make(1), 10, GEN_NETHER);
-		
+
 		for (BlockBase tStone : BlocksGT.stones) {
 		new WorldgenStone("erebus.stone."   + ((BlockStones)tStone).mMaterial.mNameInternal.toLowerCase(), T, tStone,  0,  1, 200, 200, 0, 120, null, F, GEN_EREBUS);
 		new WorldgenStone("twilight.stone." + ((BlockStones)tStone).mMaterial.mNameInternal.toLowerCase(), T, tStone,  0,  1, 100, 200, 0,  40, null, F, GEN_TWILIGHT);
@@ -502,7 +525,7 @@ public class Loader_Worldgen implements Runnable {
 		new WorldgenStone("nether.stone."   + ((BlockStones)tStone).mMaterial.mNameInternal.toLowerCase(), F, tStone,  0,  1, 200, 200, 0, 120, null, F, GEN_NETHER);
 		new WorldgenStone("tropics.stone."  + ((BlockStones)tStone).mMaterial.mNameInternal.toLowerCase(), T, tStone,  0,  1, 200, 100, 0, 120, null, F, GEN_TROPICS);
 		}
-		
+
 		new WorldgenOresBedrock("ore.bedrock.tungstate"         , T, T,  96000, MT.OREMATS.Tungstate            , (Block)BlocksGT.FlowersA,  7, GEN_FLOOR); // TODO Flower
 		new WorldgenOresBedrock("ore.bedrock.ferberite"         , T, T,  96000, MT.OREMATS.Ferberite            , (Block)BlocksGT.FlowersA,  7, GEN_FLOOR); // TODO Flower
 		new WorldgenOresBedrock("ore.bedrock.wolframite"        , T, T,  96000, MT.OREMATS.Wolframite           , (Block)BlocksGT.FlowersA,  7, GEN_FLOOR); // TODO Flower
@@ -535,11 +558,11 @@ public class Loader_Worldgen implements Runnable {
 		new WorldgenOresBedrock("ore.bedrock.chalcopyrite"      , T, T,   2000, MT.OREMATS.Chalcopyrite         , (Block)BlocksGT.FlowersA,  2, GEN_FLOOR);
 		new WorldgenOresBedrock("ore.bedrock.naquadah"          , T, T,  10000, MT.Nq                           , (Block)BlocksGT.FlowersA,  7, GEN_MARS); // TODO Flower
 		new WorldgenOresBedrock("ore.bedrock.adamantine"        , T, T,  10000, MT.Adamantine                   , (Block)BlocksGT.FlowersA,  7, GEN_MARS, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS); // TODO Flower
-		
+
 		for (int i = 0, j = ConfigsGT.WORLDGEN.get(ConfigCategories.general, "AmountOfCustomBedrockOreSlots", 0); i < j; i++) {
 		new WorldgenOresBedrock("ore.bedrock.custom" + (i<10?"0":"") + i, F, T, 100000, MT.NULL, (Block)BlocksGT.FlowersA, 7, GEN_FLOOR);
 		}
-		
+
 		new WorldgenOresSmall("ore.small.chalcopyrite"      , T,  60, 120,  16, MT.OREMATS.Chalcopyrite         , GEN_OVERWORLD, GEN_GT, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_MARS, GEN_NETHER, GEN_END);
 		new WorldgenOresSmall("ore.small.cassiterite"       , T,  60, 120,  16, MT.OREMATS.Cassiterite          , GEN_OVERWORLD, GEN_GT, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_ALFHEIM, GEN_AETHER, GEN_MARS, GEN_NETHER, GEN_END);
 		new WorldgenOresSmall("ore.small.copper"            , T,  60, 120,  16, MT.Cu                           , GEN_OVERWORLD, GEN_GT, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_ALFHEIM, GEN_AETHER, GEN_MARS, GEN_NETHER, GEN_ASTEROIDS, GEN_MOON, GEN_PLANETS, GEN_END);
@@ -579,27 +602,28 @@ public class Loader_Worldgen implements Runnable {
 		new WorldgenOresSmall("ore.small.niter"             , T,  10,  60,  16, MT.Niter                        , GEN_NETHER);
 		new WorldgenOresSmall("ore.small.sulfur_n"          , T,  10,  60,  32, MT.S                            , GEN_NETHER);
 		new WorldgenOresSmall("ore.small.sulfur_o"          , T,   5,  15,   8, MT.S                            , GEN_OVERWORLD, GEN_GT, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_MARS);
-		
-		
-		new WorldgenOresSmall("ore.small.certus"            , MD.AE     .mLoaded,  20,  40,   1, MT.CertusQuartz        , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_AETHER, GEN_MARS, GEN_PLANETS, GEN_ALFHEIM, GEN_ASTEROIDS, GEN_MOON);
-		new WorldgenOresSmall("ore.small.vinteum"           , MD.ARS    .mLoaded,  30,  60,   8, MT.Vinteum             , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_AETHER, GEN_MARS, GEN_PLANETS, GEN_ALFHEIM);
-		new WorldgenOresSmall("ore.small.perdito"           , MD.TC     .mLoaded,  10,  60,   8, MT.InfusedEntropy      , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_AETHER, GEN_MARS, GEN_PLANETS, GEN_ALFHEIM, GEN_NETHER, GEN_END);
-		new WorldgenOresSmall("ore.small.ignis"             , MD.TC     .mLoaded,  10,  60,   8, MT.InfusedFire         , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_AETHER, GEN_MARS, GEN_PLANETS, GEN_ALFHEIM, GEN_NETHER, GEN_END);
-		new WorldgenOresSmall("ore.small.aer"               , MD.TC     .mLoaded,  10,  60,   8, MT.InfusedAir          , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_AETHER, GEN_MARS, GEN_PLANETS, GEN_ALFHEIM, GEN_NETHER, GEN_END);
-		new WorldgenOresSmall("ore.small.aqua"              , MD.TC     .mLoaded,  10,  60,   8, MT.InfusedWater        , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_AETHER, GEN_MARS, GEN_PLANETS, GEN_ALFHEIM, GEN_NETHER, GEN_END);
-		new WorldgenOresSmall("ore.small.terra"             , MD.TC     .mLoaded,  10,  60,   8, MT.InfusedEarth        , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_AETHER, GEN_MARS, GEN_PLANETS, GEN_ALFHEIM, GEN_NETHER, GEN_END);
-		new WorldgenOresSmall("ore.small.ordo"              , MD.TC     .mLoaded,  10,  60,   8, MT.InfusedOrder        , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_AETHER, GEN_MARS, GEN_PLANETS, GEN_ALFHEIM, GEN_NETHER, GEN_END);
-		new WorldgenOresSmall("ore.small.nikolite"          , MD.RP     .mLoaded,  10,  40,   4, MT.Nikolite            , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_AETHER, GEN_MARS, GEN_PLANETS, GEN_ALFHEIM, GEN_NETHER, GEN_END);
-		new WorldgenOresSmall("ore.small.teslatite"         , MD.BP     .mLoaded,  10,  40,   4, MT.Teslatite           , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_AETHER, GEN_MARS, GEN_PLANETS, GEN_ALFHEIM, GEN_NETHER, GEN_END);
-		new WorldgenOresSmall("ore.small.electrotine"       , MD.PR     .mLoaded,  10,  40,   4, MT.Electrotine         , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_AETHER, GEN_MARS, GEN_PLANETS, GEN_ALFHEIM, GEN_NETHER, GEN_END);
-		new WorldgenOresSmall("ore.small.bischofite"        , MD.IHL    .mLoaded,  40,  80,   1, MT.OREMATS.Bischofite  , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM);
-		new WorldgenOresSmall("ore.small.datolite"          , MD.IHL    .mLoaded,  40,  80,   1, MT.Datolite            , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM);
-		new WorldgenOresSmall("ore.small.mica"              , MD.IHL    .mLoaded,  40,  80,   1, MT.OREMATS.Mica        , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM);
-		new WorldgenOresSmall("ore.small.gypsum"            , MD.IHL    .mLoaded,  40,  80,   1, MT.OREMATS.Gypsum      , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM);
-		new WorldgenOresSmall("ore.small.potassiumfeldspar" , MD.IHL    .mLoaded,  40,  80,   1, MT.PotassiumFeldspar   , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM);
-		new WorldgenOresSmall("ore.small.trona"             , MD.IHL    .mLoaded,  40,  80,   1, MT.OREMATS.Trona       , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM);
-		
-		
+
+
+		new WorldgenOresSmall("ore.small.blackquartz"       , MD.AA .mLoaded,  20,  40,   1, MT.BlackQuartz         , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM);
+		new WorldgenOresSmall("ore.small.certus"            , MD.AE .mLoaded,  20,  40,   1, MT.CertusQuartz        , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_AETHER, GEN_MARS, GEN_PLANETS, GEN_ALFHEIM, GEN_ASTEROIDS, GEN_MOON);
+		new WorldgenOresSmall("ore.small.vinteum"           , MD.ARS.mLoaded,  30,  60,   8, MT.Vinteum             , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_AETHER, GEN_MARS, GEN_PLANETS, GEN_ALFHEIM);
+		new WorldgenOresSmall("ore.small.perdito"           , MD.TC .mLoaded,  10,  60,   8, MT.InfusedEntropy      , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_AETHER, GEN_MARS, GEN_PLANETS, GEN_ALFHEIM, GEN_NETHER, GEN_END);
+		new WorldgenOresSmall("ore.small.ignis"             , MD.TC .mLoaded,  10,  60,   8, MT.InfusedFire         , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_AETHER, GEN_MARS, GEN_PLANETS, GEN_ALFHEIM, GEN_NETHER, GEN_END);
+		new WorldgenOresSmall("ore.small.aer"               , MD.TC .mLoaded,  10,  60,   8, MT.InfusedAir          , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_AETHER, GEN_MARS, GEN_PLANETS, GEN_ALFHEIM, GEN_NETHER, GEN_END);
+		new WorldgenOresSmall("ore.small.aqua"              , MD.TC .mLoaded,  10,  60,   8, MT.InfusedWater        , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_AETHER, GEN_MARS, GEN_PLANETS, GEN_ALFHEIM, GEN_NETHER, GEN_END);
+		new WorldgenOresSmall("ore.small.terra"             , MD.TC .mLoaded,  10,  60,   8, MT.InfusedEarth        , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_AETHER, GEN_MARS, GEN_PLANETS, GEN_ALFHEIM, GEN_NETHER, GEN_END);
+		new WorldgenOresSmall("ore.small.ordo"              , MD.TC .mLoaded,  10,  60,   8, MT.InfusedOrder        , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_AETHER, GEN_MARS, GEN_PLANETS, GEN_ALFHEIM, GEN_NETHER, GEN_END);
+		new WorldgenOresSmall("ore.small.nikolite"          , MD.RP .mLoaded,  10,  40,   4, MT.Nikolite            , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_AETHER, GEN_MARS, GEN_PLANETS, GEN_ALFHEIM, GEN_NETHER, GEN_END);
+		new WorldgenOresSmall("ore.small.teslatite"         , MD.BP .mLoaded,  10,  40,   4, MT.Teslatite           , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_AETHER, GEN_MARS, GEN_PLANETS, GEN_ALFHEIM, GEN_NETHER, GEN_END);
+		new WorldgenOresSmall("ore.small.electrotine"       , MD.PR .mLoaded,  10,  40,   4, MT.Electrotine         , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_AETHER, GEN_MARS, GEN_PLANETS, GEN_ALFHEIM, GEN_NETHER, GEN_END);
+		new WorldgenOresSmall("ore.small.bischofite"        , MD.IHL.mLoaded,  40,  80,   1, MT.OREMATS.Bischofite  , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM);
+		new WorldgenOresSmall("ore.small.datolite"          , MD.IHL.mLoaded,  40,  80,   1, MT.Datolite            , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM);
+		new WorldgenOresSmall("ore.small.mica"              , MD.IHL.mLoaded,  40,  80,   1, MT.OREMATS.Mica        , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM);
+		new WorldgenOresSmall("ore.small.gypsum"            , MD.IHL.mLoaded,  40,  80,   1, MT.OREMATS.Gypsum      , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM);
+		new WorldgenOresSmall("ore.small.potassiumfeldspar" , MD.IHL.mLoaded,  40,  80,   1, MT.PotassiumFeldspar   , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM);
+		new WorldgenOresSmall("ore.small.trona"             , MD.IHL.mLoaded,  40,  80,   1, MT.OREMATS.Trona       , GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM);
+
+
 		new WorldgenOresSmall("ore.small.diamond"           , T,   5,  10,   2, MT.Diamond                      , GEN_OVERWORLD, GEN_GT, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_AETHER, GEN_PFAA, GEN_MARS, GEN_PLANETS, GEN_ASTEROIDS, GEN_MOON, GEN_NETHER);
 		new WorldgenOresSmall("ore.small.emerald"           , T,   5, 250,   1, MT.Emerald                      , GEN_OVERWORLD, GEN_GT, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_AETHER, GEN_PFAA, GEN_MARS);
 		new WorldgenOresSmall("ore.small.aquamarine"        , T,   5, 250,   1, MT.Aquamarine                   , GEN_OVERWORLD, GEN_GT, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_AETHER, GEN_PFAA, GEN_MARS);
@@ -652,11 +676,11 @@ public class Loader_Worldgen implements Runnable {
 		new WorldgenOresSmall("ore.small.fluoriteorange"    , T,   5, 250,   1, MT.FluoriteOrange               , GEN_OVERWORLD, GEN_GT, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_AETHER, GEN_PFAA, GEN_MARS);
 		new WorldgenOresSmall("ore.small.fluoritemagenta"   , T,   5, 250,   1, MT.FluoriteMagenta              , GEN_OVERWORLD, GEN_GT, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_AETHER, GEN_PFAA, GEN_MARS);
 		new WorldgenOresSmall("ore.small.amber"             , T,   5, 250,   1, MT.Amber                        , GEN_OVERWORLD, GEN_GT, GEN_ENVM, GEN_TWILIGHT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_AETHER, GEN_PFAA);
-		
+
 		for (int i = 0, j = ConfigsGT.WORLDGEN.get(ConfigCategories.general, "AmountOfCustomSmallOreSlots", 0); i < j; i++) {
 		new WorldgenOresSmall("ore.small.custom" + (i<10?"0":"") + i, F, 0, 0, 0, MT.NULL, GEN_ALL);
 		}
-		
+
 		new WorldgenOresLarge("ore.large.lignite"           , T, T,  50, 130,    160,   8,  32, MT.Lignite                  , MT.Lignite                , MT.Lignite                        , MT.Coal                           , ORE_OVERWORLD, ORE_TWILIGHT, ORE_EREBUS, ORE_ATUM);
 		new WorldgenOresLarge("ore.large.coal"              , T, T,  50,  80,     80,   6,  32, MT.Coal                     , MT.Coal                   , MT.Coal                           , MT.Lignite                        , ORE_OVERWORLD, ORE_TWILIGHT, ORE_EREBUS, ORE_ATUM);
 		new WorldgenOresLarge("ore.large.apatite"           , T, T,  40,  60,     60,   3,  16, MT.Apatite                  , MT.Apatite                , MT.Phosphorus                     , MT.PO4                            , ORE_OVERWORLD, ORE_TWILIGHT, ORE_EREBUS, ORE_ATUM, ORE_BETWEENLANDS);
@@ -704,7 +728,7 @@ public class Loader_Worldgen implements Runnable {
 		new WorldgenOresLarge("ore.large.syrmorite"         , T, T,  30,  45,    160,   2,  32, MT.Syrmorite                , MT.Syrmorite              , MT.Syrmorite                      , MT.Syrmorite                      , ORE_BETWEENLANDS);
 		new WorldgenOresLarge("ore.large.octine"            , T, T,  10,  25,     40,   1,  32, MT.Octine                   , MT.Octine                 , MT.Octine                         , MT.Octine                         , ORE_BETWEENLANDS);
 		}
-		
+
 		for (int i = 0, j = ConfigsGT.WORLDGEN.get(ConfigCategories.general, "AmountOfCustomLargeVeinSlots", 0); i < j; i++) {
 		new WorldgenOresLarge("ore.large.custom" + (i<10?"0":"") + i, F, T, 0, 0, 0, 0, 0, MT.NULL, MT.NULL, MT.NULL, MT.NULL, ORE_ALL);
 		}

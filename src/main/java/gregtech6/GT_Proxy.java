@@ -142,7 +142,7 @@ public abstract class GT_Proxy extends Abstract_Proxy {
 
 		try {
 			// Using http because Java screws up https on Windows at times.
-			Scanner tScanner = new Scanner(new URL("http://gregtech6.mechaenetia.com/com/gregoriust/gregtech/message.txt").openStream());
+			Scanner tScanner = new Scanner(new URL("http://gregtech.mechaenetia.com/com/gregoriust/gregtech/message.txt").openStream());
 			while (tScanner.hasNextLine()) mMessage += tScanner.nextLine() + " ";
 			tScanner.close();
 			if (mMessage.length() > 5) OUT.println("GT_Download_Thread: Downloaded News.");
@@ -320,7 +320,7 @@ public abstract class GT_Proxy extends Abstract_Proxy {
 						aEvent.setCanceled(T);
 					}
 				} else {
-					if (!aEvent.world.isRemote && aEvent.entityPlayer.isSneaking()) {
+					if (!aEvent.world.isRemote && aEvent.entityPlayer.isSneaking() && ST.block(aStack) == NB) {
 						OreDictItemData tData = OM.anyassociation_(aStack);
 						if (tData != null) {
 							if (tData.mPrefix == OP.rockGt) {
@@ -465,7 +465,7 @@ public abstract class GT_Proxy extends Abstract_Proxy {
 	public boolean downloadSupporterListSilverFromMain() {
 		try {
 			// Using http because Java screws up https on Windows at times.
-			Scanner tScanner = new Scanner(new URL("http://gregtech6.mechaenetia.com/com/gregoriust/gregtech/supporterlist.txt").openStream());
+			Scanner tScanner = new Scanner(new URL("http://gregtech.mechaenetia.com/com/gregoriust/gregtech/supporterlist.txt").openStream());
 			while (tScanner.hasNextLine()) mSupporterListSilver.add(tScanner.nextLine().toLowerCase());
 			tScanner.close();
 			return mSupporterListSilver.size() > 3;
@@ -476,7 +476,7 @@ public abstract class GT_Proxy extends Abstract_Proxy {
 	public boolean downloadSupporterListGoldFromMain() {
 		try {
 			// Using http because Java screws up https on Windows at times.
-			Scanner tScanner = new Scanner(new URL("http://gregtech6.mechaenetia.com/com/gregoriust/gregtech/supporterlistgold.txt").openStream());
+			Scanner tScanner = new Scanner(new URL("http://gregtech.mechaenetia.com/com/gregoriust/gregtech/supporterlistgold.txt").openStream());
 			while (tScanner.hasNextLine()) mSupporterListGold.add(tScanner.nextLine().toLowerCase());
 			tScanner.close();
 			return mSupporterListGold.size() > 3;

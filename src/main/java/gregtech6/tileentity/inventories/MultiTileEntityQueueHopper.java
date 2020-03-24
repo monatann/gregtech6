@@ -46,7 +46,10 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.monster.EntitySnowman;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -59,32 +62,32 @@ import net.minecraft.world.World;
 public class MultiTileEntityQueueHopper extends TileEntityBase09FacingSingle implements ITileEntityAdjacentInventoryUpdatable {
 	public boolean mCheckNextTick = T, mMovedLastTick = T;
 	public byte mMode = 64;
-	
+
 	@Override
 	public void readFromNBT2(NBTTagCompound aNBT) {
 		super.readFromNBT2(aNBT);
 		mMode = aNBT.getByte(NBT_MODE);
 		if (mMode <= 0) mMode = 64;
 	}
-	
+
 	@Override
 	public void writeToNBT2(NBTTagCompound aNBT) {
 		super.writeToNBT2(aNBT);
 		if (mMode != 64) aNBT.setByte(NBT_MODE, mMode);
 	}
-	
+
 	@Override
 	public NBTTagCompound writeItemNBT2(NBTTagCompound aNBT) {
 		aNBT = super.writeItemNBT2(aNBT);
 		if (mMode != 64) aNBT.setByte(NBT_MODE, mMode);
 		return aNBT;
 	}
-	
+
 	static {
 		LH.add("gt6.multitileentity.hopper.tooltip.1", "Slot Count: ");
 		LH.add("gt6.multitileentity.hopper.tooltip.2", "Slot Size: ");
 	}
-	
+
 	@Override
 	public void addToolTips(List<String> aList, ItemStack aStack, boolean aF3_H) {
 		aList.add(Chat.CYAN     + LH.get("gt6.multitileentity.hopper.tooltip.1") + getSizeInventory());
@@ -94,13 +97,13 @@ public class MultiTileEntityQueueHopper extends TileEntityBase09FacingSingle imp
 		aList.add(Chat.DGRAY    + LH.get(LH.TOOL_TO_RESET_SOFT_HAMMER));
 		super.addToolTips(aList, aStack, aF3_H);
 	}
-	
+
 	@Override
 	public boolean onBlockActivated3(EntityPlayer aPlayer, byte aSide, float aHitX, float aHitY, float aHitZ) {
 		if (isServerSide() && isUseableByPlayerGUI(aPlayer)) openGUI(aPlayer);
 		return T;
 	}
-	
+
 	@Override
 	public boolean onPlaced(ItemStack aStack, EntityPlayer aPlayer, MultiTileEntityContainer aMTEContainer, World aWorld, int aX, int aY, int aZ, byte aSide, float aHitX, float aHitY, float aHitZ) {
 		super.onPlaced(aStack, aPlayer, aMTEContainer, aWorld, aX, aY, aZ, aSide, aHitX, aHitY, aHitZ);
@@ -112,7 +115,7 @@ public class MultiTileEntityQueueHopper extends TileEntityBase09FacingSingle imp
 		}
 		return T;
 	}
-	
+
 	@Override
 	public long onToolClick2(String aTool, long aRemainingDurability, long aQuality, Entity aPlayer, List<String> aChatReturn, IInventory aPlayerInventory, boolean aSneaking, ItemStack aStack, byte aSide, float aHitX, float aHitY, float aHitZ) {
 		if (isClientSide()) return super.onToolClick2(aTool, aRemainingDurability, aQuality, aPlayer, aChatReturn, aPlayerInventory, aSneaking, aStack, aSide, aHitX, aHitY, aHitZ);
@@ -136,7 +139,14 @@ public class MultiTileEntityQueueHopper extends TileEntityBase09FacingSingle imp
 		}
 		return super.onToolClick2(aTool, aRemainingDurability, aQuality, aPlayer, aChatReturn, aPlayerInventory, aSneaking, aStack, aSide, aHitX, aHitY, aHitZ);
 	}
-	
+
+	@Override
+	public void onWalkOver2(EntityLivingBase aEntity) {
+		if (isServerSide() && (aEntity.getClass() == EntitySnowman.class || "EntityNewSnowGolem".equalsIgnoreCase(UT.Reflection.getLowercaseClass(aEntity)))) {
+			addStackToSlot(getSizeInventory()-1, ST.make(Items.snowball, 1, 0));
+		}
+	}
+
 	@Override
 	@SuppressWarnings("rawtypes")
 	public void onTick2(long aTimer, boolean aIsServerSide) {
@@ -168,10 +178,11 @@ public class MultiTileEntityQueueHopper extends TileEntityBase09FacingSingle imp
 					tMovedItems += ST.move(tDelegator, delegator(SIDE_TOP));
 				} else {
 					if (!WD.visOpq(tDelegator.getWorld(), tDelegator.getX(), tDelegator.getY(), tDelegator.getZ(), F, T)) {
-						if (!slotHas(0)) {
-							slot(0, WD.suck(tDelegator));
-							if (slotHas(0)) {
-								tMovedItems += slot(0).stackSize;
+						int i = getSizeInventory()-1;
+						if (!slotHas(i)) {
+							slot(i, WD.suck(tDelegator));
+							if (slotHas(i)) {
+								tMovedItems += slot(i).stackSize;
 								updateInventory();
 							}
 						}
@@ -181,7 +192,7 @@ public class MultiTileEntityQueueHopper extends TileEntityBase09FacingSingle imp
 					mMovedLastTick = T;
 				}
 			}
-			
+
 			if (mInventoryChanged) {
 				int oMovedItems = -1;
 				while (oMovedItems != tMovedItems) {
@@ -202,7 +213,7 @@ public class MultiTileEntityQueueHopper extends TileEntityBase09FacingSingle imp
 			}
 		}
 	}
-	
+
 	@Override public float getSurfaceDistance       (byte aSide) {return 0.0F;}
 	@Override public float getSurfaceSize           (byte aSide) {return SIDES_TOP[aSide]?PX_N[0]:PX_N[8];}
 	@Override public float getSurfaceSizeAttachable (byte aSide) {return SIDES_TOP[aSide]?PX_N[2]:PX_N[8];}
@@ -210,24 +221,24 @@ public class MultiTileEntityQueueHopper extends TileEntityBase09FacingSingle imp
 	@Override public boolean isSurfaceOpaque2       (byte aSide) {return SIDES_TOP[aSide];}
 	@Override public boolean isSideSolid2           (byte aSide) {return SIDES_TOP[aSide];}
 	@Override public boolean allowCovers            (byte aSide) {return SIDES_TOP[aSide];}
-	
+
 	@Override public int[] getAccessibleSlotsFromSide2(byte aSide) {return new int[] {0, getSizeInventory() - 1};}
 	@Override public boolean canInsertItem2(int aSlot, ItemStack aStack, byte aSide) {return aSlot == 0;}
 	@Override public boolean canExtractItem2(int aSlot, ItemStack aStack, byte aSide) {return aSlot == getSizeInventory() - 1;}
 	@Override public int getInventoryStackLimit() {return mMode;}
 	@Override public int getInventoryStackLimitGUI(int aSlot) {return mMode;}
 	@Override public boolean canDrop(int aInventorySlot) {return T;}
-	
+
 	@Override public void adjacentInventoryUpdated(byte aSide, IInventory aTileEntity) {if (SIDES_TOP[aSide] || aSide == mFacing) mCheckNextTick = T;}
-	
+
 	@Override public byte getDefaultSide() {return SIDE_BOTTOM;}
 	@Override public boolean[] getValidSides() {return SIDES_VALID;}
 	@Override public boolean useSidePlacementRotation       () {return T;}
 	@Override public boolean useInversePlacementRotation    () {return T;}
-	
+
 	@Override public int getRenderPasses2(Block aBlock, boolean[] aShouldSideBeRendered) {return SIDES_TOP[mFacing] ? 2 : 3;}
 	@Override public boolean usesRenderPass2(int aRenderPass, boolean[] aShouldSideBeRendered) {return T;}
-	
+
 	@Override
 	public boolean setBlockBounds2(Block aBlock, int aRenderPass, boolean[] aShouldSideBeRendered) {
 		switch(aRenderPass) {
@@ -244,12 +255,12 @@ public class MultiTileEntityQueueHopper extends TileEntityBase09FacingSingle imp
 		}
 		return T;
 	}
-	
+
 	@Override
 	public ITexture getTexture2(Block aBlock, int aRenderPass, byte aSide, boolean[] aShouldSideBeRendered) {
 		return (aRenderPass == 1 ? !SIDES_TOP[aSide] : aShouldSideBeRendered[aSide] || (aRenderPass == 0 && SIDES_BOTTOM[aSide]) || (aRenderPass == 2 && aSide != mFacing)) ? BlockTextureMulti.get(BlockTextureDefault.get(sColoreds[FACES_TBS[aSide]], mRGBa), BlockTextureDefault.get(sOverlays[FACES_TBS[aSide]])) : null;
 	}
-	
+
 	// Icons
 	public static IIconContainer sColoreds[] = new IIconContainer[] {
 		new Textures.BlockIcons.CustomIcon("machines/automation/queuehopper/colored/bottom"),
@@ -260,11 +271,11 @@ public class MultiTileEntityQueueHopper extends TileEntityBase09FacingSingle imp
 		new Textures.BlockIcons.CustomIcon("machines/automation/queuehopper/overlay/top"),
 		new Textures.BlockIcons.CustomIcon("machines/automation/queuehopper/overlay/side"),
 	};
-	
+
 	@Override public String getTileEntityName() {return "gt6.multitileentity.queuehopper";}
-	
+
 	@Override public int getLightOpacity() {return LIGHT_OPACITY_WATER;}
-	
+
 	@Override public Object getGUIClient2(int aGUIID, EntityPlayer aPlayer) {return new ContainerClientDefault(aPlayer.inventory, this, aGUIID);}
 	@Override public Object getGUIServer2(int aGUIID, EntityPlayer aPlayer) {return new ContainerCommonDefault(aPlayer.inventory, this, aGUIID);}
 }

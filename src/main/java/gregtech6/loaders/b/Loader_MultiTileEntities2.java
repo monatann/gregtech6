@@ -110,6 +110,7 @@ import gregtech6.tileentity.sensors.MultiTileEntityBucketometer;
 import gregtech6.tileentity.sensors.MultiTileEntityChronometer;
 import gregtech6.tileentity.sensors.MultiTileEntityElectrometer;
 import gregtech6.tileentity.sensors.MultiTileEntityFluidometer;
+import gregtech6.tileentity.sensors.MultiTileEntityGeigerCounter;
 import gregtech6.tileentity.sensors.MultiTileEntityGibblometer;
 import gregtech6.tileentity.sensors.MultiTileEntityItemometer;
 import gregtech6.tileentity.sensors.MultiTileEntityLuminometer;
@@ -1470,6 +1471,7 @@ public class Loader_MultiTileEntities2 {
 		aRegistry.add("Player Counter Sensor"                               , "Sensors"                             , 31017, 31015, MultiTileEntityPlayerCounter.class                      ,                 1, 16, aMetal         , null, "WGW", "CXC", "WPW", 'P', OP.plateDouble.dat(MT.TinAlloy), 'W', OP.wireFine.dat(MT.RedAlloy), 'R', OD.itemRedstone, 'G', Blocks.glass, 'B', OP.bolt.dat(ANY.Steel), 'C', Items.comparator, 'X', Blocks.stone_pressure_plate);
 		aRegistry.add("Progress Sensor"                                     , "Sensors"                             , 31018, 31015, MultiTileEntityProgressmeter.class                      ,                 1, 16, aMetal         , null, "WGW", "CXC", "WPW", 'P', OP.plateDouble.dat(MT.TinAlloy), 'W', OP.wireFine.dat(MT.RedAlloy), 'R', OD.itemRedstone, 'G', Blocks.glass, 'B', OP.bolt.dat(ANY.Steel), 'C', Items.comparator, 'X', OP.gearGtSmall.dat(MT.Brass));
 		aRegistry.add("Tachometer Sensor"                                   , "Sensors"                             , 31019, 31015, MultiTileEntityTachometer.class                         ,                 1, 16, aMetal         , null, "WGW", "YXY", "WPW", 'P', OP.plateDouble.dat(MT.TinAlloy), 'W', OP.wireFine.dat(MT.RedAlloy), 'R', OD.itemRedstone, 'G', Blocks.glass, 'B', OP.bolt.dat(ANY.Steel), 'C', Items.comparator, 'X', OP.gearGt.dat(MT.Brass), 'Y', OP.gearGtSmall.dat(MT.Brass));
+		aRegistry.add("Geiger Counter Sensor"                               , "Sensors"                             , 31020, 31015, MultiTileEntityGeigerCounter.class                      ,                 1, 16, aMetal         , null, "WGW", "YXY", "WPW", 'P', OP.plateDouble.dat(MT.TinAlloy), 'W', OP.wireFine.dat(MT.RedAlloy), 'R', OD.itemRedstone, 'G', Blocks.glass, 'B', OP.bolt.dat(ANY.Steel), 'C', Items.comparator, 'X', IL.Geiger_Counter, 'Y', OP.plateDouble.dat(MT.Pb));
 	}
 
 	private static void misc(MultiTileEntityRegistry aRegistry, MultiTileEntityBlock aMetal, MultiTileEntityBlock aMetalChips, MultiTileEntityBlock aMetalWires, MultiTileEntityBlock aMachine, MultiTileEntityBlock aWooden, MultiTileEntityBlock aBush, MultiTileEntityBlock aStone, MultiTileEntityBlock aWool, MultiTileEntityBlock aTNT, MultiTileEntityBlock aHive, MultiTileEntityBlock aUtilMetal, MultiTileEntityBlock aUtilStone, MultiTileEntityBlock aUtilWood, MultiTileEntityBlock aUtilWool, OreDictMaterial aMat, Class<? extends TileEntity> aClass) {

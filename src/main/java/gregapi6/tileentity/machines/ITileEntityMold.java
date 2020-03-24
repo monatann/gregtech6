@@ -26,7 +26,6 @@ import gregapi6.tileentity.ITileEntityUnloadable;
  * @author Gregorius Techneticies
  */
 public interface ITileEntityMold extends ITileEntityUnloadable {
-	/** DO NOT MODIFY THE RETURNED ARRAY! */
 	public boolean  isMoldInputSide(byte aSide);
 	/** The Maximum Temperature this Mold can accept without melting itself */
 	public long     getMoldMaxTemperature();

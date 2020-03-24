@@ -99,17 +99,21 @@ public abstract class MultiTileEntityReactorCore extends TileEntityBase10FacingD
 	static {
 		LH.add("gt6.tooltip.reactorcore.1", "Primary Facing Emits Hot Coolant.");
 		LH.add("gt6.tooltip.reactorcore.2", "Secondary Facing Emits Cold Coolant when over half full.");
+		LH.add("gt6.tooltip.reactorcore.3", "Choice of Coolant can have special Effects.");
+
 	}
 
 	@Override
 	public void addToolTips(List<String> aList, ItemStack aStack, boolean aF3_H) {
 		aList.add(Chat.CYAN     + LH.get("gt6.tooltip.reactorcore.1"));
 		aList.add(Chat.CYAN     + LH.get("gt6.tooltip.reactorcore.2"));
-		aList.add(Chat.ORANGE   + LH.get(LH.NO_GUI_FUNNEL_TAP_TO_TANK));
+		aList.add(Chat.GREEN    + LH.get("gt6.tooltip.reactorcore.3"));
+        aList.add(Chat.ORANGE   + LH.get(LH.NO_GUI_FUNNEL_TAP_TO_TANK));
 		aList.add(Chat.DRED     + LH.get(LH.HAZARD_CONTACT));
 		aList.add(Chat.DGRAY    + LH.get(LH.TOOL_TO_TAKE_PINCERS));
 		aList.add(Chat.DGRAY    + LH.get(LH.TOOL_TO_TOGGLE_SOFT_HAMMER));
 		aList.add(Chat.DGRAY    + LH.get(LH.TOOL_TO_MEASURE_GEIGER_COUNTER));
+		aList.add(Chat.DGRAY    + LH.get(LH.TOOL_TO_MEASURE_THERMOMETER));
 		aList.add(Chat.DGRAY    + LH.get(LH.TOOL_TO_DETAIL_MAGNIFYINGGLASS));
 		super.addToolTips(aList, aStack, aF3_H);
 	}
@@ -235,7 +239,7 @@ public abstract class MultiTileEntityReactorCore extends TileEntityBase10FacingD
 
 	@Override
 	protected IFluidTank getFluidTankFillable2(byte aSide, FluidStack aFluidToFill) {
-		return FL.Coolant_IC2.is(aFluidToFill) ? mTanks[0] : null; // TODO MULTIPLE COOLANT TYPES
+		return FL.Coolant_IC2.is(aFluidToFill) || FL.distw(aFluidToFill) ? mTanks[0] : null;
 	}
 
 	@Override
@@ -250,7 +254,7 @@ public abstract class MultiTileEntityReactorCore extends TileEntityBase10FacingD
 
 	@Override
 	public int funnelFill(byte aSide, FluidStack aFluid, boolean aDoFill) {
-		if (!FL.Coolant_IC2.is(aFluid)) return 0; // TODO MULTIPLE COOLANT TYPES
+		if (!(FL.Coolant_IC2.is(aFluid) || !FL.distw(aFluid))) return 0;
 		updateInventory();
 		return mTanks[0].fill(aFluid, aDoFill);
 	}

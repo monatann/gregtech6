@@ -52,11 +52,11 @@ import net.minecraftforge.fluids.FluidStack;
  */
 public class RecipeMapBath extends RecipeMap {
 	public static FL[] OILS = {FL.Oil_Seed, FL.Oil_Lin, FL.Oil_Hemp, FL.Oil_Nut, FL.Oil_Olive, FL.Oil_Sunflower, FL.Oil_Creosote};
-	
-	public RecipeMapBath(Collection<Recipe> aRecipeList, String aUnlocalizedName, String aNameLocal, String aNameNEI, long aProgressBarDirection, long aProgressBarAmount, String aNEIGUIPath, long aInputItemsCount, long aOutputItemsCount, long aMinimalInputItems, long aInputFluidCount, long aOutputFluidCount, long aMinimalInputFluids, long aMinimalInputs, long aPower, String aNEISpecialValuePre, long aNEISpecialValueMultiplier, String aNEISpecialValuePost, boolean aShowVoltageAmperageInNEI, boolean aNEIAllowed, boolean aConfigAllowed, boolean aNeedsOutputs) {
-		super(aRecipeList, aUnlocalizedName, aNameLocal, aNameNEI, aProgressBarDirection, aProgressBarAmount, aNEIGUIPath, aInputItemsCount, aOutputItemsCount, aMinimalInputItems, aInputFluidCount, aOutputFluidCount, aMinimalInputFluids, aMinimalInputs, aPower, aNEISpecialValuePre, aNEISpecialValueMultiplier, aNEISpecialValuePost, aShowVoltageAmperageInNEI, aNEIAllowed, aConfigAllowed, aNeedsOutputs);
+
+	public RecipeMapBath(Collection<Recipe> aRecipeList, String aUnlocalizedName, String aNameLocal, String aNameNEI, long aProgressBarDirection, long aProgressBarAmount, String aNEIGUIPath, long aInputItemsCount, long aOutputItemsCount, long aMinimalInputItems, long aInputFluidCount, long aOutputFluidCount, long aMinimalInputFluids, long aMinimalInputs, long aPower, String aNEISpecialValuePre, long aNEISpecialValueMultiplier, String aNEISpecialValuePost, boolean aShowVoltageAmperageInNEI, boolean aNEIAllowed, boolean aConfigAllowed, boolean aNeedsOutputs, boolean aCombinePower) {
+		super(aRecipeList, aUnlocalizedName, aNameLocal, aNameNEI, aProgressBarDirection, aProgressBarAmount, aNEIGUIPath, aInputItemsCount, aOutputItemsCount, aMinimalInputItems, aInputFluidCount, aOutputFluidCount, aMinimalInputFluids, aMinimalInputs, aPower, aNEISpecialValuePre, aNEISpecialValueMultiplier, aNEISpecialValuePost, aShowVoltageAmperageInNEI, aNEIAllowed, aConfigAllowed, aNeedsOutputs, aCombinePower, 0);
 	}
-	
+
 	@Override
 	public Recipe findRecipe(IHasWorldAndCoords aTileEntity, Recipe aRecipe, boolean aNotUnificated, long aSize, ItemStack aSpecialSlot, FluidStack[] aFluids, ItemStack... aInputs) {
 		Recipe rRecipe = super.findRecipe(aTileEntity, aRecipe, aNotUnificated, aSize, aSpecialSlot, aFluids, aInputs);
@@ -67,7 +67,7 @@ public class RecipeMapBath extends RecipeMap {
 				if (ST.valid(aEntry.mPlank)) {
 					if (IL.MaCu_Polished_Planks.exists())
 					addRecipe1(F, 0, 144, aEntry.mPlank, FL.Oil_Fish.make(1000), NF, IL.MaCu_Polished_Planks.get(1));
-					
+
 					if (!IL.Treated_Planks.equal(aEntry.mPlank, F, T) && !IL.IE_Treated_Planks.equal(aEntry.mPlank, F, T)) {
 						ItemStack tTreated = IL.IE_Treated_Planks.get(1, IL.Treated_Planks.get(1));
 						for (FL tFluid : OILS)
@@ -79,7 +79,7 @@ public class RecipeMapBath extends RecipeMap {
 						addRecipe1(F, 0, 144, aEntry.mPlank, tFluid, NF, tTreated);
 					}
 				}
-				
+
 				if (ST.valid(aEntry.mStair)) {
 					if (IL.IE_Treated_Stairs.exists() && !IL.IE_Treated_Stairs.equal(aEntry.mStair, F, T)) {
 						ItemStack tTreated = IL.IE_Treated_Stairs.get(1);
@@ -92,7 +92,7 @@ public class RecipeMapBath extends RecipeMap {
 						addRecipe1(F, 0, 102, aEntry.mStair, FL.mul(tFluid, 3, 4, T), NF, tTreated);
 					}
 				}
-				
+
 				if (ST.valid(aEntry.mSlab)) {
 					if (!IL.Treated_Planks_Slab.equal(aEntry.mSlab, F, T) && !IL.IE_Treated_Slab.equal(aEntry.mSlab, F, T)) {
 						ItemStack tTreated = IL.IE_Treated_Slab.get(1, IL.Treated_Planks_Slab.get(1));
@@ -106,7 +106,7 @@ public class RecipeMapBath extends RecipeMap {
 					}
 				}
 			}
-			
+
 			if (MD.ATUM.mLoaded) {
 				Item tItem = ST.item(MD.ATUM, "item.loot");
 				if (aInput.getItem() == tItem) {
@@ -174,7 +174,7 @@ public class RecipeMapBath extends RecipeMap {
 		}
 		return rRecipe;
 	}
-	
+
 	@Override
 	public boolean containsInput(ItemStack aStack, IHasWorldAndCoords aTileEntity, ItemStack aSpecialSlot) {
 		PlankEntry aEntry = WoodDictionary.PLANKS_ANY.get(ST.item(aStack), ST.meta(aStack));

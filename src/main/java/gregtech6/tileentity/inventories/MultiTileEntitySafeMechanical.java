@@ -50,55 +50,55 @@ public class MultiTileEntitySafeMechanical extends MultiTileEntitySafe {
 	@Override
 	public void readFromNBT2(NBTTagCompound aNBT) {
 		super.readFromNBT2(aNBT);
-		if (aNBT.hasKey(NBT_OWNER)) mOwner = UUID.fromString(aNBT.getString(NBT_OWNER));
+		if (aNBT.hasKey(NBT_OWNER) && !OWNERSHIP_RESET) mOwner = UUID.fromString(aNBT.getString(NBT_OWNER));
 	}
-	
+
 	@Override
 	public void writeToNBT2(NBTTagCompound aNBT) {
 		super.writeToNBT2(aNBT);
 		if (mOwner != null) aNBT.setString(NBT_OWNER, mOwner.toString());
 	}
-	
+
 	@Override
 	public void addToolTips(List<String> aList, ItemStack aStack, boolean aF3_H) {
 		aList.add(Chat.ORANGE + LH.get(LH.OWNER_CONTROLLED));
 		super.addToolTips(aList, aStack, aF3_H);
 	}
-	
+
 	@Override
 	public boolean onPlaced(ItemStack aStack, EntityPlayer aPlayer, MultiTileEntityContainer aMTEContainer, World aWorld, int aX, int aY, int aZ, byte aSide, float aHitX, float aHitY, float aHitZ) {
 		if (aPlayer != null && aPlayer.isSneaking()) allowInteraction(aPlayer);
 		return super.onPlaced(aStack, aPlayer, aMTEContainer, aWorld, aX, aY, aZ, aSide, aHitX, aHitY, aHitZ);
 	}
-	
+
 	@Override
 	public boolean allowInteraction(Entity aEntity) {
-		if (mOwner == null && aEntity != null) {
+		if (mOwner == null && aEntity != null && !OWNERSHIP_RESET) {
 			mOwner = aEntity.getUniqueID();
 			updateClientData();
 		}
 		return super.allowInteraction(aEntity);
 	}
-	
+
 	@Override
 	public IPacket getClientDataPacket(boolean aSendAll) {
 		return aSendAll ? getClientDataPacketByteArray(aSendAll, (byte)UT.Code.getR(mRGBa), (byte)UT.Code.getG(mRGBa), (byte)UT.Code.getB(mRGBa), getDirectionData()) : getClientDataPacketByte(aSendAll, getVisualData());
 	}
-	
+
 	@Override
 	public boolean receiveDataByteArray(byte[] aData, INetworkHandler aNetworkHandler) {
 		mRGBa = UT.Code.getRGBInt(new short[] {UT.Code.unsignB(aData[0]), UT.Code.unsignB(aData[1]), UT.Code.unsignB(aData[2])});
 		setDirectionData(aData[3]);
 		return T;
 	}
-	
+
 	@Override
 	public ITexture getTexture2(Block aBlock, int aRenderPass, byte aSide, boolean[] aShouldSideBeRendered) {
 		if (!aShouldSideBeRendered[aSide]) return null;
 		int aIndex = aSide==mFacing?0:aSide==OPPOSITES[mFacing]?1:2;
 		return BlockTextureMulti.get(BlockTextureDefault.get(sColoreds[aIndex], mRGBa), BlockTextureDefault.get(sOverlays[aIndex]));
 	}
-	
+
 	// Icons
 	public static IIconContainer sColoreds[] = new IIconContainer[] {
 		new Textures.BlockIcons.CustomIcon("machines/safes/mechanical/colored/front"),
@@ -109,8 +109,6 @@ public class MultiTileEntitySafeMechanical extends MultiTileEntitySafe {
 		new Textures.BlockIcons.CustomIcon("machines/safes/mechanical/overlay/back"),
 		new Textures.BlockIcons.CustomIcon("machines/safes/mechanical/overlay/side"),
 	};
-	
-	@Override public boolean allowCovers(byte aSide) {return aSide != mFacing;}
-	
+
 	@Override public String getTileEntityName() {return "gt6.multitileentity.safe.mechanical";}
 }

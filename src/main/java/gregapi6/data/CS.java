@@ -571,8 +571,12 @@ public class CS {
 	public static int EU_PER_LAVA = 80;
 	/** The value of how many Energy Units a Liter of Hot Coolant also known as Heatant is worth. It is worth 20 EU in IC2 Experimental, so it's the same 20 GU in GT6. */
 	public static int EU_PER_COOLANT = 20;
+	/** The value of how many Energy Units a Liter of Water needs to turn into Steam. */
+	public static int EU_PER_WATER = 80;
 	/** The value of how much Steam an Energy Unit is worth. The Standard is 2 Steam = 1 EU. */
 	public static int STEAM_PER_EU = 2;
+	/** The value of how much Steam a Liter of Water is worth. The Standard is 160 Steam = 1 Water. */
+	public static int STEAM_PER_WATER = 160;
 
 	/** A few Default Values for Light Opacity. */
 	public static final int LIGHT_OPACITY_NONE = 0, LIGHT_OPACITY_LEAVES = 1, LIGHT_OPACITY_WATER = 3, LIGHT_OPACITY_MAX = 255;
@@ -1125,7 +1129,7 @@ public class CS {
 
 	/** Not really Constants, but they set using the Config and therefore should be constant. */
 	@SuppressWarnings("deprecation")
-	public static boolean D1 = F, D2 = F, D3 = F, CLIENT_BLOCKUPDATE_SOUNDS = F, NEI = F, APRIL_FOOLS = (new Date().getMonth() == 3 && new Date().getDate() <= 3), TOOL_SOUNDS = T, EMIT_EU_AS_RF = F, DISABLE_GT6_CRAFTING_RECIPES = F, ENABLE_ADDING_IC2_MACERATOR_RECIPES = T, DISABLE_ALL_IC2_MACERATOR_RECIPES = F, ENABLE_ADDING_IC2_EXTRACTOR_RECIPES = T, DISABLE_ALL_IC2_EXTRACTOR_RECIPES = F, ENABLE_ADDING_IC2_COMPRESSOR_RECIPES = T, DISABLE_ALL_IC2_COMPRESSOR_RECIPES = F, ENABLE_ADDING_IC2_OREWASHER_RECIPES = T, DISABLE_ALL_IC2_OREWASHER_RECIPES = F, ENABLE_ADDING_IC2_CENTRIFUGE_RECIPES = T, DISABLE_ALL_IC2_CENTRIFUGE_RECIPES = F, FAST_LEAF_DECAY = T, NERFED_WOOD = T, FOOD_OVERDOSE_DEATH = T, SPAWN_ZONE_MOB_PROTECTION = T, CONSTANT_ENERGY = T, RAIN_EXPLOSIONS = F, WATER_EXPLOSIONS = F, THUNDER_EXPLOSIONS = F, FIRE_EXPLOSIONS = F, OVERCHARGE_EXPLOSIONS = F, FIRE_BREAKING = F, RAIN_BREAKING = F, WATER_BREAKING = F, THUNDER_BREAKING = F, OVERCHARGE_BREAKING = F, SHOW_MICROBLOCKS = F, SHOW_CHEM_FORMULAS = T, SHOW_INTERNAL_NAMES = F, SHOW_HIDDEN_MATERIALS = F, SHOW_HIDDEN_PREFIXES = F, SHOW_ORE_BLOCK_PREFIXES = F, SHOW_HIDDEN_ITEMS = F, DRINKS_ALWAYS_DRINKABLE = F, HUNGER_BY_INVENTORY_WEIGHT = F, INVENTORY_UNIFICATION = T, XP_ORB_COMBINING = T, ADVENTURE_MODE_KIT = F, SURVIVAL_INTO_ADVENTURE_MODE = F, DISPLAY_TEMP_TOOLTIP = T, GENERATE_STONE = T, GENERATE_STREETS = F, GENERATE_NEXUS = F, GENERATE_TESTING = F, GENERATE_BEACON = F, GENERATE_BIOMES = F;
+	public static boolean D1 = F, D2 = F, D3 = F, CLIENT_BLOCKUPDATE_SOUNDS = F, NEI = F, APRIL_FOOLS = (new Date().getMonth() == 3 && new Date().getDate() <= 3), TOOL_SOUNDS = T, EMIT_EU_AS_RF = F, DISABLE_GT6_CRAFTING_RECIPES = F, ENABLE_ADDING_IC2_MACERATOR_RECIPES = T, DISABLE_ALL_IC2_MACERATOR_RECIPES = F, ENABLE_ADDING_IC2_EXTRACTOR_RECIPES = T, DISABLE_ALL_IC2_EXTRACTOR_RECIPES = F, ENABLE_ADDING_IC2_COMPRESSOR_RECIPES = T, DISABLE_ALL_IC2_COMPRESSOR_RECIPES = F, ENABLE_ADDING_IC2_OREWASHER_RECIPES = T, DISABLE_ALL_IC2_OREWASHER_RECIPES = F, ENABLE_ADDING_IC2_CENTRIFUGE_RECIPES = T, DISABLE_ALL_IC2_CENTRIFUGE_RECIPES = F, FAST_LEAF_DECAY = T, NERFED_WOOD = T, FOOD_OVERDOSE_DEATH = T, OWNERSHIP_RESET = F, SPAWN_ZONE_MOB_PROTECTION = T, CONSTANT_ENERGY = T, RAIN_EXPLOSIONS = F, WATER_EXPLOSIONS = F, THUNDER_EXPLOSIONS = F, FIRE_EXPLOSIONS = F, OVERCHARGE_EXPLOSIONS = F, FIRE_BREAKING = F, RAIN_BREAKING = F, WATER_BREAKING = F, THUNDER_BREAKING = F, OVERCHARGE_BREAKING = F, SHOW_MICROBLOCKS = F, SHOW_CHEM_FORMULAS = T, SHOW_INTERNAL_NAMES = F, SHOW_HIDDEN_MATERIALS = F, SHOW_HIDDEN_PREFIXES = F, SHOW_ORE_BLOCK_PREFIXES = F, SHOW_HIDDEN_ITEMS = F, DRINKS_ALWAYS_DRINKABLE = F, HUNGER_BY_INVENTORY_WEIGHT = F, INVENTORY_UNIFICATION = T, XP_ORB_COMBINING = T, ADVENTURE_MODE_KIT = F, SURVIVAL_INTO_ADVENTURE_MODE = F, DISPLAY_TEMP_TOOLTIP = T, GENERATE_STONE = T, GENERATE_STREETS = F, GENERATE_NEXUS = F, GENERATE_TESTING = F, GENERATE_BEACON = F, GENERATE_BIOMES = F;
 	/** This means that Client or Server specific Base Files are definitely existing and loaded! Not if the World is actually client side or server side! */
 	public static boolean CODE_UNCHECKED = T, CODE_CLIENT = F, CODE_SERVER = F;
 
@@ -1399,6 +1403,7 @@ public class CS {
 	, NBT_NUCLEAR_SELF              = "gt6.nuclear.self"             // Number
 	, NBT_NUCLEAR_OTHER             = "gt6.nuclear.other"            // Number
 	, NBT_NUCLEAR_DIV               = "gt6.nuclear.div"              // Number
+			, NBT_NUCLEAR_MAX				= "gt6.nuclear.max"             // Number
 	, NBT_DURABILITY                = "gt6.durability"               // Number
 	, NBT_MAXDURABILITY             = "gt6.maxdurability"            // Number
 	, NBT_QUALITY                   = "gt6.quality"                  // Byte
@@ -1420,6 +1425,7 @@ public class CS {
 	, NBT_TRANSPARENT               = "gt6.transparent"              // Boolean
 	, NBT_WASTE_ENERGY              = "gt6.wasteenergy"              // Boolean
 	, NBT_LIMIT_CONSUMPTION         = "gt6.limit.consumption"        // Boolean
+			, NBT_IGNITION                  = "gt6.ignite"                   // Boolean or Number
 	, NBT_NEEDS_IGNITION            = "gt6.needignite"               // Boolean
 	, NBT_USE_OUTPUT_TANK           = "gt6.useouttank"               // Boolean
 	, NBT_FOAMED                    = "gt6.foamed"                   // Boolean
@@ -2057,6 +2063,7 @@ public class CS {
 		  MC                = "minecraft"
 
 		, GT                = "gregtech6"
+		, GT5U                = "gregtech"
 		, GAPI              = "gregapi6"
 		, GAPI_POST         = "gregapi6_post"
 
@@ -2106,6 +2113,7 @@ public class CS {
 		, MO                = "mo"
 
 		, TFC               = "terrafirmacraft"
+		, TFCP              = "terrafirmacraftplus"
 
 		, ZTONES            = "Ztones"
 		, CHSL              = "chisel"
@@ -2170,6 +2178,7 @@ public class CS {
 		, OC                = "OpenComputers"
 		, CC                = "ComputerCraft"
 
+		, TreeCap           = "Treecapitator"
 		, HaC               = "harvestcraft"
 		, CookBook          = "cookingbook"
 		, APC               = "AppleCore"

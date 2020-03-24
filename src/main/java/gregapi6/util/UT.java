@@ -26,8 +26,21 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.text.DateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
+import java.util.UUID;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -128,7 +141,7 @@ import net.minecraftforge.fluids.IFluidTank;
 
 /**
  * @author Gregorius Techneticies
- * 
+ *
  * Utility for accessing the random Utility Functions in a more short manner. The Short Name is for ease of overview and stands for "UtiliTy". :P
  */
 public class UT {
@@ -139,18 +152,18 @@ public class UT {
 		@Deprecated public static int id_(FluidStack aFluid) {return id(aFluid.getFluid());}
 		@Deprecated public static int id (Fluid aFluid) {return aFluid == null ? -1 : id_(aFluid);}
 		@Deprecated public static int id_(Fluid aFluid) {return FluidRegistry.getFluidID(aFluid);}
-		
+
 		@Deprecated public static Fluid fluid (int aID) {return aID < 0 ? null : FluidRegistry.getFluid(aID);}
 		@Deprecated public static Fluid fluid (String aFluidName) {return Code.stringInvalid(aFluidName) ? null : fluid_(aFluidName);}
 		@Deprecated public static Fluid fluid_(String aFluidName) {return FluidRegistry.getFluid(aFluidName);}
-		
+
 		@Deprecated public static boolean equal(FluidStack aFluid1, FluidStack aFluid2) {return equal(aFluid1, aFluid2, F);}
 		@Deprecated public static boolean equal(FluidStack aFluid1, FluidStack aFluid2, boolean aIgnoreNBT) {return aFluid1 != null && aFluid2 != null && aFluid1.getFluid() == aFluid2.getFluid() && (aIgnoreNBT || ((aFluid1.tag == null) == (aFluid2.tag == null)) && (aFluid1.tag == null || aFluid1.tag.equals(aFluid2.tag)));}
-		
+
 		@Deprecated public static boolean is(IFluidTank aTank, String... aNames) {return is(aTank.getFluid(), aNames);}
 		@Deprecated public static boolean is(FluidStack aFluid, String... aNames) {return aFluid != null && is(aFluid.getFluid(), aNames);}
 		@Deprecated public static boolean is(Fluid aFluid, String... aNames) {if (aFluid != null) for (String aName : aNames) if (aFluid.getName().equalsIgnoreCase(aName)) return T; return F;}
-		
+
 		@Deprecated public static ItemStack display(Fluid aFluid) {return aFluid == null ? null : display(make(aFluid, 0), F, F);}
 		@Deprecated public static ItemStack display(FluidStack aFluid, boolean aUseStackSize, boolean aLimitStackSize) {return display(aFluid, aFluid == null ? 0 : aFluid.amount, aUseStackSize, aLimitStackSize);}
 		@Deprecated public static ItemStack display(FluidTankGT aTank, boolean aUseStackSize, boolean aLimitStackSize) {return display(aTank.getFluid(), aTank.amount(), aUseStackSize, aLimitStackSize);}
@@ -164,116 +177,116 @@ public class UT {
 			NBT.setBoolean(tNBT, "s", gas(aFluid));
 			return NBT.set(rStack, tNBT);
 		}
-		
+
 		/** @return if that Liquid is Water or Distilled Water */
 		@Deprecated public static boolean water(IFluidTank aFluid) {return aFluid != null && water(aFluid.getFluid());}
 		/** @return if that Liquid is Water or Distilled Water */
 		@Deprecated public static boolean water(FluidStack aFluid) {return aFluid != null && water(aFluid.getFluid());}
 		/** @return if that Liquid is Water or Distilled Water */
 		@Deprecated public static boolean water(Fluid aFluid) {return aFluid != null && (aFluid == FluidRegistry.WATER || FL.DistW.is(aFluid));}
-		
+
 		/** @return if that Liquid is distilled Water */
 		@Deprecated public static boolean distw(IFluidTank aFluid) {return aFluid != null && distw(aFluid.getFluid());}
 		/** @return if that Liquid is distilled Water */
 		@Deprecated public static boolean distw(FluidStack aFluid) {return aFluid != null && distw(aFluid.getFluid());}
 		/** @return if that Liquid is distilled Water */
 		@Deprecated public static boolean distw(Fluid aFluid) {return aFluid != null && FL.DistW.is(aFluid);}
-		
+
 		/** @return if that Liquid is Lava */
 		@Deprecated public static boolean lava(IFluidTank aFluid) {return aFluid != null && lava(aFluid.getFluid());}
 		/** @return if that Liquid is Lava */
 		@Deprecated public static boolean lava(FluidStack aFluid) {return aFluid != null && lava(aFluid.getFluid());}
 		/** @return if that Liquid is Lava */
 		@Deprecated public static boolean lava(Fluid aFluid) {return aFluid != null && aFluid == FluidRegistry.LAVA;}
-		
+
 		/** @return if that Liquid is Steam */
 		@Deprecated public static boolean steam(IFluidTank aFluid) {return aFluid != null && steam(aFluid.getFluid());}
 		/** @return if that Liquid is Steam */
 		@Deprecated public static boolean steam(FluidStack aFluid) {return aFluid != null && steam(aFluid.getFluid());}
 		/** @return if that Liquid is Steam */
 		@Deprecated public static boolean steam(Fluid aFluid) {return aFluid != null && FL.Steam.is(aFluid);}
-		
+
 		/** @return if that Liquid is Milk */
 		@Deprecated public static boolean milk(IFluidTank aFluid) {return aFluid != null && milk(aFluid.getFluid());}
 		/** @return if that Liquid is Milk */
 		@Deprecated public static boolean milk(FluidStack aFluid) {return aFluid != null && milk(aFluid.getFluid());}
 		/** @return if that Liquid is Milk */
 		@Deprecated public static boolean milk(Fluid aFluid) {return aFluid != null && (FL.Milk.is(aFluid) || FL.MilkGrC.is(aFluid));}
-		
+
 		/** @return if that Liquid is Soy Milk */
 		@Deprecated public static boolean soym(IFluidTank aFluid) {return aFluid != null && soym(aFluid.getFluid());}
 		/** @return if that Liquid is Soy Milk */
 		@Deprecated public static boolean soym(FluidStack aFluid) {return aFluid != null && soym(aFluid.getFluid());}
 		/** @return if that Liquid is Soy Milk */
 		@Deprecated public static boolean soym(Fluid aFluid) {return aFluid != null && FL.MilkSoy.is(aFluid);}
-		
+
 		/** @return if that Liquid is Steam */
 		@Deprecated public static boolean anysteam(IFluidTank aFluid) {return aFluid != null && steam(aFluid.getFluid());}
 		/** @return if that Liquid is Steam */
 		@Deprecated public static boolean anysteam(FluidStack aFluid) {return aFluid != null && steam(aFluid.getFluid());}
 		/** @return if that Liquid is Steam */
 		@Deprecated public static boolean anysteam(Fluid aFluid) {return aFluid != null && FluidsGT.STEAM.contains(aFluid.getName());}
-		
+
 		/** @return if that Liquid is supposed to be conducting Power */
 		@Deprecated public static boolean powerconducting(IFluidTank aFluid) {return aFluid != null && powerconducting(aFluid.getFluid());}
 		/** @return if that Liquid is supposed to be conducting Power */
 		@Deprecated public static boolean powerconducting(FluidStack aFluid) {return aFluid != null && powerconducting(aFluid.getFluid());}
 		/** @return if that Liquid is supposed to be conducting Power */
 		@Deprecated public static boolean powerconducting(Fluid aFluid) {return aFluid != null && FluidsGT.POWER_CONDUCTING.contains(aFluid.getName());}
-		
+
 		/** @return if that Liquid is early-game and easy to handle */
 		@Deprecated public static boolean simple(IFluidTank aFluid) {return aFluid != null && simple(aFluid.getFluid());}
 		/** @return if that Liquid is early-game and easy to handle */
 		@Deprecated public static boolean simple(FluidStack aFluid) {return aFluid != null && simple(aFluid.getFluid());}
 		/** @return if that Liquid is early-game and easy to handle */
 		@Deprecated public static boolean simple(Fluid aFluid) {return aFluid != null && FluidsGT.SIMPLE.contains(aFluid.getName());}
-		
+
 		@Deprecated public static boolean acid(IFluidTank aFluid) {return aFluid != null && acid(aFluid.getFluid());}
 		@Deprecated public static boolean acid(FluidStack aFluid) {return aFluid != null && acid(aFluid.getFluid());}
 		@Deprecated public static boolean acid(Fluid aFluid) {return aFluid != null && FluidsGT.ACID.contains(aFluid.getName());}
-		
+
 		@Deprecated public static boolean plasma(IFluidTank aFluid) {return aFluid != null && plasma(aFluid.getFluid());}
 		@Deprecated public static boolean plasma(FluidStack aFluid) {return aFluid != null && plasma(aFluid.getFluid());}
 		@Deprecated public static boolean plasma(Fluid aFluid) {return aFluid != null && FluidsGT.PLASMA.contains(aFluid.getName());}
-		
+
 		@Deprecated public static boolean gas(IFluidTank aFluid, boolean aDefault) {return gas(aFluid.getFluid(), aDefault);}
 		@Deprecated public static boolean gas(IFluidTank aFluid) {return gas(aFluid.getFluid(), F);}
 		@Deprecated public static boolean gas(FluidStack aFluid, boolean aDefault) {return aFluid == null || aFluid.getFluid() == null ? aDefault : !FluidsGT.LIQUID.contains(aFluid.getFluid().getName()) && (aFluid.getFluid().isGaseous(aFluid) || FluidsGT.GAS.contains(aFluid.getFluid().getName()));}
 		@Deprecated public static boolean gas(FluidStack aFluid) {return gas(aFluid, F);}
 		@Deprecated public static boolean gas(Fluid aFluid, boolean aDefault) {return aFluid == null ? aDefault : !FluidsGT.LIQUID.contains(aFluid.getName()) && (aFluid.isGaseous() || FluidsGT.GAS.contains(aFluid.getName()));}
 		@Deprecated public static boolean gas(Fluid aFluid) {return gas(aFluid, F);}
-		
+
 		@Deprecated public static boolean lighter(BlockFluidBase aFluid) {return aFluid != null && lighter(aFluid.getFluid());}
 		@Deprecated public static boolean lighter(IFluidTank aFluid)     {return aFluid != null && lighter(aFluid.getFluid());}
 		@Deprecated public static boolean lighter(FluidStack aFluid)     {return aFluid != null && aFluid.getFluid() != null && aFluid.getFluid().getDensity(aFluid)<0;}
 		@Deprecated public static boolean lighter(Fluid aFluid)          {return aFluid != null && aFluid.getDensity(make(aFluid, 1000)) < 0;}
-		
+
 		@Deprecated public static int dir(BlockFluidBase aFluid) {return lighter(aFluid) ? +1 : -1;}
 		@Deprecated public static int dir(IFluidTank aFluid)     {return lighter(aFluid) ? +1 : -1;}
 		@Deprecated public static int dir(FluidStack aFluid)     {return lighter(aFluid) ? +1 : -1;}
 		@Deprecated public static int dir(Fluid aFluid)          {return lighter(aFluid) ? +1 : -1;}
-		
+
 		@Deprecated public static long temperature(IFluidTank aFluid) {return temperature(aFluid.getFluid());}
 		@Deprecated public static long temperature(IFluidTank aFluid, long aDefault) {return temperature(aFluid.getFluid(), aDefault);}
-		
+
 		@Deprecated public static long temperature(Fluid aFluid) {return temperature(aFluid, DEF_ENV_TEMP);}
 		@Deprecated public static long temperature(Fluid aFluid, long aDefault) {
 			if (aFluid == null) return aDefault;
-			if (aFluid.getName().equals("steam")) return C+100;
+			if (aFluid.getName().equals("gt6steam")) return C+100;
 			return aFluid.getTemperature(make(aFluid, 1));
 		}
-		
+
 		@Deprecated public static long temperature(FluidStack aFluid) {return temperature(aFluid, DEF_ENV_TEMP);}
 		@Deprecated public static long temperature(FluidStack aFluid, long aDefault) {
 			if (aFluid == null || aFluid.getFluid() == null) return aDefault;
-			if (aFluid.getFluid().getName().equals("steam")) return C+100;
+			if (aFluid.getFluid().getName().equals("gt6steam")) return C+100;
 			return aFluid.getFluid().getTemperature(aFluid);
 		}
-		
+
 		@Deprecated public static FluidStack water(long aAmount) {return make(FluidRegistry.WATER, aAmount);}
 		@Deprecated public static FluidStack distw(long aAmount) {return make("ic2distilledwater", aAmount);}
 		@Deprecated public static FluidStack lava(long aAmount) {return make(FluidRegistry.LAVA, aAmount);}
-		@Deprecated public static FluidStack steam(long aAmount) {return make("steam", aAmount);}
+		@Deprecated public static FluidStack steam(long aAmount) {return make("gt6steam", aAmount);}
 		@Deprecated public static FluidStack milk(long aAmount) {return make("milk", aAmount);}
 		@Deprecated public static FluidStack soym(long aAmount) {return make("soymilk", aAmount);}
 		@Deprecated public static boolean distilledwater(FluidStack aFluid) {return distw(aFluid);}
@@ -282,9 +295,9 @@ public class UT {
 		@Deprecated public static boolean soymilk(FluidStack aFluid) {return soym(aFluid);}
 		@Deprecated public static boolean soymilk(Fluid aFluid) {return soym(aFluid);}
 		@Deprecated public static FluidStack soymilk(long aAmount) {return soym(aAmount);}
-		
+
 		@Deprecated public static boolean exists(String aFluidName) {return FluidRegistry.getFluid(aFluidName) != null;}
-		
+
 		@Deprecated public static FluidStack make (FL aFluid, long aAmount) {return aFluid.make (aAmount);}
 		@Deprecated public static FluidStack make_(FL aFluid, long aAmount) {return aFluid.make_(aAmount);}
 		@Deprecated public static FluidStack make (FL aFluid, long aAmount, FL aReplacementFluid) {return aFluid.make (aAmount, aReplacementFluid);}
@@ -295,39 +308,39 @@ public class UT {
 		@Deprecated public static FluidStack make_(FL aFluid, long aAmount, FL aReplacementFluid, long aReplacementAmount) {return aFluid.make_(aAmount, aReplacementFluid, aReplacementAmount);}
 		@Deprecated public static FluidStack make (FL aFluid, long aAmount, String aReplacementFluidName, long aReplacementAmount) {return aFluid.make (aAmount, aReplacementFluidName, aReplacementAmount);}
 		@Deprecated public static FluidStack make_(FL aFluid, long aAmount, String aReplacementFluidName, long aReplacementAmount) {return aFluid.make_(aAmount, aReplacementFluidName, aReplacementAmount);}
-		
+
 		@Deprecated public static FluidStack make (int aFluid, long aAmount) {return aFluid < 0 ? null : new FluidStack(fluid(aFluid), Code.bindInt(aAmount));}
 		@Deprecated public static FluidStack make (Fluid aFluid, long aAmount) {return aFluid == null ? null : new FluidStack(aFluid, Code.bindInt(aAmount));}
 		@Deprecated public static FluidStack make (String aFluidName, long aAmount) {return make(FluidRegistry.getFluid(aFluidName), aAmount);}
 		@Deprecated public static FluidStack make (String aFluidName, long aAmount, String aReplacementFluidName) {FluidStack rFluid = make(aFluidName, aAmount); return rFluid == null ? make(aReplacementFluidName, aAmount) : rFluid;}
 		@Deprecated public static FluidStack make (String aFluidName, long aAmount, String aReplacementFluidName, long aReplacementAmount) {FluidStack rFluid = make(aFluidName, aAmount); return rFluid == null ? make(aReplacementFluidName, aReplacementAmount) : rFluid;}
 		@Deprecated public static FluidStack make (String aFluidName, long aAmount, FluidStack aReplacementFluid) {FluidStack rFluid = make(aFluidName, aAmount); return rFluid == null ? aReplacementFluid : rFluid;}
-		
+
 		@Deprecated public static FluidStack make_(int aFluid, long aAmount) {return aFluid < 0 ? FL.Error.make(0) : new FluidStack(fluid(aFluid), Code.bindInt(aAmount));}
 		@Deprecated public static FluidStack make_(Fluid aFluid, long aAmount) {return aFluid == null ? FL.Error.make(0) : new FluidStack(aFluid, Code.bindInt(aAmount));}
 		@Deprecated public static FluidStack make_(String aFluidName, long aAmount) {return make_(FluidRegistry.getFluid(aFluidName), aAmount);}
 		@Deprecated public static FluidStack make_(String aFluidName, long aAmount, String aReplacementFluidName) {FluidStack rFluid = make(aFluidName, aAmount); return rFluid == null ? make_(aReplacementFluidName, aAmount) : rFluid;}
 		@Deprecated public static FluidStack make_(String aFluidName, long aAmount, String aReplacementFluidName, long aReplacementAmount) {FluidStack rFluid = make(aFluidName, aAmount); return rFluid == null ? make_(aReplacementFluidName, aReplacementAmount) : rFluid;}
-		
+
 		@Deprecated public static FluidStack amount(FluidStack aFluid, long aAmount) {return aFluid == null ? null : new FluidStack(aFluid, Code.bindInt(aAmount));}
-		
+
 		@Deprecated public static FluidStack mul(FluidStack aFluid, long aMultiplier) {return aFluid == null ? null : amount(aFluid, aFluid.amount * aMultiplier);}
 		@Deprecated public static FluidStack mul(FluidStack aFluid, long aMultiplier, long aDivider, boolean aRoundUp) {return aFluid == null ? null : amount(aFluid, Code.units(aFluid.amount, aDivider, aMultiplier, aRoundUp));}
-		
+
 		@Deprecated public static long fill (@SuppressWarnings("rawtypes") DelegatorTileEntity aDelegator, FluidStack aFluid, boolean aDoFill) {return aDelegator != null && aDelegator.mTileEntity instanceof IFluidHandler && aFluid != null ? fill_(aDelegator, aFluid, aDoFill) : 0;}
 		@Deprecated public static long fill_(@SuppressWarnings("rawtypes") DelegatorTileEntity aDelegator, FluidStack aFluid, boolean aDoFill) {return fill_((IFluidHandler)aDelegator.mTileEntity, aDelegator.mSideOfTileEntity, aFluid, aDoFill);}
 		@Deprecated public static long fill (IFluidHandler aFluidHandler, byte aSide, FluidStack aFluid, boolean aDoFill) {return aFluidHandler != null && aFluid != null ? fill_(aFluidHandler, aSide, aFluid, aDoFill) : 0;}
 		@Deprecated public static long fill_(IFluidHandler aFluidHandler, byte aSide, FluidStack aFluid, boolean aDoFill) {return aFluidHandler.fill(FORGE_DIR[aSide], aFluid, aDoFill);}
 		@Deprecated public static long fill (IFluidHandler aFluidHandler, byte[] aSides, FluidStack aFluid, boolean aDoFill) {return aFluidHandler != null && aFluid != null ? fill_(aFluidHandler, aSides, aFluid, aDoFill) : 0;}
 		@Deprecated public static long fill_(IFluidHandler aFluidHandler, byte[] aSides, FluidStack aFluid, boolean aDoFill) {for (byte tSide : aSides) {long rFilled = aFluidHandler.fill(FORGE_DIR[tSide], aFluid, aDoFill); if (rFilled > 0) return rFilled;} return 0;}
-		
+
 		@Deprecated public static boolean fillAll (@SuppressWarnings("rawtypes") DelegatorTileEntity aDelegator, FluidStack aFluid, boolean aDoFill) {return aDelegator != null && aDelegator.mTileEntity instanceof IFluidHandler && aFluid != null && fillAll_(aDelegator, aFluid, aDoFill);}
 		@Deprecated public static boolean fillAll_(@SuppressWarnings("rawtypes") DelegatorTileEntity aDelegator, FluidStack aFluid, boolean aDoFill) {return fillAll_((IFluidHandler)aDelegator.mTileEntity, aDelegator.mSideOfTileEntity, aFluid, aDoFill);}
 		@Deprecated public static boolean fillAll (IFluidHandler aFluidHandler, byte aSide, FluidStack aFluid, boolean aDoFill) {return aFluidHandler != null && aFluid != null && fillAll_(aFluidHandler, aSide, aFluid, aDoFill);}
 		@Deprecated public static boolean fillAll_(IFluidHandler aFluidHandler, byte aSide, FluidStack aFluid, boolean aDoFill) {return aFluidHandler.fill(FORGE_DIR[aSide], aFluid, F) == aFluid.amount && (!aDoFill || aFluidHandler.fill(FORGE_DIR[aSide], aFluid, T) > 0);}
 		@Deprecated public static boolean fillAll (IFluidHandler aFluidHandler, byte[] aSides, FluidStack aFluid, boolean aDoFill) {return aFluidHandler != null && aFluid != null && fillAll_(aFluidHandler, aSides, aFluid, aDoFill);}
 		@Deprecated public static boolean fillAll_(IFluidHandler aFluidHandler, byte[] aSides, FluidStack aFluid, boolean aDoFill) {for (byte tSide : aSides) if (aFluidHandler.fill(FORGE_DIR[tSide], aFluid, F) == aFluid.amount && (!aDoFill || aFluidHandler.fill(FORGE_DIR[tSide], aFluid, T) > 0)) return T; return F;}
-		
+
 		@Deprecated public static long move (@SuppressWarnings("rawtypes") DelegatorTileEntity aFrom, @SuppressWarnings("rawtypes") DelegatorTileEntity aTo) {return move (aFrom, aTo, Integer.MAX_VALUE);}
 		@Deprecated public static long move_(@SuppressWarnings("rawtypes") DelegatorTileEntity aFrom, @SuppressWarnings("rawtypes") DelegatorTileEntity aTo) {return move_(aFrom, aTo, Integer.MAX_VALUE);}
 		@Deprecated public static long move (@SuppressWarnings("rawtypes") DelegatorTileEntity aFrom, @SuppressWarnings("rawtypes") DelegatorTileEntity aTo, long aMaxMoved) {return aFrom != null && aFrom.mTileEntity instanceof IFluidHandler && aTo != null && aTo.mTileEntity instanceof IFluidHandler ? move_(aFrom, aTo, aMaxMoved) : 0;}
@@ -346,18 +359,18 @@ public class UT {
 		@Deprecated public static long move_(@SuppressWarnings("rawtypes") Iterable aFrom, @SuppressWarnings("rawtypes") DelegatorTileEntity aTo) {return move_(aFrom, aTo, Integer.MAX_VALUE);}
 		@Deprecated public static long move (@SuppressWarnings("rawtypes") Iterable aFrom, @SuppressWarnings("rawtypes") DelegatorTileEntity aTo, long aMaxMoved) {return aFrom != null && aTo != null && aTo.mTileEntity instanceof IFluidHandler ? move_(aFrom, aTo, aMaxMoved) : 0;}
 		@Deprecated public static long move_(@SuppressWarnings("rawtypes") Iterable aFrom, @SuppressWarnings("rawtypes") DelegatorTileEntity aTo, long aMaxMoved) {if (aMaxMoved <= 0) return 0; long rAmount = 0; for (Object tFrom : aFrom) if (tFrom instanceof IFluidTank) rAmount += move_((IFluidTank)tFrom, aTo, aMaxMoved); return rAmount;}
-		
-		
+
+
 		@Deprecated public static String configName(FluidStack aFluid) {
 			return aFluid == null || aFluid.getFluid() == null ? "" : aFluid.getFluid().getName();
 		}
-		
+
 		@Deprecated public static String configNames(FluidStack... aFluids) {
 			String rString = "";
 			for (FluidStack tFluid : aFluids) rString += (tFluid == null ? "null;" : configName(tFluid) + ";");
 			return rString;
 		}
-		
+
 		@Deprecated public static String name(Fluid aFluid, boolean aLocalized) {
 			if (aFluid == null) return "";
 			if (!aLocalized) return aFluid.getUnlocalizedName();
@@ -366,24 +379,24 @@ public class UT {
 			if (rName.contains("fluid.") || rName.contains("tile.")) return Code.capitalise(rName.replaceAll("fluid.", "").replaceAll("tile.", ""));
 			return rName;
 		}
-		
+
 		@Deprecated public static String name(FluidStack aFluid, boolean aLocalized) {
 			return aFluid == null ? "" : name(aFluid.getFluid(), aLocalized);
 		}
-		
+
 		@Deprecated public static String name(IFluidTank aTank, boolean aLocalized) {
 			return aTank == null ? "" : name(aTank.getFluid(), aLocalized);
 		}
-		
+
 		@Deprecated public static FluidStack[] copyArray(FluidStack... aFluids) {
 			FluidStack[] rStacks = new FluidStack[aFluids.length];
 			for (int i = 0; i < aFluids.length; i++) if (aFluids[i] != null) rStacks[i] = aFluids[i].copy();
 			return rStacks;
 		}
-		
+
 		@Deprecated public static final Map<ItemStackContainer, FluidContainerData> sFilled2Data = FL.FULL_TO_DATA;
 		@Deprecated public static final Map<ItemStackContainer, Map<String, FluidContainerData>> sEmpty2Fluid2Data = FL.EMPTY_TO_FLUID_TO_DATA;
-		
+
 		@Deprecated public static void registerFluidContainer(FluidStack aFluid, ItemStack aFull, ItemStack aEmpty) {
 			registerFluidContainer(aFluid, aFull, aEmpty, F);
 		}
@@ -405,11 +418,11 @@ public class UT {
 			setFluidContainerData(aData, aOverrideFillingEmpty, aOverrideDrainingFull);
 			FluidContainerRegistry.registerFluidContainer(aData);
 		}
-		
+
 		@Deprecated public static void setFluidContainerData(FluidContainerData aData) {
 			setFluidContainerData(aData, F, F);
 		}
-		
+
 		@Deprecated public static void setFluidContainerData(FluidContainerData aData, boolean aOverrideFillingEmpty, boolean aOverrideDrainingFull) {
 			ItemStackContainer tFilled = new ItemStackContainer(aData.filledContainer), tEmpty = new ItemStackContainer(aData.emptyContainer);
 			if (aOverrideDrainingFull || !sFilled2Data.containsKey(tFilled)) sFilled2Data.put(tFilled, aData);
@@ -418,7 +431,7 @@ public class UT {
 			String tFluidName = aData.fluid.getFluid().getName();
 			if (aOverrideFillingEmpty || !tFluidToData.containsKey(tFluidName)) tFluidToData.put(tFluidName, aData);
 		}
-		
+
 		@Deprecated public static ItemStack fillFluidContainer(FluidStack aFluid, ItemStack aStack, boolean aRemoveFluidDirectly, boolean aCheckIFluidContainerItems) {
 			return fillFluidContainer(aFluid, aStack, aRemoveFluidDirectly, aCheckIFluidContainerItems, F, T);
 		}
@@ -450,7 +463,7 @@ public class UT {
 			if (aRemoveFluidDirectly) aFluid.amount -= tData.fluid.amount;
 			return ST.amount(1, tData.filledContainer);
 		}
-		
+
 		@Deprecated public static ItemStack fillFluidContainer(IFluidTank aTank, ItemStack aStack, boolean aRemoveFluidDirectly, boolean aCheckIFluidContainerItems) {
 			return fillFluidContainer(aTank, aStack, aRemoveFluidDirectly, aCheckIFluidContainerItems, F, T);
 		}
@@ -484,14 +497,14 @@ public class UT {
 			if (aRemoveFluidDirectly) aTank.drain(tData.fluid.amount, T);
 			return ST.amount(1, tData.filledContainer);
 		}
-		
+
 		@Deprecated public static boolean containsFluid(ItemStack aStack, FluidStack aFluid, boolean aCheckIFluidContainerItems) {
 			if (ST.invalid(aStack) || aFluid == null) return F;
 			if (aCheckIFluidContainerItems && aStack.getItem() instanceof IFluidContainerItem && ((IFluidContainerItem)aStack.getItem()).getCapacity(aStack) > 0) return aFluid.isFluidEqual(((IFluidContainerItem)aStack.getItem()).getFluid(aStack = ST.amount(1, aStack)));
 			FluidContainerData tData = sFilled2Data.get(new ItemStackContainer(aStack));
 			return tData!=null && tData.fluid.isFluidEqual(aFluid);
 		}
-		
+
 		@Deprecated public static FluidStack getFluidForFilledItem(ItemStack aStack, boolean aCheckIFluidContainerItems) {
 			if (ST.invalid(aStack)) return null;
 			if (aCheckIFluidContainerItems && aStack.getItem() instanceof IFluidContainerItem && ((IFluidContainerItem)aStack.getItem()).getCapacity(aStack) > 0) {
@@ -502,7 +515,7 @@ public class UT {
 			FluidContainerData tData = sFilled2Data.get(new ItemStackContainer(aStack));
 			return tData==null?NF:tData.fluid.copy();
 		}
-		
+
 		@Deprecated public static ItemStack getContainerForFilledItem(ItemStack aStack, boolean aCheckIFluidContainerItems) {
 			if (ST.invalid(aStack)) return NI;
 			FluidContainerData tData = sFilled2Data.get(new ItemStackContainer(aStack));
@@ -515,8 +528,8 @@ public class UT {
 			}
 			return NI;
 		}
-		
-		
+
+
 
 		/** Loads a FluidStack properly. */
 		@Deprecated public static FluidStack load (NBTTagCompound aNBT, String aTagName) {return aNBT == null ? null : load(aNBT.getCompoundTag(aTagName));}
@@ -535,7 +548,7 @@ public class UT {
 			if (aNBT.hasKey("Tag")) rFluid.tag = aNBT.getCompoundTag("Tag");
 			return rFluid;
 		}
-		
+
 		/** Saves a FluidStack properly. */
 		@Deprecated public static NBTTagCompound save(NBTTagCompound aNBT, String aTagName, FluidStack aFluid) {
 			if (aNBT == null) aNBT = NBT.make();
@@ -547,37 +560,37 @@ public class UT {
 		@Deprecated public static NBTTagCompound save (FluidStack aFluid) {return aFluid == null || aFluid.getFluid() == null ? null : save_(aFluid);}
 		/** Saves a FluidStack properly. */
 		@Deprecated public static NBTTagCompound save_(FluidStack aFluid) {return aFluid.writeToNBT(NBT.make());}
-		
-		
+
+
 		@Deprecated @SafeVarargs public static Fluid createLiquid(OreDictMaterial aMaterial, Set<String>... aFluidList) {return createLiquid(aMaterial, aMaterial.mTextureSetsBlock.get(IconsGT.INDEX_BLOCK_MOLTEN), aFluidList);}
 		@Deprecated @SafeVarargs public static Fluid createLiquid(OreDictMaterial aMaterial, IIconContainer aTexture, Set<String>... aFluidList) {return create(aMaterial.mNameInternal.toLowerCase(), aTexture, aMaterial.mNameLocal, aMaterial, aMaterial.mRGBaLiquid, STATE_LIQUID, 1000, aMaterial.mMeltingPoint <= 0 ? 1000 : aMaterial.mMeltingPoint < 300 ? Math.min(300, aMaterial.mBoilingPoint - 1) : aMaterial.mMeltingPoint, null, null, 0, aFluidList);}
-		
+
 		@Deprecated @SafeVarargs public static Fluid createMolten(OreDictMaterial aMaterial, Set<String>... aFluidList) {return createMolten(aMaterial, L, aFluidList);}
 		@Deprecated @SafeVarargs public static Fluid createMolten(OreDictMaterial aMaterial, IIconContainer aTexture, Set<String>... aFluidList) {return createMolten(aMaterial, L, aTexture, aFluidList);}
 		@Deprecated @SafeVarargs public static Fluid createMolten(OreDictMaterial aMaterial, long aAmount, Set<String>... aFluidList) {return createMolten(aMaterial, aAmount, aMaterial.mTextureSetsBlock.get(IconsGT.INDEX_BLOCK_MOLTEN), aFluidList);}
 		@Deprecated @SafeVarargs public static Fluid createMolten(OreDictMaterial aMaterial, long aAmount, IIconContainer aTexture, Set<String>... aFluidList) {return create("molten."+aMaterial.mNameInternal.toLowerCase(), aTexture, "Molten " + aMaterial.mNameLocal, aMaterial, aMaterial.mRGBaLiquid, STATE_LIQUID, aAmount, aMaterial.mMeltingPoint <= 0 ? 1000 : aMaterial.mMeltingPoint < 300 ? Math.min(300, aMaterial.mBoilingPoint - 1) : aMaterial.mMeltingPoint, null, null, 0, aFluidList).setLuminosity(10);}
-		
+
 		@Deprecated @SafeVarargs public static Fluid createGas(OreDictMaterial aMaterial, Set<String>... aFluidList) {return createGas(aMaterial, aMaterial.mTextureSetsBlock.get(IconsGT.INDEX_BLOCK_GAS), aFluidList);}
 		@Deprecated @SafeVarargs public static Fluid createGas(OreDictMaterial aMaterial, IIconContainer aTexture, Set<String>... aFluidList) {return create(aMaterial.mNameInternal.toLowerCase(), aTexture, aMaterial.mNameLocal, aMaterial, aMaterial.mRGBaGas, STATE_GASEOUS, 1000, aMaterial.mBoilingPoint <= 0 ? 3000 : aMaterial.mBoilingPoint < 300 ? Math.min(300, aMaterial.mPlasmaPoint - 1) : aMaterial.mBoilingPoint, null, null, 0, aFluidList);}
-		
+
 		@Deprecated @SafeVarargs public static Fluid createVapour(OreDictMaterial aMaterial, Set<String>... aFluidList) {return createVapour(aMaterial, aMaterial.mTextureSetsBlock.get(IconsGT.INDEX_BLOCK_GAS), aFluidList);}
 		@Deprecated @SafeVarargs public static Fluid createVapour(OreDictMaterial aMaterial, IIconContainer aTexture, Set<String>... aFluidList) {return create("vapor."+aMaterial.mNameInternal.toLowerCase(), aTexture, "Vaporized " + aMaterial.mNameLocal, aMaterial, aMaterial.mRGBaGas, STATE_GASEOUS, 8*L, aMaterial.mBoilingPoint <= 0 ? 3000 : aMaterial.mBoilingPoint < 300 ? Math.min(300, aMaterial.mPlasmaPoint - 1) : aMaterial.mBoilingPoint, null, null, 0, aFluidList);}
-		
+
 		@Deprecated @SafeVarargs public static Fluid createPlasma(OreDictMaterial aMaterial, Set<String>... aFluidList) {return createPlasma(aMaterial, aMaterial.mTextureSetsBlock.get(IconsGT.INDEX_BLOCK_PLASMA), aFluidList);}
 		@Deprecated @SafeVarargs public static Fluid createPlasma(OreDictMaterial aMaterial, IIconContainer aTexture, Set<String>... aFluidList) {return create("plasma."+aMaterial.mNameInternal.toLowerCase(), aTexture, aMaterial.mNameLocal + " Plasma", aMaterial, aMaterial.mRGBaPlasma, STATE_PLASMA, L*L, aMaterial.mPlasmaPoint <= 0 ? 10000 : Math.max(300, aMaterial.mPlasmaPoint), null, null, 0, aFluidList);}
-		
+
 		@Deprecated @SafeVarargs public static Fluid create(String aName, String aLocalized, OreDictMaterial aMaterial, int aState, long aAmountPerUnit, long aTemperatureK, Set<String>... aFluidList) {return create(aName, aLocalized, aMaterial, aState, aAmountPerUnit, aTemperatureK, null, null, 0, aFluidList);}
 		@Deprecated @SafeVarargs public static Fluid create(String aName, String aLocalized, OreDictMaterial aMaterial, int aState, long aAmountPerUnit, long aTemperatureK, ItemStack aFullContainer, ItemStack aEmptyContainer, int aFluidAmount, Set<String>... aFluidList) {return create(aName, new Textures.BlockIcons.CustomIcon("fluids/" + aName.toLowerCase()), aLocalized, aMaterial, null, aState, aAmountPerUnit, aTemperatureK, aFullContainer, aEmptyContainer, aFluidAmount, aFluidList);}
-		
+
 		@Deprecated @SafeVarargs
 		public static Fluid create(String aName, IIconContainer aTexture, String aLocalized, OreDictMaterial aMaterial, short[] aRGBa, int aState, long aAmountPerUnit, long aTemperatureK, ItemStack aFullContainer, ItemStack aEmptyContainer, int aFluidAmount, Set<String>... aFluidList) {
 			aName = aName.toLowerCase();
 			Fluid rFluid = new FluidGT(aName, aTexture, aRGBa == null ? UNCOLOURED : aRGBa, aTemperatureK, aState == 2 || aState == 3);
 			LH.add(rFluid.getUnlocalizedName(), aLocalized==null?aName:aLocalized);
 			LH.add(rFluid.getUnlocalizedName()+".name", aLocalized==null?aName:aLocalized);
-			
+
 			for (Set<String> tSet : aFluidList) tSet.add(aName);
-			
+
 			switch (aState) {
 			case STATE_SOLID:           rFluid.setViscosity(10000); break;
 			case STATE_LIQUID:          rFluid.setViscosity( 1000); FluidsGT.LIQUID.add(aName); break;
@@ -585,14 +598,14 @@ public class UT {
 			case STATE_PLASMA:          rFluid.setViscosity(   10); rFluid.setDensity(-100000); rFluid.setLuminosity(15); FluidsGT.PLASMA.add(aName); break;
 			case 4:                     rFluid.setViscosity( 1000); break;
 			}
-			
+
 			if (!FluidRegistry.registerFluid(rFluid)) {
 				rFluid = FluidRegistry.getFluid(aName);
 				LH.add(rFluid.getUnlocalizedName(), aLocalized==null?aName:aLocalized);
 				if (rFluid.getTemperature() == new Fluid("test").getTemperature() || rFluid.getTemperature() <= 0) rFluid.setTemperature(UT.Code.bindInt(aTemperatureK));
 				rFluid.setGaseous(aState == 2 || aState == 3);
 			}
-			
+
 			if (aMaterial != null) {
 				if (aMaterial.contains(TD.Properties.ACID    )) FluidsGT.ACID.add(aName);
 				if (aMaterial.contains(TD.Properties.GLOWING )) rFluid.setLuminosity(Math.max(rFluid.getLuminosity(), 5));
@@ -613,45 +626,45 @@ public class UT {
 					}
 				}
 			}
-			
+
 			if (aFullContainer != null && aEmptyContainer != null && !FluidContainerRegistry.registerFluidContainer(UT.Fluids.make(rFluid, aFluidAmount), aFullContainer, aEmptyContainer)) {
 				RM.Canner.addRecipe1(T, 16, Math.max(aFluidAmount / 64, 16), aFullContainer, NF, UT.Fluids.make(rFluid, aFluidAmount), ST.container(aFullContainer, F));
 			}
 			return rFluid;
 		}
 	}
-	
+
 	public static class Books {
 		public static final Map<String, ItemStack> BOOK_MAP = new HashMap<>();
 		public static final List<String> BOOK_LIST = new ArrayListNoNulls<>();
 		public static final List<String> MATERIAL_DICTIONARIES = new ArrayListNoNulls<>();
-		
+
 		public static ItemStack getWrittenBook(String aMapping) {
 			return getWrittenBook(aMapping, null);
 		}
-		
+
 		public static ItemStack getWrittenBook(String aMapping, ItemStack aStackToPutNBT) {
 			ItemStack tStack = BOOK_MAP.get(aMapping);
 			if (tStack == null) return aStackToPutNBT==null?ST.make(Items.written_book, 1, 0):aStackToPutNBT;
 			if (aStackToPutNBT == null) aStackToPutNBT = ST.copy(tStack);
 			return NBT.set(aStackToPutNBT, (NBTTagCompound)tStack.getTagCompound().copy());
 		}
-		
+
 		public static ItemStack getBookWithTitle(String aMapping) {
 			return getBookWithTitle(aMapping, null);
 		}
-		
+
 		public static ItemStack getBookWithTitle(String aMapping, ItemStack aStackToPutNBT) {
 			ItemStack tStack = BOOK_MAP.get(aMapping);
 			if (tStack == null) return aStackToPutNBT==null?ST.make(Items.written_book, 1, 0):aStackToPutNBT;
 			if (aStackToPutNBT == null) aStackToPutNBT = ST.copy(tStack);
 			return NBT.set(aStackToPutNBT, NBT.make("title", NBT.getBookTitle(tStack), "author", NBT.getBookAuthor(tStack), "book", aMapping));
 		}
-		
+
 		public static ItemStack createWrittenBook(String aMapping, String aTitle, String aAuthor, ItemStack aDefaultBook, String... aPages) {
 			return createWrittenBook(aMapping, aTitle, aAuthor, aDefaultBook, T, aPages);
 		}
-		
+
 		public static ItemStack createWrittenBook(String aMapping, String aTitle, String aAuthor, ItemStack aDefaultBook, boolean aLogging, String... aPages) {
 			if (Code.stringInvalid(aMapping)) return null;
 			ItemStack rStack = BOOK_MAP.get(aMapping);
@@ -673,17 +686,17 @@ public class UT {
 			BOOK_LIST.add(aMapping);
 			return ST.copy(rStack);
 		}
-		
+
 		public static ItemStack createMaterialDictionary(OreDictMaterial aMat, ItemStack aDefaultBook, ItemStack aDefaultLargeBook) {
 			String tPage = "";
 			List<String> tBook = new ArrayListNoNulls<>();
 			boolean temp = F;
 			int tCounter = 0;
-			
+
 			tBook.add("===================\n"+aMat.getLocal()+"\n===================\nID: "+(aMat.mID<0?"NONE":aMat.mID)+"\nMelting: "+aMat.mMeltingPoint+" K\nBoiling: "+aMat.mBoilingPoint+" K\nPlasma: "+aMat.mPlasmaPoint+" K\n===================\nDensity:\n"+(aMat.mGramPerCubicCentimeter == 0 ? "???" : aMat.mGramPerCubicCentimeter)+" g/cm3\n"+aMat.getWeight(U)+" kg/unit\n===================\n");
-			
+
 			//----------
-			
+
 			if (aMat.mComponents == null) {
 				if (aMat.contains(TD.Atomic.ELEMENT)) {
 					temp = T;
@@ -695,39 +708,39 @@ public class UT {
 				tPage="Components per "+aMat.mComponents.getCommonDivider() + "\n===================\n";
 				for (OreDictMaterialStack tMaterial : aMat.mComponents.getUndividedComponents()) tPage += (tMaterial.mAmount / U)+" "+tMaterial.mMaterial.getLocal()+"\n";
 			}
-			
+
 			if (temp) {tBook.add(tPage); temp = F;}
-			
+
 			//----------
-			
+
 			tPage="Tool Properties\n===================\n";
-			
+
 			if (aMat.mToolTypes > 0) {temp = T; tPage+="Durability:\n"+aMat.mToolDurability+"\nQuality:\n"+aMat.mToolQuality+"\nSpeed:\n"+aMat.mToolSpeed+"\nHandle:\n"+aMat.mHandleMaterial.getLocal()+"\n";}
 			if (!aMat.mEnchantmentTools.isEmpty()) tPage += "Tool Enchantments:\n";
 			for (ObjectStack<Enchantment> tEnchantment : aMat.mEnchantmentTools ) {temp = T; tPage += tEnchantment.mObject.getTranslatedName((int)tEnchantment.mAmount) + "\n";}
 			if (!aMat.mEnchantmentArmors.isEmpty()) tPage += "Armor Enchantments:\n";
 			for (ObjectStack<Enchantment> tEnchantment : aMat.mEnchantmentArmors) {temp = T; tPage += tEnchantment.mObject.getTranslatedName((int)tEnchantment.mAmount) + "\n";}
-			
+
 			if (temp) {tBook.add(tPage+"===================\n"); temp = F;}
-			
+
 			//----------
-			
+
 			tPage="Properties\n===================\n";
-			
+
 			for (TagData tTag : TD.Properties.ALL_RELEVANTS) if (aMat.contains(tTag)) {temp = T; tPage += tTag.getLocalisedNameLong() + "\n";}
-			
+
 			if (temp) {tBook.add(tPage); temp = F;}
-			
+
 			//----------
-			
+
 			tPage="Machine Processing\n===================\n";
-			
+
 			for (TagData tTag : TD.Processing.ALL_MACHINES) if (aMat.contains(tTag)) {temp = T; tPage += tTag.getLocalisedNameLong() + "\n";}
-			
+
 			if (temp) {tBook.add(tPage); temp = F;}
-			
+
 			//----------
-			
+
 			tPage="Materials which can be decomposed to this\n===================\n";
 			tCounter = 0;
 			for (OreDictMaterial tMat : OreDictMaterial.MATERIAL_MAP.values()) if (tMat.mComponents != null && tMat.contains(TD.Compounds.DECOMPOSABLE)) {
@@ -741,27 +754,27 @@ public class UT {
 					break;
 				}
 			}
-			
+
 			if (temp) {tBook.add(tPage); temp = F;}
-			
+
 			//----------
-			
+
 			tPage="Ore Processing\n===================\n";
-			
+
 			for (TagData tTag : TD.Processing.ALL_ORES) if (aMat.contains(tTag)) {temp = T; tPage += tTag.getLocalisedNameLong() + "\n";}
-			
+
 			if (temp) {tBook.add(tPage); temp = F;}
-			
+
 			//----------
-			
+
 			tPage="Ore Byproducts\n===================\n";
-			
+
 			for (OreDictMaterial tMat : aMat.mByProducts) {temp = T; tPage += tMat.getLocal() + "\n";}
-			
+
 			if (temp) {tBook.add(tPage); temp = F;}
-			
+
 			//----------
-			
+
 			tPage="Ores with this as Byproduct\n===================\n";
 			tCounter = 0;
 			for (OreDictMaterial tMat : OreDictMaterial.MATERIAL_MAP.values()) if (tMat.mByProducts.contains(aMat)) {
@@ -772,56 +785,56 @@ public class UT {
 					tPage="Ores with this as Byproduct\n===================\n";
 				}
 			}
-			
+
 			if (temp) {tBook.add(tPage); temp = F;}
-			
+
 			//----------
-			
+
 			tPage = "Processing Data\n===================\n";
 			tPage += "Smelting:\n"      +(aMat.mTargetSmelting      .mAmount / U) + "." + ((int)(((double)(aMat.mTargetSmelting     .mAmount % U) / (double)U) * 1000))+" "+(aMat.mTargetSmelting       .mAmount <= 0 ? "nothing" : aMat.mTargetSmelting    .mMaterial == aMat ? "itself" : aMat.mTargetSmelting    .mMaterial.getLocal())+"\n";
 			tPage += "Solidifying:\n"   +(aMat.mTargetSolidifying   .mAmount / U) + "." + ((int)(((double)(aMat.mTargetSolidifying  .mAmount % U) / (double)U) * 1000))+" "+(aMat.mTargetSolidifying    .mAmount <= 0 ? "nothing" : aMat.mTargetSolidifying .mMaterial == aMat ? "itself" : aMat.mTargetSolidifying .mMaterial.getLocal())+"\n";
 			tPage += "Burning:\n"       +(aMat.mTargetBurning       .mAmount / U) + "." + ((int)(((double)(aMat.mTargetBurning      .mAmount % U) / (double)U) * 1000))+" "+(aMat.mTargetBurning        .mAmount <= 0 ? "nothing" : aMat.mTargetBurning     .mMaterial == aMat ? "itself" : aMat.mTargetBurning     .mMaterial.getLocal())+"\n";
 			tPage += "Pulverising:\n"   +(aMat.mTargetPulver        .mAmount / U) + "." + ((int)(((double)(aMat.mTargetPulver       .mAmount % U) / (double)U) * 1000))+" "+(aMat.mTargetPulver         .mAmount <= 0 ? "nothing" : aMat.mTargetPulver      .mMaterial == aMat ? "itself" : aMat.mTargetPulver      .mMaterial.getLocal())+"\n";
 			tPage += "Crushing:\n"      +(aMat.mTargetCrushing      .mAmount / U) + "." + ((int)(((double)(aMat.mTargetCrushing     .mAmount % U) / (double)U) * 1000))+" "+(aMat.mTargetCrushing       .mAmount <= 0 ? "nothing" : aMat.mTargetCrushing    .mMaterial == aMat ? "itself" : aMat.mTargetCrushing    .mMaterial.getLocal())+"\n";
-			
+
 			tBook.add(tPage);
-			
+
 			//----------
-			
+
 			tPage = "Processing Data\n===================\n";
 			tPage += "Bending:\n"       +(aMat.mTargetBending       .mAmount / U) + "." + ((int)(((double)(aMat.mTargetBending      .mAmount % U) / (double)U) * 1000))+" "+(aMat.mTargetBending        .mAmount <= 0 ? "nothing" : aMat.mTargetBending     .mMaterial == aMat ? "itself" : aMat.mTargetBending     .mMaterial.getLocal())+"\n";
 			tPage += "Compressing:\n"   +(aMat.mTargetCompressing   .mAmount / U) + "." + ((int)(((double)(aMat.mTargetCompressing  .mAmount % U) / (double)U) * 1000))+" "+(aMat.mTargetCompressing    .mAmount <= 0 ? "nothing" : aMat.mTargetCompressing .mMaterial == aMat ? "itself" : aMat.mTargetCompressing .mMaterial.getLocal())+"\n";
 			tPage += "Cutting:\n"       +(aMat.mTargetCutting       .mAmount / U) + "." + ((int)(((double)(aMat.mTargetCutting      .mAmount % U) / (double)U) * 1000))+" "+(aMat.mTargetCutting        .mAmount <= 0 ? "nothing" : aMat.mTargetCutting     .mMaterial == aMat ? "itself" : aMat.mTargetCutting     .mMaterial.getLocal())+"\n";
 			tPage += "Forging:\n"       +(aMat.mTargetForging       .mAmount / U) + "." + ((int)(((double)(aMat.mTargetForging      .mAmount % U) / (double)U) * 1000))+" "+(aMat.mTargetForging        .mAmount <= 0 ? "nothing" : aMat.mTargetForging     .mMaterial == aMat ? "itself" : aMat.mTargetForging     .mMaterial.getLocal())+"\n";
 			tPage += "Smashing:\n"      +(aMat.mTargetSmashing      .mAmount / U) + "." + ((int)(((double)(aMat.mTargetSmashing     .mAmount % U) / (double)U) * 1000))+" "+(aMat.mTargetSmashing       .mAmount <= 0 ? "nothing" : aMat.mTargetSmashing    .mMaterial == aMat ? "itself" : aMat.mTargetSmashing    .mMaterial.getLocal())+"\n";
-			
+
 			tBook.add(tPage);
-			
+
 			//----------
-			
+
 			tPage = "Processing Data\n===================\n";
 			tPage += "Working:\n"       +(aMat.mTargetWorking       .mAmount / U) + "." + ((int)(((double)(aMat.mTargetWorking      .mAmount % U) / (double)U) * 1000))+" "+(aMat.mTargetWorking        .mAmount <= 0 ? "nothing" : aMat.mTargetWorking     .mMaterial == aMat ? "itself" : aMat.mTargetWorking     .mMaterial.getLocal())+"\n";
-			
+
 			tBook.add(tPage);
-			
+
 			//----------
-			
+
 			tPage = "Thaumaturgic Data\n===================\nAspects:\n";
-			
+
 			if (aMat.mAspects.isEmpty()) {
 				tPage += "None\n";
 			} else {
 				for (TC_AspectStack tAspect : aMat.mAspects) tPage += tAspect.mAmount + "x " + tAspect.mAspect.mName + "\n";
 			}
-			
+
 			tPage += "===================\n";
-			
+
 			tBook.add(tPage);
-			
+
 			//----------
-			
+
 			Map<OreDictMaterial, Long> tMap;
-			
+
 			tMap = new HashMap<>(); for (OreDictMaterial tMat : OreDictMaterial.MATERIAL_MAP.values()) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetSmelting .mMaterial == aMat && tMat.mTargetSmelting      .mAmount > 0 && !tMat.getLocal().equals(aMat.getLocal())) tMap.put(tMat, tMat.mTargetSmelting       .mAmount);
 			tMap = Code.sortByValuesDescending(tMap);
 			tPage = "Resources to smelt for getting "+aMat.getLocal()+"\n===================\n";
@@ -834,11 +847,11 @@ public class UT {
 					tPage = "Resources to smelt for getting "+aMat.getLocal()+"\n===================\n";
 				}
 			}
-			
+
 			if (temp) {tBook.add(tPage); temp=F;}
-			
+
 			//----------
-			
+
 			tMap = new HashMap<>(); for (OreDictMaterial tMat : OreDictMaterial.MATERIAL_MAP.values()) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetBurning      .mMaterial == aMat && tMat.mTargetBurning       .mAmount > 0 && !tMat.getLocal().equals(aMat.getLocal())) tMap.put(tMat, tMat.mTargetBurning        .mAmount);
 			tMap = Code.sortByValuesDescending(tMap);
 			tPage = "Resources to burn for getting "+aMat.getLocal()+"\n===================\n";
@@ -851,11 +864,11 @@ public class UT {
 					tPage = "Resources to burn for getting "+aMat.getLocal()+"\n===================\n";
 				}
 			}
-			
+
 			if (temp) {tBook.add(tPage); temp=F;}
-			
+
 			//----------
-			
+
 			tMap = new HashMap<>(); for (OreDictMaterial tMat : OreDictMaterial.MATERIAL_MAP.values()) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetPulver       .mMaterial == aMat && tMat.mTargetPulver        .mAmount > 0 && !tMat.getLocal().equals(aMat.getLocal())) tMap.put(tMat, tMat.mTargetPulver     .mAmount);
 			tMap = Code.sortByValuesDescending(tMap);
 			tPage = "Resources to pulverise for getting "+aMat.getLocal()+"\n===================\n";
@@ -868,11 +881,11 @@ public class UT {
 					tPage = "Resources to pulverise for getting "+aMat.getLocal()+"\n===================\n";
 				}
 			}
-			
+
 			if (temp) {tBook.add(tPage); temp=F;}
-			
+
 			//----------
-			
+
 			tMap = new HashMap<>(); for (OreDictMaterial tMat : OreDictMaterial.MATERIAL_MAP.values()) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetBending      .mMaterial == aMat && tMat.mTargetBending       .mAmount > 0 && !tMat.getLocal().equals(aMat.getLocal())) tMap.put(tMat, tMat.mTargetBending        .mAmount);
 			tMap = Code.sortByValuesDescending(tMap);
 			tPage = "Resources to bend for getting "+aMat.getLocal()+"\n===================\n";
@@ -885,11 +898,11 @@ public class UT {
 					tPage = "Resources to bend for getting "+aMat.getLocal()+"\n===================\n";
 				}
 			}
-			
+
 			if (temp) {tBook.add(tPage); temp=F;}
-			
+
 			//----------
-			
+
 			tMap = new HashMap<>(); for (OreDictMaterial tMat : OreDictMaterial.MATERIAL_MAP.values()) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetCompressing  .mMaterial == aMat && tMat.mTargetCompressing   .mAmount > 0 && !tMat.getLocal().equals(aMat.getLocal())) tMap.put(tMat, tMat.mTargetCompressing    .mAmount);
 			tMap = Code.sortByValuesDescending(tMap);
 			tPage = "Resources to compress for getting "+aMat.getLocal()+"\n===================\n";
@@ -902,11 +915,11 @@ public class UT {
 					tPage = "Resources to compress for getting "+aMat.getLocal()+"\n===================\n";
 				}
 			}
-			
+
 			if (temp) {tBook.add(tPage); temp=F;}
-			
+
 			//----------
-			
+
 			tMap = new HashMap<>(); for (OreDictMaterial tMat : OreDictMaterial.MATERIAL_MAP.values()) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetCrushing .mMaterial == aMat && tMat.mTargetCrushing      .mAmount > 0 && !tMat.getLocal().equals(aMat.getLocal())) tMap.put(tMat, tMat.mTargetCrushing       .mAmount);
 			tMap = Code.sortByValuesDescending(tMap);
 			tPage = "Resources to crush for getting "+aMat.getLocal()+"\n===================\n";
@@ -919,11 +932,11 @@ public class UT {
 					tPage = "Resources to crush for getting "+aMat.getLocal()+"\n===================\n";
 				}
 			}
-			
+
 			if (temp) {tBook.add(tPage); temp=F;}
-			
+
 			//----------
-			
+
 			tMap = new HashMap<>(); for (OreDictMaterial tMat : OreDictMaterial.MATERIAL_MAP.values()) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetCutting      .mMaterial == aMat && tMat.mTargetCutting       .mAmount > 0 && !tMat.getLocal().equals(aMat.getLocal())) tMap.put(tMat, tMat.mTargetCutting        .mAmount);
 			tMap = Code.sortByValuesDescending(tMap);
 			tPage = "Resources to cut for getting "+aMat.getLocal()+"\n===================\n";
@@ -936,11 +949,11 @@ public class UT {
 					tPage = "Resources to cut for getting "+aMat.getLocal()+"\n===================\n";
 				}
 			}
-			
+
 			if (temp) {tBook.add(tPage); temp=F;}
-			
+
 			//----------
-			
+
 			tMap = new HashMap<>(); for (OreDictMaterial tMat : OreDictMaterial.MATERIAL_MAP.values()) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetForging      .mMaterial == aMat && tMat.mTargetForging       .mAmount > 0 && !tMat.getLocal().equals(aMat.getLocal())) tMap.put(tMat, tMat.mTargetForging        .mAmount);
 			tMap = Code.sortByValuesDescending(tMap);
 			tPage = "Resources to forge for getting "+aMat.getLocal()+"\n===================\n";
@@ -953,11 +966,11 @@ public class UT {
 					tPage = "Resources to forge for getting "+aMat.getLocal()+"\n===================\n";
 				}
 			}
-			
+
 			if (temp) {tBook.add(tPage); temp=F;}
-			
+
 			//----------
-			
+
 			tMap = new HashMap<>(); for (OreDictMaterial tMat : OreDictMaterial.MATERIAL_MAP.values()) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetSmashing .mMaterial == aMat && tMat.mTargetSmashing      .mAmount > 0 && !tMat.getLocal().equals(aMat.getLocal())) tMap.put(tMat, tMat.mTargetSmashing       .mAmount);
 			tMap = Code.sortByValuesDescending(tMap);
 			tPage = "Resources to smash for getting "+aMat.getLocal()+"\n===================\n";
@@ -970,11 +983,11 @@ public class UT {
 					tPage = "Resources to smash for getting "+aMat.getLocal()+"\n===================\n";
 				}
 			}
-			
+
 			if (temp) {tBook.add(tPage); temp=F;}
-			
+
 			//----------
-			
+
 			tMap = new HashMap<>(); for (OreDictMaterial tMat : OreDictMaterial.MATERIAL_MAP.values()) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetWorking      .mMaterial == aMat && tMat.mTargetWorking       .mAmount > 0 && !tMat.getLocal().equals(aMat.getLocal())) tMap.put(tMat, tMat.mTargetWorking        .mAmount);
 			tMap = Code.sortByValuesDescending(tMap);
 			tPage = "Resources to use in other ways for getting "+aMat.getLocal()+"\n===================\n";
@@ -987,20 +1000,20 @@ public class UT {
 					tPage = "Resources to use in other ways for getting "+aMat.getLocal()+"\n===================\n";
 				}
 			}
-			
+
 			if (temp) {tBook.add(tPage); temp=F;}
-			
+
 			//----------
-			
+
 			for (IOreDictConfigurationComponent tConfig : aMat.mAlloyCreationRecipes) {
 				tPage="Alloy:\n"+aMat.getLocal()+"\n===================\nMelting: "+aMat.mMeltingPoint+" K\nBoiling: "+aMat.mBoilingPoint+" K\n===================\nComponents per "+tConfig.getCommonDivider() + "\n";
 				for (OreDictMaterialStack tMt2 : tConfig.getUndividedComponents()) tPage += (tMt2.mAmount / U)+" "+tMt2.mMaterial.getLocal()+"\n";
 				tBook.add(tPage);
 				break;
 			}
-			
+
 			//----------
-			
+
 			for (OreDictMaterial tMat : aMat.mAlloyComponentReferences) {
 				for (IOreDictConfigurationComponent tConfig : tMat.mAlloyCreationRecipes) {
 					for (OreDictMaterialStack tMatStack : tConfig.getUndividedComponents()) {
@@ -1013,27 +1026,27 @@ public class UT {
 					}
 				}
 			}
-			
+
 			//----------
-			
+
 			if (aMat.mDescription != null) for (int i = 0, j = 0; i < aMat.mDescription.length; i++) if (Code.stringValid(aMat.mDescription[i])) tBook.add("Description Pg "+(++j)+"\n===================\n" + aMat.mDescription[i]);
-			
+
 			//----------
-			
+
 			MATERIAL_DICTIONARIES.add("Material_Dictionary_"+aMat.mNameInternal);
-			
+
 			return ST.copy(aMat.mDictionaryBook = createWrittenBook("Material_Dictionary_"+aMat.mNameInternal, aMat.getLocal(), "Material Dictionary Foundation", tBook.size()<=50?(aDefaultBook!=null?aDefaultBook:ItemsGT.BOOKS==null?NI:ST.make(ItemsGT.BOOKS, 1, 32002)):(aDefaultLargeBook!=null?aDefaultLargeBook:ItemsGT.BOOKS==null?NI:ST.make(ItemsGT.BOOKS, 1, 32003)), F, tBook.toArray(ZL_STRING)));
 		}
 	}
-	
-	
+
+
 	public static class Code {
 		/** Note: Does not work on huge amounts of Bytes. */
 		public static byte averageBytes(byte... aBytes) {
 			if (aBytes == null || aBytes.length <= 0) return 0;
 			return (byte)(sum(aBytes) / aBytes.length);
 		}
-		
+
 		/** Note: Does not work on huge amounts of Bytes. */
 		public static byte averageUnsignedBytes(byte... aBytes) {
 			if (aBytes == null || aBytes.length <= 0) return 0;
@@ -1041,13 +1054,13 @@ public class UT {
 			for (byte aByte : aBytes) rValue += unsignB(aByte);
 			return (byte)(rValue / aBytes.length);
 		}
-		
+
 		/** Note: Does not work on huge amounts of Bytes. */
 		public static short averageShorts(short... aShorts) {
 			if (aShorts == null || aShorts.length <= 0) return 0;
 			return (short)(sum(aShorts) / aShorts.length);
 		}
-		
+
 		/** Note: Does not work on huge amounts of Shorts. */
 		public static short averageUnsignedShorts(short... aShorts) {
 			if (aShorts == null || aShorts.length <= 0) return 0;
@@ -1055,13 +1068,13 @@ public class UT {
 			for (short aShort : aShorts) rValue += unsignS(aShort);
 			return (short)(rValue / aShorts.length);
 		}
-		
+
 		/** Note: Does not work on huge amounts of Integers. */
 		public static int averageInts(int... aInts) {
 			if (aInts == null || aInts.length <= 0) return 0;
 			return bindInt(sum(aInts) / aInts.length);
 		}
-		
+
 		/** Note: Does not work on huge amounts of Integers. */
 		public static int averageUnsignedInts(int... aInts) {
 			if (aInts == null || aInts.length <= 0) return 0;
@@ -1069,81 +1082,86 @@ public class UT {
 			for (int aInt : aInts) rValue += unsignI(aInt);
 			return bindInt(rValue / aInts.length);
 		}
-		
+
 		/** Note: Does not work on huge amounts of Longs. */
 		public static long averageLongs(long... aLongs) {
 			if (aLongs == null || aLongs.length <= 0) return 0;
 			return sum(aLongs) / aLongs.length;
 		}
-		
+
 		public static int roundDown(double aNumber) {
 			int rRounded = (int)aNumber;
 			return rRounded > aNumber ? rRounded-1 : rRounded;
 		}
-		
+
+		public static int roundUp(double aNumber) {
+			int rRounded = (int)aNumber;
+			return rRounded < aNumber ? rRounded+1 : rRounded;
+		}
+
 		/** @return an unsigned representation of this Byte. */
 		public static short unsignB(byte aByte) {
 			return aByte < 0 ? (short)(aByte + 256) : aByte;
 		}
-		
+
 		/** @return an unsigned representation of this Short. */
 		public static int unsignS(short aShort) {
 			return aShort < 0 ? aShort + 65536 : aShort;
 		}
-		
+
 		/** @return an unsigned representation of this Integer. */
 		public static long unsignI(int aInteger) {
 			return aInteger < 0 ? aInteger + 4294967296L : aInteger;
 		}
-		
+
 		public static byte toByteS(short aValue, int aIndex) {return (byte)(aValue >> (aIndex<<3));}
 		public static byte toByteI(int   aValue, int aIndex) {return (byte)(aValue >> (aIndex<<3));}
 		public static byte toByteL(long  aValue, int aIndex) {return (byte)(aValue >> (aIndex<<3));}
-		
+
 		public static short combine(byte aValue1, byte aValue2)                                                                                     {return (short) ((0xff & aValue1) | aValue2 << 8);}
 		public static int   combine(byte aValue1, byte aValue2, byte aValue3, byte aValue4)                                                         {return          (0xff & aValue1) | (0xff & aValue2) << 8 | (0xff & aValue3) << 16 | aValue4 << 24;}
 		public static long  combine(byte aValue1, byte aValue2, byte aValue3, byte aValue4, byte aValue5, byte aValue6, byte aValue7, byte aValue8) {return ((long)aValue1 & 0xff) | ((long)aValue2 & 0xff) << 8 | ((long)aValue3 & 0xff) << 16 | ((long)aValue4 & 0xff) << 24 | ((long)aValue5 & 0xff) << 32 | ((long)aValue6 & 0xff) << 40 | ((long)aValue7 & 0xff) << 48 | (long)aValue8 << 56;}
-		
+
 		public static long getBits(boolean... aBits) {
 			long rBits = 0;
 			for (int i = 0; i < 64 && i < aBits.length; i++) if (aBits[i]) rBits |= (1 << i);
 			return rBits;
 		}
-		
+
 		public static boolean[] getBitsB(byte aBits) {
 			boolean[] rBits = new boolean[8];
 			for (int i = 0; i < rBits.length; i++) if ((aBits & (1 << i)) != 0) rBits[i] = T;
 			return rBits;
 		}
-		
+
 		public static boolean[] getBitsS(short aBits) {
 			boolean[] rBits = new boolean[16];
 			for (int i = 0; i < rBits.length; i++) if ((aBits & (1 << i)) != 0) rBits[i] = T;
 			return rBits;
 		}
-		
+
 		public static boolean[] getBitsI(int aBits) {
 			boolean[] rBits = new boolean[32];
 			for (int i = 0; i < rBits.length; i++) if ((aBits & (1 << i)) != 0) rBits[i] = T;
 			return rBits;
 		}
-		
+
 		public static boolean[] getBitsL(long aBits) {
 			boolean[] rBits = new boolean[64];
 			for (int i = 0; i < rBits.length; i++) if ((aBits & (1 << i)) != 0) rBits[i] = T;
 			return rBits;
 		}
-		
+
 		public static ItemStack toStack(int aStack) {
 			Item tItem = Item.getItemById(aStack&(~0>>>16));
 			if (tItem != null) return ST.make(tItem, 1, aStack>>>16);
 			return null;
 		}
-		
+
 		public static UUID getUUID(byte[] aData, int aOffset) {
 			return aData.length - aOffset < 16 ? null : new UUID(combine(aData[aOffset], aData[aOffset+1], aData[aOffset+2], aData[aOffset+3], aData[aOffset+4], aData[aOffset+5], aData[aOffset+6], aData[aOffset+7]), combine(aData[aOffset+8], aData[aOffset+9], aData[aOffset+10], aData[aOffset+11], aData[aOffset+12], aData[aOffset+13], aData[aOffset+14], aData[aOffset+15]));
 		}
-		
+
 		public static byte[] getBytes(UUID aData, int aOffset) {
 			if (aData == null) return new byte[aOffset];
 			byte[] rData = new byte[aOffset+16];
@@ -1153,17 +1171,17 @@ public class UT {
 			}
 			return rData;
 		}
-		
+
 		/** Converts a Number to a String */
 		public static String makeString(long aNumber) {
 			String tString = "";
 			boolean temp = T, negative = F;
-			
+
 			if (aNumber<0) {
 				aNumber *= -1;
 				negative = T;
 			}
-			
+
 			for (long i = 1000000000000000000L; i > 0; i /= 10) {
 				long tDigit = (aNumber/i)%10;
 				if ( temp && tDigit != 0) temp = F;
@@ -1172,54 +1190,54 @@ public class UT {
 					if (i != 1) for (long j = i; j > 0; j /= 1000) if (j == 1) tString += ",";
 				}
 			}
-			
+
 			if (tString.equals("")) tString = "0";
-			
+
 			return negative?"-"+tString:tString;
 		}
-		
+
 		@SafeVarargs
 		public static <E> boolean contains(E aTarget, E... aArray) {
 			if (aArray != null) for (E tValue : aArray) if (tValue == aTarget || (tValue != null && aTarget != null && tValue.equals(aTarget))) return T;
 			return F;
 		}
-		
+
 		public static boolean containsBoolean(boolean aTarget, boolean... aArray) {
 			if (aArray != null) for (boolean tValue : aArray) if (tValue == aTarget) return T;
 			return F;
 		}
-		
+
 		@SafeVarargs
 		public static <E> boolean containsSomething(E... aArray) {
 			if (aArray != null) for (Object tObject : aArray) if (tObject != null) return T;
 			return F;
 		}
-		
+
 		public static <E> E[] fill(E aToFillIn, E[] rArray) {
 			for (int i = 0; i < rArray.length; i++) rArray[i] = aToFillIn;
 			return rArray;
 		}
-		
+
 		@SafeVarargs
 		public static <E> E[] makeArray(E[] rArray, E... aArray) {
 			for (int i = 0; i < rArray.length && i < aArray.length; i++) rArray[i] = aArray[i];
 			return rArray;
 		}
-		
+
 		@SafeVarargs
 		public static <E> long getNonNulls(E... aArray) {
 			long rAmount = 0;
 			if (aArray != null) for (Object tObject : aArray) if (tObject != null) rAmount++;
 			return rAmount;
 		}
-		
+
 		@SafeVarargs
 		public static <E> ArrayList<E> getWithoutNulls(E... aArray) {
 			if (aArray == null) return new ArrayListNoNulls<>();
 			ArrayList<E> rList = new ArrayListNoNulls<>(Arrays.asList(aArray));
 			return rList;
 		}
-		
+
 		@SafeVarargs
 		public static <E> ArrayList<E> getWithoutTrailingNulls(E... aArray) {
 			if (aArray == null) return new ArrayList<>(1);
@@ -1227,48 +1245,48 @@ public class UT {
 			for (int i = rList.size() - 1; i >= 0 && rList.get(i) == null;) rList.remove(i--);
 			return rList;
 		}
-		
+
 		private static final DateFormat sDateFormat = DateFormat.getInstance();
 		public static String dateAndTime() {
 			return sDateFormat.format(new Date());
 		}
-		
+
 		public static byte tier(long aSize) {
 			return tierMax(aSize);
 		}
-		
+
 		public static byte tierMax(long aSize) {
 			byte i = -1;
 			aSize = Math.abs(aSize);
 			while (++i < V.length) if (aSize <= V[i]) return i;
 			return i;
 		}
-		
+
 		public static byte tierMin(long aSize) {
 			byte i = -1;
 			aSize = Math.abs(aSize);
 			while (++i < V.length) if (aSize < V[i]) return (byte)Math.max(0, i-1);
 			return --i;
 		}
-		
+
 		public static long voltMax(long aSize) {
 			aSize = Math.abs(aSize);
 			for (int i = 0; i < VMAX.length; i++) if (aSize < VMAX[i]) return VMAX[i];
 			return VMAX[VMAX.length-1];
 		}
-		
+
 		public static long voltMin(long aSize) {
 			aSize = Math.abs(aSize);
 			for (int i = 0; i < VMAX.length; i++) if (aSize < VMAX[i]) return VMIN[i];
 			return VMIN[VMIN.length-1];
 		}
-		
+
 		public static boolean haveOneCommonElement(Iterable<?> aCollection1, Collection<?> aCollection2) {
 			if (aCollection1 == aCollection2) return T;
 			for (Object tObject : aCollection1) if (aCollection2.contains(tObject)) return T;
 			return F;
 		}
-		
+
 		/** re-maps all Keys of a Map after the Keys were weakened. */
 		public static <X, Y> Map<X, Y> reMap(Map<X, Y> aMap) {
 			Map<X, Y> tMap = new HashMap<>();
@@ -1277,7 +1295,7 @@ public class UT {
 			aMap.putAll(tMap);
 			return aMap;
 		}
-		
+
 		/** Why the fuck do neither Java nor Guava have a Function to do this? */
 		@SuppressWarnings("rawtypes")
 		public static <X, Y extends Comparable> LinkedHashMap<X,Y> sortByValuesAcending(Map<X,Y> aMap) {
@@ -1287,7 +1305,7 @@ public class UT {
 			for (Map.Entry<X,Y> tEntry : tEntrySet) rMap.put(tEntry.getKey(), tEntry.getValue());
 			return rMap;
 		}
-		
+
 		/** Why the fuck do neither Java nor Guava have a Function to do this? */
 		@SuppressWarnings("rawtypes")
 		public static <X, Y extends Comparable> LinkedHashMap<X,Y> sortByValuesDescending(Map<X,Y> aMap) {
@@ -1297,19 +1315,19 @@ public class UT {
 			for (Map.Entry<X,Y> tEntry : tEntrySet) rMap.put(tEntry.getKey(), tEntry.getValue());
 			return rMap;
 		}
-		
+
 		public static <E> E select(long aIndex, E aReplacement, List<E> aList) {
 			if (aList == null || aList.isEmpty()) return aReplacement;
 			if (aList.size() <= aIndex) return aList.get(aList.size() - 1);
 			if (aIndex < 0) return aList.get(0);
 			return aList.get((int)aIndex);
 		}
-		
+
 		public static <E> E select(E aReplacement, List<E> aList) {
 			if (aList == null || aList.isEmpty()) return aReplacement;
 			return aList.get(RNGSUS.nextInt(aList.size()));
 		}
-		
+
 		@SafeVarargs
 		public static <E> E select(long aIndex, E aReplacement, E... aArray) {
 			if (aArray == null || aArray.length <= 0) return aReplacement;
@@ -1317,24 +1335,24 @@ public class UT {
 			if (aIndex < 0) return aArray[0];
 			return aArray[(int)aIndex];
 		}
-		
+
 		@SafeVarargs
 		public static <E> E select(E aReplacement, E... aArray) {
 			if (aArray == null || aArray.length <= 0) return aReplacement;
 			return aArray[RNGSUS.nextInt(aArray.length)];
 		}
-		
+
 		public static boolean inArray(Object aObject, Object... aObjects) {
 			return inList(aObject, Arrays.asList(aObjects));
 		}
-		
+
 		public static boolean inList(Object aObject, Collection<?> aObjects) {
 			if (aObjects == null) return F;
 			return aObjects.contains(aObject);
 		}
-		
+
 		public static final int[][] ASCENDING_ARRAYS = new int[1024][];
-		
+
 		public static int[] getAscendingArray(int aLength) {
 			if (aLength <= 0) return ZL_INTEGER;
 			if (aLength < ASCENDING_ARRAYS.length) {
@@ -1348,52 +1366,52 @@ public class UT {
 			for (int i = 0; i < aLength; i++) rArray[i] = i;
 			return rArray;
 		}
-		
+
 		public static String stringValidate(Object aString) {
 			if (aString == null) return "";
 			String rString = aString.toString();
 			return rString == null ? "" : rString;
 		}
-		
+
 		public static boolean stringValid(Object aString) {
 			return aString != null && !aString.toString().isEmpty();
 		}
-		
+
 		public static boolean stringInvalid(Object aString) {
 			return aString == null || aString.toString().isEmpty();
 		}
-		
+
 		public static byte side(ForgeDirection aDirection) {
 			return (byte)(aDirection==null?SIDE_INVALID:aDirection.ordinal());
 		}
-		
+
 		public static byte side(int aSide) {
 			return aSide > 5 || aSide < 0 ? SIDE_INVALID : (byte)aSide;
 		}
-		
+
 		/** If this Index exists inside the passed Array and if it is != null */
 		public static <E> boolean exists(int aIndex, E[] aArray) {
 			return aIndex >= 0 && aIndex < aArray.length && aArray[aIndex] != null;
 		}
-		
+
 		/** @return a Value for a Scale between 0 and aMax with aScale+1 possible Steps. 0 is only returned if the aValue is <= 0, aScale is only returned if the Value is >= aMax. The remaining values between ]0:aScale[ are returned for each Step of the Scale. This Function finds use in Displays such as the Barometer, but also in Redstone. */
 		public static long scale(long aValue, long aMax, long aScale, boolean aInvert) {
 			long rScale = (aValue <= 0 ? 0 : aValue >= aMax ? aScale : aScale <= 2 ? 1 : 1 + (aValue * (aScale-1)) / aMax);
 			return aInvert ? aScale - rScale : rScale;
 		}
-		
+
 		/** @return a Value for a Scale between aMin and aMax with aScale+1 possible Steps. 0 is only returned if the aValue is <= aMin, aScale is only returned if the Value is >= aMax. The remaining values between ]0:aScale[ are returned for each Step of the Scale. This Function finds use in Displays such as the Barometer, but also in Redstone. */
 		public static long scale(long aValue, long aMin, long aMax, long aScale, boolean aInvert) {
 			return scale(aValue-aMin, aMax-aMin, aScale, aInvert);
 		}
-		
+
 		public static long bind(long aMin, long aMax, long aBoundValue) {
 			return aMin > aMax ? Math.max(aMax, Math.min(aMin, aBoundValue)) : Math.max(aMin, Math.min(aMax, aBoundValue));
 		}
 		public static long bind_(long aMin, long aMax, long aBoundValue) {
 			return Math.max(aMin, Math.min(aMax, aBoundValue));
 		}
-		
+
 		public static float  bindF    (float  aBoundValue) {return        Math.max(0, Math.min(         1, aBoundValue));}
 		public static double bindD    (double aBoundValue) {return        Math.max(0, Math.min(         1, aBoundValue));}
 		public static byte   bind1    (long   aBoundValue) {return (byte) Math.max(0, Math.min(         1, aBoundValue));}
@@ -1412,42 +1430,42 @@ public class UT {
 		public static short  bindShort(long   aBoundValue) {return (short)Math.max(Short.MIN_VALUE, Math.min(Short.MAX_VALUE, aBoundValue));}
 		public static byte   bindByte (long   aBoundValue) {return (byte) Math.max(Byte.MIN_VALUE, Math.min(Byte.MAX_VALUE, aBoundValue));}
 		public static byte   bindStack(long   aBoundValue) {return (byte) Math.max(1, Math.min(64, aBoundValue));}
-		
+
 		public static short[] bindRGBa(short[] aColors) {
 			if (aColors == null) return new short[] {255,255,255,255};
 			for (int i = 0; i < aColors.length; i++) aColors[i] = bind8(aColors[i]);
 			return aColors;
 		}
-		
+
 		public static int mixRGBInt(int aRGB1, int aRGB2) {
 			return getRGBInt(new short[] {(short)((getR(aRGB1) + getR(aRGB2)) >> 1), (short)((getG(aRGB1) + getG(aRGB2)) >> 1), (short)((getB(aRGB1) + getB(aRGB2)) >> 1)});
 		}
-		
+
 		public static int getRGBInt(short[] aColors) {
 			return aColors == null ? 16777215 : (bind8(aColors[0]) << 16) | (bind8(aColors[1]) << 8) | bind8(aColors[2]);
 		}
-		
+
 		public static int getRGBaInt(short[] aColors) {
 			return aColors == null ? 16777215 : (bind8(aColors[0]) << 16) | (bind8(aColors[1]) << 8) | bind8(aColors[2]) | (bind8(aColors[3]) << 24);
 		}
-		
+
 		public static int getRGBInt(long aR, long aG, long aB) {
 			return (bind8(aR) << 16) | (bind8(aG) << 8) | bind8(aB);
 		}
-		
+
 		public static int getRGBaInt(long aR, long aG, long aB, long aA) {
 			return (bind8(aR) << 16) | (bind8(aG) << 8) | bind8(aB) | (bind8(aA) << 24);
 		}
-		
+
 		public static short[] getRGBaArray(int aColors) {
 			return new short[] {(short)((aColors >>> 16) & 255), (short)((aColors >>> 8) & 255), (short)(aColors & 255), (short)((aColors >>> 24) & 255)};
 		}
-		
+
 		public static short getR(int aColors) {return (short)((aColors >>> 16) & 255);}
 		public static short getG(int aColors) {return (short)((aColors >>>  8) & 255);}
 		public static short getB(int aColors) {return (short) (aColors         & 255);}
 		public static short getA(int aColors) {return (short)((aColors >>> 24) & 255);}
-		
+
 		@SideOnly(Side.CLIENT)
 		/** estebes helped with the code for this one, and yes that cast down there is fucking necessary... */
 		public static short[] color(ItemStack aStack) {
@@ -1463,7 +1481,7 @@ public class UT {
 			for (byte i = 0; i < 3; i++) rColor[i] = (short)((rColor[i] * rModulation[i]) / 255);
 			return rColor;
 		}
-		
+
 		@SideOnly(Side.CLIENT)
 		/** estebes helped with the code for this one */
 		public static short[] color(String aResourceLocation) {
@@ -1478,7 +1496,7 @@ public class UT {
 			try {tIcon = javax.imageio.ImageIO.read(Minecraft.getMinecraft().getResourceManager().getResource(aux).getInputStream());} catch (IOException e) {/**/}
 			return tIcon == null ? null : color(tIcon);
 		}
-		
+
 		@SideOnly(Side.CLIENT)
 		/** estebes helped with the code for this one */
 		public static short[] color(java.awt.image.BufferedImage icon) {
@@ -1494,25 +1512,25 @@ public class UT {
 			}
 			return new short[] {(short)(tR / tPixels), (short)(tG / tPixels), (short)(tB / tPixels)};
 		}
-		
+
 		/** toUpperCases the first Character of the String and returns it */
 		public static String capitalise(String aString) {
 			if (aString != null && !aString.isEmpty()) return aString.substring(0, 1).toUpperCase() + aString.substring(1);
 			return "";
 		}
-		
+
 		/** @return the opposite facing of this Side of a Block, with a boundary check. */
 		public static byte opposite(int aSide) {
 			return aSide < OPPOSITES.length && aSide >= 0 ? OPPOSITES[aSide] : 6;
 		}
-		
+
 		/** Turns the Amount of Stuff into a more readable String. */
 		public static String displayUnits(long aAmount) {
 			if (aAmount < 0) return "?.???";
 			long tDigits = ((aAmount % U) * 1000) / U;
 			return (aAmount / U) + "." + (tDigits<1?"000":tDigits<10?"00"+tDigits:tDigits<100?"0"+tDigits:tDigits);
 		}
-		
+
 		/** Translates Amount of aUnit1 to Amount of aUnit2. */
 		public static long units(long aAmount, long aOriginalUnit, long aTargetUnit, boolean aRoundUp) {
 			if (aTargetUnit == 0) return 0;
@@ -1521,7 +1539,7 @@ public class UT {
 			if (aTargetUnit   % aOriginalUnit == 0) {  aTargetUnit /= aOriginalUnit; aOriginalUnit = 1;}
 			return Math.max(0, ((aAmount * aTargetUnit) / aOriginalUnit) + (aRoundUp && (aAmount * aTargetUnit) % aOriginalUnit > 0 ? 1 : 0));
 		}
-		
+
 		/** Translates Amount of aUnit1 to Amount of aUnit2. With additional checks to avoid 64 Bit Overflow. */
 		public static long units_(long aAmount, long aOriginalUnit, long aTargetUnit, boolean aRoundUp) {
 			if (aTargetUnit == 0) return 0;
@@ -1532,44 +1550,44 @@ public class UT {
 			if (aOriginalUnit % 1000 == 0 && aTargetUnit % 1000 == 0) {aOriginalUnit /= 1000; aTargetUnit /= 1000;}}
 			return Math.max(0, ((aAmount * aTargetUnit) / aOriginalUnit) + (aRoundUp && (aAmount * aTargetUnit) % aOriginalUnit > 0 ? 1 : 0));
 		}
-		
+
 		/** Divides but rounds up. */
 		public static long divup(long aNumber, long aDivider) {
 			return aNumber / aDivider + (aNumber % aDivider == 0 ? 0 : 1);
 		}
-		
+
 		public static long sum(byte... aArray) {
 			long rAmount = 0;
 			for (byte tNumber : aArray) rAmount += tNumber;
 			return rAmount;
 		}
-		
+
 		public static long sum(short... aArray) {
 			long rAmount = 0;
 			for (short tNumber : aArray) rAmount += tNumber;
 			return rAmount;
 		}
-		
+
 		public static long sum(int... aArray) {
 			long rAmount = 0;
 			for (int tNumber : aArray) rAmount += tNumber;
 			return rAmount;
 		}
-		
+
 		public static long sum(long... aArray) {
 			long rAmount = 0;
 			for (long tNumber : aArray) rAmount += tNumber;
 			return rAmount;
 		}
-		
+
 		public static boolean abs_greater(long aAmount1, long aAmount2) {return Math.abs(aAmount1) > Math.abs(aAmount2);}
 		public static boolean abs_smaller(long aAmount1, long aAmount2) {return Math.abs(aAmount1) < Math.abs(aAmount2);}
 		public static boolean abs_greater_equal(long aAmount1, long aAmount2) {return Math.abs(aAmount1) >= Math.abs(aAmount2);}
 		public static boolean abs_smaller_equal(long aAmount1, long aAmount2) {return Math.abs(aAmount1) <= Math.abs(aAmount2);}
-		
+
 		public static boolean inside(long aMin, long aMax, long aNumber) {return aMin < aMax ? aMin <= aNumber && aNumber <= aMax : aMax <= aNumber && aNumber <= aMin;}
 		public static boolean inside_(double aMin, double aMax, double aNumber) {return aMin < aMax ? aMin <= aNumber && aNumber <= aMax : aMax <= aNumber && aNumber <= aMin;}
-		
+
 		/** @return an Array containing the X and the Y Coordinate of the clicked Point, with the top left Corner as Origin, like on the Texture Sheet. return values should always be between [0.0F and 0.99F]. */
 		public static float[] getFacingCoordsClicked(byte aSide, float aHitX, float aHitY, float aHitZ) {
 			switch (aSide) {
@@ -1582,13 +1600,13 @@ public class UT {
 			default: return new float[] {0.5F, 0.5F};
 			}
 		}
-		
+
 		public static byte getSideForPlayerPlacing(Entity aPlayer) {
 			if (aPlayer.rotationPitch >=  65) return SIDE_UP;
 			if (aPlayer.rotationPitch <= -65) return SIDE_DOWN;
 			return COMPASS_DIRECTIONS[UT.Code.roundDown(4*aPlayer.rotationYaw/360+0.5)&3];
 		}
-		
+
 		public static byte getSideForPlayerPlacing(Entity aPlayer, byte aDefaultFacing, boolean[] aAllowedFacings) {
 			if (aPlayer.rotationPitch >=  65 && aAllowedFacings[SIDE_UP]) return SIDE_UP;
 			if (aPlayer.rotationPitch <= -65 && aAllowedFacings[SIDE_DOWN]) return SIDE_DOWN;
@@ -1597,7 +1615,7 @@ public class UT {
 			for (byte tSide : ALL_SIDES_VALID) if (aAllowedFacings[tSide]) return tSide;
 			return aDefaultFacing;
 		}
-		
+
 		public static byte getOppositeSideForPlayerPlacing(Entity aPlayer, byte aDefaultFacing, boolean[] aAllowedFacings) {
 			if (aPlayer.rotationPitch >=  65 && aAllowedFacings[SIDE_DOWN]) return SIDE_DOWN;
 			if (aPlayer.rotationPitch <= -65 && aAllowedFacings[SIDE_UP]) return SIDE_UP;
@@ -1606,7 +1624,7 @@ public class UT {
 			for (byte tSide : ALL_SIDES_VALID) if (aAllowedFacings[tSide]) return tSide;
 			return aDefaultFacing;
 		}
-		
+
 		/**
 		 * This Function determines the direction a Block gets when being Wrenched.
 		 */
@@ -1634,16 +1652,16 @@ public class UT {
 			return SIDE_INVALID;
 		}
 	}
-	
+
 	public static class NBT {
 		public static NBTTagCompound make() {
 			return new NBTTagCompound();
 		}
-		
+
 		/** Turns each Object -> Object Pair into a Part of the passed NBT as Object-toString()-Key -> Value Pair */
 		public static NBTTagCompound make(String aFirstKey, Object aFirstValue, Object... aTags) {
 			NBTTagCompound rNBT = make();
-			
+
 			if (aFirstValue == null) {/* Nothing */}
 			else if (aFirstValue instanceof Boolean)           rNBT.setBoolean(aFirstKey, (Boolean)                aFirstValue);
 			else if (aFirstValue instanceof Byte)              rNBT.setByte(   aFirstKey, (Byte)                   aFirstValue);
@@ -1658,7 +1676,7 @@ public class UT {
 			else if (aFirstValue instanceof OreDictMaterial)   rNBT.setString( aFirstKey, ((OreDictMaterial)       aFirstValue).mNameInternal);
 			else if (aFirstValue instanceof RecipeMap)         rNBT.setString( aFirstKey, ((RecipeMap)             aFirstValue).mNameInternal);
 			else                                               rNBT.setString( aFirstKey, aFirstValue.toString());
-			
+
 			for (int i = 1; i < aTags.length; i+=2) {
 				if (aTags[i] == null) {/* Nothing */}
 				else if (aTags[i] instanceof Boolean)          rNBT.setBoolean(aTags[i-1].toString(), (Boolean)                aTags[i]);
@@ -1677,7 +1695,7 @@ public class UT {
 			}
 			return rNBT;
 		}
-		
+
 		/** Turns each Object -> Object Pair into a Part of the passed NBT as Object-toString()-Key -> Value Pair */
 		public static NBTTagCompound make(NBTTagCompound aNBT, Object... aTags) {
 			if (aNBT == null) aNBT = make();
@@ -1699,7 +1717,7 @@ public class UT {
 			}
 			return aNBT;
 		}
-		
+
 		/** Fuses two NBT Compounds together with the Priority lying on the content of the first NBT */
 		public static NBTTagCompound fuse(NBTTagCompound aNBT1, NBTTagCompound aNBT2) {
 			if (aNBT1 == null) return aNBT2==null?make():(NBTTagCompound)aNBT2.copy();
@@ -1708,13 +1726,13 @@ public class UT {
 			for (Object tKey : aNBT2.func_150296_c()) if (!rNBT.hasKey(tKey.toString())) rNBT.setTag(tKey.toString(), aNBT2.getTag(tKey.toString()));
 			return rNBT;
 		}
-		
+
 		public static NBTTagList makeInv(ItemStack... aStacks) {
 			NBTTagList rInventory = new NBTTagList();
 			for (int i = 0; i < aStacks.length; i++) rInventory.appendTag(makeShort(ST.save(aStacks[i]), "s", (short)i));
 			return rInventory;
 		}
-		
+
 		public static NBTTagCompound makeBool(Object aTag, boolean aValue) {
 			NBTTagCompound aNBT = make();
 			aNBT.setBoolean(aTag.toString(), aValue);
@@ -1725,7 +1743,7 @@ public class UT {
 			aNBT.setBoolean(aTag.toString(), aValue);
 			return aNBT;
 		}
-		
+
 		public static NBTTagCompound makeByte(Object aTag, byte aValue) {
 			NBTTagCompound aNBT = make();
 			aNBT.setByte(aTag.toString(), aValue);
@@ -1736,7 +1754,7 @@ public class UT {
 			aNBT.setByte(aTag.toString(), aValue);
 			return aNBT;
 		}
-		
+
 		public static NBTTagCompound makeShort(Object aTag, short aValue) {
 			NBTTagCompound aNBT = make();
 			aNBT.setShort(aTag.toString(), aValue);
@@ -1747,7 +1765,7 @@ public class UT {
 			aNBT.setShort(aTag.toString(), aValue);
 			return aNBT;
 		}
-		
+
 		public static NBTTagCompound makeInt(Object aTag, int aValue) {
 			NBTTagCompound aNBT = make();
 			aNBT.setInteger(aTag.toString(), aValue);
@@ -1758,7 +1776,7 @@ public class UT {
 			aNBT.setInteger(aTag.toString(), aValue);
 			return aNBT;
 		}
-		
+
 		public static NBTTagCompound makeLong(Object aTag, long aValue) {
 			NBTTagCompound aNBT = make();
 			setNumber(aNBT, aTag.toString(), aValue);
@@ -1769,7 +1787,7 @@ public class UT {
 			setNumber(aNBT, aTag.toString(), aValue);
 			return aNBT;
 		}
-		
+
 		public static NBTTagCompound makeFloat(Object aTag, float aValue) {
 			NBTTagCompound aNBT = make();
 			aNBT.setFloat(aTag.toString(), aValue);
@@ -1780,7 +1798,7 @@ public class UT {
 			aNBT.setFloat(aTag.toString(), aValue);
 			return aNBT;
 		}
-		
+
 		public static NBTTagCompound makeDouble(Object aTag, double aValue) {
 			NBTTagCompound aNBT = make();
 			aNBT.setDouble(aTag.toString(), aValue);
@@ -1791,7 +1809,7 @@ public class UT {
 			aNBT.setDouble(aTag.toString(), aValue);
 			return aNBT;
 		}
-		
+
 		public static NBTTagCompound makeString(Object aTag, Object aValue) {
 			NBTTagCompound aNBT = make();
 			if (aValue == null) return aNBT;
@@ -1804,7 +1822,7 @@ public class UT {
 			aNBT.setString(aTag.toString(), aValue.toString());
 			return aNBT;
 		}
-		
+
 		@Deprecated public static NBTTagCompound getNBTs(NBTTagCompound aNBT, Object... aTags) {return make(aNBT, aTags);}
 		@Deprecated public static NBTTagCompound getNBTBoolean(NBTTagCompound aNBT, Object aTag, boolean aValue) {return makeBool(aNBT, aTag, aValue);}
 		@Deprecated public static NBTTagCompound getNBTByte(NBTTagCompound aNBT, Object aTag, byte aValue) {return makeByte(aNBT, aTag, aValue);}
@@ -1814,7 +1832,7 @@ public class UT {
 		@Deprecated public static NBTTagCompound getNBTFloat(NBTTagCompound aNBT, Object aTag, float aValue) {return makeFloat(aNBT, aTag, aValue);}
 		@Deprecated public static NBTTagCompound getNBTDouble(NBTTagCompound aNBT, Object aTag, double aValue) {return makeDouble(aNBT, aTag, aValue);}
 		@Deprecated public static NBTTagCompound getNBTString(NBTTagCompound aNBT, Object aTag, Object aValue) {return makeString(aNBT, aTag, aValue);}
-		
+
 		/** Saves on Data Size by simply not adding "false" Booleans. */
 		public static NBTTagCompound setBoolean(NBTTagCompound aNBT, Object aTag, boolean aValue) {
 			if (aValue) {
@@ -1824,7 +1842,7 @@ public class UT {
 			}
 			return aNBT;
 		}
-		
+
 		/** Saves on Data Size by choosing the smallest possible Data Type, and by also not adding zeros. The regular getLong() Function can also get the other Number Types. */
 		public static NBTTagCompound setNumber(NBTTagCompound aNBT, Object aTag, long aValue) {
 			if (aValue == 0) {aNBT.removeTag(aTag.toString()); return aNBT;}
@@ -1834,7 +1852,7 @@ public class UT {
 			aNBT.setByte(aTag.toString(), (byte)aValue);
 			return aNBT;
 		}
-		
+
 		public static ItemStack set(ItemStack aStack, NBTTagCompound aNBT) {
 			if (aNBT == null || aNBT.hasNoTags()) {aStack.setTagCompound(null); return aStack;}
 			ArrayList<String> tTagsToRemove = new ArrayListNoNulls<>();
@@ -1846,18 +1864,18 @@ public class UT {
 			aStack.setTagCompound(aNBT.hasNoTags()?null:aNBT);
 			return aStack;
 		}
-		
+
 		public static NBTTagCompound getNBT(ItemStack aStack) {
 			NBTTagCompound rNBT = aStack.getTagCompound();
 			return rNBT==null?make():rNBT;
 		}
-		
+
 		public static NBTTagCompound getOrCreate(ItemStack aStack) {
 			NBTTagCompound rNBT = aStack.getTagCompound();
 			if (rNBT == null) aStack.setTagCompound(rNBT = make());
 			return rNBT;
 		}
-		
+
 		public static NBTTagCompound setPunchCardData(ItemStack aStack, String aPunchCardData) {
 			NBTTagCompound tNBT = getNBT(aStack);
 			tNBT.setString("gt6.punchcard", aPunchCardData);
@@ -1875,7 +1893,7 @@ public class UT {
 		public static String getPunchCardData(NBTTagCompound aNBT) {
 			return aNBT.getString("gt6.punchcard");
 		}
-		
+
 		public static NBTTagCompound setBlueprintCrafting(ItemStack aStack, ItemStack... aBlueprint) {
 			NBTTagCompound tNBT = getNBT(aStack);
 			setBlueprintCrafting(tNBT, aBlueprint);
@@ -1904,7 +1922,7 @@ public class UT {
 			}
 			return ZL_IS;
 		}
-		
+
 		public static NBTTagCompound setLighterFuel(ItemStack aStack, long aFuel) {
 			NBTTagCompound tNBT = getNBT(aStack);
 			setNumber(tNBT, "gt6.lighter", aFuel);
@@ -1922,7 +1940,7 @@ public class UT {
 		public static long getLighterFuel(NBTTagCompound aNBT) {
 			return aNBT.getLong("gt6.lighter");
 		}
-		
+
 		public static NBTTagCompound setMapID(ItemStack aStack, short aMapID) {
 			NBTTagCompound tNBT = getNBT(aStack);
 			tNBT.setShort("map_id", aMapID);
@@ -1942,7 +1960,7 @@ public class UT {
 			if (!aNBT.hasKey("map_id")) return -1;
 			return aNBT.getShort("map_id");
 		}
-		
+
 		public static NBTTagCompound setBookMapping(ItemStack aStack, String aTitle) {
 			NBTTagCompound tNBT = getNBT(aStack);
 			tNBT.setString("book", aTitle);
@@ -1960,7 +1978,7 @@ public class UT {
 		public static String getBookMapping(NBTTagCompound aNBT) {
 			return aNBT.getString("book");
 		}
-		
+
 		public static NBTTagCompound setBookTitle(ItemStack aStack, String aTitle) {
 			NBTTagCompound tNBT = getNBT(aStack);
 			tNBT.setString("title", aTitle);
@@ -1978,7 +1996,7 @@ public class UT {
 		public static String getBookTitle(NBTTagCompound aNBT) {
 			return aNBT.getString("title");
 		}
-		
+
 		public static NBTTagCompound setBookAuthor(ItemStack aStack, String aAuthor) {
 			NBTTagCompound tNBT = getNBT(aStack);
 			tNBT.setString("author", aAuthor);
@@ -1996,7 +2014,7 @@ public class UT {
 		public static String getBookAuthor(NBTTagCompound aNBT) {
 			return aNBT.getString("author");
 		}
-		
+
 		public static List<String> getDataToolTip(NBTTagCompound aData, List<String> aList, boolean aAllDetails) {
 			if (aData.hasKey(NBT_REACTOR_SETUP)) {
 				aList.add(LH.Chat.CYAN + "Reactor Setup: " + aData.getString(NBT_REACTOR_SETUP_NAME));
@@ -2089,14 +2107,14 @@ public class UT {
 			}
 			return aList;
 		}
-		
+
 		public static ItemStack addEnchantment(ItemStack aStack, Enchantment aEnchantment, long aLevel) {
 			NBTTagCompound tNBT = getNBT(aStack), tEnchantmentTag;
 			if (!tNBT.hasKey("ench", 9)) tNBT.setTag("ench", new NBTTagList());
 			NBTTagList tList = tNBT.getTagList("ench", 10);
-			
+
 			boolean temp = CS.T;
-			
+
 			for (int i = 0; i < tList.tagCount(); i++) {
 				tEnchantmentTag = tList.getCompoundTagAt(i);
 				if (tEnchantmentTag.getShort("id") == aEnchantment.effectId) {
@@ -2106,25 +2124,25 @@ public class UT {
 					break;
 				}
 			}
-			
+
 			if (temp) {
 				tEnchantmentTag = make();
 				tEnchantmentTag.setShort("id", (short)aEnchantment.effectId);
 				tEnchantmentTag.setShort("lvl", (byte)aLevel);
 				tList.appendTag(tEnchantmentTag);
 			}
-			
+
 			return set(aStack, tNBT);
 		}
 	}
-	
+
 	/**
 	 * THIS IS BULLSHIT!!! WHY DO I HAVE TO DO THIS SHIT JUST TO HAVE ENCHANTS PROPERLY!?!
 	 */
 	public static class Enchantments {
 		private static final BullshitIteratorA mBullshitIteratorA = new BullshitIteratorA();
 		private static final BullshitIteratorB mBullshitIteratorB = new BullshitIteratorB();
-		
+
 		private static void applyBullshit(IBullshit aBullshitModifier, ItemStack aStack) {
 			if (aStack != null) {
 				NBTTagList nbttaglist = aStack.getEnchantmentTagList();
@@ -2141,57 +2159,57 @@ public class UT {
 				}
 			}
 		}
-		
+
 		private static void applyArrayOfBullshit(IBullshit aBullshitModifier, ItemStack[] aStacks) {
 			for (int i = 0; i < aStacks.length; i++) applyBullshit(aBullshitModifier, aStacks[i]);
 		}
-		
+
 		public static void applyBullshitA(EntityLivingBase aPlayer, Entity aEntity, ItemStack aStack) {
 			mBullshitIteratorA.mPlayer = aPlayer;
 			mBullshitIteratorA.mEntity = aEntity;
 			if (aPlayer != null) applyArrayOfBullshit(mBullshitIteratorA, aPlayer.getLastActiveItems());
 			if (aStack != null) applyBullshit(mBullshitIteratorA, aStack);
 		}
-		
+
 		public static void applyBullshitB(EntityLivingBase aPlayer, Entity aEntity, ItemStack aStack) {
 			mBullshitIteratorB.mPlayer = aPlayer;
 			mBullshitIteratorB.mEntity = aEntity;
 			if (aPlayer != null) applyArrayOfBullshit(mBullshitIteratorB, aPlayer.getLastActiveItems());
 			if (aStack != null) applyBullshit(mBullshitIteratorB, aStack);
 		}
-		
+
 		static final class BullshitIteratorA implements IBullshit {
 			public EntityLivingBase mPlayer;
 			public Entity mEntity;
 			BullshitIteratorA() {}
-			
+
 			@Override
 			public void calculateModifier(Enchantment aEnchantment, int aLevel) {
 				aEnchantment.func_151367_b(mPlayer, mEntity, aLevel);
 			}
 		}
-		
+
 		static final class BullshitIteratorB implements IBullshit {
 			public EntityLivingBase mPlayer;
 			public Entity mEntity;
 			BullshitIteratorB() {}
-			
+
 			@Override
 			public void calculateModifier(Enchantment aEnchantment, int aLevel) {
 				aEnchantment.func_151368_a(mPlayer, mEntity, aLevel);
 			}
 		}
-		
+
 		interface IBullshit {
 			void calculateModifier(Enchantment aEnchantment, int aLevel);
 		}
 	}
-	
+
 	public static class Reflection {
 		public static String getLowercaseClass(Object aObject) {
 			return aObject == null ? "" : aObject.getClass().getName().substring(aObject.getClass().getName().lastIndexOf(".")+1).toLowerCase();
 		}
-		
+
 		public static Field getPublicField(Object aObject, String aField) {
 			Field rField = null;
 			try {
@@ -2199,11 +2217,11 @@ public class UT {
 			} catch (Throwable e) {/*Do nothing*/}
 			return rField;
 		}
-		
+
 		public static Field setField(Object aObject, String aField, Object aValue) {
 			return setField(aObject.getClass(), aObject, aField, aValue);
 		}
-		
+
 		public static Field setField(Class<?> aClass, Object aObject, String aField, Object aValue) {
 			Field rField = null;
 			try {
@@ -2213,7 +2231,7 @@ public class UT {
 			} catch (Throwable e) {e.printStackTrace(DEB);}
 			return rField;
 		}
-		
+
 		public static Field getField(Object aObject, String aField) {
 			Field rField = null;
 			try {
@@ -2222,7 +2240,7 @@ public class UT {
 			} catch (Throwable e) {/*Do nothing*/}
 			return rField;
 		}
-		
+
 		public static Field getField(Class<?> aObject, String aField) {
 			Field rField = null;
 			try {
@@ -2231,7 +2249,7 @@ public class UT {
 			} catch (Throwable e) {/*Do nothing*/}
 			return rField;
 		}
-		
+
 		public static Method getMethod(Class<?> aObject, String aMethod, Class<?>... aParameterTypes) {
 			Method rMethod = null;
 			try {
@@ -2260,7 +2278,7 @@ public class UT {
 			}
 			return null;
 		}
-		
+
 		public static Object getFieldContent(Object aObject, String aField) {return getFieldContent(aObject, aField, T, T);}
 		public static Object getFieldContent(Object aObject, String aField, boolean aPrivate, boolean aLogErrors) {
 			try {
@@ -2272,15 +2290,15 @@ public class UT {
 			}
 			return null;
 		}
-		
+
 		public static Object callPublicMethod(Object aObject, String aMethod, Object... aParameters) {
 			return callMethod(aObject, aMethod, F, F, T, aParameters);
 		}
-		
+
 		public static Object callPrivateMethod(Object aObject, String aMethod, Object... aParameters) {
 			return callMethod(aObject, aMethod, T, F, T, aParameters);
 		}
-		
+
 		public static Object callMethod(Object aObject, String aMethod, boolean aPrivate, boolean aUseUpperCasedDataTypes, boolean aLogErrors, Object... aParameters) {
 			try {
 				Class<?>[] tParameterTypes = new Class<?>[aParameters.length];
@@ -2301,7 +2319,7 @@ public class UT {
 						if (tParameterTypes[i] == Double.class ) tParameterTypes[i] = double.class;
 					}
 				}
-				
+
 				Method tMethod = aPrivate?
 				(aObject instanceof Class)?((Class<?>)aObject).getDeclaredMethod(aMethod, tParameterTypes):aObject.getClass().getDeclaredMethod(aMethod, tParameterTypes):
 				(aObject instanceof Class)?((Class<?>)aObject).getMethod        (aMethod, tParameterTypes):aObject.getClass().getMethod        (aMethod, tParameterTypes);
@@ -2312,11 +2330,11 @@ public class UT {
 			}
 			return null;
 		}
-		
+
 		public static Object callConstructor(String aClass, int aConstructorIndex, Object aReplacementObject, boolean aLogErrors, Object... aParameters) {
 			try {return callConstructor(Class.forName(aClass), aConstructorIndex, aReplacementObject, aLogErrors, aParameters);} catch (Throwable e) {if (aLogErrors) e.printStackTrace(ERR);} return aReplacementObject;
 		}
-		
+
 		public static Object callConstructor(Class<?> aClass, int aConstructorIndex, Object aReplacementObject, boolean aLogErrors, Object... aParameters) {
 			if (aConstructorIndex < 0) {
 				try {
@@ -2337,13 +2355,13 @@ public class UT {
 			}
 			return aReplacementObject;
 		}
-		
+
 		public static String getClassName(Object aObject) {
 			if (aObject == null) return "null";
 			return aObject.getClass().getName().substring(aObject.getClass().getName().lastIndexOf(".")+1);
 		}
 	}
-	
+
 	public static class Inventories {
 		@Deprecated public static boolean isConnectableNonInventoryPipe(Object aTileEntity, int aSide) {return F;}
 		@Deprecated public static byte moveStackIntoPipe(IInventory aTileEntity1, Object aTarget, int[] aGrabSlots, byte aGrabFrom, byte aPutTo, List<ItemStack> aFilter, boolean aInvertFilter, int aMaxTargetStackSize, int aMinTargetStackSize, int aMaxMoveAtOnce, int aMinMoveAtOnce) {return 0;}
@@ -2354,14 +2372,14 @@ public class UT {
 		@Deprecated public static byte moveOneItemStack(Object aTileEntity1, Object aTileEntity2, byte aGrabFrom, byte aPutTo, List<ItemStack> aFilter, boolean aInvertFilter, int aMaxTargetStackSize, int aMinTargetStackSize, int aMaxMoveAtOnce, int aMinMoveAtOnce) {return 0;}
 		@Deprecated public static byte moveOneItemStackIntoSlot(Object aTileEntity1, Object aTarget, byte aGrabFrom, int aPutTo, List<ItemStack> aFilter, boolean aInvertFilter, int aMaxTargetStackSize, int aMinTargetStackSize, int aMaxMoveAtOnce, int aMinMoveAtOnce) {return 0;}
 		@Deprecated public static byte moveFromSlotToSlot(IInventory aTileEntity1, IInventory aTileEntity2, int aGrabFrom, int aPutTo, List<ItemStack> aFilter, boolean aInvertFilter, int aMaxTargetStackSize, int aMinTargetStackSize, int aMaxMoveAtOnce, int aMinMoveAtOnce) {return 0;}
-		
+
 		public static void removeNullStacksFromInventory(IInventory aInventory) {
 			if (aInventory != null) for (int i = 0, j = aInventory.getSizeInventory(); i < j; i++) {
 				ItemStack tStack = aInventory.getStackInSlot(i);
 				if (tStack != null && (tStack.stackSize == 0 || tStack.getItem() == null)) aInventory.setInventorySlotContents(i, null);
 			}
 		}
-		
+
 		public static boolean checkAchievements(EntityPlayer aPlayer, ItemStack aStack) {
 			if (aPlayer == null || ST.invalid(aStack)) return F;
 			OreDictItemData tData = OM.association_(aStack);
@@ -2405,7 +2423,7 @@ public class UT {
 			}
 			return T;
 		}
-		
+
 		public static boolean addStackToPlayerInventory(EntityPlayer aPlayer, ItemStack aStack) {
 			return addStackToPlayerInventory(aPlayer, aStack, F);
 		}
@@ -2415,7 +2433,7 @@ public class UT {
 		public static boolean addStackToPlayerInventory(EntityPlayer aPlayer, IInventory aInventory, ItemStack aStack, boolean aCurrentSlotFirst) {
 			if (aInventory != null && ST.valid(aStack)) {
 				UT.Inventories.checkAchievements(aPlayer, aStack);
-				
+
 				for (int i = 0; i < 36; i++) if (aPlayer == null || i != aPlayer.inventory.currentItem) {
 					ItemStack tStack = aInventory.getStackInSlot(i);
 					if (ST.equal(tStack, aStack) && aStack.stackSize + tStack.stackSize <= tStack.getMaxStackSize()) {
@@ -2459,29 +2477,29 @@ public class UT {
 			}
 			return F;
 		}
-		
+
 		public static boolean addStackToPlayerInventoryOrDrop(EntityPlayer aPlayer, ItemStack aStack) {
 			return addStackToPlayerInventoryOrDrop(aPlayer, aStack, F, aPlayer.worldObj, aPlayer.posX, aPlayer.posY, aPlayer.posZ);
 		}
-		
+
 		public static boolean addStackToPlayerInventoryOrDrop(EntityPlayer aPlayer, ItemStack aStack, boolean aCurrentSlotFirst) {
 			return addStackToPlayerInventoryOrDrop(aPlayer, aStack, aCurrentSlotFirst, aPlayer.worldObj, aPlayer.posX, aPlayer.posY, aPlayer.posZ);
 		}
-		
+
 		public static boolean addStackToPlayerInventoryOrDrop(EntityPlayer aPlayer, ItemStack aStack, World aWorld, double aX, double aY, double aZ) {
 			return addStackToPlayerInventoryOrDrop(aPlayer, aStack, F, aWorld, aX, aY, aZ);
 		}
-		
+
 		public static boolean addStackToPlayerInventoryOrDrop(EntityPlayer aPlayer, ItemStack aStack, boolean aCurrentSlotFirst, World aWorld, double aX, double aY, double aZ) {
 			if (ST.valid(aStack) && !addStackToPlayerInventory(aPlayer, aStack, aCurrentSlotFirst)) ST.drop(aWorld, aX, aY, aZ, aStack);
 			return T;
 		}
-		
+
 		public static boolean addStackToPlayerInventoryOrDrop(EntityPlayer aPlayer, IInventory aInventory, ItemStack aStack, boolean aCurrentSlotFirst, World aWorld, double aX, double aY, double aZ) {
 			if (ST.valid(aStack) && !addStackToPlayerInventory(aPlayer, aInventory, aStack, aCurrentSlotFirst)) ST.drop(aWorld, aX, aY, aZ, aStack);
 			return T;
 		}
-		
+
 		public static ItemStack getProjectile(TagData aProjectileType, IInventory aInventory) {
 			if (aInventory != null) for (int i = 0, j = aInventory.getSizeInventory(); i < j; i++) {
 				ItemStack rStack = aInventory.getStackInSlot(i);
@@ -2490,35 +2508,35 @@ public class UT {
 			return null;
 		}
 	}
-	
+
 	public static class Sounds {
 		public static boolean MULTITHREADED = F;
 		public static List<PlayedSound> sPlayedSounds = new ArrayListNoNulls<>();
-		
+
 		public static boolean play(String aSoundName, int aTimeUntilNextSound, float aSoundStrength) {
 			if (!CODE_CLIENT || cpw.mods.fml.common.FMLCommonHandler.instance().getEffectiveSide().isServer()) return F;
 			return play(aSoundName, aTimeUntilNextSound, aSoundStrength, GT_API.api_proxy.getThePlayer());
 		}
-		
+
 		public static boolean play(String aSoundName, int aTimeUntilNextSound, float aSoundStrength, Entity aEntity) {
 			if (!CODE_CLIENT || aEntity == null || cpw.mods.fml.common.FMLCommonHandler.instance().getEffectiveSide().isServer()) return F;
 			return play(aSoundName, aTimeUntilNextSound, aSoundStrength, UT.Code.roundDown(aEntity.posX), UT.Code.roundDown(aEntity.posY), UT.Code.roundDown(aEntity.posZ));
 		}
-		
+
 		public static boolean play(String aSoundName, int aTimeUntilNextSound, float aSoundStrength, int aX, int aY, int aZ) {
 			return play(aSoundName, aTimeUntilNextSound, aSoundStrength, new ChunkCoordinates(aX, aY, aZ));
 		}
-		
+
 		public static boolean play(String aSoundName, int aTimeUntilNextSound, float aSoundStrength, ChunkCoordinates aCoords) {
 			if (aCoords == null) return play(aSoundName, aTimeUntilNextSound, aSoundStrength);
 			if (!CODE_CLIENT || cpw.mods.fml.common.FMLCommonHandler.instance().getEffectiveSide().isServer()) return F;
 			return play(aSoundName, aTimeUntilNextSound, aSoundStrength, 0.9F + RNGSUS.nextFloat() * 0.2F, aCoords.posX, aCoords.posY, aCoords.posZ);
 		}
-		
+
 		public static boolean play(String aSoundName, int aTimeUntilNextSound, float aSoundStrength, float aSoundModulation, int aX, int aY, int aZ) {
 			return play(aSoundName, aTimeUntilNextSound, aSoundStrength, aSoundModulation, new ChunkCoordinates(aX, aY, aZ));
 		}
-		
+
 		public static boolean play(String aSoundName, int aTimeUntilNextSound, float aSoundStrength, float aSoundModulation, ChunkCoordinates aCoords) {
 			if (!CODE_CLIENT || cpw.mods.fml.common.FMLCommonHandler.instance().getEffectiveSide().isServer()) return F;
 			EntityPlayer aPlayer = GT_API.api_proxy.getThePlayer();
@@ -2529,7 +2547,7 @@ public class UT {
 				new ThreadedSound(aPlayer.worldObj, UT.Code.roundDown(aCoords.posX), UT.Code.roundDown(aCoords.posY), UT.Code.roundDown(aCoords.posZ), aTimeUntilNextSound, aSoundName, aSoundStrength, aSoundModulation).run();
 			return T;
 		}
-		
+
 		public static boolean send(World aWorld, String aSoundName, float aSoundStrength, float aSoundModulation, int aX, int aY, int aZ) {
 			return send(aWorld, aSoundName, aSoundStrength, aSoundModulation, new ChunkCoordinates(aX, aY, aZ));
 		}
@@ -2548,25 +2566,25 @@ public class UT {
 		public static boolean send(World aWorld, String aSoundName, float aSoundStrength, float aSoundModulation, Entity aEntity) {
 			return send(aWorld, aSoundName, aSoundStrength, aSoundModulation, UT.Code.roundDown(aEntity.posX), UT.Code.roundDown(aEntity.posY), UT.Code.roundDown(aEntity.posZ));
 		}
-		
+
 		public static boolean send(World aWorld, String aSoundName, float aSoundStrength, float aSoundModulation, ChunkCoordinates aCoords) {
 			if (Code.stringInvalid(aSoundName) || aWorld == null || aWorld.isRemote) return F;
 			NW_API.sendToAllPlayersInRange(new PacketSound(aSoundName, aSoundStrength, aSoundModulation, aCoords), aWorld, aCoords);
 			return T;
 		}
-		
+
 		public static class PlayedSound {
 			public final String mSoundName;
 			public final int mX, mY, mZ;
 			public int mTimer = 0;
-			
+
 			public PlayedSound(String aSoundName, int aX, int aY, int aZ, int aTimer) {
 				mSoundName = aSoundName==null?"":aSoundName;
 				mX = aX;
 				mY = aY;
 				mZ = aZ;
 			}
-			
+
 			@Override
 			public boolean equals(Object aObject) {
 				if (aObject != null && aObject instanceof PlayedSound) {
@@ -2574,23 +2592,23 @@ public class UT {
 				}
 				return F;
 			}
-			
+
 			@Override
 			public int hashCode() {
 				return mX+mY+mZ+mSoundName.hashCode();
 			}
 		}
-		
+
 		public static class ThreadedSound implements Runnable {
 			private final int mX, mY, mZ, mTimeUntilNextSound;
 			private final World mWorld;
 			private final String mSoundName;
 			private final float mSoundStrength, mSoundModulation;
-			
+
 			public ThreadedSound(World aWorld, int aX, int aY, int aZ, int aTimeUntilNextSound, String aSoundName, float aSoundStrength, float aSoundModulation) {
 				mWorld = aWorld; mX = aX; mY = aY; mZ = aZ; mTimeUntilNextSound = aTimeUntilNextSound; mSoundName = aSoundName; mSoundStrength = aSoundStrength; mSoundModulation = aSoundModulation;
 			}
-			
+
 			@Override
 			public void run() {
 				try {
@@ -2602,90 +2620,90 @@ public class UT {
 			}
 		}
 	}
-	
+
 	public static class Entities {
 		/** Sends Messages to a Player */
 		public static void sendchat(Object aPlayer, String... aChatMessages) {
 			if (aPlayer instanceof EntityPlayerMP) for (String aMessage : aChatMessages) ((EntityPlayerMP)aPlayer).addChatComponentMessage(new ChatComponentText(aMessage));
 		}
-		
+
 		/** Sends Messages to a Player */
 		public static void sendchat(Object aPlayer, IChatComponent... aChatMessages) {
 			if (aPlayer instanceof EntityPlayerMP) for (IChatComponent aMessage : aChatMessages) ((EntityPlayerMP)aPlayer).addChatComponentMessage(aMessage);
 		}
-		
+
 		/** Sends Messages to a Player */
 		public static void sendchat(Object aPlayer, @SuppressWarnings("rawtypes") List aChatMessages, boolean aSkipFirst) {
 			if (aChatMessages != null && aPlayer instanceof EntityPlayerMP) for (Object aMessage : aChatMessages) if (aSkipFirst) aSkipFirst=F; else ((EntityPlayerMP)aPlayer).addChatComponentMessage(aMessage instanceof IChatComponent ? (IChatComponent)aMessage : new ChatComponentText(aMessage.toString()));
 		}
-		
+
 		public static void chat(Object aPlayer, String... aChatMessages) {
 			if (aPlayer == null) aPlayer = GT_API.api_proxy.getThePlayer();
 			if (aPlayer instanceof EntityPlayer) for (String aMessage : aChatMessages) ((EntityPlayer)aPlayer).addChatComponentMessage(new ChatComponentText(aMessage));
 		}
-		
+
 		public static void chat(Object aPlayer, IChatComponent... aChatMessages) {
 			if (aPlayer == null) aPlayer = GT_API.api_proxy.getThePlayer();
 			if (aPlayer instanceof EntityPlayer) for (IChatComponent aMessage : aChatMessages) ((EntityPlayer)aPlayer).addChatComponentMessage(aMessage);
 		}
-		
+
 		public static void chat(Object aPlayer, @SuppressWarnings("rawtypes") List aChatMessages, boolean aSkipFirst) {
 			if (aPlayer == null) aPlayer = GT_API.api_proxy.getThePlayer();
 			if (aChatMessages != null && aPlayer instanceof EntityPlayer) for (Object aMessage : aChatMessages) if (aSkipFirst) aSkipFirst=F; else ((EntityPlayer)aPlayer).addChatComponentMessage(aMessage instanceof IChatComponent ? (IChatComponent)aMessage : new ChatComponentText(aMessage.toString()));
 		}
-		
-		
-		
+
+
+
 		public static boolean isWearingFullFrostHazmat(EntityLivingBase aEntity) {
 			if (isCreative(aEntity)) return T;
 			for (byte i = 1; i < 5; i++) if (!ArmorsGT.HAZMATS_FROST.contains(aEntity.getEquipmentInSlot(i), T)) return F;
 			return T;
 		}
-		
+
 		public static boolean isWearingFullHeatHazmat(EntityLivingBase aEntity) {
 			if (isCreative(aEntity) || aEntity.getClass() == EntityWither.class || aEntity.getClass() == EntityBlaze.class || aEntity.getClass() == EntityPigZombie.class || aEntity.getClass() == EntityMagmaCube.class || aEntity.getClass() == EntityGhast.class) return T;
 			for (byte i = 1; i < 5; i++) if (!ArmorsGT.HAZMATS_HEAT.contains(aEntity.getEquipmentInSlot(i), T)) return F;
 			return T;
 		}
-		
+
 		public static boolean isWearingFullBioHazmat(EntityLivingBase aEntity) {
 			if (isCreative(aEntity) || aEntity.getClass() == EntityWither.class || aEntity.getClass() == EntityIronGolem.class) return T;
 			for (byte i = 1; i < 5; i++) if (!ArmorsGT.HAZMATS_BIO.contains(aEntity.getEquipmentInSlot(i), T)) return F;
 			return T;
 		}
-		
+
 		public static boolean isWearingFullChemHazmat(EntityLivingBase aEntity) {
 			if (isCreative(aEntity)) return T;
 			for (byte i = 1; i < 5; i++) if (!ArmorsGT.HAZMATS_CHEM.contains(aEntity.getEquipmentInSlot(i), T)) return F;
 			return T;
 		}
-		
+
 		public static boolean isWearingFullInsectHazmat(EntityLivingBase aEntity) {
 			if (isCreative(aEntity) || aEntity.getClass() == EntityWither.class || aEntity.getClass() == EntityIronGolem.class) return T;
 			for (byte i = 1; i < 5; i++) if (!ArmorsGT.HAZMATS_INSECTS.contains(aEntity.getEquipmentInSlot(i), T)) return F;
 			return T;
 		}
-		
+
 		public static boolean isWearingFullRadioHazmat(EntityLivingBase aEntity) {
 			if (isCreative(aEntity) || aEntity.getClass() == EntityWither.class || aEntity.getClass() == EntityIronGolem.class) return T;
 			for (byte i = 1; i < 5; i++) if (!ArmorsGT.HAZMATS_RADIOACTIVE.contains(aEntity.getEquipmentInSlot(i), T)) return F;
 			return T;
 		}
-		
+
 		public static boolean isWearingFullElectroHazmat(EntityLivingBase aEntity) {
 			if (isCreative(aEntity)) return T;
 			for (byte i = 1; i < 5; i++) if (!ArmorsGT.HAZMATS_LIGHTNING.contains(aEntity.getEquipmentInSlot(i), T)) return F;
 			return T;
 		}
-		
+
 		public static boolean isWearingFullGasHazmat(EntityLivingBase aEntity) {
 			if (isCreative(aEntity) || aEntity.getClass() == EntityWither.class || aEntity.getClass() == EntityIronGolem.class) return T;
 			for (byte i = 1; i < 5; i++) if (!ArmorsGT.HAZMATS_GAS.contains(aEntity.getEquipmentInSlot(i), T)) return F;
 			return T;
 		}
-		
-		
-		
+
+
+
 		public static boolean isSlimeCreature(EntityLivingBase aEntity) {
 			return aEntity instanceof EntitySlime || UT.Reflection.getLowercaseClass(aEntity).contains("slime");
 		}
@@ -2707,12 +2725,12 @@ public class UT {
 			String tClassName = UT.Reflection.getLowercaseClass(aEntity);
 			return tClassName.contains("wwolf") || tClassName.contains("villagerwere") || tClassName.contains("wolfman") || tClassName.contains("werewolf") || tClassName.contains("alphawolf") || tClassName.contains("tamewere");
 		}
-		
+
 		public static float getHeatDamageFromItem(ItemStack aStack) {
 			OreDictItemData tData = OM.anydata(aStack);
 			return tData==null?0:(tData.mPrefix==null?0:tData.mPrefix.mHeatDamage) + (tData.hasValidMaterialData()?tData.mMaterial.mMaterial.mHeatDamage:0);
 		}
-		
+
 		public static int getRadioactivityLevel(ItemStack aStack) {
 			return getRadioactivityLevel(aStack, OM.anydata(aStack));
 		}
@@ -2725,17 +2743,17 @@ public class UT {
 			rLevel = Math.max(rLevel, EnchantmentHelper.getEnchantmentLevel(Enchantment_Radioactivity.INSTANCE.effectId, aStack));
 			return Code.bindInt(rLevel);
 		}
-		
+
 		public static boolean isImmuneToBreathingGasses(EntityLivingBase aEntity) {
 			return isWearingFullGasHazmat(aEntity);
 		}
-		
+
 		public static boolean applyTemperatureDamage(Entity aEntity, long aTemperature, float aMultiplier) {
 			if (aTemperature > 320) return applyHeatDamage (aEntity, (aMultiplier * (aTemperature - 300)) / 50.0F);
 			if (aTemperature < 260) return applyFrostDamage(aEntity, (aMultiplier * (270 - aTemperature)) / 25.0F);
 			return F;
 		}
-		
+
 		public static boolean applyChemDamage(Entity aEntity, float aDamage) {
 			if (aDamage > 0 && aEntity instanceof EntityLivingBase && ((EntityLivingBase)aEntity).isEntityAlive() && aEntity.getClass() != EntitySkeleton.class && !isWearingFullChemHazmat(((EntityLivingBase)aEntity))) {
 				aEntity.attackEntityFrom(DamageSources.getChemDamage(), aDamage);
@@ -2745,7 +2763,7 @@ public class UT {
 			}
 			return F;
 		}
-		
+
 		public static boolean applyHeatDamage(Entity aEntity, float aDamage) {
 			if (aDamage > 0 && aEntity instanceof EntityLivingBase && ((EntityLivingBase)aEntity).isEntityAlive() && aEntity.getClass() != EntityBlaze.class && ((EntityLivingBase)aEntity).getActivePotionEffect(Potion.fireResistance) == null && !isWearingFullHeatHazmat(((EntityLivingBase)aEntity))) {
 				aEntity.attackEntityFrom(DamageSources.getHeatDamage(), aDamage);
@@ -2753,7 +2771,7 @@ public class UT {
 			}
 			return F;
 		}
-		
+
 		public static boolean applyFrostDamage(Entity aEntity, float aDamage) {
 			if (aDamage > 0 && aEntity instanceof EntityLivingBase && ((EntityLivingBase)aEntity).isEntityAlive() && !isWearingFullFrostHazmat(((EntityLivingBase)aEntity))) {
 				aEntity.attackEntityFrom(DamageSources.getFrostDamage(), aDamage);
@@ -2761,7 +2779,7 @@ public class UT {
 			}
 			return F;
 		}
-		
+
 		public static boolean applyElectricityDamage(Entity aEntity, long aVoltage, long aAmperage) {
 			long aDamage = Code.tierMax(aVoltage) * aAmperage * 4;
 			if (aDamage > 0 && aEntity instanceof EntityLivingBase && ((EntityLivingBase)aEntity).isEntityAlive() && !isWearingFullElectroHazmat(((EntityLivingBase)aEntity))) {
@@ -2770,7 +2788,7 @@ public class UT {
 			}
 			return F;
 		}
-		
+
 		public static boolean applyElectricityDamage(Entity aEntity, long aWattage) {
 			long aDamage = Code.tierMax(aWattage) * 4;
 			if (aDamage > 0 && aEntity instanceof EntityLivingBase && ((EntityLivingBase)aEntity).isEntityAlive() && !isWearingFullElectroHazmat(((EntityLivingBase)aEntity))) {
@@ -2779,7 +2797,7 @@ public class UT {
 			}
 			return F;
 		}
-		
+
 		public static boolean applyRadioactivity(Entity aEntity, int aLevel, int aAmountOfItems) {
 			if (aLevel > 0 && aEntity instanceof EntityLivingBase && ((EntityLivingBase)aEntity).isEntityAlive() && ((EntityLivingBase)aEntity).getCreatureAttribute() != EnumCreatureAttribute.UNDEAD && ((EntityLivingBase)aEntity).getCreatureAttribute() != EnumCreatureAttribute.ARTHROPOD && !isWearingFullRadioHazmat(((EntityLivingBase)aEntity))) {
 				PotionEffect tEffect = null;
@@ -2794,24 +2812,24 @@ public class UT {
 			}
 			return F;
 		}
-		
+
 		/** checks if a Player is actually a Player and not a FakePlayer or something. */
 		public static boolean isPlayer(Object aPlayer) {
 			return aPlayer instanceof EntityPlayerMP && !(aPlayer instanceof FakePlayer);
 		}
-		
+
 		public static boolean isCreative(Object aPlayer) {
 			return aPlayer instanceof EntityPlayer && ((EntityPlayer)aPlayer).capabilities.isCreativeMode;
 		}
-		
+
 		public static boolean isInvincible(Object aPlayer) {
 			return aPlayer instanceof EntityPlayer && ((EntityPlayer)aPlayer).capabilities.isCreativeMode;
 		}
-		
+
 		public static boolean hasInfiniteItems(Object aPlayer) {
 			return aPlayer instanceof EntityPlayer && ((EntityPlayer)aPlayer).capabilities.isCreativeMode;
 		}
-		
+
 		public static boolean consumeCurrentItem(EntityPlayer aPlayer) {
 			if (aPlayer == null) return F;
 			if (hasInfiniteItems(aPlayer)) return T;
@@ -2822,7 +2840,7 @@ public class UT {
 			return T;
 		}
 	}
-	
+
 	@Deprecated public static class Worlds {
 		@Deprecated public static ItemStack suckOneItemStackAt(World aWorld, double aX, double aY, double aZ, double aL, double aH, double aW) {return WD.suck(aWorld, aX, aY, aZ, aL, aH, aW);}
 		@Deprecated public static boolean isSideObstructed(World aWorld, int aX, int aY, int aZ, byte aSide) {return WD.obstructed(aWorld, aX, aY, aZ, aSide);}
@@ -2863,7 +2881,7 @@ public class UT {
 		@Deprecated public static boolean getCoordsOnFire(World aWorld, int aX, int aY, int aZ) {return WD.burning(aWorld, aX, aY, aZ);}
 		@Deprecated public static long getCoordinateScan(ArrayList<String> aList, EntityPlayer aPlayer, World aWorld, int aScanLevel, int aX, int aY, int aZ, byte aSide, float aClickX, float aClickY, float aClickZ) {return WD.scan(aList, aPlayer, aWorld, aScanLevel, aX, aY, aZ, aSide, aClickX, aClickY, aClickZ);}
 	}
-	
+
 	@Deprecated public static class Stacks {
 		@Deprecated public static boolean debugItem(ItemStack aStack) {return ST.debug(aStack);}
 		@Deprecated public static ItemStack update(ItemStack aStack) {return ST.update(aStack);}
@@ -2956,7 +2974,7 @@ public class UT {
 		@Deprecated public static NBTTagCompound save(NBTTagCompound aNBT, String aTagName, ItemStack aStack) {return ST.save(aNBT, aTagName, aStack);}
 		@Deprecated public static NBTTagCompound save(ItemStack aStack) {return ST.save(aStack);}
 	}
-	
+
 	@Deprecated public static class Crafting {
 		@Deprecated public static class Bits {@Deprecated public static final long NONE = 0, MIR = B[0], BUF = B[1], REV = B[5], KEEPNBT = B[2], DISMANTLE = B[3], NO_REM = B[4], NO_AUTO = B[14], NO_COLLISION_CHECK = B[10], DEL_OTHER_RECIPES = B[6], DEL_OTHER_RECIPES_IF_SAME_NBT = B[7], DEL_OTHER_SHAPED_RECIPES = B[8], DEL_OTHER_NATIVE_RECIPES = B[9], DEL_IF_NO_DYES = B[13], ONLY_IF_HAS_OTHER_RECIPES = B[11], ONLY_IF_HAS_RESULT = B[12], DEFAULT = BUF|NO_REM, DEFAULT_MIR = DEFAULT|MIR, DEFAULT_REV = DEFAULT|REV, DEFAULT_NCC = DEFAULT|NO_COLLISION_CHECK, DEFAULT_REV_NCC = DEFAULT_REV|NO_COLLISION_CHECK, DEFAULT_NAC = DEFAULT|NO_AUTO, DEFAULT_NAC_NCC = DEFAULT_NCC|NO_AUTO, DEFAULT_NAC_REV = DEFAULT_REV|NO_AUTO, DEFAULT_NAC_REV_NCC = DEFAULT_REV_NCC|NO_AUTO, DEFAULT_REM = DEFAULT|DEL_OTHER_RECIPES, DEFAULT_REM_REV = DEFAULT_REM|REV, DEFAULT_REM_NCC = DEFAULT_REM|NO_COLLISION_CHECK, DEFAULT_REM_REV_NCC = DEFAULT_REM_REV|NO_COLLISION_CHECK, DEFAULT_REM_NAC = DEFAULT_REM|NO_AUTO, DEFAULT_REM_NAC_NCC = DEFAULT_REM_NCC|NO_AUTO, DEFAULT_REM_NAC_REV = DEFAULT_REM_REV|NO_AUTO, DEFAULT_REM_NAC_REV_NCC = DEFAULT_REM_REV_NCC|NO_AUTO;}
 		@Deprecated public static boolean shaped(ItemStack aResult, Enchantment[] aEnchantmentsAdded, int[] aEnchantmentLevelsAdded, Object[] aRecipe) {return CR.shaped(aResult, aEnchantmentsAdded, aEnchantmentLevelsAdded, aRecipe);}
@@ -2975,7 +2993,7 @@ public class UT {
 		@Deprecated public static boolean remout(ModData aMod, String aName, int aMetaData) {return CR.remout(aMod, aName, aMetaData);}
 		@Deprecated public static ItemStack remove(ItemStack... aRecipe) {return CR.remove(aRecipe);}
 	}
-	
+
 	public static synchronized boolean removeSimpleIC2MachineRecipe(ItemStack aInput, @SuppressWarnings("rawtypes") Map aRecipeList, ItemStack aOutput) {
 		if (!MD.IC2.mLoaded || (ST.invalid(aInput) && ST.invalid(aOutput)) || aRecipeList == null || aRecipeList.isEmpty()) return F;
 		boolean rReturn = F;
@@ -2995,7 +3013,7 @@ public class UT {
 		}
 		return rReturn;
 	}
-	
+
 	public static boolean addSimpleIC2MachineRecipe(IMachineRecipeManager aRecipeManager, ItemStack aInput, NBTTagCompound aNBT, Object... aOutput) {
 		if (!MD.IC2.mLoaded || ST.invalid(aInput) || aOutput == null || aRecipeManager == null) return F;
 		try {
@@ -3018,7 +3036,7 @@ public class UT {
 		} catch(Throwable e) {/**/}
 		return T;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public static boolean addSimpleIC2MachineRecipe(ItemStack aInput, @SuppressWarnings("rawtypes") Map aRecipeList, NBTTagCompound aNBT, Object... aOutput) {
 		if (!MD.IC2.mLoaded || ST.invalid(aInput) || aOutput.length == 0 || aRecipeList == null) return F;
@@ -3030,17 +3048,17 @@ public class UT {
 		}
 		return T;
 	}
-	
+
 	/**
 	 * Yes, I have read all those warning that it might break. But I don't expect any further development on this Function by Forge during 1.7.10.
-	 * 
+	 *
 	 * That said, I've put a try/catch around this Stuff in case of random Errors.
 	 */
 	public static class LoadingBar {
 		public static boolean mEnabled = T;
 		public static Object mBar = null;
 		public static int mSize = 0, mCount = 0;
-		
+
 		@SuppressWarnings("deprecation")
 		public static boolean start(String aName, int aSize) {
 			if (mBar == null && mEnabled && aSize > 0) {
@@ -3055,7 +3073,7 @@ public class UT {
 			}
 			return F;
 		}
-		
+
 		@SuppressWarnings("deprecation")
 		public static boolean step(Object aStep) {
 			if (mBar != null && mEnabled) {
@@ -3075,7 +3093,7 @@ public class UT {
 			}
 			return F;
 		}
-		
+
 		@SuppressWarnings("deprecation")
 		public static boolean finish() {
 			if (mBar != null && mEnabled) {

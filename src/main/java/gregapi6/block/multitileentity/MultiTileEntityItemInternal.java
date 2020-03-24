@@ -28,7 +28,26 @@ import java.util.List;
 import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import gregapi6.block.multitileentity.IMultiTileEntity.*;
+import gregapi6.block.multitileentity.IMultiTileEntity.IMTE_AddToolTips;
+import gregapi6.block.multitileentity.IMultiTileEntity.IMTE_CanPlace;
+import gregapi6.block.multitileentity.IMultiTileEntity.IMTE_GetExplosionResistance;
+import gregapi6.block.multitileentity.IMultiTileEntity.IMTE_GetFlammability;
+import gregapi6.block.multitileentity.IMultiTileEntity.IMTE_GetFoodValues;
+import gregapi6.block.multitileentity.IMultiTileEntity.IMTE_GetItemName;
+import gregapi6.block.multitileentity.IMultiTileEntity.IMTE_GetItemUseAction;
+import gregapi6.block.multitileentity.IMultiTileEntity.IMTE_GetLifeSpan;
+import gregapi6.block.multitileentity.IMultiTileEntity.IMTE_GetMaxItemUseDuration;
+import gregapi6.block.multitileentity.IMultiTileEntity.IMTE_GetMaxStackSize;
+import gregapi6.block.multitileentity.IMultiTileEntity.IMTE_GetOreDictItemData;
+import gregapi6.block.multitileentity.IMultiTileEntity.IMTE_GetSubItems;
+import gregapi6.block.multitileentity.IMultiTileEntity.IMTE_HasMultiBlockMachineRelevantData;
+import gregapi6.block.multitileentity.IMultiTileEntity.IMTE_OnCrafted;
+import gregapi6.block.multitileentity.IMultiTileEntity.IMTE_OnDespawn;
+import gregapi6.block.multitileentity.IMultiTileEntity.IMTE_OnEaten;
+import gregapi6.block.multitileentity.IMultiTileEntity.IMTE_OnItemRightClick;
+import gregapi6.block.multitileentity.IMultiTileEntity.IMTE_OnItemUseFirst;
+import gregapi6.block.multitileentity.IMultiTileEntity.IMTE_OnPlaced;
+import gregapi6.block.multitileentity.IMultiTileEntity.IMTE_OnlyPlaceableWhenSneaking;
 import gregapi6.code.ArrayListNoNulls;
 import gregapi6.code.TagData;
 import gregapi6.cover.CoverData;
@@ -91,21 +110,21 @@ import vazkii.botania.api.subtile.SubTileEntity;
 })
 public class MultiTileEntityItemInternal extends ItemBlock implements squeek.applecore.api.food.IEdible, IItemReactorRod, IItemUpdatable, IItemColorableRGB, IOreDictItemDataOverrideItem, IItemGT, IItemNoGTOverride, IFluidContainerItem, ISpecialElectricItem, IElectricItemManager, IItemEnergy, IItemElectric, IItemRottable, IFlowerPlaceable {
 	public final MultiTileEntityBlockInternal mBlock;
-	
+
 	public MultiTileEntityItemInternal(Block aBlock) {
 		super(aBlock);
 		setMaxDamage(0);
 		setHasSubtypes(T);
 		mBlock = (MultiTileEntityBlockInternal)aBlock;
 	}
-	
+
 	@Override
 	public String getItemStackDisplayName(ItemStack aStack) {
 		MultiTileEntityContainer tTileEntityContainer = mBlock.mMultiTileEntityRegistry.getNewTileEntityContainer(aStack);
 		if (tTileEntityContainer != null && tTileEntityContainer.mTileEntity instanceof IMTE_GetItemName) return ((IMTE_GetItemName)tTileEntityContainer.mTileEntity).getItemName(aStack, super.getItemStackDisplayName(aStack));
 		return super.getItemStackDisplayName(aStack);
 	}
-	
+
 	@Override
 	@SuppressWarnings("unchecked")
 	public void addInformation(ItemStack aStack, EntityPlayer aPlayer, @SuppressWarnings("rawtypes") List aList, boolean aF3_H) {
@@ -131,20 +150,20 @@ public class MultiTileEntityItemInternal extends ItemBlock implements squeek.app
 		// Remove all Nulls and fix eventual Formatting mistakes.
 		for (int i = 0, j = aList.size(); i < j; i++) if (aList.get(i) == null) {aList.remove(i--); j--;} else aList.set(i, LH.Chat.GRAY + aList.get(i) + LH.Chat.RESET);
 	}
-	
+
 	public int onDespawn(EntityItem aEntity, ItemStack aStack) {
 		MultiTileEntityContainer tTileEntityContainer = mBlock.mMultiTileEntityRegistry.getNewTileEntityContainer(aStack);
 		if (tTileEntityContainer != null && tTileEntityContainer.mTileEntity instanceof IMTE_OnDespawn) try {return ((IMTE_OnDespawn)tTileEntityContainer.mTileEntity).onDespawn(aEntity, aStack);} catch(Throwable e) {e.printStackTrace(ERR);}
 		return 0;
 	}
-	
+
 	@Override
 	public int getEntityLifespan(ItemStack aStack, World aWorld) {
 		MultiTileEntityContainer tTileEntityContainer = mBlock.mMultiTileEntityRegistry.getNewTileEntityContainer(aStack);
 		if (tTileEntityContainer != null && tTileEntityContainer.mTileEntity instanceof IMTE_GetLifeSpan) try {return ((IMTE_GetLifeSpan)tTileEntityContainer.mTileEntity).getLifeSpan(aWorld, aStack);} catch(Throwable e) {e.printStackTrace(ERR);}
 		return super.getEntityLifespan(aStack, aWorld);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	@SuppressWarnings("unchecked")
@@ -155,16 +174,16 @@ public class MultiTileEntityItemInternal extends ItemBlock implements squeek.app
 			for (MultiTileEntityClassContainer tClass : mBlock.mMultiTileEntityRegistry.mRegistrations) if (!tClass.mHidden || SHOW_HIDDEN_ITEMS) if (!(tClass.mCanonicalTileEntity instanceof IMTE_GetSubItems) || ((IMTE_GetSubItems)tClass.mCanonicalTileEntity).getSubItems(mBlock, aItem, aTab, aList, tClass.mID)) aList.add(mBlock.mMultiTileEntityRegistry.getItem(tClass.mID));
 		}
 	}
-	
+
 	@Override
 	public CreativeTabs[] getCreativeTabs() {
 		return mBlock.mMultiTileEntityRegistry.mCreativeTabs.values().toArray(new CreativeTabs[mBlock.mMultiTileEntityRegistry.mCreativeTabs.size()]);
 	}
-	
+
 	@Override
 	public boolean onItemUse(ItemStack aStack, EntityPlayer aPlayer, World aWorld, int aX, int aY, int aZ, int aSide, float aHitX, float aHitY, float aHitZ) {
 		if (aY < 0 || aY > aWorld.getHeight()) return F;
-		
+
 		try {
 			Block tClickedBlock = aWorld.getBlock(aX, aY, aZ);
 			if (tClickedBlock instanceof BlockSnow && (aWorld.getBlockMetadata(aX, aY, aZ) & 7) < 1) {
@@ -173,19 +192,19 @@ public class MultiTileEntityItemInternal extends ItemBlock implements squeek.app
 				aX += OFFSETS_X[aSide]; aY += OFFSETS_Y[aSide]; aZ += OFFSETS_Z[aSide];
 			}
 			Block tReplacedBlock = aWorld.getBlock(aX, aY, aZ);
-			
+
 			if (aStack.stackSize == 0 || (aPlayer != null && !aPlayer.canPlayerEdit(aX, aY, aZ, aSide, aStack))) return F;
-			
+
 			MultiTileEntityContainer aMTEContainer = mBlock.mMultiTileEntityRegistry.getNewTileEntityContainer(aWorld, aX, aY, aZ, aStack);
-			
+
 			if (aMTEContainer != null && (aPlayer == null || aPlayer.isSneaking() || !(aMTEContainer.mTileEntity instanceof IMTE_OnlyPlaceableWhenSneaking) || !((IMTE_OnlyPlaceableWhenSneaking)aMTEContainer.mTileEntity).onlyPlaceableWhenSneaking()) && aWorld.canPlaceEntityOnSide(aMTEContainer.mBlock, aX, aY, aZ, F, aSide, aPlayer, aStack) && (!(aMTEContainer.mTileEntity instanceof IMTE_CanPlace) || ((IMTE_CanPlace)aMTEContainer.mTileEntity).canPlace(aStack, aPlayer, aWorld, aX, aY, aZ, (byte)aSide, aHitX, aHitY, aHitZ)) && aWorld.setBlock(aX, aY, aZ, aMTEContainer.mBlock, 15-aMTEContainer.mBlockMetaData, 2)) {
-				// That is some complicated Bullshit I have to do to make my MTEs work right. 
+				// That is some complicated Bullshit I have to do to make my MTEs work right.
 				((IMultiTileEntity)aMTEContainer.mTileEntity).setShouldRefresh(F);
 				WD.te(aWorld, aX, aY, aZ, aMTEContainer.mTileEntity, F);
 				WD.set(aWorld, aX, aY, aZ, aMTEContainer.mBlock, aMTEContainer.mBlockMetaData, 0, F);
 				((IMultiTileEntity)aMTEContainer.mTileEntity).setShouldRefresh(T);
 				WD.te(aWorld, aX, aY, aZ, aMTEContainer.mTileEntity, T);
-				
+
 				try {
 					if (!(aMTEContainer.mTileEntity instanceof IMTE_OnPlaced) || ((IMTE_OnPlaced)aMTEContainer.mTileEntity).onPlaced(aStack, aPlayer, aMTEContainer, aWorld, aX, aY, aZ, (byte)aSide, aHitX, aHitY, aHitZ)) {
 						aWorld.playSoundEffect(aX+0.5, aY+0.5, aZ+0.5, aMTEContainer.mBlock.stepSound.func_150496_b(), (aMTEContainer.mBlock.stepSound.getVolume()+1) / 2, aMTEContainer.mBlock.stepSound.getPitch()*0.8F);
@@ -210,7 +229,7 @@ public class MultiTileEntityItemInternal extends ItemBlock implements squeek.app
 				try {
 					aWorld.func_147451_t(aX, aY, aZ);
 				} catch(Throwable e) {e.printStackTrace(ERR);}
-				
+
 				aStack.stackSize--;
 				return T;
 			}
@@ -219,7 +238,7 @@ public class MultiTileEntityItemInternal extends ItemBlock implements squeek.app
 		}
 		return F;
 	}
-	
+
 	@Override
 	public void updateItemStack(ItemStack aStack) {
 		MultiTileEntityClassContainer tContainer = mBlock.mMultiTileEntityRegistry.getClassContainer(aStack);
@@ -238,7 +257,7 @@ public class MultiTileEntityItemInternal extends ItemBlock implements squeek.app
 			((IItemUpdatable)tTileEntityContainer.mTileEntity).updateItemStack(aStack, aWorld, aX, aY, aZ);
 		}
 	}
-	
+
 	@Override
 	public int getItemStackLimit(ItemStack aStack) {
 		MultiTileEntityClassContainer tContainer = mBlock.mMultiTileEntityRegistry.getClassContainer(aStack);
@@ -249,7 +268,7 @@ public class MultiTileEntityItemInternal extends ItemBlock implements squeek.app
 		}
 		return tContainer.mStackSize;
 	}
-	
+
 	@Override
 	public void onCreated(ItemStack aStack, World aWorld, EntityPlayer aPlayer) {
 		MultiTileEntityContainer tTileEntityContainer = mBlock.mMultiTileEntityRegistry.getNewTileEntityContainer(aStack);
@@ -259,7 +278,7 @@ public class MultiTileEntityItemInternal extends ItemBlock implements squeek.app
 		}
 		updateItemStack(aStack);
 	}
-	
+
 	@Override
 	public OreDictItemData getOreDictItemData(ItemStack aStack) {
 		List<OreDictItemData> rList = new ArrayListNoNulls<>(F, OM.data(aStack));
@@ -280,7 +299,7 @@ public class MultiTileEntityItemInternal extends ItemBlock implements squeek.app
 		}
 		return rList.isEmpty() ? null : rList.size() > 1 ? new OreDictItemData(rList) : rList.get(0);
 	}
-	
+
 	@Override
 	public FluidStack getFluid(ItemStack aStack) {
 		MultiTileEntityContainer tTileEntityContainer = mBlock.mMultiTileEntityRegistry.getNewTileEntityContainer(aStack);
@@ -291,7 +310,7 @@ public class MultiTileEntityItemInternal extends ItemBlock implements squeek.app
 		}
 		return NF;
 	}
-	
+
 	@Override
 	public int getCapacity(ItemStack aStack) {
 		MultiTileEntityContainer tTileEntityContainer = mBlock.mMultiTileEntityRegistry.getNewTileEntityContainer(aStack);
@@ -302,7 +321,7 @@ public class MultiTileEntityItemInternal extends ItemBlock implements squeek.app
 		}
 		return 0;
 	}
-	
+
 	@Override
 	public int fill(ItemStack aStack, FluidStack aFluid, boolean aDoFill) {
 		MultiTileEntityContainer tTileEntityContainer = mBlock.mMultiTileEntityRegistry.getNewTileEntityContainer(aStack);
@@ -313,7 +332,7 @@ public class MultiTileEntityItemInternal extends ItemBlock implements squeek.app
 		}
 		return 0;
 	}
-	
+
 	@Override
 	public FluidStack drain(ItemStack aStack, int aMaxDrain, boolean aDoDrain) {
 		MultiTileEntityContainer tTileEntityContainer = mBlock.mMultiTileEntityRegistry.getNewTileEntityContainer(aStack);
@@ -324,7 +343,7 @@ public class MultiTileEntityItemInternal extends ItemBlock implements squeek.app
 		}
 		return NF;
 	}
-	
+
 	@Override
 	public boolean canRecolorItem(ItemStack aStack) {
 		MultiTileEntityContainer tTileEntityContainer = mBlock.mMultiTileEntityRegistry.getNewTileEntityContainer(aStack);
@@ -333,7 +352,7 @@ public class MultiTileEntityItemInternal extends ItemBlock implements squeek.app
 		}
 		return F;
 	}
-	
+
 	@Override
 	public boolean recolorItem(ItemStack aStack, int aRGB) {
 		MultiTileEntityContainer tTileEntityContainer = mBlock.mMultiTileEntityRegistry.getNewTileEntityContainer(aStack);
@@ -345,7 +364,7 @@ public class MultiTileEntityItemInternal extends ItemBlock implements squeek.app
 		}
 		return F;
 	}
-	
+
 	@Override
 	public boolean canDecolorItem(ItemStack aStack) {
 		MultiTileEntityContainer tTileEntityContainer = mBlock.mMultiTileEntityRegistry.getNewTileEntityContainer(aStack);
@@ -354,7 +373,7 @@ public class MultiTileEntityItemInternal extends ItemBlock implements squeek.app
 		}
 		return F;
 	}
-	
+
 	@Override
 	public boolean decolorItem(ItemStack aStack) {
 		MultiTileEntityContainer tTileEntityContainer = mBlock.mMultiTileEntityRegistry.getNewTileEntityContainer(aStack);
@@ -366,7 +385,7 @@ public class MultiTileEntityItemInternal extends ItemBlock implements squeek.app
 		}
 		return F;
 	}
-	
+
 	@Override
 	public boolean onItemUseFirst(ItemStack aStack, EntityPlayer aPlayer, World aWorld, int aX, int aY, int aZ, int aSide, float hitX, float hitY, float hitZ) {
 		MultiTileEntityContainer tTileEntityContainer = mBlock.mMultiTileEntityRegistry.getNewTileEntityContainer(aStack);
@@ -377,7 +396,7 @@ public class MultiTileEntityItemInternal extends ItemBlock implements squeek.app
 		}
 		return F;
 	}
-	
+
 	@Override
 	public ItemStack onItemRightClick(ItemStack aStack, World aWorld, EntityPlayer aPlayer) {
 		MultiTileEntityContainer tTileEntityContainer = mBlock.mMultiTileEntityRegistry.getNewTileEntityContainer(aStack);
@@ -389,7 +408,7 @@ public class MultiTileEntityItemInternal extends ItemBlock implements squeek.app
 		}
 		return aStack;
 	}
-	
+
 	@Override
 	public int getMaxItemUseDuration(ItemStack aStack) {
 		MultiTileEntityContainer tTileEntityContainer = mBlock.mMultiTileEntityRegistry.getNewTileEntityContainer(aStack);
@@ -400,7 +419,7 @@ public class MultiTileEntityItemInternal extends ItemBlock implements squeek.app
 		}
 		return 0;
 	}
-	
+
 	@Override
 	public EnumAction getItemUseAction(ItemStack aStack) {
 		MultiTileEntityContainer tTileEntityContainer = mBlock.mMultiTileEntityRegistry.getNewTileEntityContainer(aStack);
@@ -411,7 +430,7 @@ public class MultiTileEntityItemInternal extends ItemBlock implements squeek.app
 		}
 		return EnumAction.none;
 	}
-	
+
 	@Override
 	public ItemStack onEaten(ItemStack aStack, World aWorld, EntityPlayer aPlayer) {
 		MultiTileEntityContainer tTileEntityContainer = mBlock.mMultiTileEntityRegistry.getNewTileEntityContainer(aStack);
@@ -423,7 +442,7 @@ public class MultiTileEntityItemInternal extends ItemBlock implements squeek.app
 		}
 		return aStack;
 	}
-	
+
 	@Override
 	@Optional.Method(modid = ModIDs.APC)
 	public squeek.applecore.api.food.FoodValues getFoodValues(ItemStack aStack) {
@@ -431,22 +450,22 @@ public class MultiTileEntityItemInternal extends ItemBlock implements squeek.app
 		if (tTileEntityContainer != null && tTileEntityContainer.mTileEntity instanceof IMTE_GetFoodValues) return ((IMTE_GetFoodValues)tTileEntityContainer.mTileEntity).getFoodValues(this, aStack);
 		return null;
 	}
-	
+
 	@Override
 	public ItemStack getRotten(ItemStack aStack) {
 		MultiTileEntityContainer tTileEntityContainer = mBlock.mMultiTileEntityRegistry.getNewTileEntityContainer(aStack);
 		if (tTileEntityContainer != null && tTileEntityContainer.mTileEntity instanceof IItemRottable) return ((IItemRottable)tTileEntityContainer.mTileEntity).getRotten(aStack);
 		return IItemRottable.RottingUtil.rotting(aStack, this);
 	}
-	
+
 	@Override
 	public ItemStack getRotten(ItemStack aStack, World aWorld, int aX, int aY, int aZ) {
 		MultiTileEntityContainer tTileEntityContainer = mBlock.mMultiTileEntityRegistry.getNewTileEntityContainer(aStack);
 		if (tTileEntityContainer != null && tTileEntityContainer.mTileEntity instanceof IItemRottable) return ((IItemRottable)tTileEntityContainer.mTileEntity).getRotten(aStack, aWorld, aX, aY, aZ);
 		return IItemRottable.RottingUtil.rotting(aStack, this);
 	}
-	
-	
+
+
 	@Override
 	public boolean isReactorRod(ItemStack aStack) {
 		MultiTileEntityContainer tTileEntityContainer = mBlock.mMultiTileEntityRegistry.getNewTileEntityContainer(aStack);
@@ -472,6 +491,12 @@ public class MultiTileEntityItemInternal extends ItemBlock implements squeek.app
 		return 0;
 	}
 	@Override
+	public int getReactorRodNeutronMaximum(MultiTileEntityReactorCore aReactor, int aSlot, ItemStack aStack) {
+		MultiTileEntityContainer tTileEntityContainer = mBlock.mMultiTileEntityRegistry.getNewTileEntityContainer(aStack);
+		if (tTileEntityContainer != null && tTileEntityContainer.mTileEntity instanceof IItemReactorRod) return ((IItemReactorRod)tTileEntityContainer.mTileEntity).getReactorRodNeutronMaximum(aReactor, aSlot, aStack);
+		return 0;
+	}
+	@Override
 	public ITexture getReactorRodTextureSides(MultiTileEntityReactorCore aReactor, int aSlot, ItemStack aStack, boolean aActive) {
 		MultiTileEntityContainer tTileEntityContainer = mBlock.mMultiTileEntityRegistry.getNewTileEntityContainer(aStack);
 		if (tTileEntityContainer != null && tTileEntityContainer.mTileEntity instanceof IItemReactorRod) return ((IItemReactorRod)tTileEntityContainer.mTileEntity).getReactorRodTextureSides(aReactor, aSlot, aStack, aActive);
@@ -483,8 +508,8 @@ public class MultiTileEntityItemInternal extends ItemBlock implements squeek.app
 		if (tTileEntityContainer != null && tTileEntityContainer.mTileEntity instanceof IItemReactorRod) return ((IItemReactorRod)tTileEntityContainer.mTileEntity).getReactorRodTextureTop(aReactor, aSlot, aStack, aActive);
 		return BlockTextureCopied.get(Blocks.cobblestone);
 	}
-	
-	
+
+
 	@Override
 	public boolean isEnergyType(TagData aEnergyType, ItemStack aStack, boolean aEmitting) {
 		MultiTileEntityContainer tTileEntityContainer = mBlock.mMultiTileEntityRegistry.getNewTileEntityContainer(aStack);
@@ -581,21 +606,21 @@ public class MultiTileEntityItemInternal extends ItemBlock implements squeek.app
 		if (tTileEntityContainer != null && tTileEntityContainer.mTileEntity instanceof IItemEnergy) return ((IItemEnergy)tTileEntityContainer.mTileEntity).getEnergySizeOutputMax(aEnergyType, aStack);
 		return 0;
 	}
-	
+
 	@Override
 	public double charge(ItemStack aStack, double aCharge, int aTier, boolean aIgnoreTransferLimit, boolean aSimulate) {
 		aTier = UT.Code.bind4(aTier);
 		if (aCharge < V[aTier]) return 0;
 		return V[aTier] * doEnergyInjection(TD.Energy.EU, aStack, V[aTier], (long)(aCharge / V[aTier]), null, null, 0, 0, 0, !aSimulate);
 	}
-	
+
 	@Override
 	public double discharge(ItemStack aStack, double aCharge, int aTier, boolean aIgnoreTransferLimit, boolean aBatteryAlike, boolean aSimulate) {
 		aTier = UT.Code.bind4(aTier);
 		if (aCharge < V[aTier]) return 0;
 		return V[aTier] * doEnergyExtraction(TD.Energy.EU, aStack, V[aTier], (long)(aCharge / V[aTier]), null, null, 0, 0, 0, !aSimulate);
 	}
-	
+
 	@Override
 	public float discharge(ItemStack aStack, float aEnergy, boolean aDoExtract) {
 		if (aEnergy <= 0) return 0;
@@ -604,11 +629,11 @@ public class MultiTileEntityItemInternal extends ItemBlock implements squeek.app
 		long tAmount = UT.Code.bind(1, tMaxOut, (long)(aEnergy / EnergyConfigHandler.IC2_RATIO));
 		return useEnergy(TD.Energy.EU, aStack, tAmount, null, null, null, 0, 0, 0, F) && useEnergy(TD.Energy.EU, aStack, tAmount, null, null, null, 0, 0, 0, T) ? tAmount * EnergyConfigHandler.IC2_RATIO : 0;
 	}
-	
+
 	@Optional.Method(modid = ModIDs.IC2 ) @Override public IElectricItemManager getManager(ItemStack aStack) {return this;} // We are our own Manager
 	@Optional.Method(modid = ModIDs.BOTA) @Override public Block getBlockToPlaceByFlower(ItemStack aStack, SubTileEntity aFlower, int aX, int aY, int aZ) {return null;}
 	@Optional.Method(modid = ModIDs.BOTA) @Override public void onBlockPlacedByFlower(ItemStack aStack, SubTileEntity aFlower, int aX, int aY, int aZ) {/**/}
-	
+
 	@Override public String getToolTip(ItemStack aStack) {return null;} // This has its own ToolTip Handler, no need to let the IC2 Handler screw us up at this Point
 	@Override public void chargeFromArmor(ItemStack aStack, EntityLivingBase aPlayer) {/**/}
 	@Override public float getElectricityStored(ItemStack aStack) {return getEnergyStored(TD.Energy.EU, aStack) * EnergyConfigHandler.IC2_RATIO;}

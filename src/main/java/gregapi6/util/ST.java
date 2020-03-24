@@ -78,7 +78,7 @@ import net.minecraftforge.fluids.IFluidContainerItem;
  */
 public class ST {
 	public static boolean TE_PIPES = F, BC_PIPES = F;
-	
+
 	public static void checkAvailabilities() {
 		try {
 			cofh.api.transport.IItemDuct.class.getCanonicalName();
@@ -89,43 +89,54 @@ public class ST {
 			BC_PIPES = T;
 		} catch(Throwable e) {/**/}
 	}
-	
+
 	public static boolean equal (ItemStack aStack1, ItemStack aStack2) {return equal(aStack1, aStack2, F);}
 	public static boolean equal (ItemStack aStack1, ItemStack aStack2, boolean aIgnoreNBT) {return aStack1 != null && aStack2 != null && equal_(aStack1, aStack2, aIgnoreNBT);}
 	public static boolean equal_(ItemStack aStack1, ItemStack aStack2, boolean aIgnoreNBT) {return item_(aStack1) == item_(aStack2) && equal(meta_(aStack1), meta_(aStack2)) && (aIgnoreNBT || (((nbt_(aStack1) == null) == (nbt_(aStack2) == null)) && (nbt_(aStack1) == null || nbt_(aStack1).equals(nbt_(aStack2)))));}
-	
-	public static boolean equal (ItemStack aStack, Item  aItem ) {return aStack != null && aItem  != null && equal_(aStack, aItem );}
-	public static boolean equal (ItemStack aStack, Block aBlock) {return aStack != null && aBlock != null && equal_(aStack, aBlock);}
-	public static boolean equal_(ItemStack aStack, Item  aItem ) {return item_ (aStack) == aItem ;}
-	public static boolean equal_(ItemStack aStack, Block aBlock) {return block_(aStack) == aBlock;}
-	public static boolean equal (ItemStack aStack, Item  aItem , long aMeta) {return aStack != null && aItem  != null && equal_(aStack, aItem , aMeta);}
-	public static boolean equal (ItemStack aStack, Block aBlock, long aMeta) {return aStack != null && aBlock != null && equal_(aStack, aBlock, aMeta);}
-	public static boolean equal_(ItemStack aStack, Item  aItem , long aMeta) {return equal(meta_(aStack), aMeta) && item_ (aStack) == aItem ;}
-	public static boolean equal_(ItemStack aStack, Block aBlock, long aMeta) {return equal(meta_(aStack), aMeta) && block_(aStack) == aBlock;}
+
+	public static boolean equal (ItemStack aStack, Item  aItem                             ) {return aStack != null && aItem  != null && equal_(aStack, aItem );}
+	public static boolean equal (ItemStack aStack, Block aBlock                            ) {return aStack != null && aBlock != null && equal_(aStack, aBlock);}
+	public static boolean equal_(ItemStack aStack, Item  aItem                             ) {return item_ (aStack) == aItem ;}
+	public static boolean equal_(ItemStack aStack, Block aBlock                            ) {return block_(aStack) == aBlock;}
+	public static boolean equal (ItemStack aStack, Item  aItem                 , long aMeta) {return aStack != null && aItem  != null && equal_(aStack, aItem , aMeta);}
+	public static boolean equal (ItemStack aStack, Block aBlock                , long aMeta) {return aStack != null && aBlock != null && equal_(aStack, aBlock, aMeta);}
+	public static boolean equal_(ItemStack aStack, Item  aItem                 , long aMeta) {return equal(meta_(aStack), aMeta) && item_ (aStack) == aItem ;}
+	public static boolean equal_(ItemStack aStack, Block aBlock                , long aMeta) {return equal(meta_(aStack), aMeta) && block_(aStack) == aBlock;}
 	public static boolean equal (ItemStack aStack, ModData aModID, String aItem            ) {return equal(aStack, GameRegistry.findItem(aModID.mID, aItem));}
 	public static boolean equal (ItemStack aStack, ModData aModID, String aItem, long aMeta) {return equal(aStack, GameRegistry.findItem(aModID.mID, aItem), aMeta);}
-	
+
+	public static boolean equal (ItemStack aStack, Item  aItem                             , boolean aAllowNBT) {return aStack != null && aItem  != null && equal_(aStack, aItem , aAllowNBT);}
+	public static boolean equal (ItemStack aStack, Block aBlock                            , boolean aAllowNBT) {return aStack != null && aBlock != null && equal_(aStack, aBlock, aAllowNBT);}
+	public static boolean equal_(ItemStack aStack, Item  aItem                             , boolean aAllowNBT) {return item_ (aStack) == aItem  && aAllowNBT == aStack.hasTagCompound();}
+	public static boolean equal_(ItemStack aStack, Block aBlock                            , boolean aAllowNBT) {return block_(aStack) == aBlock && aAllowNBT == aStack.hasTagCompound();}
+	public static boolean equal (ItemStack aStack, Item  aItem                 , long aMeta, boolean aAllowNBT) {return aStack != null && aItem  != null && equal_(aStack, aItem , aMeta, aAllowNBT);}
+	public static boolean equal (ItemStack aStack, Block aBlock                , long aMeta, boolean aAllowNBT) {return aStack != null && aBlock != null && equal_(aStack, aBlock, aMeta, aAllowNBT);}
+	public static boolean equal_(ItemStack aStack, Item  aItem                 , long aMeta, boolean aAllowNBT) {return equal(meta_(aStack), aMeta) && item_ (aStack) == aItem  && aAllowNBT == aStack.hasTagCompound();}
+	public static boolean equal_(ItemStack aStack, Block aBlock                , long aMeta, boolean aAllowNBT) {return equal(meta_(aStack), aMeta) && block_(aStack) == aBlock && aAllowNBT == aStack.hasTagCompound();}
+	public static boolean equal (ItemStack aStack, ModData aModID, String aItem            , boolean aAllowNBT) {return equal(aStack, GameRegistry.findItem(aModID.mID, aItem), aAllowNBT);}
+	public static boolean equal (ItemStack aStack, ModData aModID, String aItem, long aMeta, boolean aAllowNBT) {return equal(aStack, GameRegistry.findItem(aModID.mID, aItem), aMeta, aAllowNBT);}
+
 	public static boolean equal (long aMeta1, long aMeta2) {return aMeta1 == aMeta2 || aMeta1 == W || aMeta2 == W;}
-	
+
 	public static boolean equalTools (ItemStack aStack1, ItemStack aStack2, boolean aIgnoreNBT) {return aStack1 != null && aStack2 != null && equalTools_(aStack1, aStack2, aIgnoreNBT);}
 	public static boolean equalTools_(ItemStack aStack1, ItemStack aStack2, boolean aIgnoreNBT) {return item_(aStack1) == item_(aStack2) && equal(meta_(aStack1), meta_(aStack2)) && (aIgnoreNBT || item_(aStack1) instanceof IItemGTContainerTool || (((nbt_(aStack1) == null) == (nbt_(aStack2) == null)) && (nbt_(aStack1) == null || nbt_(aStack1).equals(nbt_(aStack2)))));}
-	
+
 	public static boolean isGT (Item aItem) {return aItem instanceof IItemGT;}
 	public static boolean isGT (ItemStack aStack) {return aStack != null && isGT_(aStack);}
 	public static boolean isGT_(ItemStack aStack) {return isGT(aStack.getItem());}
-	
+
 	public static boolean   valid(ItemStack aStack) {return aStack != null && aStack.stackSize >= 0 && item_(aStack) != null;}
 	public static boolean invalid(ItemStack aStack) {return aStack == null || aStack.stackSize <  0 || item_(aStack) == null;}
-	
+
 	public static ItemStack validate(ItemStack aStack) {return valid(aStack)                         ? aStack : null;}
 	public static ItemStack valisize(ItemStack aStack) {return valid(aStack) && aStack.stackSize > 0 ? aStack : null;}
-	
+
 	public static short id (Item      aItem ) {return aItem  == null ? 0 : id_(aItem);}
 	public static short id_(Item      aItem ) {return (short)Item.getIdFromItem(aItem);}
 	public static short id (Block     aBlock) {return aBlock == null ? 0 : id_(aBlock);}
 	public static short id_(Block     aBlock) {return aBlock == NB   ? 0 : (short)Block.getIdFromBlock(aBlock);}
 	public static short id (ItemStack aStack) {return aStack == null ? 0 : id(item_(aStack));}
-	
+
 	public static Item item (ModData aModID, String aItem) {return item(make(aModID, aItem, 1, 0));}
 	public static Item item (ModData aModID, String aItem, Item aReplacement) {Item rItem = item(aModID, aItem); return rItem == null ? aReplacement : rItem;}
 	public static Item item (Block aBlock) {return aBlock == null ? null : item_(aBlock);}
@@ -134,7 +145,7 @@ public class ST {
 	public static Item item_(ItemStack aStack) {return aStack.getItem();}
 	public static Item item (long aID) {return aID > 0 && aID < 65536 ? item_(aID) : null;}
 	public static Item item_(long aID) {return Item.getItemById((int)aID);}
-	
+
 	public static Block block (ModData aModID, String aBlock) {return block(make(aModID, aBlock, 1, 0));}
 	public static Block block (ModData aModID, String aBlock, Block aReplacement) {Block rBlock = block(aModID, aBlock); return rBlock == NB ? aReplacement : rBlock;}
 	public static Block block (Item aItem) {return aItem != null ? block_(aItem) : NB;}
@@ -143,57 +154,57 @@ public class ST {
 	public static Block block_(ItemStack aStack) {return block_(item_(aStack));}
 	public static Block block (long aID) {return aID > 0 && aID < 65536 ? block_(aID) : NB;}
 	public static Block block_(long aID) {return Block.getBlockById((int)aID);}
-	
+
 	public static short     meta (ItemStack aStack) {return aStack == null ? 0 : meta_(aStack);}
 	public static short     meta_(ItemStack aStack) {return (short)Items.feather.getDamage(aStack);}
 	public static ItemStack meta (ItemStack aStack, long aMeta) {return aStack == null ? null : meta_(aStack, aMeta);}
 	public static ItemStack meta_(ItemStack aStack, long aMeta) {Items.feather.setDamage(aStack, (short)aMeta); return aStack;}
-	
+
 	public static byte size (ItemStack aStack) {return aStack == null || item_(aStack) == null || aStack.stackSize < 0 ? 0 : UT.Code.bindByte(aStack.stackSize);}
 	public static ItemStack size (long aSize, ItemStack aStack) {return aStack == null || item_(aStack) == null ? null : size_(aSize, aStack);}
 	public static ItemStack size_(long aSize, ItemStack aStack) {aStack.stackSize = (int)aSize; return aStack;}
-	
+
 	public static ItemStack copy (ItemStack aStack) {return aStack == null || item_(aStack) == null ? null : copy_(aStack);}
 	public static ItemStack copy_(ItemStack aStack) {return aStack.copy();}
-	
+
 	public static ItemStack name (ItemStack aStack, String aName) {return aStack == null || aName == null ? aStack : name_(aStack, aName);}
 	public static ItemStack name_(ItemStack aStack, String aName) {aStack.setStackDisplayName(aName); return aStack;}
-	
+
 	public static NBTTagCompound nbt (ItemStack aStack) {return aStack == null ? null : nbt_(aStack);}
 	public static NBTTagCompound nbt_(ItemStack aStack) {return aStack.getTagCompound();}
 	public static ItemStack      nbt (ItemStack aStack, NBTTagCompound aNBT) {return aStack == null ? null : nbt_(aStack, aNBT);}
 	public static ItemStack      nbt_(ItemStack aStack, NBTTagCompound aNBT) {return UT.NBT.set(aStack, aNBT);}
-	
+
 	public static ItemStack amount (long aSize, ItemStack aStack) {return aStack == null || item_(aStack) == null ? null : amount_(aSize, aStack);}
 	public static ItemStack amount_(long aSize, ItemStack aStack) {return size_(aSize, copy_(aStack));}
-	
+
 	public static ItemStack mul (long aMultiplier, ItemStack aStack) {return aStack == null || item_(aStack) == null ? null : mul_(aMultiplier, aStack);}
 	public static ItemStack mul_(long aMultiplier, ItemStack aStack) {return amount_(aStack.stackSize * aMultiplier, aStack);}
-	
+
 	public static ItemStack div (long aDivider, ItemStack aStack) {return aStack == null || item_(aStack) == null ? null : div_(aDivider, aStack);}
 	public static ItemStack div_(long aDivider, ItemStack aStack) {return amount_(aStack.stackSize / aDivider, aStack);}
-	
+
 	public static ItemStack validMeta (long aSize, ItemStack aStack) {return aStack == null || item_(aStack) == null ? null : validMeta_(aSize, aStack);}
 	public static ItemStack validMeta_(long aSize, ItemStack aStack) {return size_(aSize, validMeta_(aStack));}
 	public static ItemStack validMeta (ItemStack aStack) {return aStack == null || item_(aStack) == null ? null : validMeta_(aStack);}
 	public static ItemStack validMeta_(ItemStack aStack) {return meta_(aStack) == W ? meta_(copy_(aStack), 0) : copy_(aStack);}
-	
+
 	public static Block nullair(Block aBlock) {return aBlock != NB ? aBlock : null;}
-	
+
 	public static int toInt(Item aItem, long aMeta) {return aItem == null ? 0 : id_(aItem) | (((short)aMeta)<<16);}
 	public static int toInt(ItemStack aStack) {return aStack != null ? toInt(item_(aStack), meta_(aStack)) : 0;}
 	public static int toInt(ItemStack aStack, long aMeta) {return aStack != null ? toInt(item_(aStack), aMeta) : 0;}
-	
+
 	public static ItemStack toStack(int aStack) {return make(toItem(aStack), 1, toMeta(aStack));}
 	public static Block     toBlock(int aStack) {return block(aStack&(~0>>>16));}
 	public static Item      toItem (int aStack) {return item(aStack&(~0>>>16));}
 	public static short     toMeta (int aStack) {return (short)(aStack>>>16);}
-	
+
 	public static String regName (ItemStack aStack) {return regName(item(aStack));}
 	public static String regName (Block     aBlock) {return regName(item(aBlock));}
 	public static String regName (Item      aItem ) {return aItem == null ? null : regName_(aItem);}
 	public static String regName_(Item      aItem ) {return Item.itemRegistry.getNameForObject(aItem);}
-	
+
 	public static boolean ownedBy (ModData aMod, IBlockAccess aWorld, int aX, int aY, int aZ) {return aMod.mLoaded && ownedBy(aMod.mID, aWorld, aX, aY, aZ);}
 	public static boolean ownedBy (ModData aMod, ItemStack    aStack                        ) {return aMod.mLoaded && ownedBy(aMod.mID, aStack);}
 	public static boolean ownedBy (ModData aMod, Block        aBlock                        ) {return aMod.mLoaded && ownedBy(aMod.mID, aBlock);}
@@ -205,7 +216,7 @@ public class ST {
 	public static boolean ownedBy (String  aMod, Item         aItem                         ) {return ownedBy(aMod, regName(aItem));}
 	public static boolean ownedBy (String  aMod, String       aRegName                      ) {return aRegName != null && aMod != null && ownedBy_(aMod, aRegName);}
 	public static boolean ownedBy_(String  aMod, String       aRegName                      ) {return aRegName.startsWith(aMod);}
-	
+
 	public static ItemStack set(ItemStack aSetStack, ItemStack aToStack) {
 		return set(aSetStack, aToStack, T, T);
 	}
@@ -217,7 +228,7 @@ public class ST {
 		if (aCheckNBT) aSetStack.setTagCompound(aToStack.getTagCompound());
 		return aSetStack;
 	}
-	
+
 	public static ItemStack update (ItemStack aStack) {
 		return invalid(aStack)?aStack:update_(aStack);
 	}
@@ -240,7 +251,7 @@ public class ST {
 	public static ItemStack update_(ItemStack aStack, Entity aEntity) {
 		return update_(aStack, aEntity.worldObj, UT.Code.roundDown(aEntity.posX), UT.Code.roundDown(aEntity.posY), UT.Code.roundDown(aEntity.posZ));
 	}
-	
+
 	public static boolean use(Entity aPlayer, ItemStack aStack) {
 		return use(aPlayer, -1, aStack, 1);
 	}
@@ -269,17 +280,17 @@ public class ST {
 		}
 		return F;
 	}
-	
+
 	public static ItemStack[] copyArray(ItemStack... aStacks) {
 		ItemStack[] rStacks = new ItemStack[aStacks.length];
 		for (int i = 0; i < aStacks.length; i++) rStacks[i] = copy(aStacks[i]);
 		return rStacks;
 	}
-	
+
 	public static ItemStack copyFirst(Object... aStacks) {
 		return copy(get(aStacks));
 	}
-	
+
 	public static ItemStack copyMeta(long aMeta, ItemStack aStack) {
 		return aStack == null || item_(aStack) == null ? null : meta_(copy_(aStack), aMeta);
 	}
@@ -296,12 +307,12 @@ public class ST {
 		}
 		return null;
 	}
-	
+
 	public static boolean hasValid(ItemStack... aStacks) {if (aStacks != null) for (ItemStack aStack : aStacks) if (valid(aStack)) return T; return F;}
-	
-	
+
+
 	public static ItemStack[] array(ItemStack... aStacks) {return aStacks;}
-	
+
 	public static ItemStack make_(Item  aItem , long aSize, long aMeta) {return new ItemStack(aItem , UT.Code.bindInt(aSize), UT.Code.bindShort(aMeta));}
 	public static ItemStack make_(Block aBlock, long aSize, long aMeta) {return new ItemStack(aBlock, UT.Code.bindInt(aSize), UT.Code.bindShort(aMeta));}
 	public static ItemStack make(ModData aModID, String aItem, long aSize) {
@@ -323,9 +334,9 @@ public class ST {
 		}
 		return amount(aSize, sIC2ItemMap.get(aItem));
 	}
-	
+
 	private static final Map<String, ItemStack> sIC2ItemMap = new HashMap<>();
-	
+
 	public static ItemStack mkic(String aItem                , long aSize, long aMeta                                   ) {return     meta(mkic(aItem, aSize), aMeta);}
 	public static ItemStack mkic(String aItem                , long aSize            , ItemStack aReplacement           ) {return get(     mkic(aItem, aSize)        , aReplacement);}
 	public static ItemStack mkic(String aItem                , long aSize, long aMeta, Object    aReplacement           ) {return get(meta(mkic(aItem, aSize), aMeta), aReplacement);}
@@ -353,9 +364,9 @@ public class ST {
 	public static ItemStack make(ItemStackContainer aStack                                         , NBTTagCompound aNBT) {return      nbt(aStack.toStack(), aNBT);}
 	public static ItemStack make(ItemStackContainer aStack                           , String aName                     ) {return name(    aStack.toStack()       , aName);}
 	public static ItemStack make(ItemStackContainer aStack                           , String aName, NBTTagCompound aNBT) {return name(nbt(aStack.toStack(), aNBT), aName);}
-	
-	
-	
+
+
+
 	public static EntityItem place  (World aWorld, double aX, double aY, double aZ, ModData aModID, String aItem, long aSize, long aMeta) {ItemStack rStack = make(aModID, aItem, aSize, aMeta); if (invalid(rStack)) return null; EntityItem rEntity = entity_(aWorld, aX, aY, aZ, rStack); rEntity.motionX = rEntity.motionY = rEntity.motionZ = 0; return aWorld.spawnEntityInWorld(rEntity) ? rEntity : null;}
 	public static EntityItem place  (World aWorld, double aX, double aY, double aZ, Item aItem, long aSize, long aMeta                  ) {ItemStack rStack = make(aItem, aSize, aMeta)        ; if (invalid(rStack)) return null; EntityItem rEntity = entity_(aWorld, aX, aY, aZ, rStack); rEntity.motionX = rEntity.motionY = rEntity.motionZ = 0; return aWorld.spawnEntityInWorld(rEntity) ? rEntity : null;}
 	public static EntityItem place  (World aWorld, double aX, double aY, double aZ, Block aBlock, long aSize, long aMeta                ) {ItemStack rStack = make(aBlock, aSize, aMeta)       ; if (invalid(rStack)) return null; EntityItem rEntity = entity_(aWorld, aX, aY, aZ, rStack); rEntity.motionX = rEntity.motionY = rEntity.motionZ = 0; return aWorld.spawnEntityInWorld(rEntity) ? rEntity : null;}
@@ -372,7 +383,7 @@ public class ST {
 	public static EntityItem entity (World aWorld, double aX, double aY, double aZ, ItemStackContainer aStack                           ) {ItemStack rStack = aStack.toStack()                 ; if (invalid(rStack)) return null; return               entity_(aWorld, aX, aY, aZ, rStack);}
 	public static EntityItem entity (World aWorld, double aX, double aY, double aZ, ItemStack aStack                                    ) {ItemStack rStack = aStack                           ; if (invalid(rStack)) return null; return               entity_(aWorld, aX, aY, aZ, rStack);}
 	public static EntityItem entity_(World aWorld, double aX, double aY, double aZ, ItemStack aStack                                    ) {return new EntityItem(aWorld, aX, aY, aZ, update_(aStack, aWorld, UT.Code.roundDown(aX), UT.Code.roundDown(aY), UT.Code.roundDown(aZ)));}
-	
+
 	public static EntityItem place  (Entity aEntity, ModData aModID, String aItem, long aSize, long aMeta) {ItemStack rStack = make(aModID, aItem, aSize, aMeta); if (invalid(rStack)) return null; EntityItem rEntity = entity_(aEntity, rStack); rEntity.motionX = rEntity.motionY = rEntity.motionZ = 0; return aEntity.worldObj.spawnEntityInWorld(rEntity) ? rEntity : null;}
 	public static EntityItem place  (Entity aEntity, Item aItem, long aSize, long aMeta                  ) {ItemStack rStack = make(aItem, aSize, aMeta)        ; if (invalid(rStack)) return null; EntityItem rEntity = entity_(aEntity, rStack); rEntity.motionX = rEntity.motionY = rEntity.motionZ = 0; return aEntity.worldObj.spawnEntityInWorld(rEntity) ? rEntity : null;}
 	public static EntityItem place  (Entity aEntity, Block aBlock, long aSize, long aMeta                ) {ItemStack rStack = make(aBlock, aSize, aMeta)       ; if (invalid(rStack)) return null; EntityItem rEntity = entity_(aEntity, rStack); rEntity.motionX = rEntity.motionY = rEntity.motionZ = 0; return aEntity.worldObj.spawnEntityInWorld(rEntity) ? rEntity : null;}
@@ -389,7 +400,7 @@ public class ST {
 	public static EntityItem entity (Entity aEntity, ItemStackContainer aStack                           ) {ItemStack rStack = aStack.toStack()                 ; if (invalid(rStack)) return null; return               entity_(aEntity, rStack);}
 	public static EntityItem entity (Entity aEntity, ItemStack aStack                                    ) {ItemStack rStack = aStack                           ; if (invalid(rStack)) return null; return               entity_(aEntity, rStack);}
 	public static EntityItem entity_(Entity aEntity, ItemStack aStack                                    ) {return new EntityItem(aEntity.worldObj, aEntity.posX, aEntity.posY, aEntity.posZ, update_(aStack, aEntity.worldObj, UT.Code.roundDown(aEntity.posX), UT.Code.roundDown(aEntity.posY), UT.Code.roundDown(aEntity.posZ)));}
-	
+
 	public static EntityItem place  (World aWorld, ChunkCoordinates aCoords, ModData aModID, String aItem, long aSize, long aMeta) {ItemStack rStack = make(aModID, aItem, aSize, aMeta); if (invalid(rStack)) return null; EntityItem rEntity = entity_(aWorld, aCoords, rStack); rEntity.motionX = rEntity.motionY = rEntity.motionZ = 0; return aWorld.spawnEntityInWorld(rEntity) ? rEntity : null;}
 	public static EntityItem place  (World aWorld, ChunkCoordinates aCoords, Item aItem, long aSize, long aMeta                  ) {ItemStack rStack = make(aItem, aSize, aMeta)        ; if (invalid(rStack)) return null; EntityItem rEntity = entity_(aWorld, aCoords, rStack); rEntity.motionX = rEntity.motionY = rEntity.motionZ = 0; return aWorld.spawnEntityInWorld(rEntity) ? rEntity : null;}
 	public static EntityItem place  (World aWorld, ChunkCoordinates aCoords, Block aBlock, long aSize, long aMeta                ) {ItemStack rStack = make(aBlock, aSize, aMeta)       ; if (invalid(rStack)) return null; EntityItem rEntity = entity_(aWorld, aCoords, rStack); rEntity.motionX = rEntity.motionY = rEntity.motionZ = 0; return aWorld.spawnEntityInWorld(rEntity) ? rEntity : null;}
@@ -406,7 +417,7 @@ public class ST {
 	public static EntityItem entity (World aWorld, ChunkCoordinates aCoords, ItemStackContainer aStack                           ) {ItemStack rStack = aStack.toStack()                 ; if (invalid(rStack)) return null; return               entity_(aWorld, aCoords, rStack);}
 	public static EntityItem entity (World aWorld, ChunkCoordinates aCoords, ItemStack aStack                                    ) {ItemStack rStack = aStack                           ; if (invalid(rStack)) return null; return               entity_(aWorld, aCoords, rStack);}
 	public static EntityItem entity_(World aWorld, ChunkCoordinates aCoords, ItemStack aStack                                    ) {return new EntityItem(aWorld, aCoords.posX+0.5, aCoords.posY+0.5, aCoords.posZ+0.5, update_(aStack, aWorld, aCoords.posX, aCoords.posY, aCoords.posZ));}
-	
+
 	@SuppressWarnings("rawtypes")
 	public static int move(DelegatorTileEntity aFrom, DelegatorTileEntity aTo) {return move(aFrom, aTo, null, F, F, F, T, 64, 1, 64, 1);}
 	@SuppressWarnings({"unchecked", "rawtypes"})
@@ -415,7 +426,7 @@ public class ST {
 		int[] aSlotsFrom = (!aIgnoreSideFrom && aFrom.mTileEntity instanceof ISidedInventory ? ((ISidedInventory)aFrom.mTileEntity).getAccessibleSlotsFromSide(aFrom.mSideOfTileEntity) : UT.Code.getAscendingArray(((IInventory)aFrom.mTileEntity).getSizeInventory()));
 		if (!(aTo.mTileEntity instanceof IInventory)) return put(aFrom, aSlotsFrom, aTo, aFilter, aIgnoreSideFrom, aInvertFilter, aEjectItems, aMaxMove, aMinMove);
 		int[] aSlotsTo   = (!aIgnoreSideTo   && aTo  .mTileEntity instanceof ISidedInventory ? ((ISidedInventory)aTo  .mTileEntity).getAccessibleSlotsFromSide(aTo  .mSideOfTileEntity) : UT.Code.getAscendingArray(((IInventory)aTo  .mTileEntity).getSizeInventory()));
-		
+
 		for (int aSlotFrom : aSlotsFrom) {
 			ItemStack aStackFrom = ((IInventory)aFrom.mTileEntity).getStackInSlot(aSlotFrom);
 			if (aStackFrom == null || aStackFrom.stackSize < aMinMove || (aFilter != null && aFilter.contains(aStackFrom, T) == aInvertFilter) || !canTake((IInventory)aFrom.mTileEntity, aIgnoreSideFrom ? SIDE_ANY : aFrom.mSideOfTileEntity, aSlotFrom, aStackFrom)) continue;
@@ -429,8 +440,8 @@ public class ST {
 		}
 		return 0;
 	}
-	
-	
+
+
 	@SuppressWarnings("rawtypes")
 	public static int moveAll(DelegatorTileEntity aFrom, DelegatorTileEntity aTo) {return moveAll(aFrom, aTo, null, F, F, F, T, 64, 1, 64, 1);}
 	@SuppressWarnings({"unchecked", "rawtypes"})
@@ -439,9 +450,9 @@ public class ST {
 		int[] aSlotsFrom = (!aIgnoreSideFrom && aFrom.mTileEntity instanceof ISidedInventory ? ((ISidedInventory)aFrom.mTileEntity).getAccessibleSlotsFromSide(aFrom.mSideOfTileEntity) : UT.Code.getAscendingArray(((IInventory)aFrom.mTileEntity).getSizeInventory()));
 		if (!(aTo.mTileEntity instanceof IInventory)) return put(aFrom, aSlotsFrom, aTo, aFilter, aIgnoreSideFrom, aInvertFilter, aEjectItems, aMaxMove, aMinMove);
 		int[] aSlotsTo   = (!aIgnoreSideTo   && aTo  .mTileEntity instanceof ISidedInventory ? ((ISidedInventory)aTo  .mTileEntity).getAccessibleSlotsFromSide(aTo  .mSideOfTileEntity) : UT.Code.getAscendingArray(((IInventory)aTo  .mTileEntity).getSizeInventory()));
-		
+
 		int rMoved = 0;
-		
+
 		for (int aSlotFrom : aSlotsFrom) {
 			ItemStack aStackFrom = ((IInventory)aFrom.mTileEntity).getStackInSlot(aSlotFrom);
 			if (aStackFrom == null || aStackFrom.stackSize < aMinMove || (aFilter != null && aFilter.contains(aStackFrom, T) == aInvertFilter) || !canTake((IInventory)aFrom.mTileEntity, aIgnoreSideFrom ? SIDE_ANY : aFrom.mSideOfTileEntity, aSlotFrom, aStackFrom)) continue;
@@ -456,8 +467,8 @@ public class ST {
 		}
 		return rMoved;
 	}
-	
-	
+
+
 	@SuppressWarnings("rawtypes")
 	public static int moveFrom(DelegatorTileEntity aFrom, DelegatorTileEntity aTo, int aSlotFrom) {return moveFrom(aFrom, aTo, aSlotFrom, null, F, F, F, T, 64, 1, 64, 1);}
 	@SuppressWarnings({"unchecked", "rawtypes"})
@@ -466,7 +477,7 @@ public class ST {
 		if (aSlotFrom >= ((IInventory)aFrom.mTileEntity).getSizeInventory()) return 0;
 		if (!(aTo.mTileEntity instanceof IInventory)) return put(aFrom, new int[] {aSlotFrom}, aTo, aFilter, aIgnoreSideFrom, aInvertFilter, aEjectItems, aMaxMove, aMinMove);
 		int[] aSlotsTo   = (!aIgnoreSideTo   && aTo  .mTileEntity instanceof ISidedInventory ? ((ISidedInventory)aTo  .mTileEntity).getAccessibleSlotsFromSide(aTo  .mSideOfTileEntity) : UT.Code.getAscendingArray(((IInventory)aTo  .mTileEntity).getSizeInventory()));
-		
+
 		ItemStack aStackFrom = ((IInventory)aFrom.mTileEntity).getStackInSlot(aSlotFrom);
 		if (aStackFrom == null || aStackFrom.stackSize < aMinMove || (aFilter != null && aFilter.contains(aStackFrom, T) == aInvertFilter) || !canTake((IInventory)aFrom.mTileEntity, aIgnoreSideFrom ? SIDE_ANY : aFrom.mSideOfTileEntity, aSlotFrom, aStackFrom)) return 0;
 		for (int aSlotTo : aSlotsTo) {
@@ -478,7 +489,7 @@ public class ST {
 		}
 		return 0;
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	public static int moveTo(DelegatorTileEntity aFrom, DelegatorTileEntity aTo, int aSlotTo) {return moveTo(aFrom, aTo, aSlotTo, null, F, F, F, T, 64, 1, 64, 1);}
 	@SuppressWarnings({"unchecked", "rawtypes"})
@@ -487,7 +498,7 @@ public class ST {
 		int[] aSlotsFrom = (!aIgnoreSideFrom && aFrom.mTileEntity instanceof ISidedInventory ? ((ISidedInventory)aFrom.mTileEntity).getAccessibleSlotsFromSide(aFrom.mSideOfTileEntity) : UT.Code.getAscendingArray(((IInventory)aFrom.mTileEntity).getSizeInventory()));
 		if (!(aTo.mTileEntity instanceof IInventory)) return put(aFrom, aSlotsFrom, aTo, aFilter, aIgnoreSideFrom, aInvertFilter, aEjectItems, aMaxMove, aMinMove);
 		if (aSlotTo >= ((IInventory)aTo.mTileEntity).getSizeInventory()) return 0;
-		
+
 		for (int aSlotFrom : aSlotsFrom) {
 			ItemStack aStackFrom = ((IInventory)aFrom.mTileEntity).getStackInSlot(aSlotFrom);
 			if (aStackFrom == null || aStackFrom.stackSize < aMinMove || (aFilter != null && aFilter.contains(aStackFrom, T) == aInvertFilter) || !canTake((IInventory)aFrom.mTileEntity, aIgnoreSideFrom ? SIDE_ANY : aFrom.mSideOfTileEntity, aSlotFrom, aStackFrom)) continue;
@@ -499,7 +510,7 @@ public class ST {
 		}
 		return 0;
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	public static int move(DelegatorTileEntity aFrom, DelegatorTileEntity aTo, int aSlotFrom, int aSlotTo) {return move(aFrom, aTo, aSlotFrom, aSlotTo, null, F, F, F, T, 64, 1, 64, 1);}
 	@SuppressWarnings({"unchecked", "rawtypes"})
@@ -521,7 +532,7 @@ public class ST {
 		}
 		return 0;
 	}
-	
+
 	public static int move(IInventory aInventory, int aSlotFrom, int aSlotTo) {
 		if (aSlotFrom == aSlotTo) return 0;
 		ItemStack aStackFrom = aInventory.getStackInSlot(aSlotFrom), aStackTo = aInventory.getStackInSlot(aSlotTo);
@@ -561,7 +572,7 @@ public class ST {
 		aTo.markDirty();
 		return aCount;
 	}
-	
+
 	public static boolean canConnect(@SuppressWarnings("rawtypes") DelegatorTileEntity aDelegator) {
 		if (aDelegator.mTileEntity == null) return F;
 		if (TE_PIPES && aDelegator.mTileEntity instanceof cofh.api.transport.IItemDuct) return T;
@@ -569,8 +580,8 @@ public class ST {
 		if (aDelegator.mTileEntity instanceof IInventory && ((IInventory)aDelegator.mTileEntity).getSizeInventory() > 0) return T;
 		return F;
 	}
-	
-	
+
+
 	public static boolean canTake(IInventory aFrom, byte aSideFrom, int aSlotFrom, ItemStack aStackFrom) {
 		if (aFrom instanceof ISidedInventory) {
 			if (SIDES_VALID[aSideFrom]) return ((ISidedInventory)aFrom).canExtractItem(aSlotFrom, aStackFrom, aSideFrom);
@@ -582,8 +593,8 @@ public class ST {
 	public static boolean canTake_(ISidedInventory aFrom, byte aSideFrom, int aSlotFrom, ItemStack aStackFrom) {
 		return aFrom.canExtractItem(aSlotFrom, aStackFrom, aSideFrom);
 	}
-	
-	
+
+
 	public static int canPut(IInventory aTo, byte aSideTo, int aSlotTo, ItemStack aStackFrom) {
 		return canPut(aTo, aSideTo, aSlotTo, aStackFrom, aStackFrom.getMaxStackSize());
 	}
@@ -601,8 +612,8 @@ public class ST {
 		for (byte tSideTo : ALL_SIDES_VALID) if (((ISidedInventory)aTo).canInsertItem(aSlotTo, aStackFrom, tSideTo)) return rMaxMove;
 		return 0;
 	}
-	
-	
+
+
 	public static int put(DelegatorTileEntity<IInventory> aFrom, int[] aSlotsFrom, @SuppressWarnings("rawtypes") DelegatorTileEntity aTo, ItemStackSet<ItemStackContainer> aFilter, boolean aIgnoreSideFrom, boolean aInvertFilter, boolean aEjectItems, int aMaxMove, int aMinMove) {
 		if (aTo.mTileEntity != null) {
 			if (TE_PIPES && aTo.mTileEntity instanceof cofh.api.transport.IItemDuct) {
@@ -640,7 +651,7 @@ public class ST {
 				return 0;
 			}
 		}
-		
+
 		Block aBlock = aTo.getBlock();
 		if (aBlock instanceof BlockRailBase) {
 			// Do not eject shit onto Rails directly.
@@ -670,43 +681,43 @@ public class ST {
 		}
 		return 0;
 	}
-	
+
 	public static ItemStack emptySlot() {
 		return IL.Empty_Slot.get(0);
 	}
 	public static ItemStack tag(long aNumber) {
 		return IL.Circuit_Selector.getWithDamage(0, aNumber);
 	}
-	
+
 	public static ItemStack book(String aMapping) {
 		return UT.Books.getBookWithTitle(aMapping);
 	}
 	public static ItemStack book(String aMapping, ItemStack aBook) {
 		return UT.Books.getBookWithTitle(aMapping, aBook);
 	}
-	
+
 	public static boolean debug(ItemStack aStack) {
 		return ItemsGT.DEBUG_ITEMS.contains(aStack, T);
 	}
-	
+
 	public static boolean torch(ItemStack aStack) {
 		if (IL.GC_Torch_Glowstone.equal(aStack, T, T) || IL.AETHER_Torch_Ambrosium.equal(aStack, T, T) || IL.TC_Nitor.equal(aStack, F, T)) return T;
 		Block tBlock = block(aStack);
 		return tBlock instanceof BlockTorch && !(tBlock instanceof BlockRedstoneTorch);
 	}
-	
+
 	public static boolean ammo(ItemStack aStack) {
 		if (ItemsGT.AMMO_ITEMS.contains(aStack, T)) return T;
 		OreDictItemData tData = OM.anydata(aStack);
 		return tData != null && tData.mPrefix != null && tData.mPrefix.contains(TD.Prefix.AMMO_ALIKE);
 	}
-	
+
 	public static boolean nonautoinsert(ItemStack aStack) {
 		if (ItemsGT.NON_AUTO_INSERT_ITEMS.contains(aStack, T) || torch(aStack)) return T;
 		OreDictItemData tData = OM.anydata(aStack);
 		return tData != null && tData.mPrefix != null && tData.mPrefix.contains(TD.Prefix.AMMO_ALIKE);
 	}
-	
+
 	public static boolean listed(Collection<ItemStack> aList, ItemStack aStack, boolean aTrueIfListEmpty, boolean aInvertFilter) {
 		if (aStack == null || aStack.stackSize < 1) return F;
 		if (aList == null) return aTrueIfListEmpty;
@@ -717,13 +728,13 @@ public class ST {
 		while (tIterator.hasNext()) if ((tStack = tIterator.next())!= null && equal(aStack, tStack)) return !aInvertFilter;
 		return aInvertFilter;
 	}
-	
+
 	public static ItemStack container(ItemStack aStack, boolean aCheckIFluidContainerItems) {
 		if (invalid(aStack)) return NI;
 		if (item_(aStack).hasContainerItem(aStack)) return copy(item_(aStack).getContainerItem(aStack));
 		/** These are all special Cases, in which it is intended to have only GT Blocks outputting those Container Items */
 		if (IL.Cell_Empty.equal(aStack, F, T)) return NI;
-		
+
 		if (aCheckIFluidContainerItems && item_(aStack) instanceof IFluidContainerItem && ((IFluidContainerItem)item_(aStack)).getCapacity(aStack) > 0) {
 			ItemStack tStack = amount(1, aStack);
 			((IFluidContainerItem)item_(aStack)).drain(tStack, Integer.MAX_VALUE, T);
@@ -732,15 +743,15 @@ public class ST {
 			if (tStack.getTagCompound().hasNoTags()) tStack.setTagCompound(null);
 			return tStack;
 		}
-		
+
 		if (IL.IC2_ForgeHammer.equal(aStack, T, T) || IL.IC2_WireCutter.equal(aStack, T, T)) return copyMeta(meta_(aStack) + 1, aStack);
 		return NI;
 	}
-	
+
 	public static ItemStack container(ItemStack aStack, boolean aCheckIFluidContainerItems, int aSize) {
 		return amount(aSize, container(aStack, aCheckIFluidContainerItems));
 	}
-	
+
 	public static boolean rotten(ItemStack aStack) {
 		if (invalid(aStack)) return F;
 		if (item_(aStack) instanceof MultiItemRandom) {
@@ -749,7 +760,7 @@ public class ST {
 		}
 		return item_(aStack) == Items.rotten_flesh || OM.materialcontained(aStack, MT.MeatRotten, MT.FishRotten);
 	}
-	
+
 	public static int food(ItemStack aStack) {
 		if (invalid(aStack)) return 0;
 		if (item_(aStack) instanceof ItemFood) {try {return ((ItemFood)item_(aStack)).func_150905_g(aStack);} catch(Throwable e) {return 1;}}
@@ -759,7 +770,7 @@ public class ST {
 		}
 		return 0;
 	}
-	
+
 	public static float saturation(ItemStack aStack) {
 		if (invalid(aStack)) return 0;
 		if (item_(aStack) instanceof ItemFood) {try {return ((ItemFood)item_(aStack)).func_150906_h(aStack);} catch(Throwable e) {return 0.5F;}}
@@ -769,7 +780,7 @@ public class ST {
 		}
 		return 0;
 	}
-	
+
 	/** @param aValue the Value of this Stack, when burning inside a Furnace (200 = 1 Burn Process = 5000 HU, max = 32767 (that is 819175 HU)), limited to Short because the vanilla Furnace otherwise can't handle it properly, stupid Mojang... */
 	public static ItemStack fuel(ItemStack aStack, short aValue) {aStack.setTagCompound(UT.NBT.makeShort(aStack.getTagCompound(), NBT_FUEL_VALUE, aValue)); return aStack;}
 	/** @return the Value of this Stack, when burning inside a Furnace (200 = 1 Burn Process = 5000 HU, max = 32767 (that is 819175 HU)), limited to Short because the vanilla Furnace otherwise can't handle it properly, stupid Mojang... */
@@ -794,19 +805,19 @@ public class ST {
 		if (tItem == Items.lava_bucket) return 20000;
 		return 0;
 	}
-	
+
 	public static Integer[] toIntegerArray(ItemStack... aStacks) {
 		Integer[] rArray = new Integer[aStacks.length];
 		for (int i = 0; i < rArray.length; i++) rArray[i] = toInt(aStacks[i]);
 		return rArray;
 	}
-	
+
 	public static int[] toIntArray(ItemStack... aStacks) {
 		int[] rArray = new int[aStacks.length];
 		for (int i = 0; i < rArray.length; i++) rArray[i] = toInt(aStacks[i]);
 		return rArray;
 	}
-	
+
 	public static String configName(ItemStack aStack) {
 		if (invalid(aStack)) return "";
 		Object rName = OreDictManager.INSTANCE.getAssociation_(aStack, T);
@@ -829,7 +840,7 @@ public class ST {
 		for (ItemStack tStack : aStacks) rString += (tStack == null ? "null; " : tStack.getDisplayName() + " " + tStack.stackSize + "; ");
 		return rString;
 	}
-	
+
 	public static void hide(Item aItem) {
 		hide(aItem, W);
 	}
@@ -845,7 +856,7 @@ public class ST {
 	public static void hide(ItemStack aStack) {
 		if (aStack != null) try {codechicken.nei.api.API.hideItem(aStack);} catch(Throwable e) {/**/}
 	}
-	
+
 	/** Loads an ItemStack properly. */
 	public static ItemStack load(NBTTagCompound aNBT, String aTagName) {
 		return aNBT == null ? null : load(aNBT.getCompoundTag(aTagName), NI);
@@ -854,7 +865,7 @@ public class ST {
 	public static ItemStack load(NBTTagCompound aNBT, String aTagName, ItemStack aDefault) {
 		return aNBT == null ? null : load(aNBT.getCompoundTag(aTagName), aDefault);
 	}
-	
+
 	/** Loads an ItemStack properly. */
 	public static ItemStack load(NBTTagCompound aNBT) {
 		return load(aNBT, NI);
@@ -871,7 +882,7 @@ public class ST {
 		if (item_(rStack).getClass().getName().startsWith("ic2.core.migration")) item_(rStack).onUpdate(rStack, DW, null, 0, F);
 		return update_(OM.get_(rStack));
 	}
-	
+
 	/** Saves an ItemStack properly. */
 	public static NBTTagCompound save(NBTTagCompound aNBT, String aTagName, ItemStack aStack) {
 		if (aNBT == null) aNBT = UT.NBT.make();
@@ -879,7 +890,7 @@ public class ST {
 		if (tNBT != null) aNBT.setTag(aTagName, tNBT);
 		return aNBT;
 	}
-	
+
 	/** Saves an ItemStack properly. */
 	public static NBTTagCompound save(ItemStack aStack) {
 		if (aStack == null || aStack.stackSize < 0) return null;

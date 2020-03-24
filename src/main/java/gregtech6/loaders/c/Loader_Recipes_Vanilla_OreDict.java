@@ -64,19 +64,19 @@ public class Loader_Recipes_Vanilla_OreDict extends OreDictListenerEvent_Names {
 		}});
 		addListener("stoneNetherBrick", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			RM.Hammer       .addRecipe1(T, 16,  16, aEvent.mStack, ST.make(Items.netherbrick, 3, 0));
-			RM.Crusher      .addRecipe1(T, 16,  50, new long[] {10000, 9000, 8000, 7000}, aEvent.mStack, ST.make(Items.netherbrick, 1, 0), ST.make(Items.netherbrick, 1, 0), ST.make(Items.netherbrick, 1, 0), ST.make(Items.netherbrick, 1, 0));
+			RM.Crusher      .addRecipe1(T, 16,  16, new long[] {10000, 9000, 8000, 7000}, aEvent.mStack, ST.make(Items.netherbrick, 1, 0), ST.make(Items.netherbrick, 1, 0), ST.make(Items.netherbrick, 1, 0), ST.make(Items.netherbrick, 1, 0));
 		}});
 		addListener("stoneNetherrack", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			RM.Hammer       .addRecipe1(T, 16,  16, aEvent.mStack, OP.dustImpure.mat(MT.Netherrack, 1));
-			RM.Crusher      .addRecipe1(T, 16,  50, new long[] {10000, 500}, aEvent.mStack, OP.dustImpure.mat(MT.Netherrack, 1), OM.dust(MT.S));
+			RM.Crusher      .addRecipe1(T, 16,  16, new long[] {10000, 500}, aEvent.mStack, OP.dustImpure.mat(MT.Netherrack, 1), OM.dust(MT.S));
 		}});
 		addListener("stoneEndstone", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			RM.Hammer       .addRecipe1(T, 16,  16, aEvent.mStack, OP.dustImpure.mat(MT.Endstone, 1));
-			RM.Crusher      .addRecipe1(T, 16,  50, new long[] {10000, 500}, aEvent.mStack, OP.dustImpure.mat(MT.Endstone, 1), OM.dust(MT.EnderPearl));
+			RM.Crusher      .addRecipe1(T, 16,  16, new long[] {10000, 500}, aEvent.mStack, OP.dustImpure.mat(MT.Endstone, 1), OM.dust(MT.EnderPearl));
 		}});
 		addListener("stoneRedrock", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			RM.Hammer       .addRecipe1(T, 16,  16, aEvent.mStack, OP.dustImpure.mat(MT.Redrock, 1));
-			RM.Crusher      .addRecipe1(T, 16,  50, new long[] {10000, 1000}, aEvent.mStack, OP.dustImpure.mat(MT.Redrock, 1), OM.dust(MT.ClayBrown));
+			RM.Crusher      .addRecipe1(T, 16,  16, new long[] {10000, 1000}, aEvent.mStack, OP.dustImpure.mat(MT.Redrock, 1), OM.dust(MT.ClayBrown));
 		}});
 		addListener(OD.slimeball, new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			if (!OM.is(OD.slimeballSwet, aEvent.mStack) && !OM.is(OD.slimeballPink, aEvent.mStack) && !OM.is(OD.slimeballRice, aEvent.mStack) && !OM.is(OD.itemTar, aEvent.mStack)) {
@@ -125,30 +125,30 @@ public class Loader_Recipes_Vanilla_OreDict extends OreDictListenerEvent_Names {
 		}});
 		addListener(OD.logWood, OD.logRubber, new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			if (ConfigsGT.RECIPES.get(ConfigCategories.Recipes.disabledrecipes, "wood2charcoalsmelting", T)) RM.rem_smelting(aEvent.mStack, ST.make(Items.coal, 1, 1));
-			
+
 			if (ST.block(aEvent.mStack) == BlocksGT.Log1) return;
-			
+
 			if (IL.MaCu_Polished_Logs.exists())
 			RM.Bath         .addRecipe1(T,  0,  144, aEvent.mStack, FL.Oil_Fish.make(3000), NF  , IL.MaCu_Polished_Logs.get(1));
 			RM.Freezer      .addRecipe1(T, 16,   16, aEvent.mStack, FL.Water.make(1000), NF     , ST.make(BlocksGT.Log1, 1, 3));
 			RM.Freezer      .addRecipe1(T, 16,   16, aEvent.mStack, FL.DistW.make(1000), NF     , ST.make(BlocksGT.Log1, 1, 3));
 			RM.Drying       .addRecipe1(T, 16,  128, aEvent.mStack, NF, FL.DistW.make(64)       , ST.make(BlocksGT.Log1, 1, 0));
 			RM.Fermenter    .addRecipe1(T, 16,  128, aEvent.mStack                              , ST.make(BlocksGT.Log1, 1, 1));
-			
+
 			if (WoodDictionary.IGNORED_OREDICT_REGISTRATIONS.contains(ST.item_(aEvent.mStack))) return;
-			
+
 			OreDictMaterial tWood = MT.Wood;
-			
+
 			if (aEvent.mOreDictName.equals(OD.logRubber.toString())) {
 				tWood = MT.WoodRubber;
 				RM.debarking(aEvent.mStack, ST.make(BlocksGT.Beam2, 1, 2), OM.dust(MT.Bark));
 			} else {
 				RM.debarking(aEvent.mStack, ST.make(BlocksGT.Beam2, 1, 3), OM.dust(MT.Bark));
 			}
-			
+
 			RM.Lathe        .addRecipe1(T, 16,   80, aEvent.mStack, stickLong.mat(tWood, 4), dust.mat(tWood, 2));
 			RM.CokeOven     .addRecipe1(T,  0, 3600, aEvent.mStack, NF, MT.Creosote.liquid(U4, F), OP.gem.mat(MT.Charcoal, 1));
-			
+
 			if (ST.meta_(aEvent.mStack) == W) {
 				ItemStack tPlank;
 				for (int i = 0; i < W; i++) {
@@ -178,7 +178,7 @@ public class Loader_Recipes_Vanilla_OreDict extends OreDictListenerEvent_Names {
 		}});
 		addListener(OD.plankSkyroot, OD.plankWeedwood, OD.plankWood, new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			RM.generify(aEvent.mStack, IL.Plank.get(1));
-			
+
 			RM.Assembler.addRecipe2(T, 16,  32, ST.amount(8, aEvent.mStack), dust.mat(MT.Redstone, 1), ST.make(Blocks.noteblock, 1, 0));
 			RM.Assembler.addRecipe2(T, 16,  64, ST.amount(8, aEvent.mStack), gem .mat(MT.Diamond , 1), ST.make(Blocks.jukebox, 1, 0));
 //          RM.Assembler.addRecipe2(T, 16,  32, aEvent.mStack, screw.mat(MT.Fe, 1), IL.Crate_Empty.get(1));
@@ -191,9 +191,9 @@ public class Loader_Recipes_Vanilla_OreDict extends OreDictListenerEvent_Names {
 			RM.Assembler.addRecipe2(T, 16,  96, ST.amount(2, aEvent.mStack), ST.tag(6), ST.make(Items.wooden_door, 1, 0));
 			RM.Assembler.addRecipe2(T, 16, 128, ST.amount(8, aEvent.mStack), ST.tag(8), ST.make(Blocks.chest, 1, 0));
 			RM.Assembler.addRecipe2(T, 16,  64, ST.amount(6, aEvent.mStack), ST.make(Items.book, 3, 0), ST.make(Blocks.bookshelf, 1, 0));
-			
+
 			if (WoodDictionary.IGNORED_OREDICT_REGISTRATIONS.contains(ST.item_(aEvent.mStack))) return;
-			
+
 			if (IL.MaCu_Polished_Planks.exists())
 			RM.Bath     .addRecipe1(T,  0, 144, aEvent.mStack, FL.Oil_Fish      .make(1000), NF, IL.MaCu_Polished_Planks.get(1));
 			ItemStack tTreated = IL.IE_Treated_Planks.get(1, IL.Treated_Planks.get(1));

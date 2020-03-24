@@ -173,7 +173,7 @@ public class TD {
 		 * Size = unused (always 1)
 		 * Amount = Steam per Tick
 		 */
-		public static final TagData STEAM                                   = TagData.createTagData("ENERGY.STEAM", "Steam", "Steam", LH.Chat.GRAY);
+		public static final TagData STEAM                                   = TagData.createTagData("ENERGY.GT6STEAM", "GT6Steam", "GT6Steam", LH.Chat.GRAY);
 
 		/**
 		 * Energy Tag for Air Pressure Power

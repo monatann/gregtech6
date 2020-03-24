@@ -154,21 +154,21 @@ public class MultiTileEntityLargeCircuit extends TileEntityBase10MultiBlockMachi
 	}
 
 	static {
-		LH.add("gt.tooltip.multiblock.circuitassemblingmachine.1", "3x9x3 Dense Galvanized Steel Wall");
-		LH.add("gt.tooltip.multiblock.circuitassemblingmachine.2", "9 Ventilation Unit tops of center");
-		LH.add("gt.tooltip.multiblock.circuitassemblingmachine.3", "The third layer places the Circuit Assembling Machine Part, Dense Galvanized wall and Circuit Assembling Machine Part in proper order");
-		LH.add("gt.tooltip.multiblock.circuitassemblingmachine.4", "Main Block centered on Side-Bottom and facing outwards");
-		LH.add("gt.tooltip.multiblock.circuitassemblingmachine.5", "Input only at Extruder Part, Output at Bottom Layer");
+		LH.add("gt6.tooltip.multiblock.circuitassemblingmachine.1", "3x9x3 Dense Galvanized Steel Wall");
+		LH.add("gt6.tooltip.multiblock.circuitassemblingmachine.2", "9 Ventilation Unit tops of center");
+		LH.add("gt6.tooltip.multiblock.circuitassemblingmachine.3", "The third layer places the Circuit Assembling Machine Part, Dense Galvanized wall and Circuit Assembling Machine Part in proper order");
+		LH.add("gt6.tooltip.multiblock.circuitassemblingmachine.4", "Main Block centered on Side-Bottom and facing outwards");
+		LH.add("gt6.tooltip.multiblock.circuitassemblingmachine.5", "Input only at Extruder Part, Output at Bottom Layer");
 	}
 
 	@Override
 	public void addToolTips(List<String> aList, ItemStack aStack, boolean aF3_H) {
 		aList.add(Chat.CYAN     + LH.get(LH.STRUCTURE) + ":");
-		aList.add(Chat.WHITE    + LH.get("gt.tooltip.multiblock.circuitassemblingmachine.1"));
-		aList.add(Chat.WHITE    + LH.get("gt.tooltip.multiblock.circuitassemblingmachine.2"));
-		aList.add(Chat.WHITE    + LH.get("gt.tooltip.multiblock.circuitassemblingmachine.3"));
-		aList.add(Chat.WHITE    + LH.get("gt.tooltip.multiblock.circuitassemblingmachine.4"));
-		aList.add(Chat.WHITE    + LH.get("gt.tooltip.multiblock.circuitassemblingmachine.5"));
+		aList.add(Chat.WHITE    + LH.get("gt6.tooltip.multiblock.circuitassemblingmachine.1"));
+		aList.add(Chat.WHITE    + LH.get("gt6.tooltip.multiblock.circuitassemblingmachine.2"));
+		aList.add(Chat.WHITE    + LH.get("gt6.tooltip.multiblock.circuitassemblingmachine.3"));
+		aList.add(Chat.WHITE    + LH.get("gt6.tooltip.multiblock.circuitassemblingmachine.4"));
+		aList.add(Chat.WHITE    + LH.get("gt6.tooltip.multiblock.circuitassemblingmachine.5"));
 		super.addToolTips(aList, aStack, aF3_H);
 	}
 

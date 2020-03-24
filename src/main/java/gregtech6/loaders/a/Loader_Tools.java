@@ -130,32 +130,32 @@ public class Loader_Tools implements Runnable {
 		ArmorsGT.HAZMATS_INSECTS    .add(ArmorsGT.HAZMAT_INSECTS    [1] = new ItemArmorBase(MD.GT.mID, "gt6.armor.hazmat.insect.chest"    , "Bumbleshirt"                      , "Full Set protects against any Insects"         , "hazard_insects"   , 1, new int[] {1, 1, 1, 1}, 128, 8, 0, F, T, "RqR", "RRR", "RRR", 'R', foil.dat(MT.Rubber)));
 		ArmorsGT.HAZMATS_INSECTS    .add(ArmorsGT.HAZMAT_INSECTS    [2] = new ItemArmorBase(MD.GT.mID, "gt6.armor.hazmat.insect.legs"     , "Bumblepants"                      , "Full Set protects against any Insects"         , "hazard_insects"   , 2, new int[] {1, 1, 1, 1}, 128, 8, 0, F, T, "RRR", "RqR", "RlR", 'R', foil.dat(MT.Rubber)));
 		ArmorsGT.HAZMATS_INSECTS    .add(ArmorsGT.HAZMAT_INSECTS    [3] = new ItemArmorBase(MD.GT.mID, "gt6.armor.hazmat.insect.boots"    , "Bumbleboots"                      , "Full Set protects against any Insects"         , "hazard_insects"   , 3, new int[] {1, 1, 1, 1}, 128, 8, 0, F, T, "RlR", "RqR"       , 'R', foil.dat(MT.Rubber)));
-		
+
 		ArmorsGT.HAZMATS_FROST      .add(ArmorsGT.HAZMAT_FROST      [0] = new ItemArmorBase(MD.GT.mID, "gt6.armor.hazmat.frost.head"      , "Frost Protection Suit Mask"       , "Full Set protects against Cold"                , "hazard_frost"     , 0, new int[] {1, 1, 1, 1}, 128, 8, 0, F, F, "AAA", "AGA", "q l", 'A', plate.dat(MT.Asbestos), 'G', ST.make(Blocks.stained_glass_pane, 1, 15-DYE_INDEX_Black)));
 		ArmorsGT.HAZMATS_FROST      .add(ArmorsGT.HAZMAT_FROST      [1] = new ItemArmorBase(MD.GT.mID, "gt6.armor.hazmat.frost.chest"     , "Frost Protection Suit Shirt"      , "Full Set protects against Cold"                , "hazard_frost"     , 1, new int[] {1, 1, 1, 1}, 128, 8, 0, F, F, "AqA", "AAA", "AAA", 'A', plate.dat(MT.Asbestos)));
 		ArmorsGT.HAZMATS_FROST      .add(ArmorsGT.HAZMAT_FROST      [2] = new ItemArmorBase(MD.GT.mID, "gt6.armor.hazmat.frost.legs"      , "Frost Protection Suit Pants"      , "Full Set protects against Cold"                , "hazard_frost"     , 2, new int[] {1, 1, 1, 1}, 128, 8, 0, F, F, "AAA", "AqA", "AlA", 'A', plate.dat(MT.Asbestos)));
 		ArmorsGT.HAZMATS_FROST      .add(ArmorsGT.HAZMAT_FROST      [3] = new ItemArmorBase(MD.GT.mID, "gt6.armor.hazmat.frost.boots"     , "Frost Protection Suit Boots"      , "Full Set protects against Cold"                , "hazard_frost"     , 3, new int[] {1, 1, 1, 1}, 128, 8, 0, F, F, "AlA", "AqA"       , 'A', plate.dat(MT.Asbestos)));
-		
+
 		ArmorsGT.HAZMATS_HEAT       .add(ArmorsGT.HAZMAT_HEAT       [0] = new ItemArmorBase(MD.GT.mID, "gt6.armor.hazmat.heat.head"       , "Heat Protection Suit Mask"        , "Full Set protects against Heat"                , "hazard_heat"      , 0, new int[] {1, 1, 1, 1}, 128, 8, 0, T, F, "FFF", "FGF", "x l", 'F', foil.dat(MT.Al), 'G', ST.make(Blocks.stained_glass_pane, 1, 15-DYE_INDEX_Black)));
 		ArmorsGT.HAZMATS_HEAT       .add(ArmorsGT.HAZMAT_HEAT       [1] = new ItemArmorBase(MD.GT.mID, "gt6.armor.hazmat.heat.chest"      , "Heat Protection Suit Shirt"       , "Full Set protects against Heat"                , "hazard_heat"      , 1, new int[] {1, 1, 1, 1}, 128, 8, 0, T, F, "FxF", "FFF", "FFF", 'F', foil.dat(MT.Al)));
 		ArmorsGT.HAZMATS_HEAT       .add(ArmorsGT.HAZMAT_HEAT       [2] = new ItemArmorBase(MD.GT.mID, "gt6.armor.hazmat.heat.legs"       , "Heat Protection Suit Pants"       , "Full Set protects against Heat"                , "hazard_heat"      , 2, new int[] {1, 1, 1, 1}, 128, 8, 0, T, F, "FFF", "FxF", "FlF", 'F', foil.dat(MT.Al)));
 		ArmorsGT.HAZMATS_HEAT       .add(ArmorsGT.HAZMAT_HEAT       [3] = new ItemArmorBase(MD.GT.mID, "gt6.armor.hazmat.heat.boots"      , "Heat Protection Suit Boots"       , "Full Set protects against Heat"                , "hazard_heat"      , 3, new int[] {1, 1, 1, 1}, 128, 8, 0, T, F, "FlF", "FxF"       , 'F', foil.dat(MT.Al)));
-		
+
 		ArmorsGT.HAZMATS_RADIOACTIVE.add(ArmorsGT.HAZMAT_RADIOACTIVE[0] = new ItemArmorBase(MD.GT.mID, "gt6.armor.hazmat.radiation.head"  , "Radiation Hazard Suit Mask"       , "Full Set protects against Radiation"           , "hazard_radiation" , 0, new int[] {1, 1, 1, 1}, 128, 8, 0, F, F, "LLL", "LGL", "x l", 'L', plate.dat(MT.Pb), 'G', Blocks.glass_pane));
 		ArmorsGT.HAZMATS_RADIOACTIVE.add(ArmorsGT.HAZMAT_RADIOACTIVE[1] = new ItemArmorBase(MD.GT.mID, "gt6.armor.hazmat.radiation.chest" , "Radiation Hazard Suit Shirt"      , "Full Set protects against Radiation"           , "hazard_radiation" , 1, new int[] {1, 1, 1, 1}, 128, 8, 0, F, F, "LxL", "LLL", "LLL", 'L', plate.dat(MT.Pb)));
 		ArmorsGT.HAZMATS_RADIOACTIVE.add(ArmorsGT.HAZMAT_RADIOACTIVE[2] = new ItemArmorBase(MD.GT.mID, "gt6.armor.hazmat.radiation.legs"  , "Radiation Hazard Suit Pants"      , "Full Set protects against Radiation"           , "hazard_radiation" , 2, new int[] {1, 1, 1, 1}, 128, 8, 0, F, F, "LLL", "LxL", "LlL", 'L', plate.dat(MT.Pb)));
 		ArmorsGT.HAZMATS_RADIOACTIVE.add(ArmorsGT.HAZMAT_RADIOACTIVE[3] = new ItemArmorBase(MD.GT.mID, "gt6.armor.hazmat.radiation.boots" , "Radiation Hazard Suit Boots"      , "Full Set protects against Radiation"           , "hazard_radiation" , 3, new int[] {1, 1, 1, 1}, 128, 8, 0, F, F, "LlL", "LxL"       , 'L', plate.dat(MT.Pb)));
-		
+
 										 ArmorsGT.HAZMAT_BIOCHEMGAS [0] = new ItemArmorBase(MD.GT.mID, "gt6.armor.hazmat.biochemgas.head" , "Biochemical Gas Hazard Suit Mask" , "Full Set protects against Chemicals and Gasses", "hazard_biochemgas", 0, new int[] {1, 1, 1, 1}, 128, 8, 0, F, F, "RRR", "RGR", "q l", 'R', plate.dat(MT.Rubber), 'G', Blocks.glass_pane);
 										 ArmorsGT.HAZMAT_BIOCHEMGAS [1] = new ItemArmorBase(MD.GT.mID, "gt6.armor.hazmat.biochemgas.chest", "Biochemical Gas Hazard Suit Shirt", "Full Set protects against Chemicals and Gasses", "hazard_biochemgas", 1, new int[] {1, 1, 1, 1}, 128, 8, 0, F, F, "RqR", "RRR", "RRR", 'R', plate.dat(MT.Rubber));
 										 ArmorsGT.HAZMAT_BIOCHEMGAS [2] = new ItemArmorBase(MD.GT.mID, "gt6.armor.hazmat.biochemgas.legs" , "Biochemical Gas Hazard Suit Pants", "Full Set protects against Chemicals and Gasses", "hazard_biochemgas", 2, new int[] {1, 1, 1, 1}, 128, 8, 0, F, F, "RRR", "RqR", "RlR", 'R', plate.dat(MT.Rubber));
 										 ArmorsGT.HAZMAT_BIOCHEMGAS [3] = new ItemArmorBase(MD.GT.mID, "gt6.armor.hazmat.biochemgas.boots", "Biochemical Gas Hazard Suit Boots", "Full Set protects against Chemicals and Gasses", "hazard_biochemgas", 3, new int[] {1, 1, 1, 1}, 128, 8, 0, F, F, "RlR", "RqR"       , 'R', plate.dat(MT.Rubber));
-		
+
 										 ArmorsGT.HAZMAT_UNIVERSAL  [0] = new ItemArmorBase(MD.GT.mID, "gt6.armor.hazmat.universal.head"  , "Universal Hazard Suit Mask"       , "Full Set protects against Hazards"             , "hazard_universal" , 0, new int[] {1, 1, 1, 1}, 128, 8, 0, T, T, "AlB", "CqD", "ExF", 'A', ST.make(ArmorsGT.HAZMAT_BIOCHEMGAS[0], 1, 0), 'B', ST.make(ArmorsGT.HAZMAT_INSECTS[0], 1, 0), 'C', ST.make(ArmorsGT.HAZMAT_FROST[0], 1, 0), 'D', ST.make(ArmorsGT.HAZMAT_HEAT[0], 1, 0), 'E', ST.make(ArmorsGT.HAZMAT_RADIOACTIVE[0], 1, 0), 'F', ST.make(Items.chainmail_helmet    , 1, 0));
 										 ArmorsGT.HAZMAT_UNIVERSAL  [1] = new ItemArmorBase(MD.GT.mID, "gt6.armor.hazmat.universal.chest" , "Universal Hazard Suit Shirt"      , "Full Set protects against Hazards"             , "hazard_universal" , 1, new int[] {1, 1, 1, 1}, 128, 8, 0, T, T, "AlB", "CqD", "ExF", 'A', ST.make(ArmorsGT.HAZMAT_BIOCHEMGAS[1], 1, 0), 'B', ST.make(ArmorsGT.HAZMAT_INSECTS[1], 1, 0), 'C', ST.make(ArmorsGT.HAZMAT_FROST[1], 1, 0), 'D', ST.make(ArmorsGT.HAZMAT_HEAT[1], 1, 0), 'E', ST.make(ArmorsGT.HAZMAT_RADIOACTIVE[1], 1, 0), 'F', ST.make(Items.chainmail_chestplate, 1, 0));
 										 ArmorsGT.HAZMAT_UNIVERSAL  [2] = new ItemArmorBase(MD.GT.mID, "gt6.armor.hazmat.universal.legs"  , "Universal Hazard Suit Pants"      , "Full Set protects against Hazards"             , "hazard_universal" , 2, new int[] {1, 1, 1, 1}, 128, 8, 0, T, T, "AlB", "CqD", "ExF", 'A', ST.make(ArmorsGT.HAZMAT_BIOCHEMGAS[2], 1, 0), 'B', ST.make(ArmorsGT.HAZMAT_INSECTS[2], 1, 0), 'C', ST.make(ArmorsGT.HAZMAT_FROST[2], 1, 0), 'D', ST.make(ArmorsGT.HAZMAT_HEAT[2], 1, 0), 'E', ST.make(ArmorsGT.HAZMAT_RADIOACTIVE[2], 1, 0), 'F', ST.make(Items.chainmail_leggings  , 1, 0));
 										 ArmorsGT.HAZMAT_UNIVERSAL  [3] = new ItemArmorBase(MD.GT.mID, "gt6.armor.hazmat.universal.boots" , "Universal Hazard Suit Boots"      , "Full Set protects against Hazards"             , "hazard_universal" , 3, new int[] {1, 1, 1, 1}, 128, 8, 0, T, T, "AlB", "CqD", "ExF", 'A', ST.make(ArmorsGT.HAZMAT_BIOCHEMGAS[3], 1, 0), 'B', ST.make(ArmorsGT.HAZMAT_INSECTS[3], 1, 0), 'C', ST.make(ArmorsGT.HAZMAT_FROST[3], 1, 0), 'D', ST.make(ArmorsGT.HAZMAT_HEAT[3], 1, 0), 'E', ST.make(ArmorsGT.HAZMAT_RADIOACTIVE[3], 1, 0), 'F', ST.make(Items.chainmail_boots     , 1, 0));
-		
+
 		for (ItemArmorBase tArmor : ArmorsGT.HAZMAT_UNIVERSAL) {
 		ArmorsGT.HAZMATS_GAS        .add(tArmor);
 		ArmorsGT.HAZMATS_BIO        .add(tArmor);
@@ -171,9 +171,9 @@ public class Loader_Tools implements Runnable {
 		ArmorsGT.HAZMATS_BIO        .add(tArmor);
 		ArmorsGT.HAZMATS_CHEM       .add(tArmor);
 		}
-		
+
 		ToolsGT.sMetaTool = new MultiItemToolWithCompat(MD.GT.mID, "gt6.metatool.01");
-		
+
 		ToolsGT.add(ToolsGT.sMetaTool.addTool(ToolsGT.SWORD                     , "Sword"                           , ""                                                    , new GT_Tool_Sword()                                            .setMaterialAmount(toolHeadSword                  .mAmount), OreDictToolNames.sword, OreDictToolNames.blade                                                                                           , TC.stack(TC.INSTRUMENTUM  , 2), TC.stack(TC.TELUM         , 4)                                                                ), TOOL_sword);
 		ToolsGT.add(ToolsGT.sMetaTool.addTool(ToolsGT.PICKAXE                   , "Pickaxe"                         , ""                                                    , new GT_Tool_Pickaxe()                                          .setMaterialAmount(toolHeadPickaxe                .mAmount), OreDictToolNames.pickaxe                                                                                                                 , TC.stack(TC.INSTRUMENTUM  , 2), TC.stack(TC.PERFODIO      , 4)                                                                ), TOOL_pickaxe);
 		ToolsGT.add(ToolsGT.sMetaTool.addTool(ToolsGT.SHOVEL                    , "Shovel"                          , ""                                                    , new GT_Tool_Shovel()                                           .setMaterialAmount(toolHeadShovel                 .mAmount), OreDictToolNames.shovel                                                                                                                  , TC.stack(TC.INSTRUMENTUM  , 2), TC.stack(TC.PERFODIO      , 4)                                                                ), TOOL_shovel);
@@ -211,7 +211,7 @@ public class Loader_Tools implements Runnable {
 		ToolsGT.add(ToolsGT.sMetaTool.addTool(ToolsGT.PINCERS                   , "Pincers"                         , ""                                                    , new GT_Tool_Pincers()                                          .setMaterialAmount(U*2+screw.mAmount+2*stick   .mAmount), OreDictToolNames.pincers                                                                                                                 , TC.stack(TC.INSTRUMENTUM  , 4), TC.stack(TC.FABRICO       , 2)                                                                ), TOOL_pincers);
 		ToolsGT.add(ToolsGT.sMetaTool.addTool(ToolsGT.GEM_PICK                  , "Gem tipped Pickaxe"              , ""                                                    , new GT_Tool_PickaxeGem()                                       .setMaterialAmount(toolHeadPickaxeGem             .mAmount), OreDictToolNames.pickaxe                                                                                                                 , TC.stack(TC.INSTRUMENTUM  , 3), TC.stack(TC.PERFODIO      , 3)                                                                ), TOOL_pickaxe);
 		ToolsGT.add(ToolsGT.sMetaTool.addTool(ToolsGT.HAND_DRILL                , "Hand Drill"                      , ""                                                    , new GT_Tool_HandDrill()                                        .setMaterialAmount(toolHeadArrow.mAmount+2*bolt.mAmount)                                                                                                                                           , TC.stack(TC.INSTRUMENTUM  , 2), TC.stack(TC.PERFODIO      , 1)                                                                ), TOOL_drill);
-		
+
 		ToolsGT.add(ToolsGT.sMetaTool.addTool(ToolsGT.MININGDRILL_LV            , "Mining Drill (LV)"               , ""                                                    , new GT_Tool_MiningDrill_LV()                                   .setMaterialAmount(toolHeadDrill                  .mAmount), OreDictToolNames.miningdrill                                                                                                             , TC.stack(TC.MACHINA       , 2), TC.stack(TC.PERFODIO      , 4)                                                                ), TOOL_pickaxe);
 		ToolsGT.add(ToolsGT.sMetaTool.addTool(ToolsGT.MININGDRILL_MV            , "Mining Drill (MV)"               , ""                                                    , new GT_Tool_MiningDrill_MV()                                   .setMaterialAmount(toolHeadDrill                  .mAmount), OreDictToolNames.miningdrill                                                                                                             , TC.stack(TC.MACHINA       , 2), TC.stack(TC.PERFODIO      , 4)                                                                ), TOOL_pickaxe);
 		ToolsGT.add(ToolsGT.sMetaTool.addTool(ToolsGT.MININGDRILL_HV            , "Mining Drill (HV)"               , ""                                                    , new GT_Tool_MiningDrill_HV()                                   .setMaterialAmount(toolHeadDrill                  .mAmount), OreDictToolNames.miningdrill                                                                                                             , TC.stack(TC.MACHINA       , 2), TC.stack(TC.PERFODIO      , 4)                                                                ), TOOL_pickaxe);
@@ -231,7 +231,7 @@ public class Loader_Tools implements Runnable {
 		ToolsGT.add(ToolsGT.sMetaTool.addTool(ToolsGT.MONKEY_WRENCH_MV          , "Monkey Wrench (MV)"              , "Sneak Rightclick to switch to Wrench"                , new GT_Tool_MonkeyWrench_MV(ToolsGT.WRENCH_MV)                 .setMaterialAmount(toolHeadWrench                 .mAmount), OreDictToolNames.monkeywrench                                                                                                            , TC.stack(TC.MACHINA       , 4), TC.stack(TC.ORDO          , 2)                                                                ), TOOL_monkeywrench);
 		ToolsGT.add(ToolsGT.sMetaTool.addTool(ToolsGT.MONKEY_WRENCH_HV          , "Monkey Wrench (HV)"              , "Sneak Rightclick to switch to Wrench"                , new GT_Tool_MonkeyWrench_HV(ToolsGT.WRENCH_HV)                 .setMaterialAmount(toolHeadWrench                 .mAmount), OreDictToolNames.monkeywrench                                                                                                            , TC.stack(TC.MACHINA       , 4), TC.stack(TC.ORDO          , 2)                                                                ), TOOL_monkeywrench);
 		ToolsGT.add(ToolsGT.sMetaTool.addTool(ToolsGT.TRIMMER_LV                , "Trimmer (LV)"                    , ""                                                    , new GT_Tool_Trimmer_LV()                                       .setMaterialAmount(2*toolHeadSword                .mAmount), OreDictToolNames.branchcutter                                                                                                            , TC.stack(TC.MACHINA       , 2), TC.stack(TC.METO          , 2), TC.stack(TC.HERBA         , 2)                                ), TOOL_grafter);
-		
+
 					ToolsGT.sMetaTool.addTool(ToolsGT.POCKET_MULTITOOL          , "Pocket Multitool"                , "Sneak Rightclick to switch Tool"                     , new GT_Tool_Pocket_Multitool(ToolsGT.POCKET_KNIFE)             .setMaterialAmount(199*U18                                   )                                                                                                                                           , TC.stack(TC.INSTRUMENTUM  , 6), TC.stack(TC.FABRICO       , 3), TC.stack(TC.ORDO          , 3)                                );
 		ToolsGT.add(ToolsGT.sMetaTool.addTool(ToolsGT.POCKET_KNIFE              , "Pocket Multitool (Knife)"        , ""                                                    , new GT_Tool_Pocket_Knife(ToolsGT.POCKET_SAW)                   .setMaterialAmount(199*U18                                   ), OreDictToolNames.blade, OreDictToolNames.knife, OreDictToolNames.hac_cuttingboard                                                        , TC.stack(TC.INSTRUMENTUM  , 6), TC.stack(TC.FABRICO       , 3), TC.stack(TC.ORDO          , 3)                                ), TOOL_knife);
 		ToolsGT.add(ToolsGT.sMetaTool.addTool(ToolsGT.POCKET_SAW                , "Pocket Multitool (Saw)"          , "Faster on Planks. Slower on Logs. Can harvest Ice."  , new GT_Tool_Pocket_Saw(ToolsGT.POCKET_FILE)                    .setMaterialAmount(199*U18                                   ), OreDictToolNames.saw                                                                                                                     , TC.stack(TC.INSTRUMENTUM  , 6), TC.stack(TC.FABRICO       , 3), TC.stack(TC.ORDO          , 3)                                ), TOOL_saw);
@@ -240,9 +240,9 @@ public class Loader_Tools implements Runnable {
 		ToolsGT.add(ToolsGT.sMetaTool.addTool(ToolsGT.POCKET_WIRECUTTER         , "Pocket Multitool (Wirecutter)"   , ""                                                    , new GT_Tool_Pocket_Cutter(ToolsGT.POCKET_SCISSORS)             .setMaterialAmount(199*U18                                   ), OreDictToolNames.wirecutter                                                                                                              , TC.stack(TC.INSTRUMENTUM  , 6), TC.stack(TC.FABRICO       , 3), TC.stack(TC.ORDO          , 3)                                ), TOOL_cutter);
 		ToolsGT.add(ToolsGT.sMetaTool.addTool(ToolsGT.POCKET_SCISSORS           , "Pocket Multitool (Scissors)"     , "Don't run around while holding them!"                , new GT_Tool_Pocket_Scissors(ToolsGT.POCKET_CHISEL)             .setMaterialAmount(199*U18                                   ), OreDictToolNames.scissors, OreDictToolNames.shears                                                                                       , TC.stack(TC.INSTRUMENTUM  , 6), TC.stack(TC.FABRICO       , 3), TC.stack(TC.ORDO          , 3)                                ), TOOL_scissors);
 		ToolsGT.add(ToolsGT.sMetaTool.addTool(ToolsGT.POCKET_CHISEL             , "Pocket Multitool (Chisel)"       , "Be slow/careful with it on Servers because Ping!"    , new GT_Tool_Pocket_Chisel(ToolsGT.POCKET_MULTITOOL)            .setMaterialAmount(199*U18                                   ), OreDictToolNames.chisel                                                                                                                  , TC.stack(TC.INSTRUMENTUM  , 6), TC.stack(TC.FABRICO       , 3), TC.stack(TC.ORDO          , 3)                                ), TOOL_chisel);
-		
+
 		ItemsGT.addNEIRedirects(ST.make(ToolsGT.sMetaTool, 1, ToolsGT.JACKHAMMER_HV_Normal), ST.make(ToolsGT.sMetaTool, 1, ToolsGT.JACKHAMMER_HV_Normal+1), ST.make(ToolsGT.sMetaTool, 1, ToolsGT.JACKHAMMER_HV_No_Ores), ST.make(ToolsGT.sMetaTool, 1, ToolsGT.JACKHAMMER_HV_No_Ores+1));
-		
+
 		for (int i = 0; i < 8; i++) ItemsGT.addNEIRedirect(
 			ST.make(ToolsGT.sMetaTool, 1, ToolsGT.POCKET_MULTITOOL+  i      *2),
 			ST.make(ToolsGT.sMetaTool, 1, ToolsGT.POCKET_MULTITOOL+((i+1)%8)*2),
@@ -253,15 +253,15 @@ public class Loader_Tools implements Runnable {
 			ST.make(ToolsGT.sMetaTool, 1, ToolsGT.POCKET_MULTITOOL+((i+6)%8)*2),
 			ST.make(ToolsGT.sMetaTool, 1, ToolsGT.POCKET_MULTITOOL+((i+7)%8)*2)
 		);
-		
+
 		// TODO: Guns, later: ToolsGT.sMetaTool.addTool(ToolsGT.PISTOL, "Pistol", "Single Shot, Moderate Damage", new GT_Tool_Gun().setMaterialAmount(U*3), TC.stack(TC.TELUM, 6), TC.stack(TC.FABRICO, 3), TC.stack(TC.IGNIS, 3));
-		
-		
-		
-		
+
+
+
+
 		GAPI.mBeforePostInit.add(new Runnable() {@SuppressWarnings({"rawtypes", "unchecked"})
 		@Override public void run() {
-		
+
 		CR.shapeless(ToolsGT.sMetaTool.getToolWithStats(ToolsGT.FLINT_AND_TINDER, 1, MT.Steel               , MT.Flint  ), CR.DEF       , new Object[] {ST.make(Items.flint_and_steel, 1, 0)});
 		CR.shaped(ST.make(Items.flint_and_steel, 1, 0)                          , CR.DEL_OTHER_NATIVE_RECIPES           |  CR.DEF_MIR   , "T ", " F", 'F', OD.itemFlint, 'T', nugget.dat(MT.Steel));
 		for (OreDictMaterial tMaterial : ANY.Iron.mToThis) if (tMaterial != MT.Steel) {
@@ -295,7 +295,7 @@ public class Loader_Tools implements Runnable {
 		for (OreDictMaterial tMaterial : new OreDictMaterial[] {MT.Pyrite, MT.Fe2O3, MT.OREMATS.Cobaltite, MT.OREMATS.Garnierite, MT.OREMATS.Pentlandite, MT.OREMATS.Chromite, MT.OREMATS.Ilmenite, MT.OREMATS.BrownLimonite, MT.OREMATS.YellowLimonite, MT.OREMATS.Magnetite, MT.OREMATS.Arsenopyrite, MT.OREMATS.Chalcopyrite}) {
 		CR.shaped(ToolsGT.sMetaTool.getToolWithStats(ToolsGT.FLINT_AND_TINDER   , tMaterial                 , MT.Flint  ), CR.DEF_MIR   , "T ", " F", 'F', OD.itemFlint, 'T', rockGt.dat(tMaterial));
 		}
-		
+
 		for (OreDictMaterial tMaterial : new OreDictMaterial[] {MT.Syrmorite, MT.Plastic, MT.Al, MT.Cr, MT.StainlessSteel})
 		CR.shaped(ToolsGT.sMetaTool.getToolWithStats(ToolsGT.ROLLING_PIN        , tMaterial         , tMaterial         ), CR.DEF_MIR   , "  S", " I ", "S f", 'I', ingot.dat(tMaterial), 'S', stick.dat(tMaterial));
 		for (OreDictMaterial tMaterial : ANY.Wood.mToThis) if (tMaterial != MT.Wood) {
@@ -304,9 +304,9 @@ public class Loader_Tools implements Runnable {
 		}
 		CR.shaped(ToolsGT.sMetaTool.getToolWithStats(ToolsGT.ROLLING_PIN        , MT.Wood           , MT.Wood           ), CR.DEF_MIR   , "  S", " I ", "S f", 'I', OD.plankAnyWood, 'S', stick.dat(ANY.Wood));
 		CR.shaped(ToolsGT.sMetaTool.getToolWithStats(ToolsGT.ROLLING_PIN        , MT.Wood           , MT.Wood           ), CR.DEF_MIR   , "  S", " I ", "S k", 'I', OD.plankAnyWood, 'S', stick.dat(ANY.Wood));
-		
+
 		for (Object[] tHandle : new Object[][] {{MT.Wood, stick.dat(ANY.Wood)}, {MT.PetrifiedWood, stick.dat(MT.PetrifiedWood)}, {MT.Bamboo, OD.bamboo}, {MT.Bone, ST.make(Items.bone, 1, W)}, {MT.Plastic, stick.dat(MT.Plastic)}}) {
-		
+
 		CR.shaped(ToolsGT.sMetaTool.getToolWithStats(ToolsGT.KNIFE              , MT.Flint          , (OreDictMaterial)tHandle[0]   ), CR.DEF_MIR   , "SF"               , 'S', tHandle[1], 'F', OD.itemFlint);
 		CR.shaped(ToolsGT.sMetaTool.getToolWithStats(ToolsGT.AXE                , MT.Flint          , (OreDictMaterial)tHandle[0]   ), CR.DEF_MIR   , "FF" , "FS"        , 'S', tHandle[1], 'F', OD.itemFlint);
 		CR.shaped(ToolsGT.sMetaTool.getToolWithStats(ToolsGT.HOE                , MT.Flint          , (OreDictMaterial)tHandle[0]   ), CR.DEF_MIR   , "FF" , " S"        , 'S', tHandle[1], 'F', OD.itemFlint);
@@ -314,14 +314,14 @@ public class Loader_Tools implements Runnable {
 		CR.shaped(ToolsGT.sMetaTool.getToolWithStats(ToolsGT.PICKAXE            , MT.Flint          , (OreDictMaterial)tHandle[0]   ), CR.DEF       , "FFF", " S "       , 'S', tHandle[1], 'F', OD.itemFlint);
 		CR.shaped(ToolsGT.sMetaTool.getToolWithStats(ToolsGT.SWORD              , MT.Flint          , (OreDictMaterial)tHandle[0]   ), CR.DEF       ,  "F" ,  "F" ,  "S" , 'S', tHandle[1], 'F', OD.itemFlint);
 		CR.shaped(ToolsGT.sMetaTool.getToolWithStats(ToolsGT.CLUB               , MT.Flint          , (OreDictMaterial)tHandle[0]   ), CR.DEF_MIR   , " FF", "FFF", "SF ", 'S', tHandle[1], 'F', OD.itemFlint);
-		
+
 		for (OreDictMaterial tMaterial : ANY.Wood.mToThis) if (tMaterial != MT.Wood) {
 		CR.shaped(ToolsGT.sMetaTool.getToolWithStats(ToolsGT.CLUB               , tMaterial         , (OreDictMaterial)tHandle[0]   ), CR.DEF_MIR   , " FF", "FFF", "SF ", 'S', tHandle[1], 'F', plank.dat(tMaterial));
 		CR.shaped(ToolsGT.sMetaTool.getToolWithStats(ToolsGT.SOFTHAMMER         , tMaterial         , (OreDictMaterial)tHandle[0]   ), CR.DEF_MIR   , "FF ", "FFS", "FF ", 'S', tHandle[1], 'F', plank.dat(tMaterial));
 		}
 		CR.shaped(ToolsGT.sMetaTool.getToolWithStats(ToolsGT.CLUB               , MT.Wood           , (OreDictMaterial)tHandle[0]   ), CR.DEF_MIR   , " FF", "FFF", "SF ", 'S', tHandle[1], 'F', OD.plankAnyWood);
 		CR.shaped(ToolsGT.sMetaTool.getToolWithStats(ToolsGT.SOFTHAMMER         , MT.Wood           , (OreDictMaterial)tHandle[0]   ), CR.DEF_MIR   , "FF ", "FFS", "FF ", 'S', tHandle[1], 'F', OD.plankAnyWood);
-		
+
 		CR.shaped(ToolsGT.sMetaTool.getToolWithStats(ToolsGT.SOFTHAMMER         , MT.Rubber         , (OreDictMaterial)tHandle[0]   ), CR.DEF_MIR   , "FF ", "FFS", "FF ", 'S', tHandle[1], 'F', ingot.dat(MT.Rubber));
 		CR.shaped(ToolsGT.sMetaTool.getToolWithStats(ToolsGT.SOFTHAMMER         , MT.Rubber         , (OreDictMaterial)tHandle[0]   ), CR.DEF_MIR   , "FF ", "FFS", "FF ", 'S', tHandle[1], 'F', plate.dat(MT.Rubber));
 		CR.shaped(ToolsGT.sMetaTool.getToolWithStats(ToolsGT.SOFTHAMMER         , MT.Plastic        , (OreDictMaterial)tHandle[0]   ), CR.DEF_MIR   , "FF ", "FFS", "FF ", 'S', tHandle[1], 'F', ingot.dat(MT.Plastic));
@@ -345,13 +345,13 @@ public class Loader_Tools implements Runnable {
 		}
 		*/
 		}
-		
+
 		/* GregTech6 Unofficial */
 		//Stone Age
 		CR.shaped(ToolsGT.sMetaTool.getToolWithStats(ToolsGT.WRENCH         , MT.Stone, MT.Stone), CR.DEF_MIR   , "PhP", "PPP", " P ", 'P', plate.dat(MT.Stone));
-		
+
 		final String tCategory = ConfigCategories.Recipes.gregtechtools + ".";
-		
+
 		toolHeadConstructionPickaxe .addListener(new OreProcessing_Tool(CONSTRUCTION_PICK       , tCategory + "ConstructionPickaxe"     ,T,F,0,0, null                          , null                                                                                      , new String[][] {{"PIP", "f h"       }, {"CGC", "f  "       }} , null          , null, null, null                              , null, ANTIMATTER.NOT));
 		toolHeadPickaxe             .addListener(new OreProcessing_Tool(PICKAXE                 , tCategory + "Pickaxe"                 ,T,F,0,0, null                          , null                                                                                      , new String[][] {{"PII", "f h"       }, {"CGG", "f  "       }} , null          , null, null, null                              , null, ANTIMATTER.NOT));
 		toolHeadShovel              .addListener(new OreProcessing_Tool(SHOVEL                  , tCategory + "Shovel"                  ,T,F,0,0, null                          , null                                                                                      , new String[][] {{"fPh"              }, {"fC "              }} , null          , null, null, null                              , null, ANTIMATTER.NOT));
@@ -382,12 +382,12 @@ public class Loader_Tools implements Runnable {
 		toolHeadSword               .addListener(new OreProcessing_Tool(WIRECUTTER              , tCategory + "WireCutter"              ,F,F,0,0, null                          , new String[][] {{"PfP", "hPd", "STS"}, {"CfC", "hCd", "STS"}}                             , null                                                          , null          , null, null, null                              , null, new And(ANTIMATTER.NOT, BOUNCY.NOT, STRETCHY.NOT, typemin(2))));
 		toolHeadSword               .addListener(new OreProcessing_Tool(BRANCHCUTTER            , tCategory + "BranchCutter"            ,F,F,0,0, null                          , new String[][] {{"PfP", "PdP", "STS"}, {"CfC", "CdC", "STS"}}                             , null                                                          , null          , null, null, null                              , null, new And(ANTIMATTER.NOT, BOUNCY.NOT, STRETCHY.NOT, typemin(2))));
 		toolHeadSword               .addListener(new OreProcessing_Tool(SCISSORS                , tCategory + "Scissors"                ,F,F,0,0, null                          , new String[][] {{"PfP", " T ", "OdO"}, {"CfC", " T ", "OdO"}}                             , null                                                          , null          , null, null, null                              , null, new And(ANTIMATTER.NOT, BOUNCY.NOT, STRETCHY.NOT, typemin(2))));
-		toolHeadHammer              .addListener(new OreProcessing_Tool(HARDHAMMER              , tCategory + "HardHammer"              ,T,F,0,0, null                          , new String[][] {{"II ", "IIH", "II "}, {"GG ", "GGH", "GG "}}                             , new String[][] {{"II ", "IIh", "II "}, {"GG ", "GGf", "GG "}} , null          , null, null, null                              , null, new And(ANTIMATTER.NOT, new Nor(WOOD, BOUNCY, STRETCHY))));
-		toolHeadHammer              .addListener(new OreProcessing_Tool(SOFTHAMMER              , tCategory + "SoftHammer"              ,T,F,0,0, null                          , new String[][] {{"II ", "IIH", "II "}, {"GG ", "GGH", "GG "}}                             , new String[][] {{"II ", "IIr", "II "}, {"GG ", "GGr", "GG "}} , null          , null, null, null                              , null, new And(ANTIMATTER.NOT, new Or (WOOD, BOUNCY, STRETCHY))));
+		toolHeadHammer              .addListener(new OreProcessing_Tool(HARDHAMMER              , tCategory + "HardHammer"              ,T,F,0,0, null                          , new String[][] {{" II", "HII", " II"}, {" GG", "HGG", " GG"}}                             , new String[][] {{"II ", "IIh", "II "}, {"GG ", "GGf", "GG "}} , null          , null, null, null                              , null, new And(ANTIMATTER.NOT, new Nor(WOOD, BOUNCY, STRETCHY))));
+		toolHeadHammer              .addListener(new OreProcessing_Tool(SOFTHAMMER              , tCategory + "SoftHammer"              ,T,F,0,0, null                          , new String[][] {{" II", "HII", " II"}, {" GG", "HGG", " GG"}}                             , new String[][] {{"II ", "IIr", "II "}, {"GG ", "GGr", "GG "}} , null          , null, null, null                              , null, new And(ANTIMATTER.NOT, new Or (WOOD, BOUNCY, STRETCHY))));
 		toolHeadHammer              .addListener(new OreProcessing_Tool(CLUB                    , tCategory + "Club"                    ,T,F,0,0, null                          , new String[][] {{" II", "III", "HI "}, {" GG", "GGG", "HG "}, {" RR", "RRR", "HR "}}      , null                                                          , null          , null, null, null                              , null, new And(ANTIMATTER.NOT)));
 		lens                        .addListener(new OreProcessing_Tool(MAGNIFYING_GLASS        , tCategory + "MagnifyingGlass"         ,T,F,0,0, null                          , null                                                                                      , null                                                          , null          , null, null, null                              , null, new And(ANTIMATTER.NOT, typemin(1))));
 		toolHeadArrow               .addListener(new OreProcessing_Tool(HAND_DRILL              , tCategory + "HandDrill"               ,T,F,0,0, null                          , new String[][] {{"  X", "HYH", "YH "}}                                                    , null                                                          , toolHeadArrow , bolt, null, null                              , null, new And(ANTIMATTER.NOT, WOOD.NOT, BOUNCY.NOT, STRETCHY.NOT, typemin(2), qualmin(2))));
-		
+
 		GameRegistry.addRecipe(new AdvancedCraftingTool(MAGNIFYING_GLASS        , lens, MT.Glass));
 		GameRegistry.addRecipe(new AdvancedCraftingTool(HARDHAMMER              , toolHeadHammer, new Nor(WOOD, BOUNCY, STRETCHY)));
 		GameRegistry.addRecipe(new AdvancedCraftingTool(SOFTHAMMER              , toolHeadHammer, new Or (WOOD, BOUNCY, STRETCHY), MT.Rubber));
@@ -406,17 +406,17 @@ public class Loader_Tools implements Runnable {
 		GameRegistry.addRecipe(new AdvancedCraftingTool(CHISEL                  , toolHeadChisel));
 		GameRegistry.addRecipe(new AdvancedCraftingTool(SCREWDRIVER             , toolHeadScrewdriver));
 		GameRegistry.addRecipe(new AdvancedCraftingTool(SAW                     , toolHeadSaw));
-		
+
 		toolHeadScrewdriver         .addListener(new OreProcessing_Tool(POCKET_MULTITOOL        , tCategory + "PocketMultitool"         ,F,F,0,0, null                          , new String[][] {{"AXO", "ZPV", "OWY"}}                                                    , null                                                          , toolHeadSaw, toolHeadChisel, toolHeadFile, toolHeadSword, toolHeadSword, new And(ANTIMATTER.NOT, WOOD.NOT, BOUNCY.NOT, STRETCHY.NOT, typemin(3), qualmin(1))));
-		
-		
+
+
 		for (ItemStack tBattery : OreDictManager.getOres("gt:re-battery1", F)) {
 		toolHeadDrill               .addListener(new OreProcessing_Tool(MIXER_LV                , tCategory + "MixerLV"                 ,F,T, -1,V[1], MT.DATA.Electric_T[1]    , new String[][] {{"SSY", "SXW", "hVZ"}}                                                    , null                                                          , plateCurved.dat(MT.DATA.Electric_T[1]), ring.dat(MT.DATA.Electric_T[1]), plate.dat(MT.DATA.Electric_T[1]), tBattery, IL.MOTORS[1], new And(ANTIMATTER.NOT, WOOD.NOT, BOUNCY.NOT, STRETCHY.NOT, typemin(3), qualmin(1))));
 		toolHeadDrill               .addListener(new OreProcessing_Tool(DRILL_LV                , tCategory + "DrillLV"                 ,F,T, -1,V[1], MT.DATA.Electric_T[1]    , new String[][] {{"fSY", "TXW", "dVZ"}}                                                    , null                                                          , plateCurved.dat(MT.DATA.Electric_T[1]), ring.dat(MT.DATA.Electric_T[1]), plate.dat(MT.DATA.Electric_T[1]), tBattery, IL.MOTORS[1], new And(ANTIMATTER.NOT, WOOD.NOT, BOUNCY.NOT, STRETCHY.NOT, typemin(3), qualmin(1))));
 		toolHeadScrewdriver         .addListener(new OreProcessing_Tool(SCREWDRIVER_LV          , tCategory + "ScrewdriverLV"           ,F,T, -1,V[1], MT.DATA.Electric_T[1]    , new String[][] {{"XdA", "TWY", "VYX"}}                                                    , null                                                          , plateCurved.dat(MT.DATA.Electric_T[1]), ring.dat(MT.DATA.Electric_T[1]), null, tBattery, IL.MOTORS[1], new And(ANTIMATTER.NOT, WOOD.NOT, BOUNCY.NOT, STRETCHY.NOT, typemin(3), qualmin(1))));
 		toolHeadBuzzSaw             .addListener(new OreProcessing_Tool(BUZZSAW_LV              , tCategory + "BuzzSawLV"               ,F,T, -1,V[1], MT.DATA.Electric_T[1]    , new String[][] {{"YXV", "TWX", "AdY"}}                                                    , null                                                          , plateCurved.dat(MT.DATA.Electric_T[1]), plate.dat(MT.DATA.Electric_T[1]), null, tBattery, IL.MOTORS[1], new And(ANTIMATTER.NOT, WOOD.NOT, BOUNCY.NOT, STRETCHY.NOT, typemin(3), qualmin(1))));
 		toolHeadSword               .addListener(new OreProcessing_Tool(TRIMMER_LV              , tCategory + "TrimmerLV"               ,F,T, -1,V[1], MT.DATA.Electric_T[1]    , new String[][] {{"XAT", "ZYA", "VWd"}}                                                    , null                                                          , plateCurved.dat(MT.DATA.Electric_T[1]), ring.dat(MT.DATA.Electric_T[1]), stickLong.dat(MT.DATA.Electric_T[1]), tBattery, IL.PISTONS[1], new And(ANTIMATTER.NOT, WOOD.NOT, BOUNCY.NOT, STRETCHY.NOT, typemin(3), qualmin(1))));
-		
+
 		toolHeadWrench              .addListener(new OreProcessing_Tool(WRENCH_LV               , tCategory + "WrenchLV"                ,F,T, -1,V[1], MT.DATA.Electric_T[1]    , new String[][] {{"dAT", "XWX", "XVX"}}                                                    , null                                                          , plateCurved.dat(MT.DATA.Electric_T[1]), null, null, tBattery, IL.MOTORS[1], new And(ANTIMATTER.NOT, WOOD.NOT, BOUNCY.NOT, STRETCHY.NOT, typemin(3), qualmin(1))));
 		toolHeadDrill               .addListener(new OreProcessing_Tool(MININGDRILL_LV          , tCategory + "MiningDrillLV"           ,F,T, -1,V[1], MT.DATA.Electric_T[1]    , new String[][] {{"dAT", "XWX", "XVX"}}                                                    , null                                                          , plateCurved.dat(MT.DATA.Electric_T[1]), null, null, tBattery, IL.MOTORS[1], new And(ANTIMATTER.NOT, WOOD.NOT, BOUNCY.NOT, STRETCHY.NOT, typemin(3), qualmin(1))));
 		toolHeadChainsaw            .addListener(new OreProcessing_Tool(CHAINSAW_LV             , tCategory + "ChainsawLV"              ,F,T, -1,V[1], MT.DATA.Electric_T[1]    , new String[][] {{"dAT", "XWX", "XVX"}}                                                    , null                                                          , plateCurved.dat(MT.DATA.Electric_T[1]), null, null, tBattery, IL.MOTORS[1], new And(ANTIMATTER.NOT, WOOD.NOT, BOUNCY.NOT, STRETCHY.NOT, typemin(3), qualmin(1))));
@@ -430,12 +430,12 @@ public class Loader_Tools implements Runnable {
 		toolHeadWrench              .addListener(new OreProcessing_Tool(WRENCH_HV               , tCategory + "WrenchHV"                ,F,T, -1,V[3], MT.DATA.Electric_T[3]    , new String[][] {{"dAT", "XWX", "XVX"}}                                                    , null                                                          , plateCurved.dat(MT.DATA.Electric_T[3]), null, null, tBattery, IL.MOTORS[3], new And(ANTIMATTER.NOT, WOOD.NOT, BOUNCY.NOT, STRETCHY.NOT, typemin(3), qualmin(1))));
 		toolHeadDrill               .addListener(new OreProcessing_Tool(MININGDRILL_HV          , tCategory + "MiningDrillHV"           ,F,T, -1,V[3], MT.DATA.Electric_T[3]    , new String[][] {{"dAT", "XWX", "XVX"}}                                                    , null                                                          , plateCurved.dat(MT.DATA.Electric_T[3]), null, null, tBattery, IL.MOTORS[3], new And(ANTIMATTER.NOT, WOOD.NOT, BOUNCY.NOT, STRETCHY.NOT, typemin(3), qualmin(1))));
 		toolHeadChainsaw            .addListener(new OreProcessing_Tool(CHAINSAW_HV             , tCategory + "ChainsawHV"              ,F,T, -1,V[3], MT.DATA.Electric_T[3]    , new String[][] {{"dAT", "XWX", "XVX"}}                                                    , null                                                          , plateCurved.dat(MT.DATA.Electric_T[3]), null, null, tBattery, IL.MOTORS[3], new And(ANTIMATTER.NOT, WOOD.NOT, BOUNCY.NOT, STRETCHY.NOT, typemin(3), qualmin(1))));
-		
+
 		toolHeadDrill               .addListener(new OreProcessing_Tool(JACKHAMMER_HV_Normal    , tCategory + "JackhammerHV"            ,F,T, -1,V[3], MT.DATA.Electric_T[3]    , new String[][] {{"SVS", "XWX", "YSY"}}                                                    , null                                                          , plateCurved.dat(MT.DATA.Electric_T[3]), spring.dat(MT.DATA.Electric_T[3]), null, tBattery, IL.PISTONS[3], new And(ANTIMATTER.NOT, WOOD.NOT, BOUNCY.NOT, STRETCHY.NOT, typemin(3), qualmin(1))));
 		}
 		}});
 	}
-	
+
 	public static class OreProcessing_Tool implements IOreDictListenerEvent {
 		private final ICondition<OreDictMaterial> mCondition;
 		private final String[][] mToolRecipes, mToolHeadRecipes;
@@ -445,8 +445,8 @@ public class Loader_Tools implements Runnable {
 		private final long mCapacity, mVoltage;
 		private final boolean mUseNormalHandle, mDismantleable;
 		private final OreDictMaterial mHandleOverride;
-		
-		/** 
+
+		/**
 		 * I = ingot
 		 * P = plate
 		 * G = gem
@@ -477,7 +477,7 @@ public class Loader_Tools implements Runnable {
 			mCapacity = aCapacity;
 			mVoltage = aVoltage;
 		}
-		
+
 		@Override
 		public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			if (aEvent.mNotAlreadyRegisteredName && aEvent.mMaterial.mToolTypes > 0 && mCondition.isTrue(aEvent.mMaterial)) {
@@ -509,7 +509,7 @@ public class Loader_Tools implements Runnable {
 				if (tTool != null) {
 					if (mToolRecipes != null && mToolRecipes.length > 0) {
 						for (int i = 0; i < mToolRecipes.length; i++) if (mToolRecipes[i] != null && mToolRecipes[i].length > 0 && (mCategoryName == null || ConfigsGT.RECIPES.get(mCategoryName + ".toolrecipes."+i, aEvent.mMaterial.mNameInternal, T))) {
-								 if (mToolRecipes[i].length == 1)       CR.shaped(tTool, CR.DEF_NCC | (mDismantleable?CR.DISMANTLE:0), new Object[] {mToolRecipes[i][0]                                                     
+								 if (mToolRecipes[i].length == 1)       CR.shaped(tTool, CR.DEF_NCC | (mDismantleable?CR.DISMANTLE:0), new Object[] {mToolRecipes[i][0]
 								, 'G', gem.dat(aEvent.mMaterial)
 								, 'I', aEvent.mMaterial==MT.Wood?OD.plankWood:ingot.dat(aEvent.mMaterial)
 								, 'P', aEvent.mMaterial==MT.Wood?OD.plankWood:plate.dat(aEvent.mMaterial)

@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2019 Gregorius Techneticies
  *
- * This file is part of gregtech6.
+ * This file is part of GregTech.
  *
  * GregTech is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
  * GNU Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public License
- * along with gregtech6. If not, see <http://www.gnu.org/licenses/>.
+ * along with GregTech. If not, see <http://www.gnu.org/licenses/>.
  */
 
 package gregtech6.tileentity.energy.reactors;
@@ -35,23 +35,23 @@ public class MultiTileEntityReactorRodAbsorber extends MultiTileEntityReactorRod
 		aList.add(LH.Chat.CYAN + "Absorbs Neutrons and emits more Heat to Coolant");
 		aList.add(LH.Chat.DGRAY + "Used in Nuclear Reactor Core");
 	}
-	
+
 	@Override
 	public int getReactorRodNeutronEmission(MultiTileEntityReactorCore aReactor, int aSlot, ItemStack aStack) {
 		return 0;
 	}
-	
+
 	@Override
 	public boolean getReactorRodNeutronReaction(MultiTileEntityReactorCore aReactor, int aSlot, ItemStack aStack) {
 		aReactor.mEnergy += aReactor.oNeutronCounts[aSlot] * 2;
 		return T;
 	}
-	
+
 	@Override
 	public int getReactorRodNeutronReflection(MultiTileEntityReactorCore aReactor, int aSlot, ItemStack aStack, int aNeutrons) {
 		aReactor.mNeutronCounts[aSlot] += aNeutrons;
 		return 0;
 	}
-	
+
 	@Override public String getTileEntityName() {return "gt6.multitileentity.generator.reactor.rods.absorber";}
 }

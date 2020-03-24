@@ -48,32 +48,32 @@ import net.minecraft.nbt.NBTTagCompound;
 public class MultiTileEntitySafeKeyLocked extends MultiTileEntitySafe implements ITileEntityKeyInteractable {
 	public long mID = 0;
 	public boolean mOpened = F;
-	
+
 	@Override
 	public void readFromNBT2(NBTTagCompound aNBT) {
 		super.readFromNBT2(aNBT);
 		if (aNBT.hasKey(NBT_KEY)) mID = aNBT.getLong(NBT_KEY);
 		if (aNBT.hasKey(NBT_OPEN)) mOpened = aNBT.getBoolean(NBT_OPEN);
 	}
-	
+
 	@Override
 	public void writeToNBT2(NBTTagCompound aNBT) {
 		super.writeToNBT2(aNBT);
 		UT.NBT.setNumber(aNBT, NBT_KEY, mID);
 		UT.NBT.setBoolean(aNBT, NBT_OPEN, mOpened);
 	}
-	
+
 	@Override
 	public void addToolTips(List<String> aList, ItemStack aStack, boolean aF3_H) {
 		aList.add(Chat.ORANGE + LH.get(LH.KEY_CONTROLLED));
 		super.addToolTips(aList, aStack, aF3_H);
 	}
-	
+
 	@Override
 	public boolean allowInteraction(Entity aEntity) {
 		return mOpened;
 	}
-	
+
 	@Override
 	public boolean useKey(EntityPlayer aPlayer, byte aSide, float hitX, float hitY, float hitZ, long... aKeys) {
 		if (aKeys.length <= 0 || !isServerSide()) return F;
@@ -88,12 +88,12 @@ public class MultiTileEntitySafeKeyLocked extends MultiTileEntitySafe implements
 		}
 		return F;
 	}
-	
+
 	@Override
 	public IPacket getClientDataPacket(boolean aSendAll) {
 		return aSendAll ? getClientDataPacketByteArray(aSendAll, (byte)UT.Code.getR(mRGBa), (byte)UT.Code.getG(mRGBa), (byte)UT.Code.getB(mRGBa), getDirectionData(), getVisualData()) : getClientDataPacketByte(aSendAll, getVisualData());
 	}
-	
+
 	@Override
 	public boolean receiveDataByteArray(byte[] aData, INetworkHandler aNetworkHandler) {
 		mRGBa = UT.Code.getRGBInt(new short[] {UT.Code.unsignB(aData[0]), UT.Code.unsignB(aData[1]), UT.Code.unsignB(aData[2])});
@@ -101,17 +101,17 @@ public class MultiTileEntitySafeKeyLocked extends MultiTileEntitySafe implements
 		setVisualData(aData[4]);
 		return T;
 	}
-	
+
 	@Override public byte getVisualData() {return (byte)(mOpened ? 1 : 0);}
 	@Override public void setVisualData(byte aData) {mOpened = (aData != 0);}
-	
+
 	@Override
 	public ITexture getTexture2(Block aBlock, int aRenderPass, byte aSide, boolean[] aShouldSideBeRendered) {
 		if (!aShouldSideBeRendered[aSide]) return null;
 		int aIndex = aSide==mFacing?0:aSide==OPPOSITES[mFacing]?1:2;
 		return BlockTextureMulti.get(BlockTextureDefault.get((mOpened?sColoredsOpen:sColoreds)[aIndex], mRGBa), BlockTextureDefault.get((mOpened?sOverlaysOpen:sOverlays)[aIndex]));
 	}
-	
+
 	// Icons
 	public static IIconContainer sColoreds[] = new IIconContainer[] {
 		new Textures.BlockIcons.CustomIcon("machines/safes/keylocked/colored/front"),
@@ -130,8 +130,6 @@ public class MultiTileEntitySafeKeyLocked extends MultiTileEntitySafe implements
 		new Textures.BlockIcons.CustomIcon("machines/safes/keylocked/overlay_open/back"),
 		new Textures.BlockIcons.CustomIcon("machines/safes/keylocked/overlay_open/side"),
 	};
-	
-	@Override public boolean allowCovers(byte aSide) {return aSide != mFacing;}
-	
+
 	@Override public String getTileEntityName() {return "gt6.multitileentity.safe.keylocked";}
 }

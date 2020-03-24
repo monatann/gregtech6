@@ -37,22 +37,22 @@ import net.minecraft.entity.player.EntityPlayerMP;
  */
 public abstract class TileEntityBase02Sync extends TileEntityBase01Root implements ITileEntitySynchronising, ITileEntityScheduledUpdate {
 	/** Gets set if/when needed. */
-	public UUID mOwner;
-	
+	public UUID mOwner = null;
+
 	public TileEntityBase02Sync() {
 		super(F);
 	}
-	
+
 	@Override
 	public final void onAdjacentBlockChange(int aTileX, int aTileY, int aTileZ) {
 		super.onAdjacentBlockChange(aTileX, aTileY, aTileZ);
 		onAdjacentBlockChange2(aTileX, aTileY, aTileZ);
 	}
-	
+
 	public void onAdjacentBlockChange2(int aTileX, int aTileY, int aTileZ) {
 		//
 	}
-	
+
 	/** sends all Data to the Clients in Range */
 	public void sendClientData(boolean aSendAll, EntityPlayerMP aPlayer) {
 		IPacket tPacket = getClientDataPacket(aSendAll);
@@ -75,45 +75,45 @@ public abstract class TileEntityBase02Sync extends TileEntityBase01Root implemen
 			}
 		}
 	}
-	
+
 	/** @return a Packet containing all Data which has to be synchronised to the Client */
 	public abstract IPacket getClientDataPacket(boolean aSendAll);
-	
+
 	@Override
 	public void processPacket(INetworkHandler aNetworkHandler) {
 		if (isClientSide()) mOwner = (aNetworkHandler == getNetworkHandlerNonOwned() ? NOT_YOU : null);
 	}
-	
+
 	/** @return the used Network Handler. Defaults to the API Handler. */
 	public INetworkHandler getNetworkHandler() {return NW_API;}
 	public INetworkHandler getNetworkHandlerNonOwned() {return NW_AP2;}
-	
+
 	/** Called to send all Data to the close Clients */
 	public void updateClientData() {sendClientData(T, null);}
-	
+
 	@Override public final net.minecraft.network.Packet getDescriptionPacket() {return null;}
-	
+
 	@Override
 	public final void sendUpdateToPlayer(EntityPlayerMP aPlayer) {
 		sendClientData(T, aPlayer);
 	}
-	
+
 	@Override
 	public boolean allowInteraction(Entity aEntity) {
 		return mOwner == null || (aEntity != null && mOwner.equals(aEntity.getUniqueID()));
 	}
-	
+
 	@Override
 	public void onTileEntityPlaced() {
 		if (isServerSide()) GT_API_Proxy.SCHEDULED_TILEENTITY_UPDATES.add(this);
 	}
-	
+
 	@Override
 	public void onScheduledUpdate() {
 		onInitialTick();
 		updateClientData();
 	}
-	
+
 	public void onInitialTick() {
 		//
 	}

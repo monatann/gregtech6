@@ -44,8 +44,8 @@ import net.minecraftforge.fluids.FluidStack;
  * @author Gregorius Techneticies
  */
 public class RecipeMapScannerVisuals extends RecipeMap {
-	public RecipeMapScannerVisuals(Collection<Recipe> aRecipeList, String aUnlocalizedName, String aNameLocal, String aNameNEI, long aProgressBarDirection, long aProgressBarAmount, String aNEIGUIPath, long aInputItemsCount, long aOutputItemsCount, long aMinimalInputItems, long aInputFluidCount, long aOutputFluidCount, long aMinimalInputFluids, long aMinimalInputs, long aPower, String aNEISpecialValuePre, long aNEISpecialValueMultiplier, String aNEISpecialValuePost, boolean aShowVoltageAmperageInNEI, boolean aNEIAllowed, boolean aConfigAllowed, boolean aNeedsOutputs) {
-		super(aRecipeList, aUnlocalizedName, aNameLocal, aNameNEI, aProgressBarDirection, aProgressBarAmount, aNEIGUIPath, aInputItemsCount, aOutputItemsCount, aMinimalInputItems, aInputFluidCount, aOutputFluidCount, aMinimalInputFluids, aMinimalInputs, aPower, aNEISpecialValuePre, aNEISpecialValueMultiplier, aNEISpecialValuePost, aShowVoltageAmperageInNEI, aNEIAllowed, aConfigAllowed, aNeedsOutputs);
+	public RecipeMapScannerVisuals(Collection<Recipe> aRecipeList, String aUnlocalizedName, String aNameLocal, String aNameNEI, long aProgressBarDirection, long aProgressBarAmount, String aNEIGUIPath, long aInputItemsCount, long aOutputItemsCount, long aMinimalInputItems, long aInputFluidCount, long aOutputFluidCount, long aMinimalInputFluids, long aMinimalInputs, long aPower, String aNEISpecialValuePre, long aNEISpecialValueMultiplier, String aNEISpecialValuePost, boolean aShowVoltageAmperageInNEI, boolean aNEIAllowed, boolean aConfigAllowed, boolean aNeedsOutputs, boolean aCombinePower) {
+		super(aRecipeList, aUnlocalizedName, aNameLocal, aNameNEI, aProgressBarDirection, aProgressBarAmount, aNEIGUIPath, aInputItemsCount, aOutputItemsCount, aMinimalInputItems, aInputFluidCount, aOutputFluidCount, aMinimalInputFluids, aMinimalInputs, aPower, aNEISpecialValuePre, aNEISpecialValueMultiplier, aNEISpecialValuePost, aShowVoltageAmperageInNEI, aNEIAllowed, aConfigAllowed, aNeedsOutputs, aCombinePower, 0);
 		mMappings.put(new ItemStackContainer(Items.flint_and_steel, 1, W), ST.make(Blocks.fire, 1, 0));
 		mMappings.put(new ItemStackContainer(Items.reeds, 1, W), ST.make(Blocks.reeds, 1, 0));
 		mMappings.put(new ItemStackContainer(Items.snowball, 1, W), ST.make(Blocks.snow, 1, 0));
@@ -73,9 +73,9 @@ public class RecipeMapScannerVisuals extends RecipeMap {
 		mMappings.put(new ItemStackContainer(Items.brewing_stand, 1, W), ST.make(Blocks.brewing_stand, 1, 0));
 		mMappings.put(new ItemStackContainer(Items.flower_pot, 1, W), ST.make(Blocks.flower_pot, 1, 0));
 	}
-	
+
 	public final ItemStackMap<ItemStackContainer, ItemStack> mMappings = new ItemStackMap<>();
-	
+
 	@Override
 	public Recipe findRecipe(IHasWorldAndCoords aTileEntity, Recipe aRecipe, boolean aNotUnificated, long aSize, ItemStack aSpecialSlot, FluidStack[] aFluids, ItemStack... aInputs) {
 		Recipe rRecipe = super.findRecipe(aTileEntity, aRecipe, aNotUnificated, aSize, aSpecialSlot, aFluids, aInputs);
@@ -152,7 +152,7 @@ public class RecipeMapScannerVisuals extends RecipeMap {
 						rRecipe.mOutputs[0].getTagCompound().setByte(NBT_USB_TIER, (byte)1);
 						return rRecipe;
 					}
-					
+
 					ItemStack tMapping = mMappings.get(tScanned.getItem(), ST.meta_(tScanned));
 					if (tMapping == null) tMapping = mMappings.get(tScanned.getItem(), W);
 					Block tBlock = ST.block_(tMapping==null?tScanned:tMapping);
@@ -172,6 +172,6 @@ public class RecipeMapScannerVisuals extends RecipeMap {
 		}
 		return rRecipe;
 	}
-	
+
 	@Override public boolean containsInput(ItemStack aStack, IHasWorldAndCoords aTileEntity, ItemStack aSpecialSlot) {return T;}
 }

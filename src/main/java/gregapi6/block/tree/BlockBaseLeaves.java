@@ -60,7 +60,7 @@ public abstract class BlockBaseLeaves extends BlockBaseTree implements IShearabl
 	public final Block mSaplings;
 	public final Block[] mLogs;
 	public final byte[] mLogMetas;
-	
+
 	public BlockBaseLeaves(Class<? extends ItemBlock> aItemClass, String aNameInternal, Material aMaterial, SoundType aSoundType, long aMaxMeta, IIconContainer[] aIcons, Block aSaplings, Block[] aLogs, byte[] aLogMetas) {
 		super(aItemClass, aNameInternal, aMaterial, aSoundType, Math.min(8, aMaxMeta), aIcons);
 		mSaplings = aSaplings;
@@ -68,7 +68,7 @@ public abstract class BlockBaseLeaves extends BlockBaseTree implements IShearabl
 		mLogs = aLogs;
 		setHardness(0.2F);
 	}
-	
+
 	@Override public boolean isFireSource(World aWorld, int aX, int aY, int aZ, ForgeDirection aSide) {return F;}
 	@Override public boolean isFlammable(IBlockAccess aWorld, int aX, int aY, int aZ, ForgeDirection aSide) {return T;}
 	@Override public int getFlammability(IBlockAccess aWorld, int aX, int aY, int aZ, ForgeDirection aSide) {return 30;}
@@ -90,22 +90,22 @@ public abstract class BlockBaseLeaves extends BlockBaseTree implements IShearabl
 	@Override public int getItemStackLimit(ItemStack aStack) {return UT.Code.bindStack(OP.treeLeaves.mDefaultStackSize);}
 	@Override public IIcon getIcon(int aSide, int aMeta) {return mIcons[(aMeta&7)|(Blocks.leaves.isOpaqueCube()?8:0)].getIcon(0);}
 	@Override public ArrayList<ItemStack> onSheared(ItemStack aItem, IBlockAccess aWorld, int aX, int aY, int aZ, int aFortune) {return new ArrayListNoNulls<>(F, ST.make(this, 1, aWorld.getBlockMetadata(aX, aY, aZ) & 7));}
-	@Override public AxisAlignedBB getCollisionBoundingBoxFromPool(World aWorld, int aX, int aY, int aZ) {return MD.TFC.mLoaded ? null : super.getCollisionBoundingBoxFromPool(aWorld, aX, aY, aZ);}
+	@Override public AxisAlignedBB getCollisionBoundingBoxFromPool(World aWorld, int aX, int aY, int aZ) {return MD.TFC.mLoaded || MD.TFCP.mLoaded ? null : super.getCollisionBoundingBoxFromPool(aWorld, aX, aY, aZ);}
 	@Override public void onOxygenAdded(World aWorld, int aX, int aY, int aZ) {/**/}
 	@Override public void onOxygenRemoved(World aWorld, int aX, int aY, int aZ) {if (!aWorld.isRemote) {aWorld.scheduleBlockUpdate(aX, aY, aZ, this, 201+RNGSUS.nextInt(100)); return;}}
-	
+
 	@Override
 	public void onBlockAdded2(World aWorld, int aX, int aY, int aZ) {
 		if (!aWorld.isRemote && !WD.oxygen(aWorld, aX, aY, aZ)) {aWorld.scheduleBlockUpdate(aX, aY, aZ, this, 201+RNGSUS.nextInt(100)); return;}
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockAccess aWorld, int aX, int aY, int aZ, int aSide) {
 		Block aBlock = aWorld.getBlock(aX, aY, aZ);
 		return !(aBlock.isOpaqueCube() || (Blocks.leaves.isOpaqueCube() && aBlock instanceof BlockBaseLeaves));
 	}
-	
+
 	@Override
 	public void beginLeavesDecay(World aWorld, int aX, int aY, int aZ) {
 		if (aWorld.isRemote) return;
@@ -120,17 +120,17 @@ public abstract class BlockBaseLeaves extends BlockBaseTree implements IShearabl
 		}
 		aWorld.scheduleBlockUpdate(aX, aY, aZ, this, 1+RNGSUS.nextInt(100));
 	}
-	
+
 	@Override
 	public void updateTick2(World aWorld, int aX, int aY, int aZ, Random aRandom) {
 		if (aWorld.isRemote) return;
 		if (!WD.oxygen(aWorld, aX, aY, aZ)) {aWorld.setBlockToAir(aX, aY, aZ); return;}
 		int aMeta = aWorld.getBlockMetadata(aX, aY, aZ);
 		if (aMeta < 8) return;
-		if (!MD.TFC.mLoaded || aRandom.nextInt(4) == 0) dropBlockAsItem(aWorld, aX, aY, aZ, aMeta, 0);
+		if (!(MD.TFC.mLoaded || MD.TFCP.mLoaded) || aRandom.nextInt(4) == 0) dropBlockAsItem(aWorld, aX, aY, aZ, aMeta, 0);
 		aWorld.setBlockToAir(aX, aY, aZ);
 	}
-	
+
 	@Override
 	public ArrayList<ItemStack> getDrops(World aWorld, int aX, int aY, int aZ, int aMeta, int aFortune) {
 		ArrayListNoNulls<ItemStack> rDrops = new ArrayListNoNulls<>();
@@ -142,7 +142,7 @@ public abstract class BlockBaseLeaves extends BlockBaseTree implements IShearabl
 		if (RNGSUS.nextInt(tChance) == 0) rDrops.add(ST.make(getItemDropped(aMeta, RNGSUS, aFortune), 1, damageDropped(aMeta)));
 		return rDrops;
 	}
-	
+
 	@Override @SideOnly(Side.CLIENT)
 	public int getBlockColor() {return ColorizerFoliage.getFoliageColor(0.5, 1.0);}
 	@Override @SideOnly(Side.CLIENT)

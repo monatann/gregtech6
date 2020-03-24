@@ -304,21 +304,31 @@ public final class OreDictManager {
 	public void onOreRegistration1(OreRegisterEvent aEvent) {
 		ModContainer tContainer = Loader.instance().activeModContainer();
 		String aModID = tContainer==null||mIsRunningInIterationMode?"UNKNOWN":tContainer.getModId();
+
+		if(aModID.equals(MD.GT5U.mID) || aModID.equals(MD.TFC.mID)) {
+			return;
+		}
 		String aRegName = ST.regName(aEvent.Ore);
 		if (UT.Code.stringInvalid(aRegName)) return;
 
+		// Fixing Thaumcraft checking for the wrong OreDict when chopping Wood with Golems. Oh and it doesn't check Wildcard either, so I'm gonna need to split that too.
+				if ("logWood".equals(aEvent.Name)) if (ST.meta_(aEvent.Ore) == W) for (int i = 0; i < 16; i++) registerOreSafe("woodLog", ST.copyMeta(i, aEvent.Ore)); else registerOreSafe("woodLog", aEvent.Ore);
+
+
 		if (GT != null) {
 			// In order to fix a ThaumCraft Bug I have to ignore this registration under all circumstances. I registered it under the proper Name manually.
-			// Note: This has been fixed on TC Side, so it can be removed in later MC versions.
-			if (aModID.equals(MD.TC.mID) && aEvent.Name.toLowerCase().endsWith("uicksilver")) return;
-			// OreDictPrefix Conflict caused by Galacticraft fixing its OreDict Registrations a little bit late to use Plates instead of Compressed Stuff now.
-			// Note: This can be removed in later MC Versions too, since Galacticraft either does not update or since it has already fixed itself by now.
-			if (aRegName.length() >= 26 && aRegName.startsWith("Gala") && aEvent.Name.startsWith("plate")) {
-				if (aRegName.equalsIgnoreCase("GalacticraftMars:item.itemBasicAsteroids")) return;
-				if (aRegName.equalsIgnoreCase("GalaxySpace:item.CompressedPlates")) return;
-				if (aRegName.equalsIgnoreCase("GalacticraftCore:item.basicItem")) return;
-				if (aRegName.equalsIgnoreCase("GalacticraftMars:item.null")) return;
-			}
+			// In order to fix a ThaumCraft Bug I have to ignore this registration under all circumstances. I registered it under the proper Name manually.
+						// Note: This has been fixed on TC Side, so I can remove it in later MC versions.
+						// Note: This has been fixed on TC Side, so it can be removed in later MC versions.
+						if (aModID.equals(MD.TC.mID) && aEvent.Name.toLowerCase().endsWith("uicksilver")) return;
+						// OreDictPrefix Conflict caused by Galacticraft fixing its OreDict Registrations a little bit late to use Plates instead of Compressed Stuff now.
+						// Note: This can be removed in later MC Versions too, since Galacticraft either does not update or since it has already fixed itself by now.
+						if (aRegName.length() >= 26 && aRegName.startsWith("Gala") && aEvent.Name.startsWith("plate")) {
+							if (aRegName.equalsIgnoreCase("GalacticraftMars:item.itemBasicAsteroids")) return;
+							if (aRegName.equalsIgnoreCase("GalaxySpace:item.CompressedPlates")) return;
+							if (aRegName.equalsIgnoreCase("GalacticraftCore:item.basicItem")) return;
+							if (aRegName.equalsIgnoreCase("GalacticraftMars:item.null")) return;
+						}
 			// Needed to fix a RotaryCraft value thing. Those are actually small piles of Dust.
 			// I had to do this instead of convincing Reika, because it is only a GT balance Issue, that wouldn't exist without GT.
 			// Basically those two things are outputted 4 times too much (1 Plank = 1 Pulp and not 4) and therefore would be small Piles of Dust and not regular ones.
@@ -407,7 +417,7 @@ public final class OreDictManager {
 					if (aMaterial.contains(TD.Properties.AUTO_BLACKLIST)) addToBlacklist_(aEvent.Ore);
 					for (OreDictMaterial tReRegisteredMaterial : aMaterial.mReRegistrations) registerOreSafe(aPrefix.mNameInternal + tReRegisteredMaterial.mNameInternal, aEvent.Ore);
 					if (!aMaterial.contains(TD.Properties.INVALID_MATERIAL)) {
-						if (MD.TFC.mLoaded && aModID.equalsIgnoreCase(MD.TFC.mID) && aPrefix.contains(TD.Prefix.UNIFICATABLE)) {
+						if ((MD.TFC.mLoaded || MD.TFCP.mLoaded) && (aModID.equalsIgnoreCase(MD.TFC.mID) || aModID.equalsIgnoreCase(MD.TFCP.mID)) && aPrefix.contains(TD.Prefix.UNIFICATABLE)) {
 							setTarget_(aPrefix, aMaterial, aEvent.Ore, T, T);
 						} else if (aPrefix == OP.gem && MD.RH.mLoaded && aModID.equalsIgnoreCase(MD.RH.mID) && (!MD.ReC.mLoaded || aMaterial == MT.FluoriteBlack || !ANY.CaF2.mToThis.contains(aMaterial))) {
 							setTarget_(aPrefix, aMaterial, aEvent.Ore, T, T);

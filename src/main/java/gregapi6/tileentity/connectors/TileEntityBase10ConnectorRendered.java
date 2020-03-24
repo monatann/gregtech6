@@ -53,7 +53,7 @@ import net.minecraft.world.World;
 public abstract class TileEntityBase10ConnectorRendered extends TileEntityBase09Connector implements ITileEntityFoamable, IMTE_GetPlayerRelativeBlockHardness {
 	public float mDiameter = 1.0F;
 	public boolean mTransparent = F, mIsGlowing = F, mContactDamage = F, mFoam = F, mFoamDried = F, mOwnable = F;
-	
+
 	@Override
 	public void readFromNBT2(NBTTagCompound aNBT) {
 		super.readFromNBT2(aNBT);
@@ -63,10 +63,10 @@ public abstract class TileEntityBase10ConnectorRendered extends TileEntityBase09
 		if (aNBT.hasKey(NBT_FOAMDRIED)) mFoamDried = aNBT.getBoolean(NBT_FOAMDRIED);
 		if (aNBT.hasKey(NBT_FOAMED)) mFoam = aNBT.getBoolean(NBT_FOAMED);
 		if (aNBT.hasKey(NBT_OWNABLE)) mOwnable = aNBT.getBoolean(NBT_OWNABLE);
-		if (aNBT.hasKey(NBT_OWNER)) mOwner = UUID.fromString(aNBT.getString(NBT_OWNER));
+		if (aNBT.hasKey(NBT_OWNER) && !OWNERSHIP_RESET) mOwner = UUID.fromString(aNBT.getString(NBT_OWNER));
 		mIsGlowing = mMaterial.contains(TD.Properties.GLOWING);
 	}
-	
+
 	@Override
 	public void writeToNBT2(NBTTagCompound aNBT) {
 		super.writeToNBT2(aNBT);
@@ -75,7 +75,7 @@ public abstract class TileEntityBase10ConnectorRendered extends TileEntityBase09
 		UT.NBT.setBoolean(aNBT, NBT_OWNABLE, mOwnable);
 		if (mOwner != null) aNBT.setString(NBT_OWNER, mOwner.toString());
 	}
-	
+
 	@Override
 	public NBTTagCompound writeItemNBT2(NBTTagCompound aNBT) {
 		super.writeItemNBT2(aNBT);
@@ -84,29 +84,29 @@ public abstract class TileEntityBase10ConnectorRendered extends TileEntityBase09
 		UT.NBT.setBoolean(aNBT, NBT_OWNABLE, mOwnable);
 		return aNBT;
 	}
-	
+
 	@Override
 	public void addToolTips(List<String> aList, ItemStack aStack, boolean aF3_H) {
 		if (mOwnable) aList.add(Chat.ORANGE + LH.get(LH.OWNER_CONTROLLED));
 		super.addToolTips(aList, aStack, aF3_H);
 	}
-	
+
 	@Override
 	public void onTick2(long aTimer, boolean aIsServerSide) {
 		super.onTick2(aTimer, aIsServerSide);
-		
+
 		if (aIsServerSide && aTimer >= 100 && mFoam && !mFoamDried && rng(5900) == 0) {
 			mFoamDried = T;
 			updateClientData();
 		}
 	}
-	
+
 	@Override
 	public int getRenderPasses2(Block aBlock, boolean[] aShouldSideBeRendered) {
 		if (worldObj == null) mConnections = (byte)(SBIT_S|SBIT_N);
 		return mFoamDried || mDiameter >= 1.0F ? 1 : mFoam ? 8 : mConnections == 0 ? 1 : 7;
 	}
-	
+
 	@Override
 	public boolean setBlockBounds2(Block aBlock, int aRenderPass, boolean[] aShouldSideBeRendered) {
 		if (aRenderPass == 0) {
@@ -130,39 +130,39 @@ public abstract class TileEntityBase10ConnectorRendered extends TileEntityBase09
 		}
 		return F;
 	}
-	
+
 	@Override
 	public ITexture getTexture2(Block aBlock, int aRenderPass, byte aSide, boolean[] aShouldSideBeRendered) {
 		if (aRenderPass == 7) return aShouldSideBeRendered[aSide] ? getTextureCFoam(aSide, mConnections, mDiameter, aRenderPass) : null;
 		if (aRenderPass == 0) return mFoamDried ? aShouldSideBeRendered[aSide] ? getTextureCFoamDry(aSide, mConnections, mDiameter, aRenderPass) : null : mConnections == 0 || (mDiameter >= 1.0F && connected(aSide)) ? getTextureConnected(aSide, mConnections, mDiameter, aRenderPass) : getTextureSide(aSide, mConnections, mDiameter, aRenderPass);
 		return aSide == OPPOSITES[aRenderPass-1] ? null : aSide == aRenderPass-1 ? aShouldSideBeRendered[aSide] ? getTextureConnected(aSide, mConnections, mDiameter, aRenderPass) : null : getTextureSide(aSide, mConnections, mDiameter, aRenderPass);
 	}
-	
+
 	@Override public boolean usesRenderPass2(int aRenderPass, boolean[] aShouldSideBeRendered) {return aRenderPass == 0 || aRenderPass == 7 || connected((byte)(aRenderPass-1));}
-	
+
 	@Override public int getLightOpacity() {return mFoamDried ? LIGHT_OPACITY_MAX : mTransparent ? mDiameter >= 1.0F ? LIGHT_OPACITY_WATER : mDiameter > 0.5F ? LIGHT_OPACITY_LEAVES : LIGHT_OPACITY_NONE : mDiameter >= 1.0F ? LIGHT_OPACITY_MAX : mDiameter > 0.5F ? LIGHT_OPACITY_WATER : LIGHT_OPACITY_LEAVES;}
-	
+
 	@Override
 	public boolean onPlaced(ItemStack aStack, EntityPlayer aPlayer, MultiTileEntityContainer aMTEContainer, World aWorld, int aX, int aY, int aZ, byte aSide, float aHitX, float aHitY, float aHitZ) {
-		if (mOwnable && aPlayer != null) mOwner = aPlayer.getUniqueID();
+		if (mOwnable && aPlayer != null && !OWNERSHIP_RESET) mOwner = aPlayer.getUniqueID();
 		return super.onPlaced(aStack, aPlayer, aMTEContainer, aWorld, aX, aY, aZ, aSide, aHitX, aHitY, aHitZ);
 	}
-	
+
 	@Override
 	public boolean allowInteraction(Entity aEntity) {
 		return !mOwnable || !mFoamDried || super.allowInteraction(aEntity);
 	}
-	
+
 	@Override
 	public boolean applyFoam(byte aSide, Entity aPlayer, short[] aCFoamRGB, byte aVanillaColor, boolean aOwned) {
 		if (mDiameter >= 1.0F || mFoam || mFoamDried || isClientSide() || !allowInteraction(aPlayer)) return F;
 		mFoam = T; mFoamDried = F; mIsPainted = T; mOwnable = aOwned;
-		if (mOwnable && aPlayer != null) mOwner = aPlayer.getUniqueID();
+		if (mOwnable && aPlayer != null && !OWNERSHIP_RESET) mOwner = aPlayer.getUniqueID();
 		mRGBa = UT.Code.getRGBInt(aCFoamRGB);
 		updateClientData();
 		return T;
 	}
-	
+
 	@Override
 	public boolean dryFoam(byte aSide, Entity aPlayer) {
 		if (!mFoam || mFoamDried || isClientSide()) return F;
@@ -170,7 +170,7 @@ public abstract class TileEntityBase10ConnectorRendered extends TileEntityBase09
 		updateClientData();
 		return T;
 	}
-	
+
 	@Override
 	public boolean removeFoam(byte aSide, Entity aPlayer) {
 		if (!mFoam || !mFoamDried || isClientSide() || !allowInteraction(aPlayer)) return F;
@@ -179,14 +179,14 @@ public abstract class TileEntityBase10ConnectorRendered extends TileEntityBase09
 		updateClientData();
 		return T;
 	}
-	
+
 	@Override public float getExplosionResistance2() {return Math.max(mFoam && mFoamDried ? 24 : 0, super.getExplosionResistance2());}
-	
+
 	@Override
 	public byte getDirectionData() {
 		return (byte)(((byte)(mConnections & 63)) | ((byte)((mFoamDried ? mOwnable : mFoam) ? 64 : 0)) | ((byte)(mFoamDried ? 128 : 0)));
 	}
-	
+
 	@Override
 	public void setDirectionData(byte aData) {
 		mConnections = (byte)(aData & 63);
@@ -199,7 +199,7 @@ public abstract class TileEntityBase10ConnectorRendered extends TileEntityBase09
 			mFoam = ((aData & 64) != 0);
 		}
 	}
-	
+
 	@Override public float getSurfaceSize           (byte aSide) {return mFoamDried ? 1.0F : mDiameter;}
 	@Override public float getSurfaceSizeAttachable (byte aSide) {return mDiameter;}
 	@Override public float getSurfaceDistance       (byte aSide) {return mFoamDried || connected(aSide)?0.0F:(1.0F-mDiameter)/2.0F;}
@@ -213,7 +213,7 @@ public abstract class TileEntityBase10ConnectorRendered extends TileEntityBase09
 	@Override public boolean ownedFoam              (byte aSide) {return mFoam && mOwnable;}
 	@Override public boolean addDefaultCollisionBoxToList() {return mDiameter >= 1.0F || mFoamDried;}
 	@Override public AxisAlignedBB getCollisionBoundingBoxFromPool() {return mContactDamage && !mFoamDried ? box(PX_P[2], PX_P[2], PX_P[2], PX_N[2], PX_N[2], PX_N[2]) : super.getCollisionBoundingBoxFromPool();}
-	
+
 	@Override
 	public void addCollisionBoxesToList2(AxisAlignedBB aAABB, List<AxisAlignedBB> aList, Entity aEntity) {
 		if (!addDefaultCollisionBoxToList()) {
@@ -226,7 +226,7 @@ public abstract class TileEntityBase10ConnectorRendered extends TileEntityBase09
 			if (connected(tSide = SIDE_Z_POS)) {DelegatorTileEntity<TileEntity> tDelegator = getAdjacentTileEntity(tSide, F, F); float tDiameter = getConnectorDiameter(tSide, tDelegator), tLength = mContactDamage ? -PX_P[2] : 0;    box(aAABB, aList,   (1.0F-tDiameter)/2.0F   ,   (1.0F-tDiameter)/2.0F   , 1-(1.0F-tDiameter)/2.0F   , 1-(1.0F-tDiameter)/2.0F   , 1-(1.0F-tDiameter)/2.0F   , 1+tLength                 );}
 		}
 	}
-	
+
 	public float getConnectorLength(byte aConnectorSide, DelegatorTileEntity<TileEntity> aDelegator) {
 		float rLength = (mDiameter != 1.0F && hasCovers() && mCovers.mBehaviours[aConnectorSide] != null ? mCovers.mBehaviours[aConnectorSide].showsConnectorFront(aConnectorSide, mCovers) ? +0.001F : -0.001F : 0);
 		if (aDelegator.mTileEntity instanceof ITileEntitySurface) {
@@ -236,7 +236,7 @@ public abstract class TileEntityBase10ConnectorRendered extends TileEntityBase09
 		// TODO check for regular Collision Box.
 		return rLength;
 	}
-	
+
 	public float getConnectorDiameter(byte aConnectorSide, DelegatorTileEntity<TileEntity> aDelegator) {
 		float rDiameter = mDiameter;
 		if (aDelegator.mTileEntity instanceof ITileEntitySurface) rDiameter = ((ITileEntitySurface)aDelegator.mTileEntity).getSurfaceSizeAttachable(aDelegator.mSideOfTileEntity);
@@ -244,12 +244,12 @@ public abstract class TileEntityBase10ConnectorRendered extends TileEntityBase09
 		if (rDiameter <= 0.0F || rDiameter > mDiameter) rDiameter = mDiameter; else if (rDiameter < PX_P[2]) rDiameter = PX_P[2];
 		return rDiameter;
 	}
-	
+
 	public ITexture getTextureSide      (byte aSide, byte aConnections, float aDiameter, int aRenderPass) {return BlockTextureDefault.get(mMaterial, getIconIndexSide       (aSide, aConnections, aDiameter, aRenderPass), mIsGlowing, mRGBa);}
 	public ITexture getTextureConnected (byte aSide, byte aConnections, float aDiameter, int aRenderPass) {return BlockTextureDefault.get(mMaterial, getIconIndexConnected  (aSide, aConnections, aDiameter, aRenderPass), mIsGlowing, mRGBa);}
 	public ITexture getTextureCFoam     (byte aSide, byte aConnections, float aDiameter, int aRenderPass) {return BlockTextureDefault.get(mOwnable?Textures.BlockIcons.CFOAM_FRESH_OWNED:Textures.BlockIcons.CFOAM_FRESH, mRGBa);}
 	public ITexture getTextureCFoamDry  (byte aSide, byte aConnections, float aDiameter, int aRenderPass) {return BlockTextureDefault.get(mOwnable?Textures.BlockIcons.CFOAM_HARDENED_OWNED:Textures.BlockIcons.CFOAM_HARDENED, mRGBa);}
-	
+
 	public int getIconIndexSide         (byte aSide, byte aConnections, float aDiameter, int aRenderPass) {return IconsGT.INDEX_BLOCK_PIPE_SIDE;}
 	public int getIconIndexConnected    (byte aSide, byte aConnections, float aDiameter, int aRenderPass) {return aDiameter<0.37F?OP.pipeTiny.mIconIndexBlock:aDiameter<0.49F?OP.pipeSmall.mIconIndexBlock:aDiameter<0.74F?OP.pipeMedium.mIconIndexBlock:aDiameter<0.99F?OP.pipeLarge.mIconIndexBlock:OP.pipeHuge.mIconIndexBlock;}
 }

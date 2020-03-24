@@ -25,7 +25,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -61,7 +60,7 @@ public class Recipe {
 	public static class RecipeMap implements Runnable {
 		/** RecipeMap-HashMap so that Machines can store their corresponding Recipe Lists as String NBT. */
 		public static final Map<String, RecipeMap> RECIPE_MAPS = new HashMap<>();
-		
+
 		/** List of Recipe Map Handlers. They will dynamically add regular Recipes when needed. */
 		public final List<IRecipeMapHandler> mRecipeMapHandlers = new ArrayListNoNulls<>();
 		/** List of Machines that can perform/use the Recipes of this Map. */
@@ -86,7 +85,7 @@ public class Recipe {
 		public final byte mProgressBarDirection, mProgressBarAmount;
 		public final int mInputItemsCount, mOutputItemsCount, mInputFluidCount, mOutputFluidCount, mMinimalInputItems, mMinimalInputFluids, mMinimalInputs;
 		public final long mNEISpecialValueMultiplier, mPower;
-		public final boolean mNEIAllowed, mShowVoltageAmperageInNEI, mNeedsOutputs;
+		public final boolean mNEIAllowed, mShowVoltageAmperageInNEI, mNeedsOutputs, mCombinePower;
 		public boolean mLogErrors = T;
 		/** Used to determine Input Tank Size. Contains the size of the largest FluidStack Input, but is almost always at least 1000. */
 		public int mMaxFluidInputSize  = 1000;
@@ -94,7 +93,9 @@ public class Recipe {
 		public int mMaxFluidOutputSize = 1000;
 		/** The Config File corresponding to this Recipe Handler. Will be initialised by GT_API. */
 		public Config mConfigFile = null;
-		
+		/** Request cleanroom efficiency from recipes **/
+		public final int mCleanroomEfficiency;
+
 		/**
 		 * Initialises a new type of Recipe Handler.
 		 * @param aRecipeList a List you specify as Recipe List. Usually just an ArrayList with a pre-initialised Size.
@@ -108,10 +109,12 @@ public class Recipe {
 		 * @param aNEISpecialValuePost the String after the Special Value. Usually for a Unit or something.
 		 * @param aNEIAllowed if NEI is allowed to display this Recipe Handler in general.
 		 */
-		public RecipeMap(Collection<Recipe> aRecipeList, String aNameInternal, String aNameLocal, String aNameNEI, long aProgressBarDirection, long aProgressBarAmount, String aNEIGUIPath, long aInputItemsCount, long aOutputItemsCount, long aMinimalInputItems, long aInputFluidCount, long aOutputFluidCount, long aMinimalInputFluids, long aMinimalInputs, long aPower, String aNEISpecialValuePre, long aNEISpecialValueMultiplier, String aNEISpecialValuePost, boolean aShowVoltageAmperageInNEI, boolean aNEIAllowed, boolean aConfigAllowed, boolean aNeedsOutputs) {
+
+		public RecipeMap(Collection<Recipe> aRecipeList, String aNameInternal, String aNameLocal, String aNameNEI, long aProgressBarDirection, long aProgressBarAmount, String aNEIGUIPath, long aInputItemsCount, long aOutputItemsCount, long aMinimalInputItems, long aInputFluidCount, long aOutputFluidCount, long aMinimalInputFluids, long aMinimalInputs, long aPower, String aNEISpecialValuePre, long aNEISpecialValueMultiplier, String aNEISpecialValuePost, boolean aShowVoltageAmperageInNEI, boolean aNEIAllowed, boolean aConfigAllowed, boolean aNeedsOutputs, boolean aCombinePower, int aCleanroomEfficiency) {
 			mNEIAllowed = aNEIAllowed;
 			mShowVoltageAmperageInNEI = aShowVoltageAmperageInNEI;
 			mNeedsOutputs = aNeedsOutputs;
+			mCombinePower = aCombinePower;
 			mRecipeList = (aRecipeList == null ? new HashSetNoNulls<Recipe>() : aRecipeList);
 			mNameInternal = aNameInternal;
 			mNameLocal = aNameLocal;
@@ -132,54 +135,37 @@ public class Recipe {
 			mProgressBarDirection = (byte)aProgressBarDirection;
 			mProgressBarAmount = (byte)aProgressBarAmount;
 			LH.add(mNameInternal, mNameLocal);
+			mCleanroomEfficiency = aCleanroomEfficiency;
 			if (RECIPE_MAPS.containsKey(mNameInternal)) throw new IllegalArgumentException("Recipe Map Name already exists: " + mNameInternal);
 			RECIPE_MAPS.put(mNameInternal, this);
 			if (aConfigAllowed) if (GAPI.mBeforePreInit != null) GAPI.mBeforePreInit.add(this); else run();
 		}
-		
+
 		public RecipeMap() {
-			this(null, "", "", "", 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "", F, F, F, F);
+			this(null, "", "", "", 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "", F, F, F, F, F, 0);
 			mLogErrors = F;
 		}
-		
+
 		@Override public String toString() {return mNameInternal;}
 		@Override public void run() {mConfigFile = new Config(DirectoriesGT.CONFIG_RECIPES, mNameLocalUnderscored+".cfg");}
-		
-		@Deprecated
-		public RecipeMap(Collection<Recipe> aRecipeList, String aNameInternal, String aNameLocal, String aNameNEI, long aProgressBarDirection, long aProgressBarAmount, String aNEIGUIPath, long aInputItemsCount, long aOutputItemsCount, long aMinimalInputItems, long aInputFluidCount, long aOutputFluidCount, long aMinimalInputFluids, long aPower, String aNEISpecialValuePre, long aNEISpecialValueMultiplier, String aNEISpecialValuePost, boolean aShowVoltageAmperageInNEI, boolean aNEIAllowed, boolean aConfigAllowed, boolean aNeedsOutputs) {
-			this(aRecipeList, aNameInternal, aNameLocal, aNameNEI, aProgressBarDirection, aProgressBarAmount, aNEIGUIPath, aInputItemsCount, aOutputItemsCount, aMinimalInputItems, aInputFluidCount, aOutputFluidCount, aMinimalInputFluids, 0, aPower, aNEISpecialValuePre, aNEISpecialValueMultiplier, aNEISpecialValuePost, aShowVoltageAmperageInNEI, aNEIAllowed, aConfigAllowed, aNeedsOutputs);
-		}
-		
-		@Deprecated
-		public RecipeMap(Collection<Recipe> aRecipeList, String aNameInternal, String aNameLocal, String aNameNEI, long aProgressBarDirection, long aProgressBarAmount, String aNEIGUIPath, long aInputItemsCount, long aOutputItemsCount, long aMinimalInputItems, long aInputFluidCount, long aOutputFluidCount, long aMinimalInputFluids, long aPower, String aNEISpecialValuePre, long aNEISpecialValueMultiplier, String aNEISpecialValuePost, boolean aShowVoltageAmperageInNEI, boolean aNEIAllowed, boolean aConfigAllowed) {
-			this(aRecipeList, aNameInternal, aNameLocal, aNameNEI, aProgressBarDirection, aProgressBarAmount, aNEIGUIPath, aInputItemsCount, aOutputItemsCount, aMinimalInputItems, aInputFluidCount, aOutputFluidCount, aMinimalInputFluids, 0, aPower, aNEISpecialValuePre, aNEISpecialValueMultiplier, aNEISpecialValuePost, aShowVoltageAmperageInNEI, aNEIAllowed, aConfigAllowed, T);
-		}
-		
-		@Deprecated
-		public RecipeMap(Collection<Recipe> aRecipeList, String aNameInternal, String aNameLocal, String aNameNEI, long aProgressBarDirection, long aProgressBarAmount, String aNEIGUIPath, long aInputItemsCount, long aOutputItemsCount, long aMinimalInputItems, long aInputFluidCount, long aOutputFluidCount, long aMinimalInputFluids, long aPower, String aNEISpecialValuePre, long aNEISpecialValueMultiplier, String aNEISpecialValuePost, boolean aShowVoltageAmperageInNEI, boolean aNEIAllowed) {
-			this(aRecipeList, aNameInternal, aNameLocal, aNameNEI, aProgressBarDirection, aProgressBarAmount, aNEIGUIPath, aInputItemsCount, aOutputItemsCount, aMinimalInputItems, aInputFluidCount, aOutputFluidCount, aMinimalInputFluids, 0, aPower, aNEISpecialValuePre, aNEISpecialValueMultiplier, aNEISpecialValuePost, aShowVoltageAmperageInNEI, aNEIAllowed, T, T);
-		}
-		
-		@Deprecated
-		public RecipeMap(Collection<Recipe> aRecipeList, String aNameInternal, String aNameLocal, String aNameNEI, long aProgressBarDirection, long aProgressBarAmount, String aNEIGUIPath, long aInputItemsCount, long aOutputItemsCount, long aMinimalInputItems, long aMinimalInputFluids, long aPower, String aNEISpecialValuePre, long aNEISpecialValueMultiplier, String aNEISpecialValuePost, boolean aShowVoltageAmperageInNEI, boolean aNEIAllowed) {
-			this(aRecipeList, aNameInternal, aNameLocal, aNameNEI, aProgressBarDirection, aProgressBarAmount, aNEIGUIPath, aInputItemsCount, aOutputItemsCount, aMinimalInputItems, 0, 0, aMinimalInputFluids, 0, aPower, aNEISpecialValuePre, aNEISpecialValueMultiplier, aNEISpecialValuePost, aShowVoltageAmperageInNEI, aNEIAllowed, T, T);
-		}
-		
-		@Deprecated
-		public RecipeMap(Collection<Recipe> aRecipeList, String aNameInternal, String aNameLocal, String aNameNEI, String aNEIGUIPath, long aInputItemsCount, long aOutputItemsCount, long aMinimalInputItems, long aMinimalInputFluids, long aPower, String aNEISpecialValuePre, long aNEISpecialValueMultiplier, String aNEISpecialValuePost, boolean aShowVoltageAmperageInNEI, boolean aNEIAllowed) {
-			this(aRecipeList, aNameInternal, aNameLocal, aNameNEI, 0, 1, aNEIGUIPath, aInputItemsCount, aOutputItemsCount, aMinimalInputItems, 0, 0, aMinimalInputFluids, 0, aPower, aNEISpecialValuePre, aNEISpecialValueMultiplier, aNEISpecialValuePost, aShowVoltageAmperageInNEI, aNEIAllowed, T, T);
-		}
-		
+
+		@Deprecated public RecipeMap(Collection<Recipe> aRecipeList, String aNameInternal, String aNameLocal, String aNameNEI, long aProgressBarDirection, long aProgressBarAmount, String aNEIGUIPath, long aInputItemsCount, long aOutputItemsCount, long aMinimalInputItems, long aInputFluidCount, long aOutputFluidCount, long aMinimalInputFluids, long aMinimalInputs, long aPower, String aNEISpecialValuePre, long aNEISpecialValueMultiplier, String aNEISpecialValuePost, boolean aShowVoltageAmperageInNEI, boolean aNEIAllowed, boolean aConfigAllowed, boolean aNeedsOutputs) {this(aRecipeList, aNameInternal, aNameLocal, aNameNEI, aProgressBarDirection, aProgressBarAmount, aNEIGUIPath, aInputItemsCount, aOutputItemsCount, aMinimalInputItems, aInputFluidCount, aOutputFluidCount, aMinimalInputFluids, aMinimalInputs, aPower, aNEISpecialValuePre, aNEISpecialValueMultiplier, aNEISpecialValuePost, aShowVoltageAmperageInNEI, aNEIAllowed, aConfigAllowed, aNeedsOutputs, F, 0);}
+		@Deprecated public RecipeMap(Collection<Recipe> aRecipeList, String aNameInternal, String aNameLocal, String aNameNEI, long aProgressBarDirection, long aProgressBarAmount, String aNEIGUIPath, long aInputItemsCount, long aOutputItemsCount, long aMinimalInputItems, long aInputFluidCount, long aOutputFluidCount, long aMinimalInputFluids, long aPower, String aNEISpecialValuePre, long aNEISpecialValueMultiplier, String aNEISpecialValuePost, boolean aShowVoltageAmperageInNEI, boolean aNEIAllowed, boolean aConfigAllowed, boolean aNeedsOutputs) {this(aRecipeList, aNameInternal, aNameLocal, aNameNEI, aProgressBarDirection, aProgressBarAmount, aNEIGUIPath, aInputItemsCount, aOutputItemsCount, aMinimalInputItems, aInputFluidCount, aOutputFluidCount, aMinimalInputFluids, 0, aPower, aNEISpecialValuePre, aNEISpecialValueMultiplier, aNEISpecialValuePost, aShowVoltageAmperageInNEI, aNEIAllowed, aConfigAllowed, aNeedsOutputs);}
+		@Deprecated public RecipeMap(Collection<Recipe> aRecipeList, String aNameInternal, String aNameLocal, String aNameNEI, long aProgressBarDirection, long aProgressBarAmount, String aNEIGUIPath, long aInputItemsCount, long aOutputItemsCount, long aMinimalInputItems, long aInputFluidCount, long aOutputFluidCount, long aMinimalInputFluids, long aPower, String aNEISpecialValuePre, long aNEISpecialValueMultiplier, String aNEISpecialValuePost, boolean aShowVoltageAmperageInNEI, boolean aNEIAllowed, boolean aConfigAllowed) {this(aRecipeList, aNameInternal, aNameLocal, aNameNEI, aProgressBarDirection, aProgressBarAmount, aNEIGUIPath, aInputItemsCount, aOutputItemsCount, aMinimalInputItems, aInputFluidCount, aOutputFluidCount, aMinimalInputFluids, 0, aPower, aNEISpecialValuePre, aNEISpecialValueMultiplier, aNEISpecialValuePost, aShowVoltageAmperageInNEI, aNEIAllowed, aConfigAllowed, T);}
+		@Deprecated public RecipeMap(Collection<Recipe> aRecipeList, String aNameInternal, String aNameLocal, String aNameNEI, long aProgressBarDirection, long aProgressBarAmount, String aNEIGUIPath, long aInputItemsCount, long aOutputItemsCount, long aMinimalInputItems, long aInputFluidCount, long aOutputFluidCount, long aMinimalInputFluids, long aPower, String aNEISpecialValuePre, long aNEISpecialValueMultiplier, String aNEISpecialValuePost, boolean aShowVoltageAmperageInNEI, boolean aNEIAllowed) {this(aRecipeList, aNameInternal, aNameLocal, aNameNEI, aProgressBarDirection, aProgressBarAmount, aNEIGUIPath, aInputItemsCount, aOutputItemsCount, aMinimalInputItems, aInputFluidCount, aOutputFluidCount, aMinimalInputFluids, 0, aPower, aNEISpecialValuePre, aNEISpecialValueMultiplier, aNEISpecialValuePost, aShowVoltageAmperageInNEI, aNEIAllowed, T, T);}
+		@Deprecated public RecipeMap(Collection<Recipe> aRecipeList, String aNameInternal, String aNameLocal, String aNameNEI, long aProgressBarDirection, long aProgressBarAmount, String aNEIGUIPath, long aInputItemsCount, long aOutputItemsCount, long aMinimalInputItems, long aMinimalInputFluids, long aPower, String aNEISpecialValuePre, long aNEISpecialValueMultiplier, String aNEISpecialValuePost, boolean aShowVoltageAmperageInNEI, boolean aNEIAllowed) {this(aRecipeList, aNameInternal, aNameLocal, aNameNEI, aProgressBarDirection, aProgressBarAmount, aNEIGUIPath, aInputItemsCount, aOutputItemsCount, aMinimalInputItems, 0, 0, aMinimalInputFluids, 0, aPower, aNEISpecialValuePre, aNEISpecialValueMultiplier, aNEISpecialValuePost, aShowVoltageAmperageInNEI, aNEIAllowed, T, T);}
+		@Deprecated public RecipeMap(Collection<Recipe> aRecipeList, String aNameInternal, String aNameLocal, String aNameNEI, String aNEIGUIPath, long aInputItemsCount, long aOutputItemsCount, long aMinimalInputItems, long aMinimalInputFluids, long aPower, String aNEISpecialValuePre, long aNEISpecialValueMultiplier, String aNEISpecialValuePost, boolean aShowVoltageAmperageInNEI, boolean aNEIAllowed) {this(aRecipeList, aNameInternal, aNameLocal, aNameNEI, 0, 1, aNEIGUIPath, aInputItemsCount, aOutputItemsCount, aMinimalInputItems, 0, 0, aMinimalInputFluids, 0, aPower, aNEISpecialValuePre, aNEISpecialValueMultiplier, aNEISpecialValuePost, aShowVoltageAmperageInNEI, aNEIAllowed, T, T);}
+
 		public Recipe addRecipe(boolean aOptimize, ItemStack[] aInputs, ItemStack[] aOutputs, Object aSpecial, long[] aOutputChances, FluidStack[] aFluidInputs, FluidStack[] aFluidOutputs, long aDuration, long aEUt, long aSpecialValue) {
 			return addRecipe(new Recipe(aOptimize, T, T, aInputs, aOutputs, aSpecial, aOutputChances, aFluidInputs, aFluidOutputs, aDuration, aEUt, aSpecialValue));
 		}
-		
+
 		public Recipe addRecipe(Recipe aRecipe) {
 			return addRecipe(aRecipe, T, F, F, T);
 		}
-		
+
 		// The Number next to the addRecipe is for the amount of Item Inputs used. X = Array
-		
+
 		public Recipe addRecipe1(boolean aOptimize, long aEUt, long aDuration, long   aChance , ItemStack aInput                                                                            , ItemStack    aOutput ) {return addRecipe(new Recipe(aOptimize, T, T, ST.array(aInput)          , ST.array(aOutput), NI, new long[] {aChance}, ZL_FS                , ZL_FS                 , aDuration, aEUt, 0));}
 		public Recipe addRecipe2(boolean aOptimize, long aEUt, long aDuration, long   aChance , ItemStack aInput1, ItemStack aInput2                                                        , ItemStack    aOutput ) {return addRecipe(new Recipe(aOptimize, T, T, ST.array(aInput1, aInput2), ST.array(aOutput), NI, new long[] {aChance}, ZL_FS                , ZL_FS                 , aDuration, aEUt, 0));}
 		public Recipe addRecipeX(boolean aOptimize, long aEUt, long aDuration, long   aChance , ItemStack[] aInputs                                                                         , ItemStack    aOutput ) {return addRecipe(new Recipe(aOptimize, T, T, aInputs                   , ST.array(aOutput), NI, new long[] {aChance}, ZL_FS                , ZL_FS                 , aDuration, aEUt, 0));}
@@ -233,7 +219,7 @@ public class Recipe {
 		public Recipe addRecipe1(boolean aOptimize, long aEUt, long aDuration, long[] aChances, ItemStack aInput                    , FluidStack[] aFluidInputs, FluidStack[]  aFluidOutputs, ItemStack... aOutputs) {return addRecipe(new Recipe(aOptimize, T, T, ST.array(aInput)          , aOutputs         , NI, aChances            , aFluidInputs         , aFluidOutputs         , aDuration, aEUt, 0));}
 		public Recipe addRecipe2(boolean aOptimize, long aEUt, long aDuration, long[] aChances, ItemStack aInput1, ItemStack aInput2, FluidStack[] aFluidInputs, FluidStack[]  aFluidOutputs, ItemStack... aOutputs) {return addRecipe(new Recipe(aOptimize, T, T, ST.array(aInput1, aInput2), aOutputs         , NI, aChances            , aFluidInputs         , aFluidOutputs         , aDuration, aEUt, 0));}
 		public Recipe addRecipeX(boolean aOptimize, long aEUt, long aDuration, long[] aChances, ItemStack[] aInputs                 , FluidStack[] aFluidInputs, FluidStack[]  aFluidOutputs, ItemStack... aOutputs) {return addRecipe(new Recipe(aOptimize, T, T, aInputs                   , aOutputs         , NI, aChances            , aFluidInputs         , aFluidOutputs         , aDuration, aEUt, 0));}
-		
+
 		public Recipe addRecipe1(boolean aOptimize, boolean aCheckForCollisions, boolean aFakeRecipe, boolean aHidden, boolean aLogErrors, long aEUt, long aDuration, long   aChance , ItemStack aInput                                                                            , ItemStack    aOutput ) {return addRecipe(new Recipe(aOptimize, T, T, ST.array(aInput)          , ST.array(aOutput), NI, new long[] {aChance}, ZL_FS                , ZL_FS                 , aDuration, aEUt, 0), aCheckForCollisions, aFakeRecipe, aHidden, aLogErrors);}
 		public Recipe addRecipe2(boolean aOptimize, boolean aCheckForCollisions, boolean aFakeRecipe, boolean aHidden, boolean aLogErrors, long aEUt, long aDuration, long   aChance , ItemStack aInput1, ItemStack aInput2                                                        , ItemStack    aOutput ) {return addRecipe(new Recipe(aOptimize, T, T, ST.array(aInput1, aInput2), ST.array(aOutput), NI, new long[] {aChance}, ZL_FS                , ZL_FS                 , aDuration, aEUt, 0), aCheckForCollisions, aFakeRecipe, aHidden, aLogErrors);}
 		public Recipe addRecipeX(boolean aOptimize, boolean aCheckForCollisions, boolean aFakeRecipe, boolean aHidden, boolean aLogErrors, long aEUt, long aDuration, long   aChance , ItemStack[] aInputs                                                                         , ItemStack    aOutput ) {return addRecipe(new Recipe(aOptimize, T, T, aInputs                   , ST.array(aOutput), NI, new long[] {aChance}, ZL_FS                , ZL_FS                 , aDuration, aEUt, 0), aCheckForCollisions, aFakeRecipe, aHidden, aLogErrors);}
@@ -287,41 +273,41 @@ public class Recipe {
 		public Recipe addRecipe1(boolean aOptimize, boolean aCheckForCollisions, boolean aFakeRecipe, boolean aHidden, boolean aLogErrors, long aEUt, long aDuration, long[] aChances, ItemStack aInput                    , FluidStack[] aFluidInputs, FluidStack[]  aFluidOutputs, ItemStack... aOutputs) {return addRecipe(new Recipe(aOptimize, T, T, ST.array(aInput)          , aOutputs         , NI, aChances            , aFluidInputs         , aFluidOutputs         , aDuration, aEUt, 0), aCheckForCollisions, aFakeRecipe, aHidden, aLogErrors);}
 		public Recipe addRecipe2(boolean aOptimize, boolean aCheckForCollisions, boolean aFakeRecipe, boolean aHidden, boolean aLogErrors, long aEUt, long aDuration, long[] aChances, ItemStack aInput1, ItemStack aInput2, FluidStack[] aFluidInputs, FluidStack[]  aFluidOutputs, ItemStack... aOutputs) {return addRecipe(new Recipe(aOptimize, T, T, ST.array(aInput1, aInput2), aOutputs         , NI, aChances            , aFluidInputs         , aFluidOutputs         , aDuration, aEUt, 0), aCheckForCollisions, aFakeRecipe, aHidden, aLogErrors);}
 		public Recipe addRecipeX(boolean aOptimize, boolean aCheckForCollisions, boolean aFakeRecipe, boolean aHidden, boolean aLogErrors, long aEUt, long aDuration, long[] aChances, ItemStack[] aInputs                 , FluidStack[] aFluidInputs, FluidStack[]  aFluidOutputs, ItemStack... aOutputs) {return addRecipe(new Recipe(aOptimize, T, T, aInputs                   , aOutputs         , NI, aChances            , aFluidInputs         , aFluidOutputs         , aDuration, aEUt, 0), aCheckForCollisions, aFakeRecipe, aHidden, aLogErrors);}
-		
+
 		public Recipe addRecipe(Recipe aRecipe, boolean aCheckForCollisions, boolean aFakeRecipe, boolean aHidden, boolean aLogErrors) {
 			aRecipe.mHidden = aHidden;
 			aRecipe.mFakeRecipe = aFakeRecipe;
 			if (aCheckForCollisions && findRecipeInternal(null, null, F, F, Long.MAX_VALUE, null, aRecipe.mFluidInputs, aRecipe.mInputs) != null) return null;
 			return add(aRecipe, aLogErrors && mLogErrors);
 		}
-		
+
 		public Recipe addRecipe(Recipe aRecipe, boolean aCheckForCollisions, boolean aFakeRecipe, boolean aHidden) {
 			return addRecipe(aRecipe, aCheckForCollisions, aFakeRecipe, aHidden, mLogErrors);
 		}
-		
+
 		/** Only used for fake Recipe Handlers to show something in NEI, do not use this for adding actual Recipes! findRecipe wont find fake Recipes, containsInput WILL find fake Recipes */
 		public Recipe addFakeRecipe(boolean aCheckForCollisions, ItemStack[] aInputs, ItemStack[] aOutputs, Object aSpecial, long[] aOutputChances, FluidStack[] aFluidInputs, FluidStack[] aFluidOutputs, long aDuration, long aEUt, long aSpecialValue) {
 			return addFakeRecipe(aCheckForCollisions, new Recipe(F, F, F, aInputs, aOutputs, aSpecial, aOutputChances, aFluidInputs, aFluidOutputs, aDuration, aEUt, aSpecialValue));
 		}
-		
+
 		/** Only used for fake Recipe Handlers to show something in NEI, do not use this for adding actual Recipes! findRecipe wont find fake Recipes, containsInput WILL find fake Recipes */
 		public Recipe addFakeRecipe(boolean aCheckForCollisions, ItemStack[] aInputs, ItemStack[] aOutputs, Object aSpecial, FluidStack[] aFluidInputs, FluidStack[] aFluidOutputs, long aDuration, long aEUt, long aSpecialValue) {
 			return addFakeRecipe(aCheckForCollisions, new Recipe(F, F, F, aInputs, aOutputs, aSpecial, null, aFluidInputs, aFluidOutputs, aDuration, aEUt, aSpecialValue));
 		}
-		
+
 		/** Only used for fake Recipe Handlers to show something in NEI, do not use this for adding actual Recipes! findRecipe wont find fake Recipes, containsInput WILL find fake Recipes */
 		public Recipe addFakeRecipe(boolean aCheckForCollisions, Recipe aRecipe) {
 			return addRecipe(aRecipe, aCheckForCollisions, T, F, mLogErrors);
 		}
-		
+
 		public Recipe add(Recipe aRecipe) {
 			return add(aRecipe, mLogErrors);
 		}
-		
+
 		public Recipe add(Recipe aRecipe, boolean aLogErrors) {
 			return add(aRecipe, aLogErrors, !aRecipe.mFakeRecipe && aRecipe.mCanBeBuffered);
 		}
-		
+
 		public synchronized Recipe add(Recipe aRecipe, boolean aLogErrors, boolean aAddConfig) {
 			if (!aRecipe.mFakeRecipe) {
 				boolean tErrored = F, tFailed = F;
@@ -339,7 +325,7 @@ public class Recipe {
 				if (aRecipe.mOutputs            .length > mOutputItemsCount                         ) {if (aLogErrors) ERR.println("WARNING: Recipe has more than the maximum amount of Output ItemStacks!"     ); tErrored = T;}
 				if (aRecipe.mFluidOutputs       .length > mOutputFluidCount                         ) {if (aLogErrors) ERR.println("WARNING: Recipe has more than the maximum amount of Output FluidStacks!"    ); tErrored = T;}
 				if (aRecipe.mDuration                                                           == 0) {if (aLogErrors) ERR.println("WARNING: Recipe has no Duration Value!"                                     ); tErrored = T;}
-				
+
 				if (tErrored || tFailed) {
 					if (aLogErrors) {
 						DEB.println("Recipe Map: " + mNameInternal);
@@ -352,7 +338,7 @@ public class Recipe {
 					if (tFailed) return null;
 				}
 			}
-			
+
 			for (FluidStack tFluid : aRecipe.mFluidInputs) if (FL.Error.is(tFluid)) {
 				if (D1) {
 					DEB.println("Compat: The Fluid for a Recipe has not been found! This might just be for a Mod that is not installed!");
@@ -364,7 +350,7 @@ public class Recipe {
 				}
 				return null;
 			}
-			
+
 			if (aAddConfig && mConfigFile != null) {
 				String tConfigName = "";
 				if (aRecipe.mInputs.length > 0) tConfigName += ST.configNames(aRecipe.mInputs);
@@ -374,11 +360,11 @@ public class Recipe {
 					aRecipe.mEnabled = (aRecipe.mDuration > 0);
 				}
 			}
-			
+
 			if (!aRecipe.mEnabled || !mRecipeList.add(aRecipe)) return null;
-			
+
 			mRecipeListSize++;
-			
+
 			for (FluidStack aFluid : aRecipe.mFluidInputs) if (aFluid != null) {
 				mMaxFluidInputSize = Math.max(mMaxFluidInputSize, aFluid.amount);
 				Collection<Recipe> tList = mRecipeFluidMap.get(aFluid.getFluid().getName());
@@ -390,7 +376,7 @@ public class Recipe {
 			}
 			return addToItemMap(aRecipe);
 		}
-		
+
 		public void reInit() {
 			mRecipeItemMap.clear();
 			for (Recipe tRecipe : mRecipeList) {
@@ -400,15 +386,15 @@ public class Recipe {
 			}
 			mRecipeListSize = mRecipeList.size();
 		}
-		
+
 		public boolean add(IRecipeMapHandler aRecipeMapHandler) {
 			return mRecipeMapHandlers.add(aRecipeMapHandler) && aRecipeMapHandler.onAddedToMap(this);
 		}
-		
+
 		public Slot_Normal getSpecialSlot(ITileEntityInventoryGUI aInventory, int aIndex, int aX, int aY) {
 			return null;
 		}
-		
+
 		/** @return if this Item is a valid Input for any for the Recipes */
 		public boolean containsInput(ItemStack aStack, IHasWorldAndCoords aTileEntity, ItemStack aSpecialSlot) {
 			if (ST.invalid(aStack)) return F;
@@ -418,12 +404,12 @@ public class Recipe {
 			for (IRecipeMapHandler tHandler : mRecipeMapHandlers) if (tHandler.containsInput(this, aStack, aData)) return T;
 			return F;
 		}
-		
+
 		/** @return if this Fluid is a valid Input for any for the Recipes */
 		public boolean containsInput(FluidStack aFluid, IHasWorldAndCoords aTileEntity, ItemStack aSpecialSlot) {
 			return aFluid != null && containsInput(aFluid.getFluid(), aTileEntity, aSpecialSlot);
 		}
-		
+
 		/** @return if this Fluid is a valid Input for any for the Recipes */
 		public boolean containsInput(Fluid aFluid, IHasWorldAndCoords aTileEntity, ItemStack aSpecialSlot) {
 			if (aFluid == null) return F;
@@ -432,9 +418,9 @@ public class Recipe {
 			for (IRecipeMapHandler tHandler : mRecipeMapHandlers) if (tHandler.containsInput(this, aFluid)) return T;
 			return F;
 		}
-		
+
 		private Recipe oRecipe = null;
-		
+
 		/**
 		 * finds a Recipe matching the Fluid and ItemStack Inputs.
 		 * @param aTileEntity an Object representing the current coordinates of the executing Block/Entity/Whatever. This may be null, especially during Startup.
@@ -449,7 +435,7 @@ public class Recipe {
 		public Recipe findRecipe(IHasWorldAndCoords aTileEntity, Recipe aRecipe, boolean aNotUnificated, long aSize, ItemStack aSpecialSlot, FluidStack[] aFluids, ItemStack... aInputs) {
 			return findRecipeInternal(aTileEntity, aRecipe, T, aNotUnificated, aSize, aSpecialSlot, aFluids, aInputs);
 		}
-		
+
 		/**
 		 * finds a Recipe matching the Fluid and ItemStack Inputs. (Using IFluidTank as parameter and converting it automatically)
 		 * @param aTileEntity an Object representing the current coordinates of the executing Block/Entity/Whatever. This may be null, especially during Startup.
@@ -466,11 +452,11 @@ public class Recipe {
 			for (int i = 0; i < aFluids.length; i++) aFluids[i] = aTanks[i].getFluid();
 			return findRecipe(aTileEntity, aRecipe, aNotUnificated, aSize, aSpecialSlot, aFluids, aInputs);
 		}
-		
+
 		public Recipe findRecipeInternal(IHasWorldAndCoords aTileEntity, Recipe aRecipe, boolean aLoop, boolean aNotUnificated, long aSize, ItemStack aSpecialSlot, FluidStack[] aFluids, ItemStack... aInputs) {
 			// No Recipes? Well, nothing to be found then.
 			if (mRecipeList.isEmpty() && (!aLoop || mRecipeMapHandlers.isEmpty())) return null;
-			
+
 			// Some Recipe Classes require a certain amount of Inputs of certain kinds. Like "at least 1 Fluid + 1 Stack" or "at least 2 Stacks" before they start searching for Recipes.
 			// This improves Performance massively, especially if people leave things like Circuits, Molds or Shapes in their Machines to select Sub Recipes.
 			if (GAPI_POST.mFinishedServerStarted > 0) {
@@ -480,31 +466,31 @@ public class Recipe {
 				if (tFluidAmount < mMinimalInputFluids) return null;
 				if (tFluidAmount + tItemAmount < mMinimalInputs) return null;
 			}
-			
+
 			// Unification happens here in case the Input isn't already unificated.
 			if (aNotUnificated) aInputs = OreDictManager.INSTANCE.getStackArray(T, (Object[])aInputs);
-			
+
 			// Check the Recipe which has been used last time in order to not have to search for it again, if possible.
 			if (aRecipe != null) if (!aRecipe.mFakeRecipe && aRecipe.mCanBeBuffered && aRecipe.isRecipeInputEqual(F, T, aFluids, aInputs)) return aRecipe.mEnabled&&UT.Code.abs_greater_equal(aSize*mPower, aRecipe.mEUt)?oRecipe=aRecipe:null;
 			if (oRecipe != null) if (!oRecipe.mFakeRecipe && oRecipe.mCanBeBuffered && oRecipe.isRecipeInputEqual(F, T, aFluids, aInputs)) return oRecipe.mEnabled&&UT.Code.abs_greater_equal(aSize*mPower, oRecipe.mEUt)?oRecipe:null;
-			
+
 			// Because MineTweaker screws up at this.
 			if (aLoop && mRecipeListSize != mRecipeList.size()) {
 				ERR.println("RecipeMap for " + mNameLocal + " got changed without re-initializing the HashMaps! This is a Bug of whatever Recipe Tweaker Mod you are using!");
 				reInit();
 			}
-			
+
 			// Now look for the Recipes inside the Item HashMaps, but only when the Recipes usually have Items.
 			if (mInputItemsCount > 0) for (ItemStack tStack1 : aInputs) if (tStack1 != null) {
 				Collection<Recipe>
 				tRecipes = mRecipeItemMap.get(new ItemStackContainer(tStack1));
 				if (tRecipes != null) for (Recipe tRecipe : tRecipes) if (!tRecipe.mFakeRecipe && tRecipe.isRecipeInputEqual(F, T, aFluids, aInputs)) return tRecipe.mEnabled&&UT.Code.abs_greater_equal(aSize*mPower, tRecipe.mEUt)?oRecipe=tRecipe:null;
-				
+
 				tRecipes = mRecipeItemMap.get(new ItemStackContainer(tStack1, W));
 				if (tRecipes != null) for (Recipe tRecipe : tRecipes) if (!tRecipe.mFakeRecipe && tRecipe.isRecipeInputEqual(F, T, aFluids, aInputs)) return tRecipe.mEnabled&&UT.Code.abs_greater_equal(aSize*mPower, tRecipe.mEUt)?oRecipe=tRecipe:null;
-				
+
 				ItemStack tStack2 = OreDictManager.INSTANCE.getStack_(F, tStack1);
-				
+
 				if (!ST.equal(tStack1, tStack2, T)) {
 				tRecipes = mRecipeItemMap.get(new ItemStackContainer(tStack2));
 				if (tRecipes != null) for (Recipe tRecipe : tRecipes) if (!tRecipe.mFakeRecipe && tRecipe.isRecipeInputEqual(F, T, aFluids, aInputs)) return tRecipe.mEnabled&&UT.Code.abs_greater_equal(aSize*mPower, tRecipe.mEUt)?oRecipe=tRecipe:null;
@@ -514,20 +500,19 @@ public class Recipe {
 				if (tRecipes != null) for (Recipe tRecipe : tRecipes) if (!tRecipe.mFakeRecipe && tRecipe.isRecipeInputEqual(F, T, aFluids, aInputs)) return tRecipe.mEnabled&&UT.Code.abs_greater_equal(aSize*mPower, tRecipe.mEUt)?oRecipe=tRecipe:null;
 				}
 			}
-			
+
 			// If the minimal Amount of Items for the Recipe is 0, then it could be a Fluid-Only Recipe, so check that Map too.
 			if (mInputFluidCount > 0 && mMinimalInputItems == 0) for (FluidStack aFluid : aFluids) if (aFluid != null) {
 				Collection<Recipe>
 				tRecipes = mRecipeFluidMap.get(aFluid.getFluid().getName());
 				if (tRecipes != null) for (Recipe tRecipe : tRecipes) if (!tRecipe.mFakeRecipe && tRecipe.isRecipeInputEqual(F, T, aFluids, aInputs)) return tRecipe.mEnabled&&UT.Code.abs_greater_equal(aSize*mPower, tRecipe.mEUt)?oRecipe=tRecipe:null;
 			}
-			
+
 			// Apply Recipe Map Handlers to "discover" new Recipes.
 			if (aLoop && !mRecipeMapHandlers.isEmpty()) {
-				Iterator<IRecipeMapHandler> tIterator = mRecipeMapHandlers.iterator();
-				while (tIterator.hasNext()) {
-					IRecipeMapHandler tHandler = tIterator.next();
-					if (tHandler.isDone()) tIterator.remove();
+				for (int i = 0; i < mRecipeMapHandlers.size(); i++) {
+					IRecipeMapHandler tHandler = mRecipeMapHandlers.get(i);
+					if (tHandler.isDone()) mRecipeMapHandlers.remove(tHandler);
 				}
 				if (!mRecipeMapHandlers.isEmpty()) {
 					aLoop = F;
@@ -541,25 +526,24 @@ public class Recipe {
 					if (aLoop) return findRecipeInternal(aTileEntity, aRecipe, F, aNotUnificated, aSize, aSpecialSlot, aFluids, aInputs);
 				}
 			}
-			
+
 			// And nothing has been found.
 			return null;
 		}
-		
+
 		public List<Recipe> getNEIAllRecipes() {
-			Iterator<IRecipeMapHandler> tIterator = mRecipeMapHandlers.iterator();
 			long tTimeBefore = System.currentTimeMillis();
-			while (tIterator.hasNext()) {
-				IRecipeMapHandler tHandler = tIterator.next();
+			for (int i = 0; i < mRecipeMapHandlers.size(); i++) {
+				IRecipeMapHandler tHandler = mRecipeMapHandlers.get(i);
 				tHandler.addAllRecipes(this);
-				if (tHandler.isDone()) tIterator.remove();
+				if (tHandler.isDone()) mRecipeMapHandlers.remove(tHandler);
 				if (System.currentTimeMillis() - tTimeBefore > 60000) break;
 			}
 			ArrayListNoNulls<Recipe> rList = new ArrayListNoNulls<>();
 			for (Recipe tRecipe : mRecipeList) if (tRecipe.mEnabled && !tRecipe.mHidden) rList.add(tRecipe);
 			return rList;
 		}
-		
+
 		public List<Recipe> getNEIRecipes(ItemStack... aOutputs) {
 			for (ItemStack aOutput : aOutputs) if (ST.valid(aOutput)) {
 				if (IL.Display_Fluid.equal(aOutput, T, T)) {
@@ -592,7 +576,7 @@ public class Recipe {
 			}
 			return rList;
 		}
-		
+
 		public List<Recipe> getNEIUsages(ItemStack... aInputs) {
 			for (ItemStack aInput : aInputs) if (ST.valid(aInput)) {
 				if (IL.Display_Fluid.equal(aInput, T, T)) {
@@ -625,7 +609,7 @@ public class Recipe {
 			}
 			return rList;
 		}
-		
+
 		public Recipe addToItemMap(Recipe aRecipe) {
 			for (ItemStack aStack : aRecipe.mInputs) if (aStack != null) {
 				ItemStackContainer tStack = new ItemStackContainer(aStack);
@@ -635,19 +619,19 @@ public class Recipe {
 			}
 			return aRecipe;
 		}
-		
+
 		public boolean openNEI() {
 			try {codechicken.nei.recipe.GuiCraftingRecipe.openRecipeGui(mNameNEI, new Object[0]); return T;} catch(Throwable e) {/**/}
 			return F;
 		}
-		
+
 		/** Old position for the Recipe Maps, please refer to gregapi6.data.RM and gregapi6.data.FM in the future. */
 		@Deprecated
 		public static RecipeMap sMaceratorRecipes = new RecipeMap(), sFurnaceRecipes = RM.Furnace, sMicrowaveRecipes = RM.Microwave, sFurnaceFuel = FM.Furnace, sByProductList = RM.ByProductList, sCrucibleSmelting = RM.CrucibleSmelting, sCrucibleAlloying = RM.CrucibleAlloying, sGenerifierRecipes = RM.Generifier, sSharpeningRecipes = RM.Sharpening, sSifterRecipes = RM.Sifting, sHammerRecipes = RM.Hammer, sChiselRecipes = RM.Chisel, sShredderRecipes = RM.Shredder, sCrusherRecipes = RM.Crusher, sLatheRecipes = RM.Lathe, sCutterRecipes = RM.Cutter, sCoagulatorRecipes = RM.Coagulator, sSqueezerRecipes = RM.Squeezer, sJuicerRecipes = RM.Juicer, sMortarRecipes = RM.Mortar, sCompressorRecipes = RM.Compressor, sCentrifugeRecipes = RM.Centrifuge, sElectrolyzerRecipes = RM.Electrolyzer, sRollingMillRecipes = RM.RollingMill, sRollBenderRecipes = RM.RollBender, sRollFormerRecipes = RM.RollFormer, sClusterMillRecipes = RM.ClusterMill, sWiremillRecipes = RM.Wiremill, sMixerRecipes = RM.Mixer, sCannerRecipes = RM.Canner, sInjectorRecipes = RM.Injector, sRoastingRecipes = RM.Roasting, sDryingRecipes = RM.Drying, sFermenterRecipes = RM.Fermenter, sDistilleryRecipes = RM.Distillery, sExtruderRecipes = RM.Extruder, sPolarizerRecipes = RM.Polarizer, sLoomRecipes = RM.Loom, sCookingRecipes = RM.Cooking, sPressRecipes = RM.Press, sBathRecipes = RM.Bath, sSmelterRecipes = RM.Smelter, sLaserEngraverRecipes = RM.LaserEngraver, sWelderRecipes = RM.Welder, sCrystallisationCrucibleRecipes = RM.CrystallisationCrucible, sScannerVisualsRecipes = RM.ScannerVisuals, sPrinterRecipes = RM.Printer, sSluiceRecipes = RM.Sluice, sMagneticSeparatorRecipes = RM.MagneticSeparator, sAutocrafterRecipes = RM.Autocrafter, sMassfabRecipes = RM.Massfab, sScannerMolecularRecipes = RM.ScannerMolecular, sReplicatorRecipes = RM.Replicator, sSlicerRecipes = RM.Slicer, sCokeOvenRecipes = RM.CokeOven, sDistillationTowerRecipes = RM.DistillationTower, sAutoclaveRecipes = RM.Autoclave, sBoxinatorRecipes = RM.Boxinator, sUnboxinatorRecipes = RM.Unboxinator, sFusionRecipes = RM.Fusion, sBlastRecipes = RM.BlastFurnace, sImplosionRecipes = RM.ImplosionCompressor, sVacuumRecipes = RM.VacuumFreezer, sAssemblerRecipes = RM.Assembler, sCNCRecipes = RM.CNC, sFuelsBurn = FM.Burn, sFuelsGas = FM.Gas, sFuelsHot = FM.Hot, sFuelsPlasma = FM.Plasma, sFuelsEngine = FM.Engine, sFuelsTurbine = FM.Turbine, sFuelsMagic = FM.Magic;
 	}
-	
+
 	public static void reInit() {for (RecipeMap tMapEntry : RecipeMap.RECIPE_MAPS.values()) tMapEntry.reInit();}
-	
+
 	/** If you want to change the Output, feel free to modify or even replace the whole ItemStack Array, for Inputs, please add a new Recipe, because of the HashMaps. */
 	public ItemStack[] mInputs, mOutputs;
 	/** If you want to change the Output, feel free to modify or even replace the whole ItemStack Array, for Inputs, please add a new Recipe, because of the HashMaps. */
@@ -656,9 +640,9 @@ public class Recipe {
 	public long[] mChances, mMaxChances;
 	/** An Item that needs to be inside the Special Slot, like for example the Copy Slot inside the Printer. This is only useful for Fake Recipes in NEI, since findRecipe() and containsInput() don't give a shit about this Field. Lists are also possible. */
 	public Object mSpecialItems;
-	
+
 	public long mDuration, mEUt, mSpecialValue;
-	
+
 	/** Use this to just disable a specific Recipe, but the Configuration enables that already for every single Recipe. */
 	public boolean mEnabled = T;
 	/** If this Recipe is hidden from NEI */
@@ -669,61 +653,64 @@ public class Recipe {
 	public boolean mCanBeBuffered = T;
 	/** If this Recipe needs the Output Slots to be completely empty. Needed in case you have randomised Outputs */
 	public boolean mNeedsEmptyOutput = F;
-	
+
+	/** If this Recipe needs cleanroom efficiency**/
+	public int mNeedsCleanroomEfficiency;
+
 	public int getOutputChance(long aIndex) {if (aIndex < 0 || aIndex >= mChances.length) return getMaxChance(aIndex); return (int)mChances[(int)aIndex];}
 	public int getMaxChance(long aIndex) {if (aIndex < 0 || aIndex >= mMaxChances.length) return 10000; return (int)mMaxChances[(int)aIndex];}
-	
+
 	public ItemStack getRepresentativeInput(long aIndex) {if (aIndex < 0 || aIndex >= mInputs.length) return null; return ST.copy(mInputs[(int)aIndex]);}
 	public ItemStack getOutput(long aIndex) {if (aIndex < 0 || aIndex >= mOutputs.length) return null; return ST.copy(mOutputs[(int)aIndex]);}
-	
+
 	public FluidStack getRepresentativeFluidInput(long aIndex) {if (aIndex < 0 || aIndex >= mFluidInputs.length || mFluidInputs[(int)aIndex] == null) return null; return mFluidInputs[(int)aIndex].copy();}
 	public FluidStack getFluidOutput(long aIndex) {if (aIndex < 0 || aIndex >= mFluidOutputs.length || mFluidOutputs[(int)aIndex] == null) return null; return mFluidOutputs[(int)aIndex].copy();}
-	
+
 	public Recipe copy() {
 		return new Recipe(this);
 	}
-	
+
 	public Recipe setSpecialNumber(long aNumber) {
 		mSpecialValue = aNumber;
 		return this;
 	}
-	
+
 	public Recipe setNoBuffering() {
 		mCanBeBuffered = F;
 		return this;
 	}
-	
+
 	public Recipe setNeedEmptyOut() {
 		mNeedsEmptyOutput = T;
 		return this;
 	}
-	
+
 	public boolean blockINblockOUT() {
 		return mInputs.length == 1 && mOutputs.length == 1 && mFluidInputs.length == 0 && mFluidOutputs.length == 0 && ST.block(mInputs[0]) != NB && ST.block(mOutputs[0]) != NB && mInputs[0].stackSize == 1 && mOutputs[0].stackSize == 1;
 	}
-	
+
 	public FluidStack[] getFluidOutputs() {
 		return getFluidOutputs(RNGSUS, 1);
 	}
-	
+
 	public FluidStack[] getFluidOutputs(Random aRandom) {
 		return getFluidOutputs(aRandom, 1);
 	}
-	
+
 	public FluidStack[] getFluidOutputs(Random aRandom, int aProcessCount) {
 		FluidStack[] rArray = new FluidStack[mFluidOutputs.length];
 		for (int i = 0; i < rArray.length; i++) rArray[i] = FL.mul(getFluidOutput(i), aProcessCount);
 		return rArray;
 	}
-	
+
 	public ItemStack[] getOutputs() {
 		return getOutputs(RNGSUS, 1);
 	}
-	
+
 	public ItemStack[] getOutputs(Random aRandom) {
 		return getOutputs(aRandom, 1);
 	}
-	
+
 	public ItemStack[] getOutputs(Random aRandom, int aProcessCount) {
 		ItemStack[] rArray = new ItemStack[mOutputs.length];
 		if (aRandom == null) aRandom = new Random();
@@ -747,7 +734,7 @@ public class Recipe {
 		}
 		return rArray;
 	}
-	
+
 	public boolean checkStacksEqual(boolean aDecreaseStacksizeBySuccess, boolean aDontCheckStackSizes, ItemStack... aInputs) {
 		boolean[] tChecked = new boolean[aInputs.length];
 		for (ItemStack tInput : mInputs) if (ST.valid(tInput)) {
@@ -769,57 +756,57 @@ public class Recipe {
 		}
 		return T;
 	}
-	
+
 	@Deprecated
 	public boolean isRecipeInputEqual(boolean aDecreaseStacksizeBySuccess, FluidStack[] aFluidInputs, ItemStack... aInputs) {
 		return isRecipeInputEqual(aDecreaseStacksizeBySuccess, F, aFluidInputs, aInputs);
 	}
-	
+
 	public boolean isRecipeInputEqual(boolean aDecreaseStacksizeBySuccess, boolean aDontCheckStackSizes, FluidStack[] aFluidInputs, ItemStack... aInputs) {
-		if (mFluidInputs.length > 0 && (aFluidInputs == null || aFluidInputs.length < 1)) return F;     
+		if (mFluidInputs.length > 0 && (aFluidInputs == null || aFluidInputs.length < 1)) return F;
 		if (mInputs.length > 0 && (aInputs == null || aInputs.length < 1)) return F;
-		
+
 		for (FluidStack tFluid : mFluidInputs) if (tFluid != null) {
 			boolean temp = T;
 			for (FluidStack aFluid : aFluidInputs) if (aFluid != null && aFluid.isFluidEqual(tFluid) && (aDontCheckStackSizes || aFluid.amount >= tFluid.amount)) {temp = F; break;}
 			if (temp) return F;
 		}
-		
+
 		if (!checkStacksEqual(F, aDontCheckStackSizes, aInputs)) return F;
-		
+
 		if (aDecreaseStacksizeBySuccess) {
 			for (FluidStack tFluid : mFluidInputs) if (tFluid != null) for (FluidStack aFluid : aFluidInputs) if (aFluid != null && aFluid.isFluidEqual(tFluid) && aFluid.amount >= tFluid.amount) {aFluid.amount -= tFluid.amount; break;}
 			checkStacksEqual(T, F, aInputs);
 		}
-		
+
 		return T;
 	}
-	
+
 	public boolean isRecipeInputEqual(boolean aDecreaseStacksizeBySuccess, boolean aDontCheckStackSizes, IFluidTank[] aFluidInputs, ItemStack... aInputs) {
-		if (mFluidInputs.length > 0 && (aFluidInputs == null || aFluidInputs.length < 1)) return F;     
+		if (mFluidInputs.length > 0 && (aFluidInputs == null || aFluidInputs.length < 1)) return F;
 		if (mInputs.length > 0 && (aInputs == null || aInputs.length < 1)) return F;
-		
+
 		for (FluidStack tFluid : mFluidInputs) if (tFluid != null) {
 			boolean temp = T;
 			for (IFluidTank tTank : aFluidInputs) {FluidStack aFluid = tTank.getFluid(); if (aFluid != null && aFluid.isFluidEqual(tFluid) && (aDontCheckStackSizes || aFluid.amount >= tFluid.amount)) {temp = F; break;}}
 			if (temp) return F;
 		}
-		
+
 		if (!checkStacksEqual(F, aDontCheckStackSizes, aInputs)) return F;
-		
+
 		if (aDecreaseStacksizeBySuccess) {
 			for (FluidStack tFluid : mFluidInputs) if (tFluid != null) for (IFluidTank tTank : aFluidInputs) {FluidStack aFluid = tTank.getFluid(); if (aFluid != null && aFluid.isFluidEqual(tFluid) && aFluid.amount >= tFluid.amount) {tTank.drain(tFluid.amount, T); break;}}
 			checkStacksEqual(T, F, aInputs);
 		}
-		
+
 		return T;
 	}
-	
+
 	public int isRecipeInputEqual(int aMaxProcessCount, IFluidTank[] aFluidInputs, ItemStack... aInputs) {
 		if (aMaxProcessCount <= 0) return 0;
-		if (mFluidInputs.length > 0 && (aFluidInputs == null || aFluidInputs.length < 1)) return 0;     
+		if (mFluidInputs.length > 0 && (aFluidInputs == null || aFluidInputs.length < 1)) return 0;
 		if (mInputs.length > 0 && (aInputs == null || aInputs.length < 1)) return 0;
-		
+
 		int rProcessCount = 0;
 		while (rProcessCount < aMaxProcessCount) {
 			for (FluidStack tFluid : mFluidInputs) if (tFluid != null) {
@@ -827,17 +814,17 @@ public class Recipe {
 				for (IFluidTank tTank : aFluidInputs) {FluidStack aFluid = tTank.getFluid(); if (aFluid != null && aFluid.isFluidEqual(tFluid) && aFluid.amount >= tFluid.amount) {temp = F; break;}}
 				if (temp) return rProcessCount;
 			}
-			
+
 			if (!checkStacksEqual(F, F, aInputs)) return rProcessCount;
-			
+
 			for (FluidStack tFluid : mFluidInputs) if (tFluid != null) for (IFluidTank tTank : aFluidInputs) {FluidStack aFluid = tTank.getFluid(); if (aFluid != null && aFluid.isFluidEqual(tFluid) && (aFluid.amount >= tFluid.amount)) {tTank.drain(tFluid.amount, T); break;}}
 			checkStacksEqual(T, F, aInputs);
-			
+
 			rProcessCount++;
 		}
 		return rProcessCount;
 	}
-	
+
 	private Recipe(Recipe aRecipe) {
 		mInputs = ST.copyArray(aRecipe.mInputs);
 		mOutputs = ST.copyArray(aRecipe.mOutputs);
@@ -854,12 +841,13 @@ public class Recipe {
 		mFakeRecipe = aRecipe.mFakeRecipe;
 		mEnabled = aRecipe.mEnabled;
 		mHidden = aRecipe.mHidden;
+		mNeedsCleanroomEfficiency = aRecipe.mNeedsCleanroomEfficiency;
 	}
-	
+
 	public Recipe(boolean aOptimize, boolean aUnificate, ItemStack[] aInputs, ItemStack[] aOutputs, Object aSpecialItems, long[] aChances, FluidStack[] aFluidInputs, FluidStack[] aFluidOutputs, long aDuration, long aEUt, long aSpecialValue) {
 		this(aOptimize, aUnificate, T, aInputs, aOutputs, aSpecialItems, aChances, aFluidInputs, aFluidOutputs, aDuration, aEUt, aSpecialValue);
 	}
-	
+
 	public Recipe(boolean aOptimize, boolean aUnificate, boolean aCanBeBuffered, ItemStack[] aInputs, ItemStack[] aOutputs, Object aSpecialItems, long[] aChances, FluidStack[] aFluidInputs, FluidStack[] aFluidOutputs, long aDuration, long aEUt, long aSpecialValue) {
 		mCanBeBuffered = aCanBeBuffered;
 		if (aInputs       == null) aInputs       = ZL_IS;
@@ -877,15 +865,15 @@ public class Recipe {
 		for (int i = 0; i < aFluidOutputs.length; i++) if (aFluidOutputs[i] != NF && (aFluidOutputs[i].amount <= 0 || FL.Error.is(aFluidOutputs[i]))) aFluidOutputs[i] = NF;
 		aFluidInputs  = UT.Code.getWithoutNulls(aFluidInputs ).toArray(ZL_FS);
 		aFluidOutputs = UT.Code.getWithoutNulls(aFluidOutputs).toArray(ZL_FS);
-		
+
 		int l = UT.Code.bindInt(aDuration / 16);
-		
+
 		for (int i = 0; i < aChances     .length; i++) if (aChances[i] <=  0) aChances[i] = 10000;
 		for (int i = 0; i < aInputs      .length; i++) if (aInputs [i] != null) {aInputs [i] = ST.copy_     (aInputs [i]); if (aInputs [i].stackSize != 0) l = Math.min(aInputs [i].stackSize, l);}
 		for (int i = 0; i < aOutputs     .length; i++) if (aOutputs[i] != null) {aOutputs[i] = ST.validMeta_(aOutputs[i]); if (aOutputs[i].stackSize != 0) l = Math.min(aOutputs[i].stackSize, l);}
 		for (int i = 0; i < aFluidInputs .length; i++) {aFluidInputs [i] = aFluidInputs [i].copy(); if (aFluidInputs [i].amount != 0) l = Math.min(aFluidInputs [i].amount, l);}
 		for (int i = 0; i < aFluidOutputs.length; i++) {aFluidOutputs[i] = aFluidOutputs[i].copy(); if (aFluidOutputs[i].amount != 0) l = Math.min(aFluidOutputs[i].amount, l);}
-		
+
 		if (aOptimize) {
 			for (int i = 0; i < aInputs.length; i++) if (aInputs[i] != NI && ST.meta_(aInputs[i]) != W) for (int j = 0; j < aOutputs.length; j++) {
 				if (aOutputs[j] != null && ST.equal_(aInputs[i], aOutputs[j], F)) {
@@ -899,7 +887,7 @@ public class Recipe {
 					}
 				}
 			}
-			
+
 			for (; l > 1; l--) {
 				boolean temp = T;
 				for (int j = 0; temp && j < aInputs      .length; j++) if (aInputs [j] != null && aInputs [j].stackSize % l != 0) temp = F;
@@ -916,10 +904,10 @@ public class Recipe {
 				}
 			}
 		}
-		
+
 		for (int i = 0; i < aInputs .length; i++) if (aInputs [i] != NI && aInputs [i].stackSize > 64) aInputs [i].stackSize = 64;
 		for (int i = 0; i < aOutputs.length; i++) if (aOutputs[i] != NI && aOutputs[i].stackSize > 64) aOutputs[i].stackSize = 64;
-		
+
 		mInputs = aInputs;
 		mOutputs = aOutputs;
 		mSpecialItems = aSpecialItems;

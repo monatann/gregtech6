@@ -35,7 +35,7 @@ import net.minecraft.util.EnumChatFormatting;
 
 /**
  * @author Gregorius Techneticies
- * 
+ *
  * Contains common translatable Strings.
  */
 public class LH {
@@ -140,6 +140,8 @@ public class LH {
 	, TOOL_TO_DECALCIFY_CHISEL = "gt6.lang.use.chisel.to.decalcify"
 	, TOOL_TO_DETAIL_MAGNIFYINGGLASS = "gt6.lang.use.magnifyingglass.to.detail"
 	, TOOL_TO_MEASURE_GEIGER_COUNTER = "gt6.lang.use.geigercoutner.to.measure"
+			, TOOL_TO_MEASURE_THERMOMETER = "gt6.lang.use.thermometer.to.measure"
+			, TOOL_TO_ACCESS_SCOOP = "gt6.lang.use.scoop.to.access"
 	, TOOL_TO_REMOVE_SHOVEL = "gt6.lang.use.shovel.to.empty"
 	, TOOL_TO_CHANGE_DESIGN_CHISEL = "gt6.lang.use.chisel.to.switch.design"
 	, TOOL_TO_HARVEST = "gt6.lang.tool.to.harvest"
@@ -198,6 +200,7 @@ public class LH {
 	, TOOLTIP_BLAST_RESISTANCE_GHAST = "gt6.lang.blast.resist.ghast.proof"
 	, TOOLTIP_BLAST_RESISTANCE_CREEPER = "gt6.lang.blast.resist.creeper.proof"
 	, TOOLTIP_BLAST_RESISTANCE_TNT = "gt6.lang.blast.resist.tnt.proof"
+			, TOOLTIP_BLAST_RESISTANCE_DYNAMITE = "gt6.lang.blast.resist.dynamite.proof"
 	, TOOLTIP_BLAST_RESISTANCE_NOT_NUKE = "gt6.lang.blast.resist.nuke.not"
 	, TOOLTIP_BETWEENLANDS_RESISTANCE = "gt6.lang.betweenlands.resist"
 	, PROSPECTING_LAVA = "gt6.lang.prospecting.lava"
@@ -227,18 +230,18 @@ public class LH {
 	, ADMIN_ONLY_CREATION = "gt6.lang.admin.only.creation"
 	, WIP = "gt6.lang.work.in.progress"
 	;
-	
+
 	public static final String add(String aKey, String aEnglish) {LanguageHandler.add(aKey, aEnglish); return aKey;}
 	public static final String get(String aKey) {return LanguageHandler.translate(aKey);}
 	public static final String get(String aKey, String aDefault) {return LanguageHandler.translate(aKey, aDefault);}
-	
-	
+
+
 	public static final String percent(long aNumber) {return (aNumber/100) + ((aNumber%100)>9?"."+aNumber%100:".0"+(aNumber%100));}
-	
-	public static final String getToolTipBlastResistance(Block aBlock, double aResistance) {return Chat.WHITE + get(LH.TOOLTIP_BLASTRESISTANCE) + Chat.ORANGE + ((int)aResistance) + "." + (((int)(aResistance * 10)) % 10) + (aResistance < 4 ? Chat.BLINKING_RED + " " + get(LH.TOOLTIP_BLAST_RESISTANCE_TERRIBLE) : aResistance < 12 ? Chat.RED + " " + get(LH.TOOLTIP_BLAST_RESISTANCE_GHAST) : aResistance < 16 ? Chat.YELLOW + " " + get(LH.TOOLTIP_BLAST_RESISTANCE_CREEPER) : aResistance < 3330 || !MD.IC2.mLoaded || (aBlock != NB && aBlock != null && COMPAT_IC2 != null && COMPAT_IC2.isExplosionWhitelisted(aBlock)) ? Chat.GREEN + " " + get(LH.TOOLTIP_BLAST_RESISTANCE_TNT) : Chat.BLINKING_CYAN + " " + get(LH.TOOLTIP_BLAST_RESISTANCE_NOT_NUKE));}
-	
+
+	public static final String getToolTipBlastResistance(Block aBlock, double aResistance) {return Chat.WHITE + get(LH.TOOLTIP_BLASTRESISTANCE) + Chat.ORANGE + ((int)aResistance) + "." + (((int)(aResistance * 10)) % 10) + (aResistance < 4 ? Chat.BLINKING_RED + " " + get(LH.TOOLTIP_BLAST_RESISTANCE_TERRIBLE) : aResistance < 12 ? Chat.RED + " " + get(LH.TOOLTIP_BLAST_RESISTANCE_GHAST) : aResistance < 16 ? Chat.YELLOW + " " + get(LH.TOOLTIP_BLAST_RESISTANCE_CREEPER) : aResistance <= 40 ? Chat.GREEN + " " + get(LH.TOOLTIP_BLAST_RESISTANCE_TNT) : aResistance < 3330 || (aBlock != NB && aBlock != null && COMPAT_IC2 != null && COMPAT_IC2.isExplosionWhitelisted(aBlock)) ? Chat.GREEN + " " + get(LH.TOOLTIP_BLAST_RESISTANCE_DYNAMITE) : Chat.BLINKING_CYAN + " " + get(LH.TOOLTIP_BLAST_RESISTANCE_NOT_NUKE));}
+
 	public static final String getToolTipEfficiency(long aEfficiency) {aEfficiency = Math.abs(aEfficiency); return Chat.YELLOW + get(EFFICIENCY) + ": " + Chat.WHITE + percent(aEfficiency) + "%";}
-	
+
 	public static final void addToolTipsEfficiency(List<String> aList, ItemStack aStack, boolean aF3_H, TE_Behavior_Energy_Converter aConverter) {
 		addToolTipsEfficiency(aList, aStack, aF3_H, aConverter.mEnergyIN, aConverter.mEnergyOUT, aConverter.mMultiplier);
 	}
@@ -247,16 +250,16 @@ public class LH {
 			if (TD.Energy.ALL_EU.contains(aEnergyOUT.mType)) {
 				aList.add(LH.getToolTipEfficiency(UT.Code.units(10000, aEnergyIN.mRec, aEnergyOUT.mRec*aMultiplier, F)));
 			} else {
-				if (aEnergyOUT.mType == TD.Energy.RF        ) aList.add(LH.getToolTipEfficiency(UT.Code.units(10000, aEnergyIN.mRec*RF_PER_EU, aEnergyOUT.mRec*aMultiplier, F)));
-			}
+				if (aEnergyOUT.mType == TD.Energy.RF  ) aList.add(LH.getToolTipEfficiency(UT.Code.units(10000, aEnergyIN.mRec*RF_PER_EU, aEnergyOUT.mRec*aMultiplier, F)));
+		}
 		} else {
 			if (TD.Energy.ALL_EU.contains(aEnergyOUT.mType)) {
-				if (aEnergyIN.mType == TD.Energy.RF     ) aList.add(LH.getToolTipEfficiency(UT.Code.units(10000, aEnergyIN.mRec, aEnergyOUT.mRec*aMultiplier*RF_PER_EU, F)));
-				if (aEnergyIN.mType == TD.Energy.STEAM  ) aList.add(LH.getToolTipEfficiency(UT.Code.units(10000, aEnergyIN.mRec, aEnergyOUT.mRec*aMultiplier*STEAM_PER_EU, F)));
-			}
+				if (aEnergyIN.mType == TD.Energy.RF   ) aList.add(LH.getToolTipEfficiency(UT.Code.units(10000, aEnergyIN.mRec, aEnergyOUT.mRec*aMultiplier*RF_PER_EU, F)));
+				if (aEnergyIN.mType == TD.Energy.STEAM) aList.add(LH.getToolTipEfficiency(UT.Code.units(10000, aEnergyIN.mRec, aEnergyOUT.mRec*aMultiplier*STEAM_PER_EU, F)));
+		}
 		}
 	}
-	
+
 	public static final void addToolTipsEfficiency(List<String> aList, ItemStack aStack, boolean aF3_H, TE_Behavior_Energy_Stats aEnergyIN, TE_Behavior_Energy_Stats aEnergyOUT, TE_Behavior_Energy_Stats aEnergyOUT2, long aMultiplier) {
 		if (TD.Energy.ALL_EU.contains(aEnergyIN.mType)) {
 			if (TD.Energy.ALL_EU.contains(aEnergyOUT.mType)) {
@@ -274,34 +277,34 @@ public class LH {
 			if (TD.Energy.ALL_EU.contains(aEnergyOUT2.mType) && aEnergyIN.mType == TD.Energy.RF) aList.add(LH.getToolTipEfficiency(UT.Code.units(10000, aEnergyIN.mRec, aEnergyOUT.mRec*8, F)));
 		}
 	}
-	
+
 	public static final void addEnergyToolTips(ITileEntityEnergy aTileEntity, List<String> aToolTips, TagData aEnergyTypeIN, TagData aEnergyTypeOUT, String aSidesIN, String aSidesOUT) {
 		if (aEnergyTypeIN != null) {
 			long tMin = aTileEntity.getEnergySizeInputMin(aEnergyTypeOUT, SIDE_ANY), tRec = aTileEntity.getEnergySizeInputRecommended(aEnergyTypeOUT, SIDE_ANY), tMax = aTileEntity.getEnergySizeInputMax(aEnergyTypeOUT, SIDE_ANY);
-			aToolTips.add(Chat.GREEN + LH.get(LH.ENERGY_INPUT ) + ": " + Chat.WHITE + tRec + " " + aEnergyTypeIN .getChatFormat() + aEnergyTypeIN .getLocalisedNameShort() + Chat.WHITE + (tRec == tMin && tRec == tMax ? "/t" : "/t ("+tMin+" to "+tMax+(UT.Code.stringInvalid(aSidesIN )?"":", "+aSidesIN )+")"));
+			aToolTips.add(Chat.GREEN + LH.get(LH.ENERGY_INPUT ) + ": " + Chat.WHITE + tRec + " " + aEnergyTypeIN .getChatFormat() + aEnergyTypeIN .getLocalisedNameShort() + Chat.WHITE + (tRec == tMin && tRec == tMax ? "/t" : (tMin <= 1 ? "/t (up to " : "/t ("+tMin+" to ")+tMax+(UT.Code.stringInvalid(aSidesIN )?"":", "+aSidesIN )+")"));
 			aToolTips.add(getToolTipRedstoneFluxAccept(aEnergyTypeIN));
 		}
 		if (aEnergyTypeOUT != null) {
 			long tMin = aTileEntity.getEnergySizeOutputMin(aEnergyTypeOUT, SIDE_ANY), tRec = aTileEntity.getEnergySizeOutputRecommended(aEnergyTypeOUT, SIDE_ANY), tMax = aTileEntity.getEnergySizeOutputMax(aEnergyTypeOUT, SIDE_ANY);
-			aToolTips.add(Chat.RED   + LH.get(LH.ENERGY_OUTPUT) + ": " + Chat.WHITE + tRec + " " + aEnergyTypeOUT.getChatFormat() + aEnergyTypeOUT.getLocalisedNameShort() + Chat.WHITE + (tRec == tMin && tRec == tMax ? "/t" : "/t ("+tMin+" to "+tMax+(UT.Code.stringInvalid(aSidesOUT)?"":", "+aSidesOUT)+")"));
+			aToolTips.add(Chat.RED   + LH.get(LH.ENERGY_OUTPUT) + ": " + Chat.WHITE + tRec + " " + aEnergyTypeOUT.getChatFormat() + aEnergyTypeOUT.getLocalisedNameShort() + Chat.WHITE + (tRec == tMin && tRec == tMax ? "/t" : (tMin <= 1 ? "/t (up to " : "/t ("+tMin+" to ")+tMax+(UT.Code.stringInvalid(aSidesOUT)?"":", "+aSidesOUT)+")"));
 			aToolTips.add(getToolTipRedstoneFluxEmit(aEnergyTypeOUT));
 		}
 	}
-	
+
 	public static final String getToolTipRedstoneFluxEmit(TagData aEnergyType) {
 		if (aEnergyType == TD.Energy.KU) return Chat.ORANGE + LH.get(LH.EMITS_REDSTONE_FLUX_LOSS)+" 50%";
 		if (aEnergyType == TD.Energy.RF) return Chat.ORANGE + LH.get(LH.EMITS_REDSTONE_FLUX);
 		if (aEnergyType == TD.Energy.MJ) return Chat.ORANGE + LH.get(LH.EMITS_REDSTONE_FLUX);
 		return null;
 	}
-	
+
 	public static final String getToolTipRedstoneFluxAccept(TagData aEnergyType) {
 //      if (aEnergyType == TD.Energy.KU) return Chat.ORANGE + LH.get(LH.ACCEPTS_REDSTONE_FLUX_LOSS)+" 50%";
 		if (aEnergyType == TD.Energy.RF) return Chat.ORANGE + LH.get(LH.ACCEPTS_REDSTONE_FLUX);
 		if (aEnergyType == TD.Energy.MJ) return Chat.ORANGE + LH.get(LH.ACCEPTS_REDSTONE_FLUX);
 		return null;
 	}
-	
+
 	static {
 		add(EFFICIENCY                                  , "Efficiency");
 		add(RECIPE                                      , "Recipe");
@@ -389,6 +392,8 @@ public class LH {
 		add(TOOL_TO_DECALCIFY_CHISEL                    , "Use Chisel to decalcify");
 		add(TOOL_TO_DETAIL_MAGNIFYINGGLASS              , "Use Magnifying Glass to see Details");
 		add(TOOL_TO_MEASURE_GEIGER_COUNTER              , "Use Geiger Counter to Measure");
+		add(TOOL_TO_MEASURE_THERMOMETER                 , "Use Thermometer to Measure");
+		add(TOOL_TO_ACCESS_SCOOP                        , "Use Scoop to extract (Bumble-)Bees");
 		add(TOOL_TO_TOGGLE_INPUTS_MONKEY_WRENCH         , "Use Monkey Wrench to toggle Inputs");
 		add(TOOL_TO_TOGGLE_OUTPUTS_MONKEY_WRENCH        , "Use Monkey Wrench to toggle Outputs");
 		add(TOOL_TO_TOGGLE_AUTO_INPUTS_MONKEY_WRENCH    , "Use Monkey Wrench to toggle automatic Inputs");
@@ -460,7 +465,8 @@ public class LH {
 		add(TOOLTIP_BLAST_RESISTANCE_GHAST              , "(Ghast Proof)");
 		add(TOOLTIP_BLAST_RESISTANCE_CREEPER            , "(Creeper Proof)");
 		add(TOOLTIP_BLAST_RESISTANCE_TNT                , "(TNT Proof)");
-		add(TOOLTIP_BLAST_RESISTANCE_NOT_NUKE           , "(IC2 Nukes will go right through!)");
+		add(TOOLTIP_BLAST_RESISTANCE_DYNAMITE           , "(Strong Dynamite Proof)");
+		add(TOOLTIP_BLAST_RESISTANCE_NOT_NUKE           , "(IC2 Nukes still go right through!)");
 		add(TOOLTIP_BETWEENLANDS_RESISTANCE             , "Resistant to the Effects of the Betweenlands");
 		add(PROSPECTING_LAVA                            , "There is Lava behind this Rock.");
 		add(PROSPECTING_LIQUID                          , "There is a Liquid behind this Rock.");
@@ -489,7 +495,7 @@ public class LH {
 		add(ADMIN_ONLY_CREATION                         , "Admins have to spawn this in. (or you MineTweaker a Recipe in)");
 		add(WIP                                         , Chat.RESET + Chat.WHITE + Chat.BOLD + "WIP" + Chat.RESET_TOOLTIP + ", This may not be as functional as you expect it to be!");
 	}
-	
+
 	public static class Chat {
 		public static final String
 		  BLACK = EnumChatFormatting.BLACK.toString()
@@ -517,7 +523,7 @@ public class LH {
 		, RESET = EnumChatFormatting.RESET.toString()
 		, RESET_TOOLTIP = RESET + GRAY
 		;
-		
+
 		public static String
 		  RAINBOW_FAST = BLACK
 		, RAINBOW = BLACK

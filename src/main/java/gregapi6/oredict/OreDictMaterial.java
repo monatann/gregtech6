@@ -67,7 +67,7 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 	public static final Set<OreDictMaterial> ALLOYS = new HashSetNoNulls<>();
 	public static int sHashID = 0;
 	private static final Set<String> INVALID_STRINGS_TO_START_A_MATERIAL_NAME = new HashSetNoNulls<>(Arrays.asList("Mul", "Div", "Rich", "Poor", "Raw", "Impure", "Pure", "Dirty", "Refined", "Tiny", "Small", "Normal", "Medium", "Large", "Huge", "Dense", "Alloy", "Head", "Tool", "Helmet", "Chestplate", "Leggings", "Boots", "Centrifuged", "Purified", "Quintuple", "Quadruple", "Triple", "Double", "Hot", "Uncut", "Polished", "Chipped", "Flawed", "Flawless", "Exquisite", "Gt", "Long", "Plasma", "Gas", "Liquid", "Solid", "Gem", "Dust", "Ingot", "Plate", "Block", "Leaves", "Sapling", "Mossy", "Brick", "Crack", "Chisel", "Broken", "Compact", "Curve", "Mixed", "Mixable"));
-	
+
 	/**
 	 * If a Material with the same Name but without ID (-1) exists it will be replaced automatically, regardless of registration order.
 	 * <BR><BR>
@@ -78,12 +78,12 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 	 * Please avoid having the same ID for two different Materials. This would cause some nasty collisions. So choose one of the following ID Ranges, which has not been taken already! Also maybe your Name is already Listed, you should check for that too. If you need a Range to be assigned to, then you just ask me.
 	 * <BR><BR>
 	 * I have to use an ID based System, as Item MetaData is the only proper way to differentiate between Items reliably within all Mods.
-	 * 
+	 *
 	 * <BR><BR> My ID Range, do not touch unless you are me.
 	 * <BR>[    0: 9999] Gregorius Techneticies (And this API)
-	 * 
+	 *
 	 * <BR><BR>The large Ranges (given to people, who I expect to add many new Materials)
-	 * 
+	 *
 	 * <BR>[10000:10999] OvermindDL1
 	 * <BR>[11000:11999] VirMan
 	 * <BR>[12000:12999] EmperorHadriusIII
@@ -94,9 +94,9 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 	 * <BR>[17000:17999] Free
 	 * <BR>[18000:18999] Free
 	 * <BR>[19000:19999] Free
-	 * 
+	 *
 	 * <BR><BR>The medium Ranges (given to people, who I expect to add some Materials, but not that many)
-	 * 
+	 *
 	 * <BR>[20000:20499] BloodAsp
 	 * <BR>[20500:20999] Axelandre42
 	 * <BR>[21000:21499] the next one who asks me (do not use unless I personally tell you to use this medium Range)
@@ -117,9 +117,9 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 	 * <BR>[28500:28999] Free
 	 * <BR>[29000:29499] Free
 	 * <BR>[29500:29999] Free
-	 * 
+	 *
 	 * <BR><BR>The smaller Ranges (given to people, who I expect to not add many new Materials)
-	 * 
+	 *
 	 * <BR>[30000:30099] LinusPhoenix
 	 * <BR>[30100:30199] ZL123
 	 * <BR>[30200:30299] Mr10Movie
@@ -140,13 +140,13 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 	 * <BR>[31700:31799] Free
 	 * <BR>[31800:31899] Free
 	 * <BR>[31900:31999] Free
-	 * 
+	 *
 	 * <BR><BR> The ID Range that is reserved for MineTweaker and alike Stuff, so people can create their own Materials if they desire to do so.
 	 * <BR>[32000:32765] Those are Reserved for Custom Materials.
-	 * 
+	 *
 	 * <BR><BR> Due to being from the Example Mod, I would not use that ID, as everyone who just blindly copypastes that Mod like an idiot, uses this ID.
 	 * <BR>[32766] That one ID that is used for the Example Mod.
-	 * 
+	 *
 	 * @param aID the MetaData an Item of this Material would have.
 	 * <BR>Everything below 8000 is reserved for Chemical Elements/Anti-Elements and their Isotopes.
 	 * <BR>Everything between [8000 and 9999] is reserved for GregTech itself (or the API itself), just to prevent Conflicts.
@@ -167,15 +167,15 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 		if (aID >= 0) {
 			if (GAPI.mStartedInit)
 			throw new IllegalStateException("Materials with a valid ID have to be initialised in PreInit or earlier!");
-			
+
 			if (Ch_N.contains(aNameOreDict.charAt(0)))
 			throw new IllegalArgumentException("The OreDict Name '"+aNameOreDict+"' is not suitable for a valid Material. Choose a different one, which doesn't happen to start with a Numeral. You can always set the Local Name to your liking, but the internal Name must always be a proper one.");
-			
+
 			if (INVALID_STRINGS_TO_START_A_MATERIAL_NAME.contains(aNameOreDict))
 			throw new IllegalArgumentException("The OreDict Name '"+aNameOreDict+"' is not suitable for a valid Material. Choose a different one, which doesn't happen to be a blacklisted Adjective. You can always set the Local Name to your liking, but the internal Name must always be a proper one.");
-			
+
 			for (String tInvalidString : INVALID_STRINGS_TO_START_A_MATERIAL_NAME) if (aNameOreDict.startsWith(tInvalidString))
-			throw new IllegalArgumentException("The OreDict Name '"+aNameOreDict+"' is not suitable for a valid Material, as it conflicts with OreDict Prefixes. A better Name for your Material would be '"+UT.Code.capitalise(aNameOreDict.replaceFirst(tInvalidString, ""))+tInvalidString+"' with the '"+tInvalidString+"' at the end of the Material Name instead of the beginning."); 
+			throw new IllegalArgumentException("The OreDict Name '"+aNameOreDict+"' is not suitable for a valid Material, as it conflicts with OreDict Prefixes. A better Name for your Material would be '"+UT.Code.capitalise(aNameOreDict.replaceFirst(tInvalidString, ""))+tInvalidString+"' with the '"+tInvalidString+"' at the end of the Material Name instead of the beginning.");
 		}
 		OreDictMaterial rMaterial1 = MATERIAL_MAP.get(aNameOreDict);
 		if (rMaterial1 == null) return new OreDictMaterial((short)aID, aNameOreDict, aLocalName);
@@ -194,7 +194,7 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 		if (rMaterial.mID < 0) rMaterial.put(TD.Properties.INVALID_MATERIAL, TD.Properties.UNUSED_MATERIAL, TD.Properties.AUTO_BLACKLIST, TD.Properties.AUTO_MATERIAL);
 		return rMaterial;
 	}
-	
+
 	/** The Index of this Material inside the Array. Negative for "Not in the Array" and therefore also for "Not Unificatable", 0 is the NULL Material so a > 0 check could be useful for you. */
 	public final short mID;
 	/** The HashCode for this Material. Fully independent from any ID this Material would be assigned to, UNLIKE ITEMS. */
@@ -224,6 +224,8 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 	public float mHeatDamage = 0.0F;
 	/** If this Material is hidden */
 	public boolean mHidden = F;
+	/** If this Material contains the Metallum Aspect. */
+	public boolean mHasMetallum = F;
 	/** g/cm^3 of this Material at Room Temperature. 0 Means that it is not determined. */
 	public double mGramPerCubicCentimeter = 1.0;
 	/** The Colors of this Material in its 4 different states. Any change to these 4 final Arrays will be reflected in the Color of the Material at that state. */
@@ -260,8 +262,8 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 	public OreDictMaterial mTargetRegistration = this;
 	/** The Material which is the target for selecting the preferred Tool Handle. */
 	public OreDictMaterial mHandleMaterial = this;
-	
-	
+
+
 	/** The Targets for certain kinds of Processing for this Material */
 	public OreDictMaterialStack
 	mTargetCrushing     = OM.stack(this, U),
@@ -283,7 +285,7 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 	private final Set<TagData> mTags = new HashSetNoNulls<>();
 	/** Stores the Tool and Armor Enchants */
 	public final List<ObjectStack<Enchantment>> mEnchantmentTools = new ArrayListNoNulls<>(1), mEnchantmentArmors = new ArrayListNoNulls<>(1);
-	
+
 	private OreDictMaterial(short aID, String aNameInternal, String aNameLocal) {
 		mID = aID;
 		mNameInternal = aNameInternal;
@@ -292,75 +294,75 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 		if (mID >= 0) MATERIAL_ARRAY[mID] = this;
 		mHashID = sHashID++;
 	}
-	
+
 	/** Sets the localised Name of this Material */
 	public OreDictMaterial setLocal(String aNameLocal) {
 		mNameLocal = aNameLocal == null ? mNameInternal : aNameLocal;
 		return this;
 	}
-	
+
 	/** Gets the localised Name of this Material, but only after the Init-Phase (since Materials are added during preInit). Otherwise defaults to the Name set by setLocal. */
 	public String getLocal() {
 		return LanguageHandler.translate("gt6.material." + mNameInternal, mNameLocal);
 	}
-	
+
 	/** Sets the original Mod of this Material */
 	public OreDictMaterial setOriginalMod(ModData aOriginalMod) {
 		mOriginalMod = aOriginalMod == null ? mOriginalMod : aOriginalMod;
 		return this;
 	}
-	
+
 	/** Sets the original Mod of this Material */
 	public OreDictMaterial setOriginalMod(String aModID, String aModName) {
 		mOriginalMod = new ModData(aModID, aModName);
 		return this;
 	}
-	
+
 	/** Adds Identical Names which are getting re-registered to this Material. returns this Material, not the newly created ones. */
 	public OreDictMaterial addIdenticalNames(String... aNames) {
 		for (String aName : aNames) addReRegistrations(createMaterial(-1, aName, aName).setRegistration(this));
 		return this;
 	}
-	
+
 	/** Adds additional Names which this Material is getting re-registered to. For example "AnyCopper" would be something "Copper" and "AnnealedCopper" are getting re-registered to, to make them interchangeable in some Recipes. */
 	public OreDictMaterial addReRegistrations(OreDictMaterial... aMaterials) {
 		for (OreDictMaterial aMaterial : aMaterials) if (mReRegistrations.add(aMaterial)) aMaterial.mToThis.add(this);
 		return this;
 	}
-	
+
 	/** Adds this Materials Name as an additional Name the passed Materials are getting re-registered to. For example "AnyCopper" would be something "Copper" and "AnnealedCopper" are getting re-registered to, to make them interchangeable in some Recipes. */
 	public OreDictMaterial addReRegistrationToThis(OreDictMaterial... aMaterials) {
 		for (OreDictMaterial aMaterial : aMaterials) aMaterial.addReRegistrations(this);
 		return this;
 	}
-	
+
 	/** The Re-Registration for the Ore Dictionary for invalid Materials */
 	public OreDictMaterial setRegistration(OreDictMaterial aMaterial) {
 		mTargetRegistration = aMaterial == null ? this : aMaterial.mTargetRegistration;
 		put(TD.Properties.INVALID_MATERIAL);
 		return this;
 	}
-	
+
 	public OreDictMaterial hide() {
 		mHidden = T;
 		return this;
 	}
-	
+
 	public OreDictMaterial hide(boolean aHidden) {
 		mHidden = aHidden;
 		return this;
 	}
-	
+
 	public OreDictMaterial visName(String... aOreDictNames) {
 		for (String tName : aOreDictNames) OreDictManager.INSTANCE.addVisibilityTrigger(tName, this);
 		return this;
 	}
-	
+
 	public OreDictMaterial visPrefix(String... aOreDictNames) {
 		for (String tName : aOreDictNames) OreDictManager.INSTANCE.addVisibilityTrigger(tName + mNameInternal, this);
 		return this;
 	}
-	
+
 	public OreDictMaterial visDefault(OreDictMaterial... aMaterials) {
 		if (mOriginalMod != null && mOriginalMod != MD.GAPI && mOriginalMod.mLoaded) return this;
 		hide();
@@ -368,13 +370,13 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 		for (OreDictMaterial tMaterial : aMaterials) visName("ore"+tMaterial.mNameInternal, "dust"+tMaterial.mNameInternal, "gem"+tMaterial.mNameInternal, "ingot"+tMaterial.mNameInternal, "plate"+tMaterial.mNameInternal, "stick"+tMaterial.mNameInternal);
 		return this;
 	}
-	
+
 	public OreDictMaterial lens(byte aColor) {
 		put(TD.ItemGenerator.LENSES);
 		OreDictManager.INSTANCE.addReRegistration("lens"+mNameInternal, "craftingLens"+DYE_OREDICTS_POST[aColor]);
 		return this;
 	}
-	
+
 	public OreDictMaterial alloyCentrifuge() {
 		return put(TD.Processing.CENTRIFUGE).alloySimple();
 	}
@@ -384,7 +386,7 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 	public OreDictMaterial alloySimple() {
 		return put(TD.Compounds.ALLOY, TD.Compounds.DECOMPOSABLE).addAlloyingRecipe(mComponents);
 	}
-	
+
 	public OreDictMaterial alloyCentrifuge(long aMelt) {
 		return put(TD.Processing.CENTRIFUGE).alloySimple(aMelt);
 	}
@@ -394,7 +396,7 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 	public OreDictMaterial alloySimple(long aMelt) {
 		return put(TD.Compounds.ALLOY, TD.Compounds.DECOMPOSABLE).heat(aMelt).addAlloyingRecipe(mComponents);
 	}
-	
+
 	public OreDictMaterial alloyCentrifuge(long aMelt, long aBoil) {
 		return put(TD.Processing.CENTRIFUGE).alloySimple(aMelt, aBoil);
 	}
@@ -404,7 +406,7 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 	public OreDictMaterial alloySimple(long aMelt, long aBoil) {
 		return put(TD.Compounds.ALLOY, TD.Compounds.DECOMPOSABLE).heat(aMelt, aBoil).addAlloyingRecipe(mComponents);
 	}
-	
+
 	public OreDictMaterial alloyCentrifuge(OreDictMaterial aHeat) {
 		return put(TD.Processing.CENTRIFUGE).alloySimple(aHeat);
 	}
@@ -414,7 +416,7 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 	public OreDictMaterial alloySimple(OreDictMaterial aHeat) {
 		return put(TD.Compounds.ALLOY, TD.Compounds.DECOMPOSABLE).heat(aHeat).addAlloyingRecipe(mComponents);
 	}
-	
+
 	public OreDictMaterial addAlloyingRecipe(IOreDictConfigurationComponent aConfiguration) {
 		ALLOYS.add(this);
 		for (OreDictMaterialStack tMaterial : aConfiguration.getUndividedComponents()) {
@@ -427,7 +429,7 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 		mAlloyCreationRecipes.add(aConfiguration);
 		return this;
 	}
-	
+
 	/** Sets the Molecule Configuration or Components of this Material. Calculates the Average of the MainStats and sets them. */
 	public OreDictMaterial setMoleculeConfiguration(IOreDictConfigurationComponent aComponents) {
 		mComponents = aComponents;
@@ -451,7 +453,7 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 		mBoilingPoint = Math.max(mMeltingPoint+1, (long)tBoilingPoint);
 		mPlasmaPoint = Math.max(mBoilingPoint+1, (long)tPlasmaPoint);
 		mGramPerCubicCentimeter = tGramPerCubicCentimeter;
-		
+
 		if (!contains(TD.Compounds.APPROXIMATE) && containsAny(TD.Processing.UUM, TD.Compounds.DECOMPOSABLE)) {
 			mTooltipChemical = "";
 			ArrayListNoNulls<OreDictMaterialStack> tComponents = aComponents.getUndividedComponents();
@@ -484,7 +486,7 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 		}
 		return this;
 	}
-	
+
 	public OreDictMaterial setMcfg(long aCommonDivider, OreDictMaterial aMaterial1, long aAmount1) {
 		if (aCommonDivider == 0) {
 			long tAmount = aAmount1;
@@ -541,7 +543,7 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 		}
 		return setMoleculeConfiguration(new OreDictConfigurationComponent(aCommonDivider, OM.stack(aMaterial1, aAmount1), OM.stack(aMaterial2, aAmount2), OM.stack(aMaterial3, aAmount3), OM.stack(aMaterial4, aAmount4), OM.stack(aMaterial5, aAmount5), OM.stack(aMaterial6, aAmount6), OM.stack(aMaterial7, aAmount7)));
 	}
-	
+
 	public OreDictMaterial uumMcfg(long aCommonDivider, OreDictMaterial aMaterial1, long aAmount1) {
 		if (aMaterial1.contains(TD.Processing.UUM)) {
 			put(TD.Processing.UUM);
@@ -599,12 +601,12 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 		}
 		return setMcfg(aCommonDivider, aMaterial1, aAmount1, aMaterial2, aAmount2, aMaterial3, aAmount3, aMaterial4, aAmount4, aMaterial5, aAmount5, aMaterial6, aAmount6, aMaterial7, aAmount7);
 	}
-	
+
 	public OreDictMaterial setTooltip(String aTooltip) {
 		mTooltipChemical = aTooltip;
 		return this;
 	}
-	
+
 	public OreDictMaterial setAllToTheOutputOf(OreDictMaterial aMaterial) {
 		if (aMaterial == null) aMaterial = this;
 		setPulver       (aMaterial.mTargetPulver        .mMaterial, aMaterial.mTargetPulver         .mAmount);
@@ -619,7 +621,7 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 		setCompressing  (aMaterial.mTargetCompressing   .mMaterial, aMaterial.mTargetCompressing    .mAmount);
 		return this;
 	}
-	
+
 	public OreDictMaterial setAllToTheOutputOf(OreDictMaterial aMaterial, long aMultiplier, long aDivider) {
 		if (aMaterial == null) aMaterial = this;
 		setPulver       (aMaterial.mTargetPulver        .mMaterial, (aMaterial.mTargetPulver        .mAmount * aMultiplier) / aDivider);
@@ -635,89 +637,89 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 		setCrushing     (aMaterial.mTargetCrushing      .mMaterial, (aMaterial.mTargetCrushing      .mAmount * aMultiplier) / aDivider);
 		return this;
 	}
-	
+
 	/** The result of trying to ore process it, if you want to disable ore processing, then set the Amount to 0. If aMaterial == null it will choose the previous Material instead, which is usually "this". */
 	public OreDictMaterial setCrushing(OreDictMaterial aMaterial, long aAmount) {
 		mTargetCrushing = OM.stack(aMaterial == null ? this : aMaterial, aAmount);
 		return this;
 	}
-	
+
 	/** The result of trying to pulverise it, if you want to disable pulverising, then set the Amount to 0. If aMaterial == null it will choose the previous Material instead, which is usually "this". */
 	public OreDictMaterial setPulver(OreDictMaterial aMaterial, long aAmount) {
 		mTargetPulver = OM.stack(aMaterial == null ? this : aMaterial, aAmount);
 		return this;
 	}
-	
+
 	/** The result of trying to smelt it, if you want to disable smelting, then set the Amount to 0. If aMaterial == null it will choose previous Material instead, which is usually "this". */
 	public OreDictMaterial setSmelting(OreDictMaterial aMaterial, long aAmount) {
 		mTargetSmelting = OM.stack(aMaterial == null ? this : aMaterial, aAmount);
 		if (aAmount > 0) put(TD.Processing.MELTING);
 		return this;
 	}
-	
+
 	/** The result of cooling it down, if you want to disable cooling down, then set the Amount to 0. If aMaterial == null it will choose previous Material instead, which is usually "this". */
 	public OreDictMaterial setSolidifying(OreDictMaterial aMaterial, long aAmount) {
 		mTargetSolidifying = OM.stack(aMaterial == null ? this : aMaterial, aAmount);
 		return this;
 	}
-	
+
 	/** The result of trying to smash it, if you want to disable smashing, then set the Amount to 0. If aMaterial == null it will choose previous Material instead, which is usually "this". */
 	public OreDictMaterial setSmashing(OreDictMaterial aMaterial, long aAmount) {
 		mTargetSmashing = OM.stack(aMaterial == null ? this : aMaterial, aAmount);
 		return this;
 	}
-	
+
 	/** The result of trying to cut it, if you want to disable cutting, then set the Amount to 0. If aMaterial == null it will choose previous Material instead, which is usually "this". */
 	public OreDictMaterial setCutting(OreDictMaterial aMaterial, long aAmount) {
 		mTargetCutting = OM.stack(aMaterial == null ? this : aMaterial, aAmount);
 		return this;
 	}
-	
+
 	/** The result of trying to forge it, if you want to disable forging, then set the Amount to 0. If aMaterial == null it will choose previous Material instead, which is usually "this". */
 	public OreDictMaterial setForging(OreDictMaterial aMaterial, long aAmount) {
 		mTargetForging = OM.stack(aMaterial == null ? this : aMaterial, aAmount);
 		return this;
 	}
-	
+
 	/** The result of trying to craft with it, if you want to disable working, then set the Amount to 0. If aMaterial == null it will choose previous Material instead, which is usually "this". */
 	public OreDictMaterial setWorking(OreDictMaterial aMaterial, long aAmount) {
 		mTargetWorking = OM.stack(aMaterial == null ? this : aMaterial, aAmount);
 		return this;
 	}
-	
+
 	/** The result of trying to burn it (Ashes for example), if you want to disable burning, then set the Amount to 0. If aMaterial == null it will choose previous Material instead, which is usually "this". */
 	public OreDictMaterial setBurning(OreDictMaterial aMaterial, long aAmount) {
 		mTargetBurning = OM.stack(aMaterial == null ? this : aMaterial, aAmount);
 		return this;
 	}
-	
+
 	/** The result of trying to bend it, if you want to disable bending, then set the Amount to 0. If aMaterial == null it will choose previous Material instead, which is usually "this". */
 	public OreDictMaterial setBending(OreDictMaterial aMaterial, long aAmount) {
 		mTargetBending = OM.stack(aMaterial == null ? this : aMaterial, aAmount);
 		return this;
 	}
-	
+
 	/** The result of trying to compress it, if you want to disable compressing, then set the Amount to 0. If aMaterial == null it will choose previous Material instead, which is usually "this". */
 	public OreDictMaterial setCompressing(OreDictMaterial aMaterial, long aAmount) {
 		mTargetCompressing = OM.stack(aMaterial == null ? this : aMaterial, aAmount);
 		return this;
 	}
-	
+
 	@Deprecated public OreDictMaterial setQuality(float aToolSpeed, long aToolDurability, long aToolQuality) {return qual(3, aToolSpeed, aToolDurability, aToolQuality);}
-	
-	public OreDictMaterial qual(long aQuality) {return qual(0, 1.0F, 64, aQuality);}
+
+	public OreDictMaterial qual(long aHarvestLevel) {return qual(mToolTypes, mToolSpeed, mToolDurability, aHarvestLevel);}
 	public OreDictMaterial qual(float aSpeed, long aDurability, long aQuality) {return qual(3, aSpeed, aDurability, aQuality);}
 	/** Sets the Tool Quality of this Material. */
 	public OreDictMaterial qual(long aType, double aSpeed, long aDurability, long aQuality) {
 		mToolTypes = UT.Code.bind2(aType);
-		mToolDurability = aDurability;
+		mToolDurability = Math.max(1, aDurability);
 		mToolQuality = UT.Code.bind4(aQuality);
 		mToolSpeed = (float)aSpeed;
 		if (aType > 0) put(TD.Properties.HAS_TOOL_STATS, TD.ItemGenerator.PARTS, TD.ItemGenerator.STICKS, TD.ItemGenerator.PLATES);
 		if (aType < 3) put(TD.Properties.NO_ADVANCED_TOOLS);
 		return this;
 	}
-	
+
 	@Deprecated public OreDictMaterial setMeltingPoint(long aMeltingPoint) {return heat(aMeltingPoint);}
 	/** Sets the energetic Stats of this Material. Everything is measured in Kelvin. */
 	public OreDictMaterial heat(long aMeltingPoint) {
@@ -726,7 +728,7 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 		mPlasmaPoint = mBoilingPoint * 100;
 		return this;
 	}
-	
+
 	@Deprecated public OreDictMaterial setStatsEnergetic(long aMeltingPoint, long aBoilingPoint) {return heat(aMeltingPoint, aBoilingPoint);}
 	/** Sets the energetic Stats of this Material. Everything is measured in Kelvin. */
 	public OreDictMaterial heat(long aMeltingPoint, long aBoilingPoint) {
@@ -736,7 +738,7 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 		mPlasmaPoint = aBoilingPoint * 100;
 		return this;
 	}
-	
+
 	@Deprecated public OreDictMaterial setStatsEnergetic(long aMeltingPoint, long aBoilingPoint, long aPlasmaPoint) {return heat(aMeltingPoint, aBoilingPoint, aPlasmaPoint);}
 	/** Sets the energetic Stats of this Material. Everything is measured in Kelvin. */
 	public OreDictMaterial heat(long aMeltingPoint, long aBoilingPoint, long aPlasmaPoint) {
@@ -747,7 +749,7 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 		mPlasmaPoint = aPlasmaPoint;
 		return this;
 	}
-	
+
 	/** Sets the atomic and energetic Stats of this Element. */
 	public OreDictMaterial setStats(long aProtonsAndElectrons, long aNeutrons, long aMeltingPoint, long aBoilingPoint, double aGramPerCubicCentimeter) {
 		heat(aMeltingPoint, aBoilingPoint);
@@ -758,7 +760,7 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 		mGramPerCubicCentimeter = aGramPerCubicCentimeter;
 		return this;
 	}
-	
+
 	/** Sets the atomic Stats of this Material. */
 	public OreDictMaterial setStatsElement(long aProtons, long aElectrons, long aNeutrons, long aAdditionalMass, double aGramPerCubicCentimeter) {
 		mProtons = aProtons;
@@ -768,91 +770,91 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 		mGramPerCubicCentimeter = aGramPerCubicCentimeter;
 		return this;
 	}
-	
+
 	/** Sets the TextureSets for this Material, first Parameter = Block Icons, second Parameter = Item Icons. */
 	public OreDictMaterial setTextures(TextureSet... aSets) {
 		mTextureSetsBlock = aSets[0].mList;
 		mTextureSetsItems = aSets[1].mList;
 		return this;
 	}
-	
+
 	/** Sets the Color of this Material. Note: Whenever I use 256 as Parameter it of course goes back to 255 via bindByte, this is just a marker for me if I did not assign a Color to a Material. */
 	public OreDictMaterial setRGBa(long aR, long aG, long aB, long aA) {
 		mRGBaSolid[0] = mRGBaLiquid[0] = mRGBaGas[0] = mRGBaPlasma[0] = UT.Code.bind8(aR);
 		mRGBaSolid[1] = mRGBaLiquid[1] = mRGBaGas[1] = mRGBaPlasma[1] = UT.Code.bind8(aG);
 		mRGBaSolid[2] = mRGBaLiquid[2] = mRGBaGas[2] = mRGBaPlasma[2] = UT.Code.bind8(aB);
 		mRGBaSolid[3] = mRGBaLiquid[3] = mRGBaGas[3] = mRGBaPlasma[3] = UT.Code.bind8(aA);
-		
+
 		fRGBaSolid[0] = fRGBaLiquid[0] = fRGBaGas[0] = fRGBaPlasma[0] = UT.Code.bind8(aR);
 		fRGBaSolid[1] = fRGBaLiquid[1] = fRGBaGas[1] = fRGBaPlasma[1] = UT.Code.bind8(aG);
 		fRGBaSolid[2] = fRGBaLiquid[2] = fRGBaGas[2] = fRGBaPlasma[2] = UT.Code.bind8(aB);
 		fRGBaSolid[3] = fRGBaLiquid[3] = fRGBaGas[3] = fRGBaPlasma[3] = UT.Code.bind8(aA);
 		return this;
 	}
-	
+
 	/** Sets the Color of this Material */
 	public OreDictMaterial setRGBaSolid(long aR, long aG, long aB, long aA) {
 		mRGBaSolid[0] = UT.Code.bind8(aR);
 		mRGBaSolid[1] = UT.Code.bind8(aG);
 		mRGBaSolid[2] = UT.Code.bind8(aB);
 		mRGBaSolid[3] = UT.Code.bind8(aA);
-		
+
 		fRGBaSolid[0] = UT.Code.bind8(aR);
 		fRGBaSolid[1] = UT.Code.bind8(aG);
 		fRGBaSolid[2] = UT.Code.bind8(aB);
 		fRGBaSolid[3] = UT.Code.bind8(aA);
 		return this;
 	}
-	
+
 	/** Sets the Color of this Material */
 	public OreDictMaterial setRGBaLiquid(long aR, long aG, long aB, long aA) {
 		mRGBaLiquid[0] = UT.Code.bind8(aR);
 		mRGBaLiquid[1] = UT.Code.bind8(aG);
 		mRGBaLiquid[2] = UT.Code.bind8(aB);
 		mRGBaLiquid[3] = UT.Code.bind8(aA);
-		
+
 		fRGBaLiquid[0] = UT.Code.bind8(aR);
 		fRGBaLiquid[1] = UT.Code.bind8(aG);
 		fRGBaLiquid[2] = UT.Code.bind8(aB);
 		fRGBaLiquid[3] = UT.Code.bind8(aA);
 		return this;
 	}
-	
+
 	/** Sets the Color of this Material */
 	public OreDictMaterial setRGBaGas(long aR, long aG, long aB, long aA) {
 		mRGBaGas[0] = UT.Code.bind8(aR);
 		mRGBaGas[1] = UT.Code.bind8(aG);
 		mRGBaGas[2] = UT.Code.bind8(aB);
 		mRGBaGas[3] = UT.Code.bind8(aA);
-		
+
 		fRGBaGas[0] = UT.Code.bind8(aR);
 		fRGBaGas[1] = UT.Code.bind8(aG);
 		fRGBaGas[2] = UT.Code.bind8(aB);
 		fRGBaGas[3] = UT.Code.bind8(aA);
 		return this;
 	}
-	
+
 	/** Sets the Color of this Material */
 	public OreDictMaterial setRGBaPlasma(long aR, long aG, long aB, long aA) {
 		mRGBaPlasma[0] = UT.Code.bind8(aR);
 		mRGBaPlasma[1] = UT.Code.bind8(aG);
 		mRGBaPlasma[2] = UT.Code.bind8(aB);
 		mRGBaPlasma[3] = UT.Code.bind8(aA);
-		
+
 		fRGBaPlasma[0] = UT.Code.bind8(aR);
 		fRGBaPlasma[1] = UT.Code.bind8(aG);
 		fRGBaPlasma[2] = UT.Code.bind8(aB);
 		fRGBaPlasma[3] = UT.Code.bind8(aA);
 		return this;
 	}
-	
+
 	public OreDictMaterial steal(OreDictMaterial aStatsToCopy) {
 		heat(aStatsToCopy);
 		stealStatsElement(aStatsToCopy);
 		qual(aStatsToCopy);
 		return this;
 	}
-	
+
 	public OreDictMaterial stealLooks(OreDictMaterial aStatsToCopy) {
 		mTextureSetsItems = aStatsToCopy.mTextureSetsItems;
 		mTextureSetsBlock = aStatsToCopy.mTextureSetsBlock;
@@ -862,7 +864,7 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 			mRGBaLiquid [i] = aStatsToCopy.mRGBaLiquid[i];
 			mRGBaGas    [i] = aStatsToCopy.mRGBaGas[i];
 			mRGBaPlasma [i] = aStatsToCopy.mRGBaPlasma[i];
-			
+
 			fRGBa       [i] = aStatsToCopy.fRGBa[i];
 			fRGBaSolid  [i] = aStatsToCopy.fRGBaSolid[i];
 			fRGBaLiquid [i] = aStatsToCopy.fRGBaLiquid[i];
@@ -871,17 +873,17 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 		}
 		return this;
 	}
-	
+
 	@Deprecated public OreDictMaterial stealStatsEnergetic(OreDictMaterial aStatsToCopy) {return heat(aStatsToCopy);}
 	public OreDictMaterial heat(OreDictMaterial aStatsToCopy) {
 		return heat(aStatsToCopy.mMeltingPoint, aStatsToCopy.mBoilingPoint, aStatsToCopy.mPlasmaPoint);
 	}
-	
+
 	@Deprecated public OreDictMaterial stealQuality(OreDictMaterial aStatsToCopy) {return qual(aStatsToCopy);}
 	public OreDictMaterial qual(OreDictMaterial aStatsToCopy) {
 		return qual(aStatsToCopy.mToolTypes, aStatsToCopy.mToolSpeed, aStatsToCopy.mToolDurability, aStatsToCopy.mToolQuality);
 	}
-	
+
 	public OreDictMaterial stealStatsElement(OreDictMaterial aStatsToCopy) {
 		mProtons                = aStatsToCopy.mProtons;
 		mElectrons              = aStatsToCopy.mElectrons;
@@ -890,17 +892,20 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 		mGramPerCubicCentimeter = aStatsToCopy.mGramPerCubicCentimeter;
 		return this;
 	}
-	
+
 	public OreDictMaterial setDensity(double aGramPerCubicCentimeter) {
 		mGramPerCubicCentimeter = aGramPerCubicCentimeter;
 		return this;
 	}
-	
+
 	public OreDictMaterial addAspects(TC_AspectStack... aAspects) {
-		for (TC_AspectStack tAspect : aAspects) tAspect.addToAspectList(mAspects);
+		for (TC_AspectStack tAspect : aAspects) {
+			if (tAspect.mAspect == TC.METALLUM) mHasMetallum = T;
+			tAspect.addToAspectList(mAspects);
+		}
 		return this;
 	}
-	
+
 	public OreDictMaterial aspects_met_rad(long aMetallum, long aRadio) {
 		return addAspects(TC.stack(TC.METALLUM, aMetallum), TC.stack(TC.RADIO, aRadio));
 	}
@@ -934,31 +939,31 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 	public OreDictMaterial aspects(TC aAspect1, long aAmount1, TC aAspect2, long aAmount2, TC aAspect3, long aAmount3, TC aAspect4, long aAmount4, TC aAspect5, long aAmount5, TC aAspect6, long aAmount6, TC aAspect7, long aAmount7, TC aAspect8, long aAmount8, TC aAspect9, long aAmount9, TC aAspect0, long aAmount0) {
 		return addAspects(TC.stack(aAspect1, aAmount1), TC.stack(aAspect2, aAmount2), TC.stack(aAspect3, aAmount3), TC.stack(aAspect4, aAmount4), TC.stack(aAspect5, aAmount5), TC.stack(aAspect6, aAmount6), TC.stack(aAspect7, aAmount7), TC.stack(aAspect8, aAmount8), TC.stack(aAspect9, aAmount9), TC.stack(aAspect0, aAmount0));
 	}
-	
+
 	public OreDictMaterial setOreMultiplier(int aMultiplier) {
 		mOreMultiplier = (byte)Math.max(1, aMultiplier);
 		return this;
 	}
-	
+
 	public OreDictMaterial setFurnaceBurnTime(long aValue) {
 		mFurnaceBurnTime = Math.max(0, aValue);
 		return this;
 	}
-	
+
 	public OreDictMaterial addEnchantmentForTools(Enchantment aEnchantment, int aEnchantmentLevel) {
 		mEnchantmentTools.add(new ObjectStack<>(aEnchantment, aEnchantmentLevel));
 		return this;
 	}
-	
+
 	public OreDictMaterial addEnchantmentForArmors(Enchantment aEnchantment, int aEnchantmentLevel) {
 		mEnchantmentArmors.add(new ObjectStack<>(aEnchantment, aEnchantmentLevel));
 		return this;
 	}
-	
+
 	public void addOreByProducts(OreDictMaterial... aMaterials) {
 		mByProducts.addAll(Arrays.asList(aMaterials));
 	}
-	
+
 	/** Sets the Liquid State of this Material. It is advised to have either 144 or 1000 as Fluid Amount. */
 	public OreDictMaterial liquid(FluidStack aFluidStack, long aUnit) {
 		if (aFluidStack != null) {
@@ -968,7 +973,7 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 		}
 		return this;
 	}
-	
+
 	/** Sets the Gaseous State of this Material. It is advised to have either 144 or 1000 as Fluid Amount. */
 	public OreDictMaterial gas(FluidStack aFluidStack, long aUnit) {
 		if (aFluidStack != null) {
@@ -978,7 +983,7 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 		}
 		return this;
 	}
-	
+
 	/** Sets the Plasma State of this Material. It is advised to have either 144 or 1000 as Fluid Amount. */
 	public OreDictMaterial plasma(FluidStack aFluidStack, long aUnit) {
 		if (aFluidStack != null) {
@@ -988,27 +993,27 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 		}
 		return this;
 	}
-	
+
 	/** Sets the Liquid State of this Material. It is advised to have either 144 or 1000 as Fluid Amount. */
 	public OreDictMaterial liquid(FluidStack aFluidStack) {
 		return liquid(aFluidStack, mLiquidUnit);
 	}
-	
+
 	/** Sets the Gaseous State of this Material. It is advised to have either 144 or 1000 as Fluid Amount. */
 	public OreDictMaterial gas(FluidStack aFluidStack) {
 		return gas(aFluidStack, mGasUnit);
 	}
-	
+
 	/** Sets the Plasma State of this Material. It is advised to have either 144 or 1000 as Fluid Amount. */
 	public OreDictMaterial plasma(FluidStack aFluidStack) {
 		return plasma(aFluidStack, mPlasmaUnit);
 	}
-	
+
 	/** Gets the Fluid of this Material at a certain Temperature. */
 	public FluidStack fluid(long aMaterialAmount, boolean aRoundUp) {
 		return fluid(DEF_ENV_TEMP, aMaterialAmount, aRoundUp);
 	}
-	
+
 	/** Gets the Fluid of this Material at a certain Temperature. */
 	public FluidStack fluid(long aTemperature, long aMaterialAmount, boolean aRoundUp) {
 		if (aTemperature >= mPlasmaPoint ) return plasma(aMaterialAmount, aRoundUp);
@@ -1016,7 +1021,7 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 		if (aTemperature >= mMeltingPoint) return liquid(aMaterialAmount, aRoundUp);
 		return FL.Error.make(1000);
 	}
-	
+
 	/** Gets the Liquid State of this Material. */
 	public FluidStack liquid(long aMaterialAmount, boolean aRoundUp) {
 		if (mLiquid == null) return FL.Error.make(1);
@@ -1024,7 +1029,7 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 		rFluid.amount = (int)UT.Code.units(aMaterialAmount, mLiquidUnit, rFluid.amount, aRoundUp);
 		return rFluid;
 	}
-	
+
 	/** Gets the Gaseous State of this Material. */
 	public FluidStack gas(long aMaterialAmount, boolean aRoundUp) {
 		if (mGas == null) return FL.Error.make(1);
@@ -1032,7 +1037,7 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 		rFluid.amount = (int)UT.Code.units(aMaterialAmount, mGasUnit, rFluid.amount, aRoundUp);
 		return rFluid;
 	}
-	
+
 	/** Gets the Plasma State of this Material. */
 	public FluidStack plasma(long aMaterialAmount, boolean aRoundUp) {
 		if (mPlasma == null) return FL.Error.make(1);
@@ -1040,7 +1045,7 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 		rFluid.amount = (int)UT.Code.units(aMaterialAmount, mPlasmaUnit, rFluid.amount, aRoundUp);
 		return rFluid;
 	}
-	
+
 	/**
 	 * DO NOT USE THIS!!! GREG USE ONLY!!!
 	 * Sets the Priority Prefix of this Material.
@@ -1057,7 +1062,7 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 		}
 		return this;
 	}
-	
+
 	/**
 	 * Sets the Priority Prefix of this Material.
 	 * 0 = Not Selected
@@ -1080,27 +1085,27 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 		mPriorityPrefix = aPrefix;
 		return this;
 	}
-	
+
 	/** Gets the amount of Neutrons per Unit of Molecule */
 	public long getNeutrons() {
 		return mNeutrons;
 	}
-	
+
 	/** Gets the amount of Protons per Unit of Molecule */
 	public long getProtons() {
 		return mProtons;
 	}
-	
+
 	/** Gets the amount of Electrons per Unit of Molecule */
 	public long getElectrons() {
 		return mElectrons;
 	}
-	
+
 	/** Gets the Mass of one Unit of Molecule */
 	public long getMass() {
 		return mMass;
 	}
-	
+
 	/** Gets the Weight of this Material in Kilogramme, depending on the Amount of Material passed. */
 	public double getWeight(long aAmount) {
 		// Extended Math:
@@ -1114,32 +1119,32 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 		// (kg/ m^3 * aAmount * 0.111111111) /  Material-Unit
 		return (mGramPerCubicCentimeter * 111.111111 * aAmount) / U;
 	}
-	
+
 	public static OreDictMaterial get(String aMaterial) {
 		OreDictMaterial tMaterial = MATERIAL_MAP.get(aMaterial);
 		if (tMaterial == null) return MT.NULL;
 		while (tMaterial != tMaterial.mTargetRegistration) tMaterial = tMaterial.mTargetRegistration;
 		return tMaterial;
 	}
-	
+
 	@Override
 	public String toString() {
 		return mNameInternal;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return mHashID;
 	}
-	
+
 	public final List<IOreDictListenerItem> mListenersItem = new ArrayListNoNulls<>();
-	
+
 	public boolean addListener(IOreDictListenerItem aListener) {
 		if (mListenersItem.contains(aListener)) return false;
 		mListenersItem.add(aListener);
 		return true;
 	}
-	
+
 	/** List of all valid Items, which are registered for this Material. */
 	public final ItemStackSet<ItemStackContainer> mRegisteredItems = new ItemStackSet<>();
 	/** This is used to determine if any of the ItemStacks belongs to this Material. */
@@ -1148,27 +1153,27 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 		for (ItemStack aStack : aStacks) if (mRegisteredItems.contains(aStack, T)) return T;
 		return F;
 	}
-	
+
 	@Override
 	public boolean contains(TagData aTag) {
 		return mTags.contains(aTag);
 	}
-	
+
 	public boolean containsAny(TagData... aTags) {
 		for (TagData aTag : aTags) if (mTags.contains(aTag)) return T;
 		return F;
 	}
-	
+
 	@Override
 	public boolean containsAll(TagData... aTags) {
 		return mTags.containsAll(Arrays.asList(aTags));
 	}
-	
+
 	@Override
 	public boolean containsAll(Collection<TagData> aTags) {
 		return mTags.containsAll(aTags);
 	}
-	
+
 	public OreDictMaterial put(TagData... aObjects) {return add(aObjects);}
 	@SuppressWarnings("rawtypes")
 	public OreDictMaterial put(Object... aObjects) {
@@ -1201,25 +1206,25 @@ public final class OreDictMaterial implements ITagDataContainer<OreDictMaterial>
 		}
 		return this;
 	}
-	
+
 	/** Additional Function for convenience. */
 	public OreDictMaterial add(TagData[] aTags1, TagData... aTags2) {
 		put(aTags1);
 		put(aTags2);
 		return this;
 	}
-	
+
 	@Override
 	public OreDictMaterial add(TagData... aTags) {
 		if (aTags != null) for (TagData aTag : aTags) mTags.add(aTag);
 		return this;
 	}
-	
+
 	@Override
 	public boolean remove(TagData aTag) {
 		return mTags.remove(aTag);
 	}
-	
+
 	@Override
 	public boolean isTrue(OreDictMaterial aObject) {
 		return aObject == this;

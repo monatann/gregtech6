@@ -136,19 +136,19 @@ public class MultiTileEntityLargeCompressor extends TileEntityBase10MultiBlockMa
 	}
 
 	static {
-		LH.add("gt.tooltip.multiblock.compressor.1", "5x5x3 'Basin' of 56 TungstenSteel Walls");
-		LH.add("gt.tooltip.multiblock.compressor.2", "3x3x2 Filling with Compressor Part");
-		LH.add("gt.tooltip.multiblock.compressor.3", "Main Block centered on Side-Bottom and facing outwards");
-		LH.add("gt.tooltip.multiblock.compressor.4", "Input only at Extruder Part, Output at Bottom Layer");
+		LH.add("gt6.tooltip.multiblock.compressor.1", "5x5x3 'Basin' of 56 TungstenSteel Walls");
+		LH.add("gt6.tooltip.multiblock.compressor.2", "3x3x2 Filling with Compressor Part");
+		LH.add("gt6.tooltip.multiblock.compressor.3", "Main Block centered on Side-Bottom and facing outwards");
+		LH.add("gt6.tooltip.multiblock.compressor.4", "Input only at Extruder Part, Output at Bottom Layer");
 	}
 
 	@Override
 	public void addToolTips(List<String> aList, ItemStack aStack, boolean aF3_H) {
 		aList.add(Chat.CYAN     + LH.get(LH.STRUCTURE) + ":");
-		aList.add(Chat.WHITE    + LH.get("gt.tooltip.multiblock.compressor.1"));
-		aList.add(Chat.WHITE    + LH.get("gt.tooltip.multiblock.compressor.2"));
-		aList.add(Chat.WHITE    + LH.get("gt.tooltip.multiblock.compressor.3"));
-		aList.add(Chat.WHITE    + LH.get("gt.tooltip.multiblock.compressor.4"));
+		aList.add(Chat.WHITE    + LH.get("gt6.tooltip.multiblock.compressor.1"));
+		aList.add(Chat.WHITE    + LH.get("gt6.tooltip.multiblock.compressor.2"));
+		aList.add(Chat.WHITE    + LH.get("gt6.tooltip.multiblock.compressor.3"));
+		aList.add(Chat.WHITE    + LH.get("gt6.tooltip.multiblock.compressor.4"));
 		super.addToolTips(aList, aStack, aF3_H);
 	}
 

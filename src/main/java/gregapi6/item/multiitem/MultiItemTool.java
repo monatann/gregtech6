@@ -74,15 +74,15 @@ import net.minecraftforge.event.world.BlockEvent;
 
 /**
  * @author Gregorius Techneticies
- * 
+ *
  * This is an example on how you can create a Tool ItemStack, in this case a Bismuth Wrench:
  * gregapi6.data.CS.ToolsGT.sMetaTool.getToolWithStats(CS.ToolIDs.WRENCH, 1, MT.Bismuth, MT.Bismuth, null);
  */
 public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGTContainerTool {
 	public final HashMap<Short, IToolStats> mToolStats = new HashMap<>();
-	
+
 	public static ChunkCoordinates LAST_TOOL_COORDS_BEFORE_DAMAGE = null;
-	
+
 	/**
 	 * Creates the Item using these Parameters.
 	 * @param aUnlocalized The unlocalised Name of this Item. DO NOT START YOUR UNLOCALISED NAME WITH "gt6."!!!
@@ -91,7 +91,7 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 		super(aModID, aUnlocalized);
 		setMaxStackSize(1);
 	}
-	
+
 	/**
 	 * This adds a Custom Item to the ending Range.
 	 * @param aID The Id of the assigned Tool Class [0 - 32765] (only even Numbers allowed! Uneven ID's are empty electric Items)
@@ -136,7 +136,7 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 	public final ItemStack getToolWithStats(int aToolID, OreDictMaterial aPrimaryMaterial, OreDictMaterial aSecondaryMaterial) {
 		return getToolWithStats(aToolID, 1, aPrimaryMaterial, aSecondaryMaterial);
 	}
-	
+
 	/**
 	 * This Function gets an ItemStack Version of this Tool
 	 * @param aToolID the ID of the Tool Class
@@ -147,7 +147,7 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 	public final ItemStack getToolWithStats(int aToolID, int aAmount, OreDictMaterial aPrimaryMaterial, OreDictMaterial aSecondaryMaterial) {
 		return getToolWithStats(aToolID, aAmount, aPrimaryMaterial, aSecondaryMaterial, 0, 0);
 	}
-	
+
 	/**
 	 * This Function gets an ItemStack Version of this Tool
 	 * @param aToolID the ID of the Tool Class
@@ -178,7 +178,7 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 		isItemStackUsable(rStack);
 		return rStack;
 	}
-	
+
 	/**
 	 * Called by the Block Harvesting Event within the GT_Proxy
 	 */
@@ -191,19 +191,19 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 			if (!UT.Entities.hasInfiniteItems(aPlayer)) doDamage(aStack, tDamage * tStats.getToolDamagePerDropConversion(), aPlayer);
 		}
 	}
-	
+
 	public boolean canCollectDropsDirectly(ItemStack aStack, Block aBlock, byte aMetaData) {
 		if (aBlock instanceof BlockTorch || IL.GC_Torch_Glowstone.equal(aBlock) || IL.AETHER_Torch_Ambrosium.equal(aBlock) || (aMetaData == 1 && IL.TC_Block_Air.equal(aBlock))) return T;
 		IToolStats tStats = getToolStats(aStack);
 		return (tStats.canCollect() || getPrimaryMaterial(aStack).contains(TD.Properties.MAGNETIC_ACTIVE)) && isItemStackUsable(aStack) && getDigSpeed(aStack, aBlock, aMetaData) > 0;
 	}
-	
+
 	public float onBlockBreakSpeedEvent(float aDefault, ItemStack aStack, EntityPlayer aPlayer, Block aBlock, int aX, int aY, int aZ, byte aMetaData, PlayerEvent.BreakSpeed aEvent) {
 		if (aBlock instanceof BlockTorch || IL.GC_Torch_Glowstone.equal(aBlock) || IL.AETHER_Torch_Ambrosium.equal(aBlock) || (aMetaData == 1 && IL.TC_Block_Air.equal(aBlock))) return Float.MAX_VALUE;
 		IToolStats tStats = getToolStats(aStack);
 		return tStats == null ? aDefault : tStats.getMiningSpeed(aBlock, aMetaData, aDefault, aPlayer, aPlayer.worldObj, aX, aY, aZ);
 	}
-	
+
 	@Override
 	public boolean onLeftClickEntity(ItemStack aStack, EntityPlayer aPlayer, Entity aEntity) {
 		IToolStats tStats = getToolStats(aStack);
@@ -221,12 +221,12 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 				if (tDamage + tMagicDamage > 0) {
 					boolean tCriticalHit = aPlayer.fallDistance > 0 && !aPlayer.onGround && !aPlayer.isOnLadder() && !aPlayer.isInWater() && !aPlayer.isPotionActive(Potion.blindness) && aPlayer.ridingEntity == null && aEntity instanceof EntityLivingBase;
 					if (tCriticalHit && tDamage > 0) tDamage *= 1.5;
-					float tFullDamage = (MD.TFC.mLoaded ? (tDamage+tMagicDamage) * 10 : (tDamage+tMagicDamage));
+					float tFullDamage = (MD.TFC.mLoaded || MD.TFCP.mLoaded ? (tDamage+tMagicDamage) * 80 : (tDamage+tMagicDamage));
 					// Avoiding the Betweenlands Damage Cap in a fair way. Only Betweenlands Materials will avoid it. And maybe some super Lategame Items.
 					if (MD.BTL.mLoaded && aEntity.getClass().getName().startsWith("thebetweenlands") && getPrimaryMaterial(aStack).contains(TD.Properties.BETWEENLANDS)) {
 						float tDamageToDeal = tFullDamage;
 						DamageSource tSource = tStats.getDamageSource(aPlayer, aEntity);
-						
+
 						while (tDamageToDeal > 0 && aEntity.attackEntityFrom(tSource, Math.min(tDamageToDeal, 12) / 0.3F)) {
 							tDamageToDeal -= 12;
 							if (tDamageToDeal > 0) aEntity.hurtResistantTime = 0;
@@ -247,26 +247,26 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 		if (aStack.stackSize <= 0) aPlayer.destroyCurrentEquippedItem();
 		return T;
 	}
-	
+
 	@Override
 	public ItemStack onItemRightClick(ItemStack aStack, World aWorld, EntityPlayer aPlayer) {
 		IToolStats tStats = getToolStats(aStack);
 		if (tStats != null && tStats.canBlock()) aPlayer.setItemInUse(aStack, 72000);
 		return super.onItemRightClick(aStack, aWorld, aPlayer);
 	}
-	
+
 	@Override
 	public final int getMaxItemUseDuration(ItemStack aStack) {
 		return 72000;
 	}
-	
+
 	@Override
 	public final EnumAction getItemUseAction(ItemStack aStack) {
 		IToolStats tStats = getToolStats(aStack);
 		if (tStats != null && tStats.canBlock()) return EnumAction.block;
 		return EnumAction.none;
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	@SuppressWarnings("unchecked")
@@ -277,7 +277,7 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 			aList.add(tStack);
 		}
 	}
-	
+
 	@Override
 	public void addAdditionalToolTips(List<String> aList, ItemStack aStack, boolean aF3_H) {
 		long tMaxDamage = getToolMaxDamage(aStack), tDamage = getToolDamage(aStack);
@@ -287,14 +287,14 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 			aList.add(LH.Chat.WHITE + "Durability: " + LH.Chat.GREEN + (tMaxDamage - tDamage) + " / " + tMaxDamage + LH.Chat.GRAY);
 			aList.add(LH.Chat.WHITE + tMaterial.getLocal() + LH.Chat.YELLOW + " lvl " + getHarvestLevel(aStack, "") + LH.Chat.GRAY);
 			float tCombat = getToolCombatDamage(aStack);
-			aList.add(LH.Chat.WHITE + "Attack Damage: " + LH.Chat.BLUE + "+" + tCombat + LH.Chat.RED + " (= " + ((tCombat+1)/2) + " Hearts)" + LH.Chat.GRAY);
+			aList.add(LH.Chat.WHITE + "Attack Damage: " + LH.Chat.BLUE + "+" + (((MD.TFC.mLoaded || MD.TFCP.mLoaded) ? tCombat * 80 : tCombat) + LH.Chat.RED + " (= " + ((MD.TFC.mLoaded || MD.TFCP.mLoaded) ? ((tCombat+1)*40) + ")" : ((tCombat+1)/2) + " Hearts)"))  + LH.Chat.GRAY);
 			aList.add(LH.Chat.WHITE + "Mining Speed: " + LH.Chat.PINK + Math.max(Float.MIN_NORMAL, tStats.getSpeedMultiplier() * getPrimaryMaterial(aStack, MT.NULL).mToolSpeed) + LH.Chat.GRAY);
 			aList.add(LH.Chat.WHITE + "Crafting Uses: " + LH.Chat.GREEN + UT.Code.divup(getEnergyStats(aStack) == null ? tMaxDamage - tDamage : getEnergyStored(TD.Energy.EU, aStack), tStats.getToolDamagePerContainerCraft()) + LH.Chat.GRAY);
 			if (MD.BTL.mLoaded && tMaterial.contains(TD.Properties.BETWEENLANDS)) aList.add(LH.Chat.GREEN + LH.get(LH.TOOLTIP_BETWEENLANDS_RESISTANCE));
 			if (tStats.canCollect() || getPrimaryMaterial(aStack).contains(TD.Properties.MAGNETIC_ACTIVE)) aList.add(LH.Chat.DGRAY + LH.get(LH.TOOLTIP_AUTOCOLLECT));
 		}
 	}
-	
+
 	public static final OreDictMaterial getPrimaryMaterial(ItemStack aStack, OreDictMaterial aDefault) {
 		NBTTagCompound aNBT = aStack.getTagCompound();
 		if (aNBT != null) {
@@ -307,11 +307,11 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 		}
 		return aDefault;
 	}
-	
+
 	public static final OreDictMaterial getPrimaryMaterial(ItemStack aStack) {
 		return getPrimaryMaterial(aStack, MT.NULL);
 	}
-	
+
 	public static final OreDictMaterial getSecondaryMaterial(ItemStack aStack, OreDictMaterial aDefault) {
 		NBTTagCompound aNBT = aStack.getTagCompound();
 		if (aNBT != null) {
@@ -324,11 +324,11 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 		}
 		return aDefault;
 	}
-	
+
 	public static final OreDictMaterial getSecondaryMaterial(ItemStack aStack) {
 		return getSecondaryMaterial(aStack, MT.NULL);
 	}
-	
+
 	@Override
 	public IItemEnergy getEnergyStats(ItemStack aStack) {
 		NBTTagCompound aNBT = aStack.getTagCompound();
@@ -340,13 +340,13 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 		}
 		return null;
 	}
-	
+
 	public float getToolCombatDamage(ItemStack aStack) {
 		IToolStats tStats = getToolStats(aStack);
 		if (tStats == null) return 0;
 		return tStats.getBaseDamage() + getPrimaryMaterial(aStack, MT.NULL).mToolQuality;
 	}
-	
+
 	public static final long getToolMaxDamage(ItemStack aStack) {
 		NBTTagCompound aNBT = aStack.getTagCompound();
 		if (aNBT != null) {
@@ -356,7 +356,7 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 		}
 		return 1;
 	}
-	
+
 	public static final long getToolDamage(ItemStack aStack) {
 		NBTTagCompound aNBT = aStack.getTagCompound();
 		if (aNBT != null) {
@@ -366,7 +366,7 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 		}
 		return 0;
 	}
-	
+
 	public static final boolean setToolDamage(ItemStack aStack, long aDamage) {
 		NBTTagCompound aNBT = aStack.getTagCompound();
 		if (aNBT != null) {
@@ -375,11 +375,11 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 		}
 		return F;
 	}
-	
+
 	public final boolean doDamage(ItemStack aStack, long aAmount) {
 		return doDamage(aStack, aAmount, null);
 	}
-	
+
 	public final boolean doDamage(ItemStack aStack, long aAmount, EntityLivingBase aPlayer) {
 		if (!isItemStackUsable(aStack)) return F;
 		IItemEnergy tElectric = getEnergyStats(aStack);
@@ -421,7 +421,7 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 		}
 		return useEnergy(TD.Energy.EU, aStack, aAmount, aPlayer, null, null, 0, 0, 0, T);
 	}
-	
+
 	@Override
 	public float getDigSpeed(ItemStack aStack, Block aBlock, int aMetaData) {
 		if (aBlock == NB || aBlock == Blocks.bedrock) return 0;
@@ -431,18 +431,18 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 		if (tStats == null || Math.max(0, getHarvestLevel(aStack, "")) < aBlock.getHarvestLevel(aMetaData)) return 0;
 		return tStats.getMiningSpeed(aBlock, (byte)aMetaData) * Math.max(Float.MIN_NORMAL, tStats.getSpeedMultiplier() * getPrimaryMaterial(aStack, MT.Steel).mToolSpeed);
 	}
-	
+
 	@Override
 	public final boolean canHarvestBlock(Block aBlock, ItemStack aStack) {
 		return IL.TC_Block_Air.equal(aBlock) || ST.ownedBy(MD.CARP, aBlock) || getDigSpeed(aStack, aBlock, (byte)0) > 0;
 	}
-	
+
 	@Override
 	public final int getHarvestLevel(ItemStack aStack, String aToolClass) {
 		IToolStats tStats = getToolStats(aStack);
-		return tStats == null ? -1 : tStats.getBaseQuality() + getPrimaryMaterial(aStack, MT.NULL).mToolQuality; 
+		return tStats == null ? -1 : tStats.getBaseQuality() + getPrimaryMaterial(aStack, MT.NULL).mToolQuality;
 	}
-	
+
 	@Override
 	public boolean onBlockDestroyed(ItemStack aStack, World aWorld, Block aBlock, int aX, int aY, int aZ, EntityLivingBase aPlayer) {
 		if (aBlock instanceof BlockTorch || IL.GC_Torch_Glowstone.equal(aBlock) || IL.AETHER_Torch_Ambrosium.equal(aBlock) || IL.TC_Block_Air.equal(aBlock)) return T;
@@ -458,7 +458,7 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 		}
 		return rReturn;
 	}
-	
+
 	@Override
 	public ItemStack getContainerItem(ItemStack aStack) {
 		if (!isItemStackUsable(aStack)) return null;
@@ -470,7 +470,7 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 		if (TOOL_SOUNDS && aStack != null && LAST_TOOL_COORDS_BEFORE_DAMAGE != null) UT.Sounds.play(tStats.getCraftingSound(), 200, 1, LAST_TOOL_COORDS_BEFORE_DAMAGE);
 		return aStack;
 	}
-	
+
 	@Override
 	public boolean hasContainerItem(ItemStack aStack) {
 		if (!isItemStackUsable(aStack)) return F;
@@ -480,42 +480,42 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 		doDamage(aStack, tStats.getToolDamagePerContainerCraft(), null);
 		return aStack.stackSize > 0;
 	}
-	
+
 	public IToolStats getToolStats(ItemStack aStack) {
 		isItemStackUsable(aStack);
 		return getToolStatsInternal(aStack);
 	}
-	
+
 	private IToolStats getToolStatsInternal(ItemStack aStack) {
 		return aStack == null ? null : getToolStatsInternal(ST.meta_(aStack));
 	}
-	
+
 	private IToolStats getToolStatsInternal(int aDamage) {
 		return mToolStats.get((short)aDamage);
 	}
-	
+
 	@Override
 	public void onCreated(ItemStack aStack, World aWorld, EntityPlayer aPlayer) {
 		IToolStats tStats = getToolStats(aStack);
 		if (tStats != null && aPlayer != null) tStats.onToolCrafted(aStack, aPlayer);
 		super.onCreated(aStack, aWorld, aPlayer);
 	}
-	
+
 	@Override
 	public final boolean doesContainerItemLeaveCraftingGrid(ItemStack aStack) {
 		return F;
 	}
-	
+
 	@Override
 	public final int getItemStackLimit(ItemStack aStack) {
 		return 1;
 	}
-	
+
 	@Override
 	public boolean isFull3D() {
 		return T;
 	}
-	
+
 	@Override
 	public boolean isItemStackUsable(ItemStack aStack) {
 		if (aStack == null || aStack.stackSize <= 0) return F;
@@ -567,66 +567,66 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 		EnchantmentHelper.setEnchantments(tResult, aStack);
 		return getToolDamage(aStack) <= getToolMaxDamage(aStack);
 	}
-	
+
 	public short getChargedMetaData(ItemStack aStack) {
 		return (short)(ST.meta_(aStack) - (ST.meta_(aStack) % 2));
 	}
-	
+
 	public short getEmptyMetaData(ItemStack aStack) {
 		NBTTagCompound aNBT = aStack.getTagCompound();
 		if (aNBT != null) aNBT.removeTag("ench");
 		return (short)(ST.meta_(aStack)+1-(ST.meta_(aStack) % 2));
 	}
-	
+
 	@Override public int getItemEnchantability() {return 0;}
 	@Override public boolean isBookEnchantable(ItemStack aStack, ItemStack aBook) {return F;}
 	@Override public boolean getIsRepairable(ItemStack aStack, ItemStack aMaterial) {return F;}
-	
+
 	@Override
 	public int getRenderPasses(int aMetaData) {
 		IToolStats tStats = getToolStatsInternal(aMetaData);
 		if (tStats != null) return tStats.getRenderPasses()+2;
 		return 2;
 	}
-	
+
 	@Override
 	public boolean requiresMultipleRenderPasses() {
 		return T;
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister aIconRegister) {
 		//
 	}
-	
+
 	@Override
 	public int getSpriteNumber() {
 		return 1;
 	}
-	
+
 	@Override
 	public int getColorFromItemStack(ItemStack aStack, int aRenderPass) {
 		IToolStats tStats = getToolStatsInternal(aStack);
 		if (tStats != null) return UT.Code.getRGBaInt(tStats.getRGBa(aStack, aRenderPass));
 		return 16777215;
 	}
-	
+
 	@Override
 	public IIcon getIconIndex(ItemStack aStack) {
 		return getIcon(aStack, 0);
 	}
-	
+
 	@Override
 	public IIcon getIconFromDamage(int aMetaData) {
 		return getIconIndex(ST.make(this, 1, aMetaData));
 	}
-	
+
 	@Override
 	public IIcon getIcon(ItemStack aStack, int aRenderPass) {
 		return getIcon(aStack, aRenderPass, null, null, 0);
 	}
-	
+
 	@Override
 	public IIcon getIcon(ItemStack aStack, int aRenderPass, EntityPlayer aPlayer, ItemStack aUsedStack, int aUseRemaining) {
 		IToolStats tStats = getToolStatsInternal(aStack);
@@ -656,23 +656,23 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 		}
 		return Textures.ItemIcons.VOID.getIcon(0);
 	}
-	
+
 	@Override
 	public IIcon getIconFromDamageForRenderPass(int aMetaData, int aRenderPass) {
 		return getIconFromDamage(aMetaData);
 	}
-	
+
 	@Override
 	@SuppressWarnings("deprecation")
 	public boolean hasEffect(ItemStack aStack) {
 		return F;
 	}
-	
+
 	@Override
 	public boolean hasEffect(ItemStack aStack, int aRenderPass) {
 		return F;
 	}
-	
+
 	@Override
 	public Long[] getFluidContainerStats(ItemStack aStack) {
 		return null;

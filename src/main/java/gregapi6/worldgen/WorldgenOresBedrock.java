@@ -117,6 +117,7 @@ public class WorldgenOresBedrock extends WorldgenObject {
 		if (WD.bedrock(aWorld, aMinX+8, 0, aMinZ+8)) {
 			CAN_GENERATE_BEDROCK_ORE = F;
 
+			int tHeight = WD.dimTF(aWorld) ? 30 : 62;
 			if ((mIndicatorRocks || mIndicatorFlowers) && (!(GENERATE_STREETS && aWorld.provider.dimensionId == 0) || (Math.abs(aMinX) >= 64 && Math.abs(aMaxX) >= 64 && Math.abs(aMinZ) >= 64 && Math.abs(aMaxZ) >= 64))) {
 				ItemStack tRock = OP.rockGt.mat(mMaterial, 1);
 				if (ST.valid(tRock)) {
@@ -124,7 +125,7 @@ public class WorldgenOresBedrock extends WorldgenObject {
 					if (tRegistry != null) {
 						for (int i = 0; i < 32; i++) {
 							int tX = aMinX+aRandom.nextInt(32)-8, tZ = aMinZ+aRandom.nextInt(32)-8;
-							for (int tY = 127; tY > 62; tY--) {
+							for (int tY = 127; tY > tHeight; tY--) {
 								Block tContact = aWorld.getBlock(tX, tY, tZ);
 								if (tContact.getMaterial().isLiquid()) break;
 								if (!tContact.isOpaqueCube()) continue;

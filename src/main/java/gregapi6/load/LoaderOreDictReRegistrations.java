@@ -32,7 +32,7 @@ import gregapi6.oredict.OreDictManager;
 
 /**
  * @author Gregorius Techneticies
- * 
+ *
  * Loads the Re-Registrations for several OreDictNames.
  * This happens during the PreInitPhase.
  */
@@ -72,9 +72,9 @@ public class LoaderOreDictReRegistrations implements Runnable {
 		OreDictManager.INSTANCE.addAutoBlackListing("bucketMilk");
 		OreDictManager.INSTANCE.addAutoBlackListing("ingotEnrichedUranium");
 		OreDictManager.INSTANCE.addAutoBlackListing("IngotEnrichedUranium");
-		
+
 		OreDictManager.INSTANCE.addAutoBlackListingForMod(MD.TFC.mID);
-		
+		OreDictManager.INSTANCE.addAutoBlackListingForMod(MD.TFCP.mID);
 
 		OreDictManager.INSTANCE.addReRegistrationWithReversal(OD.itemTar                , "tar");
 		OreDictManager.INSTANCE.addReRegistrationWithReversal(OD.craftingChest          , "chest");
@@ -315,10 +315,10 @@ public class LoaderOreDictReRegistrations implements Runnable {
 		OreDictManager.INSTANCE.addReRegistrationWithReversal("oreCrimsonMiddleGem"     , "oreCrimsonMiddle");
 		OreDictManager.INSTANCE.addReRegistrationWithReversal("oreNetherQuartz"         , "oreNetherrackNetherQuartz");
 		OreDictManager.INSTANCE.addReRegistrationWithReversal("oreBasalticMineralSand"  , "oreSandBasalticMineralSand");
-		
-		
-		
-		
+
+
+
+
 		OreDictManager.INSTANCE.addReRegistration(OD_USB_STICKS[1]                  , "gt:autocrafterblueprintitem");
 		OreDictManager.INSTANCE.addReRegistration(OD_USB_CABLES[1]                  , "gt:autocrafterblueprintitem");
 		OreDictManager.INSTANCE.addReRegistration(OD_USB_STICKS[1]                  , OD_USB_STICKS[0]);
@@ -1228,7 +1228,7 @@ public class LoaderOreDictReRegistrations implements Runnable {
 		OreDictManager.INSTANCE.addReRegistration("foodAnanasicecream"              , "listAllicecream");
 		OreDictManager.INSTANCE.addReRegistration("foodChumicecream"                , "listAllicecream");
 		OreDictManager.INSTANCE.addReRegistration("foodBearicecream"                , "listAllicecream");
-		
+
 		OreDictManager.INSTANCE.setAutomaticItemData("chipsetRed"       , new OreDictItemData(MT.Redstone, U));
 		OreDictManager.INSTANCE.setAutomaticItemData("chipsetIron"      , new OreDictItemData(MT.Redstone, U, ANY.Fe, U));
 		OreDictManager.INSTANCE.setAutomaticItemData("chipsetGold"      , new OreDictItemData(MT.Redstone, U, MT.Au, U));
@@ -1312,7 +1312,7 @@ public class LoaderOreDictReRegistrations implements Runnable {
 		OreDictManager.INSTANCE.setAutomaticItemData("schist", new OreDictItemData(MT.Blueschist, U*1));
 		OreDictManager.INSTANCE.setAutomaticItemData("diorite", new OreDictItemData(MT.Diorite, U*1));
 		OreDictManager.INSTANCE.setAutomaticItemData("ingotRefinedIron", new OreDictItemData(MT.Fe, U*1));
-		
+
 		OreDictManager.INSTANCE.setAutomaticItemData(OP.stone.dat(MT.Endstone       ), new OreDictItemData(MT.Endstone      , U));
 		OreDictManager.INSTANCE.setAutomaticItemData(OP.stone.dat(MT.Netherrack     ), new OreDictItemData(MT.Netherrack    , U));
 		OreDictManager.INSTANCE.setAutomaticItemData(OP.stone.dat(MT.NetherBrick    ), new OreDictItemData(MT.NetherBrick   , U));
